@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+    ">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.yuanpin"/>
+
+    <!--<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">-->
+        <!--<property name="interceptors">-->
+            <!--<list>-->
+                <!--<ref bean="loginFilter"/>-->
+                <!--<ref bean="openIdServerLoginFilter"/>-->
+                <!--&lt;!&ndash;<ref bean="headerDataFilter"/>&ndash;&gt;-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <bean id="loginFilter" class="com.yuanpin.flora.filter.LoginFilter"/>
+    <bean id="sessionFilter" class="com.yuanpin.flora.filter.SessionFilter"/>
+    <bean id="openIdServerLoginFilter" class="com.yuanpin.flora.filter.OpenIdServerLoginFilter"/>
+    <!--<bean id="headerDataFilter" class="com.yuanpin.flora.filter.HeaderDataFilter"/>-->
+
+    <!-- 登录拦截 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/auth"/>
+            <ref bean="loginFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- SessionData拦截 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/resources/**"/>
+            <mvc:exclude-mapping path="/fzeus/**"/>
+            <mvc:exclude-mapping path="/flora/**"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.html"/>
+            <ref bean="sessionFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- openid登录验证 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/simpleRedirect"/>
+            <ref bean="openIdServerLoginFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 暂未使用的过滤器 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/resources/**"/>-->
+            <!--<mvc:exclude-mapping path="/fzeus/**"/>-->
+            <!--<mvc:exclude-mapping path="/flora/**"/>-->
+            <!--<mvc:exclude-mapping path="/**/*.css"/>-->
+            <!--<mvc:exclude-mapping path="/**/*.js"/>-->
+            <!--<mvc:exclude-mapping path="/**/*.html"/>-->
+            <!--<ref bean="headerDataFilter"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+    <!-- 采用注解方式配置MVC -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="serializationInclusion" value="ALWAYS"/>
+                        <property name="dateFormat">
+                            <bean class="com.yuanpin.flora.register.SmartDateFormat"/>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 视图解析器和json解析器 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+            </map>
+        </property>
+        <!--<property name="viewResolvers">-->
+        <!--<list>-->
+        <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/" /> &lt;!&ndash;可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 &ndash;&gt;-->
+        <!--<property name="suffix" value=".html"/>-->
+        <!--</bean>-->
+        <!--</list>-->
+        <!--</property>-->
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 多文件上传配置 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="100000000"/>
+        <!-- 支持文件大小100m -->
+    </bean>
+
+
+    <!-- Resolve views based on string names -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- thymeleaf config -->
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="order" value="4"/>
+    </bean>
+
+    <bean id="templateResolver"
+          class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <property name="prefix" value="/WEB-INF/views/thymeleaf/"/>
+        <property name="suffix" value=".html"/>
+        <property name="cacheable" value="false"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="templateMode" value="HTML5"/>
+    </bean>
+
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+        <property name="additionalDialects">
+            <set>
+                <bean class="nz.net.ultraq.thymeleaf.LayoutDialect"/>
+            </set>
+        </property>
+    </bean>
+
+
+    <!-- 总错误处理 -->
+    <!--<bean id="exceptionResolver"-->
+    <!--class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+    <!--<property name="defaultErrorView">-->
+    <!--<value>/error</value>-->
+    <!--</property>-->
+    <!--<property name="defaultStatusCode">-->
+    <!--<value>500</value>-->
+    <!--</property>-->
+    <!--<property name="warnLogCategory">-->
+    <!--<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver-->
+    <!--</value>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!-- 对静态资源文件的访问 -->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/flora/**" location="/flora/"/>
+    <mvc:resources mapping="/fzeus/**" location="/fzeus/"/>
+    <mvc:resources mapping="/patch/**" location="/patch/"/>
+</beans>
