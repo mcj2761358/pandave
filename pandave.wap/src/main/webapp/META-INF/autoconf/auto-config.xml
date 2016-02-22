@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config description="">
+    <group name="default">
+        <!-- 环境配置 -->
+        <property name="pandave.app.root" defaultValue="${user.home}/" description="应用部署根目录" required="true"/>
+        <property name="pandave.run.env" defaultValue="dev" description="运行环境： dev开发、test测试、production线上" />
+        <property name="pandave.app.context" defaultValue="pandave" description="应用的context name" />
+        
+        
+        <!-- 数据库配置 -->
+        <property name="pandave.jdbc.driverClassName" defaultValue="com.mysql.jdbc.Driver"
+                  description="JDBC driver class name"/>
+        <property name="pandave.jdbc.url"
+                  defaultValue="jdbc:mysql://127.0.0.1:3306/pandave?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull"
+                  description="JDBC URL"/>
+        <property name="pandave.jdbc.username" defaultValue="root" description="JDBC user name"/>
+        <property name="pandave.jdbc.password" defaultValue="123456" description="JDBC password"/>
+
+
+        <!-- 日志信息配置 -->
+        <property name="pandave.log.root" defaultValue="${pandave.app.root}/logs" description="log文件目录" />
+        <property name="pandave.log.level" defaultValue="INFO" description="log级别" />
+        <property name="pandave.log.pattern" defaultValue="[%d{'MM-dd HH:mm:ss,SSS',GMT+8:00}] %-5p [%.10t][%X{IP}][%X{OP}][%X{OPAS}] %logger{36}[%L] - %m%n" description="log格式" />
+        <property name="pandave.log.charset" defaultValue="UTF-8" description="log文件编码类型" />
+        
+    </group>
+
+    <script>
+        <generate template="application.properties.vm" destfile="WEB-INF/application.properties" charset="UTF-8"/>
+        <generate template="logback.xml.vm" destfile="WEB-INF/classes/logback.xml" charset="UTF-8"/>
+    </script>
+</config>

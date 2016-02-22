@@ -12,7 +12,7 @@
         <module>pandave.common</module>
         <module>pandave.dao</module>
         <module>pandave.biz</module>
-        <module>pandave.web</module>
+        <module>pandave.wap</module>
     </modules>
 
     <properties>

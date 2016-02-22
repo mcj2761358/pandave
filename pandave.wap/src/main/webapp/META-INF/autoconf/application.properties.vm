@@ -1,0 +1,13 @@
+pandave.run.env=${pandave_run_env}
+pandave.app.root=${pandave_app_root}
+pandave.app.context=${pandave_app_context}
+
+jdbc.driverClassName=${pandave_jdbc_driverClassName}
+jdbc.url=${pandave_jdbc_url}
+jdbc.username=${pandave_jdbc_username}
+jdbc.password=${pandave_jdbc_password}
+
+pandave.log.root=${pandave_log_root}
+pandave.log.level=${pandave_log_level}
+pandave.log.pattern=${pandave_log_pattern}
+pandave.log.charset=${pandave_log_charset}
