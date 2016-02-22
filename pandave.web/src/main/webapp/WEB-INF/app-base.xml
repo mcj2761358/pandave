@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd " default-autowire="byName">
+
+	<bean id="resourceManager" class="com.yuanpin.base.resource.impl.ResourceManagerImpl" scope="singleton" init-method="init">
+		<property name="initSql" value="select * from flora_clot_info where is_deleted='N' and app_name in ('flora','all')" />
+		<property name="dbType" value="mysql" />
+		<property name="maxDelay" value="10" />
+		<property name="initQueryPagesize" value="1000000" />
+	</bean>
+	<bean id="CommonConfigManager" class="com.yuanpin.base.resource.impl.CommonConfigManagerImpl" scope="singleton" />
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="thread">
+					<bean class="org.springframework.context.support.SimpleThreadScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+<!-- 	<bean id="pvgInfo" class="com.yuanpin.base.pvg.impl.PrivilegeInfoImpl" scope="thread">
+		<aop:scoped-proxy />
+	</bean>
+
+	<bean id="pvg" class="com.yuanpin.base.pvg.impl.PrivilegeImpl" />
+	<bean id="pvgBase" class="com.yuanpin.base.pvg.impl.PvgBaseImpl" /> -->
+
+    <bean id="threadLocalParam" class="java.util.HashMap" scope="thread">
+        <aop:scoped-proxy />
+    </bean>
+
+
+	<!-- KeyRing -->
+	<bean id="keyRing" class="com.yuanpin.base.common.security.KeyRing" init-method="init">
+		<property name="ringId" value="${flora.keyRing.ringId}" />
+		<property name="ringDirectory" value="${flora.keyRing.ringDirectory}" />
+	</bean>
+	
+	<bean id="threadUtilService" class="com.yuanpin.base.util.service.ThreadUtilService" init-method="init"
+	destroy-method="destroy" />
+
+	<!-- SessionInfo -->
+	<bean id="sessionInfo" class="com.yuanpin.flora.common.http.SessionInfoImpl" scope="thread">
+		<aop:scoped-proxy />
+	</bean>
+</beans>
