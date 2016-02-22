@@ -4,17 +4,7 @@
 	<property name="pandave_log_pattern" value = "${pandave_log_pattern}" />
 	<property name="LOG_CHARSET" value="${pandave_log_charset}" />
 
-	<appender name="CACHE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${pandave_log_root}/cache.log</file>
-		<append>true</append>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${pandave_log_root}/cache.%d{yyyy-MM-dd}.log</fileNamePattern>
-		</rollingPolicy>
-		<encoder>
-			<charset>${pandave_log_charset}</charset>
-			<pattern>${pandave_log_pattern}</pattern>
-		</encoder>
-	</appender>
+
 	<appender name="COMMON" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${pandave_log_root}/common.log</file>
 		<append>true</append>
@@ -26,28 +16,7 @@
 			<pattern>${pandave_log_pattern}</pattern>
 		</encoder>
 	</appender>
-    <appender name="REDIS" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${pandave_log_root}/redis.log</file>
-        <append>true</append>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${pandave_log_root}/redis.%d{yyyy-MM-dd}.log</fileNamePattern>
-        </rollingPolicy>
-        <encoder>
-            <charset>${pandave_log_charset}</charset>
-            <pattern>${pandave_log_pattern}</pattern>
-        </encoder>
-    </appender>
-    <appender name="ROCKETMQ" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${pandave_log_root}/rocketMQ.log</file>
-        <append>true</append>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${pandave_log_root}/rocketMQ.%d{yyyy-MM-dd}.log</fileNamePattern>
-        </rollingPolicy>
-        <encoder>
-            <charset>${pandave_log_charset}</charset>
-            <pattern>${pandave_log_pattern}</pattern>
-        </encoder>
-    </appender>
+
 	<appender name="DB" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		 <filter class="com.minutch.pandave.filter.DbNoConneInfoFilter" />
 		<file>${pandave_log_root}/db.log</file>
@@ -86,17 +55,7 @@
 			<pattern>${pandave_log_pattern}</pattern>
 		</encoder>
 	</appender>
-	<appender name="SCHEDULE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${pandave_log_root}/schedule.log</file>
-		<append>true</append>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${pandave_log_root}/schedule.%d{yyyy-MM-dd}.log</fileNamePattern>
-		</rollingPolicy>
-		<encoder>
-			<charset>${pandave_log_charset}</charset>
-			<pattern>${pandave_log_pattern}</pattern>
-		</encoder>
-	</appender>
+
 	<appender name="SPRING" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${pandave_log_root}/spring.log</file>
 		<append>true</append>
@@ -114,24 +73,19 @@
 		<appender-ref ref="DB" />
 		<appender-ref ref="ERROR" />
 	</logger>
-	<logger name="com.yuanpin.pandave">
+	<logger name="com.minutch.pandave">
 		<level value="DEBUG" />
 	</logger>
-    <logger name="com.yuanpin.pandave.dao" additivity="false">
+    <logger name="com.minutch.pandave.dao" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="DB" />
 		<appender-ref ref="ERROR" />
 	</logger>
-	<logger name="com.yuanpin.pandave.filter.MonitorFilter" additivity="false">
+	<logger name="com.minutch.pandave.filter.MonitorFilter" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="MONITOR" />
 		<appender-ref ref="ERROR" />
 	</logger>
-    <logger name="com.yuanpin.pandave.redis" additivity="false">
-        <level value="DEBUG" />
-        <appender-ref ref="REDIS" />
-        <appender-ref ref="ERROR" />
-    </logger>
 	<logger name="java.sql" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="DB" />
