@@ -7,6 +7,6 @@
   
 2.我们内部称之为“猎奇计划”,我们要把世间好玩的，有趣的，有价值的东西统统收集起来，然后根据您的喜好，呈现在您的面前。哦，对了，我们这里不是新闻平台，而是阅读平台。
 
-3.The Code Project Name Is Pandave, May be you want to know why named this,now , i can't tell you anything until the project finish, but if you realy realy want to know, send email to me:907824379@qq.com.
+3.The Code Project Name Is Pandave, May be you want to know why named this, there is contain a sadness story. so, i can't tell you anything until the project finish, but if you really really want to know, send email to me:907824379@qq.com.
 
 4.Finally, We want you to join us to create a big time!
