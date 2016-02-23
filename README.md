@@ -8,4 +8,4 @@
 
 3.The Code Project Name Is Pandave, May be you want to know named this,now , i can't tell you anything until the project finish, but if you realy realy want to know, send email to me:907824379@qq.com.
 
-4.Finally, I want you to join us to create a big time!
+4.Finally, We want you to join us to create a big time!
