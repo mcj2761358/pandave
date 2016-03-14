@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.pandave.dao.topic.TopicAnswerDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.pandave.entity.topic.TopicAnswer"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "topic_id" property = "topicId" />
+        <result column = "platform_aid" property = "platformAid" />
+        <result column = "author_name" property = "authorName" />
+        <result column = "author_id" property = "authorId" />
+        <result column = "author_sign" property = "authorSign" />
+        <result column = "content" property = "content" />
+        <result column = "answer_create_time" property = "answerCreateTime" />
+        <result column = "answer_modify_time" property = "answerModifyTime" />
+        <result column = "vote_count" property = "voteCount" />
+        <result column = "comment_count" property = "commentCount" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "topicId != null">
+                    and topic_id = #{topicId}
+                </if>
+                <if test = "platformAid != null">
+                    and platform_aid = #{platformAid}
+                </if>
+                <if test = "authorName != null">
+                    and author_name = #{authorName}
+                </if>
+                <if test = "authorId != null">
+                    and author_id = #{authorId}
+                </if>
+                <if test = "authorSign != null">
+                    and author_sign = #{authorSign}
+                </if>
+                <if test = "content != null">
+                    and content = #{content}
+                </if>
+                <if test = "answerCreateTime != null">
+                    and answer_create_time = #{answerCreateTime}
+                </if>
+                <if test = "answerModifyTime != null">
+                    and answer_modify_time = #{answerModifyTime}
+                </if>
+                <if test = "voteCount != null">
+                    and vote_count = #{voteCount}
+                </if>
+                <if test = "commentCount != null">
+                    and comment_count = #{commentCount}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "topicId != null">
+                topic_id = #{topicId},
+            </if>
+            <if test = "platformAid != null">
+                platform_aid = #{platformAid},
+            </if>
+            <if test = "authorName != null">
+                author_name = #{authorName},
+            </if>
+            <if test = "authorId != null">
+                author_id = #{authorId},
+            </if>
+            <if test = "authorSign != null">
+                author_sign = #{authorSign},
+            </if>
+            <if test = "content != null">
+                content = #{content},
+            </if>
+            <if test = "answerCreateTime != null">
+                answer_create_time = #{answerCreateTime},
+            </if>
+            <if test = "answerModifyTime != null">
+                answer_modify_time = #{answerModifyTime},
+            </if>
+            <if test = "voteCount != null">
+                vote_count = #{voteCount},
+            </if>
+            <if test = "commentCount != null">
+                comment_count = #{commentCount}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from pandave_topic_answer
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from pandave_topic_answer
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from pandave_topic_answer
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update pandave_topic_answer
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update pandave_topic_answer
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update pandave_topic_answer
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into pandave_topic_answer (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        topic_id,
+        platform_aid,
+        author_name,
+        author_id,
+        author_sign,
+        content,
+        answer_create_time,
+        answer_modify_time,
+        vote_count,
+        comment_count
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{topicId},
+        #{platformAid},
+        #{authorName},
+        #{authorId},
+        #{authorSign},
+        #{content},
+        #{answerCreateTime},
+        #{answerModifyTime},
+        #{voteCount},
+        #{commentCount}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update pandave_topic_answer
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+</mapper>

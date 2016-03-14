@@ -1,7 +1,9 @@
 package com.minutch.pandave.web;
 
 import com.minutch.pandave.biz.sys.UserService;
+import com.minutch.pandave.biz.topic.TopicService;
 import com.minutch.pandave.entity.system.User;
+import com.minutch.pandave.entity.topic.Topic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class SystemController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TopicService topicService;
 
     @RequestMapping()
     @ResponseBody
@@ -29,6 +33,13 @@ public class SystemController {
             System.out.println("user:"+user.getId());
         }
         log.error("now,this is a test error log.");
+
+
+        Topic topic = topicService.getById(1000L);
+        if (topic != null) {
+            System.out.println("topic:"+topic);
+        }
+
         return "hello";
     }
 }

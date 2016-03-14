@@ -117,7 +117,7 @@
                     <path>/${war.name}</path>
                     <server>localhost</server>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <port>8080</port>
+                    <port>9000</port>
                     <protocol>org.apache.coyote.http11.Http11NioProtocol</protocol>
                 </configuration>
             </plugin>
