@@ -10,3 +10,12 @@
 3.The Code Project Name Is Pandave, May be you want to know why named this, there is contain a sadness story. so, i can't tell you anything until the project finish, but if you really really want to know, send email to me:907824379@qq.com.
 
 4.Finally, We want you to join us to create a big time!
+
+
+
+-----------------如果你符合以下特点，那么你就是我们一直苦苦寻找的人---------------
+
+公共特性：善于思考，追求技术，对大量数据的更新，高并发访问感兴趣，极高的学习兴趣。
+
+
+<未完待续>
