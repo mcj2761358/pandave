@@ -40,6 +40,6 @@ public class SystemController {
             System.out.println("topic:"+topic);
         }
         model.addAttribute("model", "world!");
-        return "hello";
+        return "index";
     }
 }

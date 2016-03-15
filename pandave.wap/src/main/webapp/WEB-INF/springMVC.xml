@@ -98,7 +98,7 @@
     <!-- 模板信息设置 -->
     <bean id="velocityConfigurer"
           class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath"  value="/WEB-INF/views" /><!-- 設置模板防止位置-->
+        <property name="resourceLoaderPath"  value="/views" /><!-- 設置模板防止位置-->
         <property name="velocityProperties">
             <props>
                 <prop key="directive.foreach.counter.name">loopCounter</prop>
@@ -137,7 +137,7 @@
     <!--</bean>-->
 
     <!-- 对静态资源文件的访问 -->
-    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
     <!--<mvc:resources mapping="/flora/**" location="/flora/"/>-->
     <!--<mvc:resources mapping="/fzeus/**" location="/fzeus/"/>-->
     <!--<mvc:resources mapping="/patch/**" location="/patch/"/>-->
