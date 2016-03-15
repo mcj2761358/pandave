@@ -7,6 +7,7 @@ import com.minutch.pandave.entity.topic.Topic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,8 +25,7 @@ public class SystemController {
     private TopicService topicService;
 
     @RequestMapping()
-    @ResponseBody
-    public String system(){
+    public String system(Model model){
 
         log.info("now,this is a test common log.");
         User user = userService.getById(1000L);
@@ -39,7 +39,7 @@ public class SystemController {
         if (topic != null) {
             System.out.println("topic:"+topic);
         }
-
+        model.addAttribute("model", "world!");
         return "hello";
     }
 }
