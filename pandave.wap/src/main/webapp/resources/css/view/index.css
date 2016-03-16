@@ -90,6 +90,20 @@ body {
     padding-right: 0px;
 }
 
+
+.rightMenu {
+    /*background-color: #2A2935;*/
+    font-size: large;
+    position: fixed;
+    height: 100%;
+    bottom: 0px;
+    right: 0px;
+    border-radius-: 10px;
+    word-wrap: break-word;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .left-nav-bar {
     list-style: none;
     padding-left: 0px;
@@ -192,14 +206,58 @@ body {
     display: inline-block;
     text-decoration: none;
     color: #32D3C3;
-    border-radius: 1.15rem;
+    border-radius: 0.5rem;
     padding: 0.05rem 0.09rem;
     border: 1px solid #32D3C3;
     margin-right: 5px;
+    margin-bottom: 10px;
 }
 
 .post-tag:hover {
     text-decoration: none;
     background-color: #32D3C3;
     color: white;
+}
+
+
+.tagDiv {
+    margin-left: 20px;
+    margin-top: 70px;
+    margin-right: 20px;
+    border: 2px solid white;
+    background-color: white;
+    padding: 10px;
+}
+
+.post-tag-group {
+    display: inline-block;
+    text-decoration: none;
+    color: #32D3C3;
+    border-radius: 0.5rem;
+    padding: 0.05rem 0.09rem;
+    border: 1px solid #32D3C3;
+    margin-right: 3px;
+    margin-bottom: 5px;
+
+    white-space: nowrap;
+    vertical-align: baseline;
+    font-size: 75%;
+}
+
+.post-tag-group:hover {
+    text-decoration: none;
+    background-color: #32D3C3;
+    color: white;
+}
+
+
+
+
+.changeTagDiv {
+    text-align: right;
+    margin-right: 10px;
+}
+.changeTagBtn {
+    padding: 1px;
+    font-size: 70%;
 }

@@ -54,7 +54,7 @@
 
 
         <!-- 右侧内容 -->
-        <div class="col-sm-96 main">
+        <div class="col-sm-60 main">
             <div id="mainHeader">
                 <div class="row content-header-nav">
                     <span class="main-nav main-nav-active">首页推荐</span>
@@ -63,10 +63,9 @@
                 </div>
             </div>
 
-
             <div id="mainContent">
                 <div class="row contentDiv">
-                    <article class="post col-sm-50">
+                    <article class="post col-sm-120">
                         <header class="post-title">
                             那句让你热泪盈眶的诗词
                         </header>
@@ -89,7 +88,7 @@
                         </footer>
                     </article>
 
-                    <article class="post col-sm-50">
+                    <article class="post col-sm-120">
                         <header class="post-title">
                             思念到极致是什么感觉？
                         </header>
@@ -111,7 +110,7 @@
                         </footer>
                     </article>
 
-                    <article class="post col-sm-50">
+                    <article class="post col-sm-120">
                         <header class="post-title">
                             哪个瞬间让你突然觉得读书真有用？
                         </header>
@@ -133,7 +132,7 @@
                         </footer>
                     </article>
 
-                    <article class="post col-sm-50">
+                    <article class="post col-sm-120">
                         <header class="post-title">
                             有哪些让你如醍醐灌顶的话？
                         </header>
@@ -159,7 +158,37 @@
 
                 </div>
             </div>
+
         </div>
+
+        <!-- 左侧导航栏 -->
+        <div class="col-sm-36 rightMenu">
+            <div class="tagDiv">
+                <a class="post-tag-group" href="#">闻鸡起舞</a>
+                <a class="post-tag-group" href="#">手不释卷</a>
+                <a class="post-tag-group" href="#">围城里的故事</a>
+                <a class="post-tag-group" href="#">肖恩克的救赎</a>
+                <a class="post-tag-group" href="#">北京</a>
+                <a class="post-tag-group" href="#">拥挤的人群</a>
+                <a class="post-tag-group" href="#">热泪盈眶</a>
+                <a class="post-tag-group" href="#">古诗词</a>
+                <a class="post-tag-group" href="#">跟着风走吧</a>
+                <a class="post-tag-group" href="#">闻鸡起舞</a>
+                <a class="post-tag-group" href="#">手不释卷</a>
+                <a class="post-tag-group" href="#">围城里的故事</a>
+                <a class="post-tag-group" href="#">肖恩克的救赎</a>
+                <a class="post-tag-group" href="#">北京</a>
+                <a class="post-tag-group" href="#">拥挤的人群</a>
+                <a class="post-tag-group" href="#">热泪盈眶</a>
+                <a class="post-tag-group" href="#">古诗词</a>
+                <a class="post-tag-group" href="#">跟着风走吧</a>
+
+                <div class="changeTagDiv">
+                    <button type="button" class="btn btn-danger changeTagBtn">换一批</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
