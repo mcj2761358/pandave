@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Minutch">
+    <link href="/pandave/resources/img/base/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="/pandave/resources/css/lib/bootstrap.css"/>
+    <script type="text/javascript" src="/pandave/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/bootstrap.js"></script>
+
+
+    <style type="text/css">
+        h3 {
+            font-size: 30px;
+            font-weight: 300;
+            color: 555;
+            line-height: 30px;
+        }
+
+        .loginDiv {
+            background-color: #ddd;
+            padding: 20px;
+            margin-top: 40px;
+            height: 100%;
+        }
+
+        .formItemDiv {
+            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .loginBtnDiv {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .form-item {
+            height: 50px;
+        }
+    </style>
+
+    <title>
+        北京现代舞团
+    </title>
+</head>
+<body style="background-color:rgb(64, 64, 64);
+     background-image:url(https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/skin/12.jpg?2);">
+
+<div style="
+        width: 50%;
+        height: 60%;
+        background-color: white;
+        position: absolute;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        ">
+
+    <div align="center">
+        <h3>
+            北京现代舞团－管理系统
+        </h3>
+    </div>
+
+    <div class="loginDiv">
+        <div class="formItemDiv">
+            <label class="sr-only">Username</label>
+            <input type="text" name="form-username" placeholder="手机号码..." class="form-item form-control" id="form-username">
+        </div>
+        <div class="formItemDiv">
+            <label class="sr-only" >Username</label>
+            <input type="text" name="username" placeholder="密码..." class="form-item form-control" id="form-username">
+        </div>
+
+        <div class="loginBtnDiv">
+            <a class="btn btn-success" style="width: 100%;font-size: large;"> 登 录 </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

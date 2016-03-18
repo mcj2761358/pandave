@@ -4,10 +4,14 @@ import com.minutch.pandave.biz.sys.UserService;
 import com.minutch.pandave.biz.topic.TopicService;
 import com.minutch.pandave.entity.system.User;
 import com.minutch.pandave.entity.topic.Topic;
+import com.minutch.pandave.param.Result;
+import com.minutch.pandave.param.SystemParam;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,6 +44,33 @@ public class SystemController {
             System.out.println("topic:"+topic);
         }
         model.addAttribute("model", "world!");
-        return "index";
+        return "danceIndex";
     }
+
+    @RequestMapping("index")
+    public String index(Model model){
+
+
+        return "mainpage";
+    }
+
+    @RequestMapping("queryAll")
+    @ResponseBody
+    public Result<?> queryAll(@RequestBody SystemParam param){
+
+        System.out.println(param);
+
+        NumName name = new NumName();
+        name.setName("Minutch");
+        name.setValue("Yilin");
+
+        return Result.wrapSuccessfulResult(name);
+    }
+}
+
+
+@Data
+class NumName {
+    String name;
+    String value;
 }
