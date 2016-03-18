@@ -90,20 +90,6 @@ body {
     padding-right: 0px;
 }
 
-
-.rightMenu {
-    /*background-color: #2A2935;*/
-    font-size: large;
-    position: fixed;
-    height: 100%;
-    bottom: 0px;
-    right: 0px;
-    border-radius-: 10px;
-    word-wrap: break-word;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
 .left-nav-bar {
     list-style: none;
     padding-left: 0px;
@@ -220,14 +206,48 @@ body {
 }
 
 
-.tagDiv {
+
+
+/*****************右侧内容*****************/
+
+.rightMenu {
+    /*background-color: #2A2935;*/
+    font-size: large;
+    position: fixed;
+    height: 100%;
+    bottom: 0px;
+    right: 0px;
+    border-radius-: 10px;
+    word-wrap: break-word;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.hotDiv {
     margin-left: 20px;
     margin-top: 70px;
     margin-right: 20px;
     border: 2px solid white;
     background-color: white;
-    padding: 10px;
+    padding: 0 10px 0 10px;
 }
+
+.tagDiv {
+
+}
+
+
+.changeTagDiv {
+    text-align: right;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.changeTagBtn {
+    padding: 1px;
+    font-size: 70%;
+}
+
 
 .post-tag-group {
     display: inline-block;
@@ -250,14 +270,62 @@ body {
     color: white;
 }
 
-
-
-
-.changeTagDiv {
-    text-align: right;
-    margin-right: 10px;
+.hotContent {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #32D3C3;
 }
-.changeTagBtn {
-    padding: 1px;
-    font-size: 70%;
+.tagTitle {
 }
+
+.hotDiv h3{
+    font-size: 16px;
+    color: #000;
+    font-weight: lighter;
+    line-height: 20px;
+    padding: 0px 0 5px 0;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.catDiv{
+    float: left;
+    margin-bottom: 20px;
+}
+
+.commonCat {
+    border: 1px solid white;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+.cat1 {
+    background-color: #4fd8ea;
+}
+.cat2 {
+    background-color: #45df95;
+}
+.cat3 {
+    background-color: #ff8582;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
