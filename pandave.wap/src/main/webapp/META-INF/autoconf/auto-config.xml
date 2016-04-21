@@ -22,7 +22,10 @@
         <property name="pandave.log.level" defaultValue="INFO" description="log级别" />
         <property name="pandave.log.pattern" defaultValue="[%d{'MM-dd HH:mm:ss,SSS',GMT+8:00}] %-5p [%.10t][%X{IP}][%X{OP}][%X{OPAS}] %logger{36}[%L] - %m%n" description="log格式" />
         <property name="pandave.log.charset" defaultValue="UTF-8" description="log文件编码类型" />
-        
+
+        <!-- 服务器地址 -->
+        <property name="pandave.server.url" defaultValue="http://localhost:8080/" description="服务器地址" />
+
     </group>
 
     <script>

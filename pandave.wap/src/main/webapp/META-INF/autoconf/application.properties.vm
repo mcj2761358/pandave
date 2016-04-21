@@ -11,3 +11,6 @@ pandave.log.root=${pandave_log_root}
 pandave.log.level=${pandave_log_level}
 pandave.log.pattern=${pandave_log_pattern}
 pandave.log.charset=${pandave_log_charset}
+
+
+pandave.server.url=${pandave_server_url}

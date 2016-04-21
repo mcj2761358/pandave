@@ -21,13 +21,13 @@
     <context:component-scan base-package="com.minutch"/>
 
 
-    <bean id="loginFilter" class="com.minutch.pandave.filter.LoginFilter"/>
+    <bean id="employeeLoginFilter" class="com.minutch.pandave.filter.EmployeeLoginFilter"/>
 
     <!-- 登录拦截 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**/auth"/>
-            <ref bean="loginFilter"/>
+            <mvc:mapping path="/**/employee/auth"/>
+            <ref bean="employeeLoginFilter"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

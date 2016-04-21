@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.pandave.dao.dance.StudentDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.pandave.entity.dance.Student"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "name" property = "name" />
+        <result column = "photo" property = "photo" />
+        <result column = "birthday" property = "birthday" />
+        <result column = "cardno" property = "cardno" />
+        <result column = "mobile_phone" property = "mobilePhone" />
+        <result column = "course_term" property = "courseTerm" />
+        <result column = "course_type" property = "courseType" />
+        <result column = "course_name" property = "courseName" />
+        <result column = "total_course" property = "totalCourse" />
+        <result column = "used_course" property = "usedCourse" />
+        <result column = "course_fee" property = "courseFee" />
+        <result column = "real_course_fee" property = "realCourseFee" />
+        <result column = "last_sign_time" property = "lastSignTime" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "name != null">
+                    and name = #{name}
+                </if>
+                <if test = "photo != null">
+                    and photo = #{photo}
+                </if>
+                <if test = "birthday != null">
+                    and birthday = #{birthday}
+                </if>
+                <if test = "cardno != null">
+                    and cardno = #{cardno}
+                </if>
+                <if test = "mobilePhone != null">
+                    and mobile_phone = #{mobilePhone}
+                </if>
+                <if test = "courseTerm != null">
+                    and course_term = #{courseTerm}
+                </if>
+                <if test = "courseType != null">
+                    and course_type = #{courseType}
+                </if>
+                <if test = "courseName != null">
+                    and course_name = #{courseName}
+                </if>
+                <if test = "totalCourse != null">
+                    and total_course = #{totalCourse}
+                </if>
+                <if test = "usedCourse != null">
+                    and used_course = #{usedCourse}
+                </if>
+                <if test = "courseFee != null">
+                    and course_fee = #{courseFee}
+                </if>
+                <if test = "realCourseFee != null">
+                    and real_course_fee = #{realCourseFee}
+                </if>
+                <if test = "lastSignTime != null">
+                    and last_sign_time = #{lastSignTime}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "name != null">
+                name = #{name},
+            </if>
+            <if test = "photo != null">
+                photo = #{photo},
+            </if>
+            <if test = "birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test = "cardno != null">
+                cardno = #{cardno},
+            </if>
+            <if test = "mobilePhone != null">
+                mobile_phone = #{mobilePhone},
+            </if>
+            <if test = "courseTerm != null">
+                course_term = #{courseTerm},
+            </if>
+            <if test = "courseType != null">
+                course_type = #{courseType},
+            </if>
+            <if test = "courseName != null">
+                course_name = #{courseName},
+            </if>
+            <if test = "totalCourse != null">
+                total_course = #{totalCourse},
+            </if>
+            <if test = "usedCourse != null">
+                used_course = #{usedCourse},
+            </if>
+            <if test = "courseFee != null">
+                course_fee = #{courseFee},
+            </if>
+            <if test = "realCourseFee != null">
+                real_course_fee = #{realCourseFee},
+            </if>
+            <if test = "lastSignTime != null">
+                last_sign_time = #{lastSignTime}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from pandave_student
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from pandave_student
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from pandave_student
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update pandave_student
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update pandave_student
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update pandave_student
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into pandave_student (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        name,
+        photo,
+        birthday,
+        cardno,
+        mobile_phone,
+        course_term,
+        course_type,
+        course_name,
+        total_course,
+        used_course,
+        course_fee,
+        real_course_fee,
+        last_sign_time
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{name},
+        #{photo},
+        #{birthday},
+        #{cardno},
+        #{mobilePhone},
+        #{courseTerm},
+        #{courseType},
+        #{courseName},
+        #{totalCourse},
+        #{usedCourse},
+        #{courseFee},
+        #{realCourseFee},
+        #{lastSignTime}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update pandave_student
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+    <!-- 根据条件查询学员总数 -->
+    <select id="queryStudentCount" resultType="java.lang.Integer">
+        select count(*)
+        from pandave_student
+        where is_deleted = 'N'
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            name  like concat('%',#{param.keyword},'%')
+            or mobile_phone like concat('%',#{param.keyword},'%')
+            )
+        </if>
+    </select>
+
+    <!-- 根据条件查询学员数据 -->
+    <select id="queryStudent" resultMap="BaseResultMap">
+        select *
+        from pandave_student
+        where is_deleted = 'N'
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            name  like concat('%',#{param.keyword},'%')
+            or mobile_phone like concat('%',#{param.keyword},'%')
+            )
+        </if>
+        order by id desc
+        limit #{start},#{limit}
+    </select>
+</mapper>

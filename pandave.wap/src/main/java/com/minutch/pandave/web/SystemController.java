@@ -44,33 +44,20 @@ public class SystemController {
             System.out.println("topic:"+topic);
         }
         model.addAttribute("model", "world!");
-        return "danceIndex";
+        return "dance/index";
     }
 
     @RequestMapping("index")
     public String index(Model model){
 
 
-        return "mainpage";
+        return "dance/mainpage";
     }
 
     @RequestMapping("queryAll")
     @ResponseBody
     public Result<?> queryAll(@RequestBody SystemParam param){
 
-        System.out.println(param);
-
-        NumName name = new NumName();
-        name.setName("Minutch");
-        name.setValue("Yilin");
-
-        return Result.wrapSuccessfulResult(name);
+        return Result.wrapSuccessfulResult("A");
     }
-}
-
-
-@Data
-class NumName {
-    String name;
-    String value;
 }

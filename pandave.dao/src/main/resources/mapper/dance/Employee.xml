@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.pandave.dao.dance.EmployeeDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.pandave.entity.dance.Employee"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "name" property = "name" />
+        <result column = "cardno" property = "cardno" />
+        <result column = "mobile_phone" property = "mobilePhone" />
+        <result column = "password" property = "password" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "name != null">
+                    and name = #{name}
+                </if>
+                <if test = "cardno != null">
+                    and cardno = #{cardno}
+                </if>
+                <if test = "mobilePhone != null">
+                    and mobile_phone = #{mobilePhone}
+                </if>
+                <if test = "password != null">
+                    and password = #{password}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "name != null">
+                name = #{name},
+            </if>
+            <if test = "cardno != null">
+                cardno = #{cardno},
+            </if>
+            <if test = "mobilePhone != null">
+                mobile_phone = #{mobilePhone},
+            </if>
+            <if test = "password != null">
+                password = #{password}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from pandave_employee
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from pandave_employee
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from pandave_employee
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update pandave_employee
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update pandave_employee
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update pandave_employee
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into pandave_employee (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        name,
+        cardno,
+        mobile_phone,
+        password
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{name},
+        #{cardno},
+        #{mobilePhone},
+        #{password}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update pandave_employee
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+    <!-- 根据手机号查询舞团员工 -->
+    <select id = "queryByMobile" resultMap = "BaseResultMap">
+        select *
+        from pandave_employee
+        where mobile_phone = #{mobilephone}
+        and is_deleted='N'
+        limit 1
+    </select>
+
+</mapper>
