@@ -7,30 +7,20 @@
     <link href="/pandave/resources/img/base/favicon.ico" rel="icon">
 
     <link rel="stylesheet" href="/pandave/resources/css/lib/bootstrap.css"/>
-    <script type="text/javascript" src="/pandave/resources/js/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/pandave/resources/js/lib/bootstrap.js"></script>
-
     <link rel="stylesheet" href="/pandave/resources/css/view/index.css"/>
 
+    <script type="text/javascript" src="/pandave/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/jBootstrapPage.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/jquery.lazyload.js"></script>
+
+    <script type="text/javascript" src="/pandave/resources/js/view/index.js"></script>
 
     <title>
         熊猫阅读
     </title>
 </head>
 <body>
-
-##<div id="header" class="container-fluid">
-##    <div class="row">
-##        <div class="col-sm-30 logoDiv">复仇者联盟</div>
-##        <div class="col-sm-90 navDiv">
-##            <ul class="nav-bar">
-##                <li class="nav-bar-li"><a class="nav-bar-link" href="#">卡牌大师</a></li>
-##                <li class="nav-bar-li"><a class="nav-bar-link" href="#">诡术妖姬</a></li>
-##                <li class="nav-bar-li"><a class="nav-bar-link" href="#">皎月女神</a></li>
-##            </ul>
-##        </div>
-##    </div>
-##</div>
 
 <div id="container" class="container-fluid">
     <div class="row">
@@ -40,12 +30,6 @@
             <div id="menuHeader">
                 熊猫阅读
             </div>
-        ##            <ul class="left-nav-bar">
-        ##                <li class="left-nav-bar-li"><a class="nav-bar-link" href="#">德邦总管朱建星</a></li>
-        ##                <li class="left-nav-bar-li"><a class="nav-bar-link" href="#">诺克萨斯施恩汉</a></li>
-        ##                <li class="left-nav-bar-li"><a class="nav-bar-link" href="#">卡牌大师闵崇建</a></li>
-        ##                <li class="left-nav-bar-li"><a class="nav-bar-link" href="#">暗夜猎手余贤海</a></li>
-        ##            </ul>
 
             <div id="menuEnd">
                 小熊猫科技有限公司©
@@ -58,8 +42,6 @@
             <div id="mainHeader">
                 <div class="row content-header-nav">
                     <span class="main-nav main-nav-active">首页推荐</span>
-                    <span class="main-nav">热门文章</span>
-                    <span class="main-nav">精选文章</span>
                 </div>
             </div>
 
@@ -87,78 +69,11 @@
                             <a class="post-tag" href="#">听雨</a>
                         </footer>
                     </article>
-
-
-                    <article class="post col-sm-120">
-                        <header class="post-title">
-                            有哪些让你如醍醐灌顶的话？
-                        </header>
-                        <div class="post-author">
-                            <span>东坡夜奔 ⋅ 2014-11-21</span>
-                        </div>
-                        <p>
-                            当你厌恶你身边的人，
-                            <br>你表达厌恶最好的方式不是和他们争吵，
-                            <br>而是自己勤快点儿，
-                            <br>加把劲离开他们。
-                            <br>那样，他们就永远从你的生活中消失，
-                            <br>和死了差不多。
-                            <br>...
-                        </p>
-                        <footer>
-                            <a class="post-tag" href="#">生活</a>
-                            <a class="post-tag" href="#">醍醐灌顶</a>
-                            <a class="post-tag" href="#">东坡</a>
-                        </footer>
-                    </article>
-
-
-                    <article class="post col-sm-120">
-                        <header class="post-title">
-                            思念到极致是什么感觉？
-                        </header>
-                        <div class="post-author">
-                            <span>朱雪源 ⋅ 2015-03-11</span>
-                        </div>
-                        <p>
-                            跟交往了四年的初恋分手后，
-                            <br>他去了北京，
-                            <br>我没找任何同伴独自去了那里，
-                            <br>下车的一瞬间我哭了，
-                            <br>想象着他曾经在这里出现过，
-                            <br>也曾挤在拥挤的人群中。
-                            <br>...
-                        </p>
-                        <footer>
-                            <a class="post-tag" href="#">北京</a>
-                            <a class="post-tag" href="#">拥挤的人群</a>
-                        </footer>
-                    </article>
-
-                    <article class="post col-sm-120">
-                        <header class="post-title">
-                            哪个瞬间让你突然觉得读书真有用？
-                        </header>
-                        <div class="post-author">
-                            <span>西格先森 ⋅ 2016-01-01</span>
-                        </div>
-                        <p>
-                            前天看了肖申克的救赎
-                            <br>在安迪与典狱长第一次交锋对圣经倒背如流的展现时
-                            <br>用银行家的理财能力和勇敢获得了第一桶啤酒时
-                            <br>为整个监狱工作人员整理税务时
-                            <br>为典狱长洗钱时
-                            <br>因为对地质有所了解而下定决心挖起地道时
-                            <br>...
-                        </p>
-                        <footer>
-                            <a class="post-tag" href="#">救赎</a>
-                            <a class="post-tag" href="#">肖恩克的救赎</a>
-                        </footer>
-                    </article>
-
-
                 </div>
+            </div>
+
+            <div align="center">
+                <ul class="pagination self-page"></ul>
             </div>
 
         </div>
@@ -171,6 +86,7 @@
                     <h3>
                         <span class="hotContent">热门分类</span>
                     </h3>
+
                     <div class="cat1 commonCat col-sm-40">互联网</div>
                     <div class="cat2 commonCat col-sm-40">教育</div>
                     <div class="cat3 commonCat col-sm-40">影视</div>
@@ -223,17 +139,6 @@
 
 <script type="text/javascript">
 
-    //左侧导航栏事件
-    $('.nav-bar-link').click(function () {
-        $('.nav-bar-link').removeClass('active');
-        $(this).addClass('active');
-    })
-
-    //内容导航栏
-    $('.main-nav').click(function () {
-        $('.main-nav').removeClass('main-nav-active');
-        $(this).addClass('main-nav-active');
-    })
 
 </script>
 </body>
@@ -268,12 +173,75 @@
 ##</div>
 
 
-
-
-
-
-
-
+##
+##
+##<article class="post col-sm-120">
+##    <header class="post-title">
+##        有哪些让你如醍醐灌顶的话？
+##    </header>
+##    <div class="post-author">
+##        <span>东坡夜奔 ⋅ 2014-11-21</span>
+##    </div>
+##    <p>
+##        当你厌恶你身边的人，
+##        <br>你表达厌恶最好的方式不是和他们争吵，
+##        <br>而是自己勤快点儿，
+##        <br>加把劲离开他们。
+##        <br>那样，他们就永远从你的生活中消失，
+##        <br>和死了差不多。
+##        <br>...
+##    </p>
+##    <footer>
+##        <a class="post-tag" href="#">生活</a>
+##        <a class="post-tag" href="#">醍醐灌顶</a>
+##        <a class="post-tag" href="#">东坡</a>
+##    </footer>
+##</article>
+##
+##<article class="post col-sm-120">
+##    <header class="post-title">
+##        思念到极致是什么感觉？
+##    </header>
+##    <div class="post-author">
+##        <span>朱雪源 ⋅ 2015-03-11</span>
+##    </div>
+##    <p>
+##        跟交往了四年的初恋分手后，
+##        <br>他去了北京，
+##        <br>我没找任何同伴独自去了那里，
+##        <br>下车的一瞬间我哭了，
+##        <br>想象着他曾经在这里出现过，
+##        <br>也曾挤在拥挤的人群中。
+##        <br>...
+##    </p>
+##    <footer>
+##        <a class="post-tag" href="#">北京</a>
+##        <a class="post-tag" href="#">拥挤的人群</a>
+##    </footer>
+##</article>
+##
+##<article class="post col-sm-120">
+##    <header class="post-title">
+##        哪个瞬间让你突然觉得读书真有用？
+##    </header>
+##    <div class="post-author">
+##        <span>西格先森 ⋅ 2016-01-01</span>
+##    </div>
+##    <p>
+##        前天看了肖申克的救赎
+##        <br>在安迪与典狱长第一次交锋对圣经倒背如流的展现时
+##        <br>用银行家的理财能力和勇敢获得了第一桶啤酒时
+##        <br>为整个监狱工作人员整理税务时
+##        <br>为典狱长洗钱时
+##        <br>因为对地质有所了解而下定决心挖起地道时
+##        <br>...
+##    </p>
+##    <footer>
+##        <a class="post-tag" href="#">救赎</a>
+##        <a class="post-tag" href="#">肖恩克的救赎</a>
+##    </footer>
+##</article>
+##
 
 
 

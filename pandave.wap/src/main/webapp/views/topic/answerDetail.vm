@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Minutch">
+    <link href="/pandave/resources/img/base/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="/pandave/resources/css/lib/bootstrap.css"/>
+    <link rel="stylesheet" href="/pandave/resources/css/view/topic/answerDetail.css"/>
+
+    <script type="text/javascript" src="/pandave/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/jBootstrapPage.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/jquery.lazyload.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/view/topic/answerDetail.js"></script>
+
+
+    <title>
+        熊猫阅读
+    </title>
+</head>
+<body>
+
+<div id="container" class="container-fluid">
+
+    <div align="center">
+        <div style="width: 90%;">
+
+            <header class="article-title">
+                <h1>$answerDetail.topicTitle</h1>
+
+                <p class="info">
+                    <span class="nick">$answerDetail.answerAuthorName</span>
+                    <span class="Separate"> ·</span>
+                    <span class="date">$answerDetail.answerModifyTime</span>
+                </p>
+            </header>
+
+            <div class="article-content">
+                $answerDetail.answerContent
+            </div>
+
+            <div class="article-footer">
+##                心里有座坟，藏着未亡人
+                不要追她，她只是一只小熊猫啊！
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

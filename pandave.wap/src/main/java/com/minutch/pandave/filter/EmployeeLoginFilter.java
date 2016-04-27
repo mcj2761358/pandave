@@ -55,7 +55,6 @@ public class EmployeeLoginFilter extends HandlerInterceptorAdapter {
             return false;
         }
 
-        System.out.println("Hello employee login Filter!");
         return super.preHandle(request, response, handler);
     }
 

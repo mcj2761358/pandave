@@ -44,14 +44,14 @@ public class SystemController {
             System.out.println("topic:"+topic);
         }
         model.addAttribute("model", "world!");
-        return "dance/index";
+        return "index";
     }
 
     @RequestMapping("index")
     public String index(Model model){
 
 
-        return "dance/mainpage";
+        return "index";
     }
 
     @RequestMapping("queryAll")

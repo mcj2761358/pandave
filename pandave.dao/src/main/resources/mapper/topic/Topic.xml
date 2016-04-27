@@ -19,6 +19,18 @@
         <result column = "comment_count" property = "commentCount" />
     </resultMap>
 
+    <resultMap id = "TopicAnswerView" type = "com.minutch.pandave.view.topic.TopicAnswerView">
+        <result column = "topic_id" property = "topicId" />
+        <result column = "topic_title" property = "topicTitle" />
+        <result column = "topic_content" property = "topicContent" />
+        <result column = "answer_id" property = "answerId" />
+        <result column = "answer_modify_time" property = "answerModifyTime" />
+        <result column = "answer_author_name" property = "answerAuthorName" />
+        <result column = "answer_author_sign" property = "answerAuthorSign" />
+        <result column = "answer_content" property = "answerContent" />
+        <result column = "answer_vote" property = "answerVote" />
+    </resultMap>
+
     <sql id = "BaseWhereClause">
         <where>
             <trim prefixOverrides = "and">
@@ -197,4 +209,75 @@
         where id = #{id}
     </update>
 
+    <!-- 根据条件查询话题总数 -->
+    <select id="queryTopicCount" resultType="java.lang.Integer">
+        select count(*)
+        from pandave_topic
+        where is_deleted = 'N'
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            title  like concat('%',#{param.keyword},'%')
+            )
+        </if>
+    </select>
+
+    <!-- 根据条件查询话题数据 -->
+    <select id="queryTopic" resultMap="BaseResultMap">
+        select *
+        from pandave_topic
+        where is_deleted = 'N'
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            title  like concat('%',#{param.keyword},'%')
+            )
+        </if>
+        order by id desc
+        limit #{start},#{limit}
+    </select>
+
+    <!-- 根据条件查询话题回复总数 -->
+    <select id="queryTopicAnswerCount" resultType="java.lang.Integer">
+        select count(t.id)
+        from pandave_topic t
+        join pandave_topic_answer s
+        on t.id = s.topic_id
+    </select>
+
+    <!-- 根据条件查询话题回复数据 -->
+    <select id="queryTopicAnswer" resultMap="TopicAnswerView">
+        select
+        t.id as topic_id,
+        t.title as topic_title,
+        t.content as topic_content,
+        s.id as answer_id,
+        s.answer_modify_time as answer_modify_time,
+        s.author_name as answer_author_name,
+        s.author_sign as answer_author_sign,
+        s.content as answer_content,
+        s.vote_count as answer_vote
+        from pandave_topic t
+        join pandave_topic_answer s
+        on t.id = s.topic_id
+        order by s.vote_count desc
+        limit #{start},#{limit}
+    </select>
+
+    <!-- 根据answerId查询 -->
+    <select id="queryAnswerDetail" resultMap="TopicAnswerView">
+        select
+        t.id as topic_id,
+        t.title as topic_title,
+        t.content as topic_content,
+        s.id as answer_id,
+        s.answer_modify_time as answer_modify_time,
+        s.author_name as answer_author_name,
+        s.author_sign as answer_author_sign,
+        s.content as answer_content,
+        s.vote_count as answer_vote
+        from pandave_topic t
+        join pandave_topic_answer s
+        on t.id = s.topic_id and s.id = #{answerId}
+    </select>
 </mapper>
