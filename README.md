@@ -56,7 +56,5 @@
     >第一版首页(20160316)
 ![image](https://raw.githubusercontent.com/mcj2761358/pandave/master/resources/20160316-index.jpg)
 
-    >知乎图片
-![image](https://pic3.zhimg.com/5c53ffb338300d348b6748a4d7fb8ae6_b.png)
 
 

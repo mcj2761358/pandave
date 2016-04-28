@@ -15,6 +15,7 @@
         <result column = "answer_modify_time" property = "answerModifyTime" />
         <result column = "vote_count" property = "voteCount" />
         <result column = "comment_count" property = "commentCount" />
+        <result column = "img_flag" property = "imgFlag" />
     </resultMap>
 
     <sql id = "BaseWhereClause">
@@ -51,6 +52,9 @@
                 <if test = "commentCount != null">
                     and comment_count = #{commentCount}
                 </if>
+                <if test = "imgFlag != null">
+                    and img_flag = #{imgFlag}
+                </if>
             </trim>
         </where>
     </sql>
@@ -86,7 +90,10 @@
                 vote_count = #{voteCount},
             </if>
             <if test = "commentCount != null">
-                comment_count = #{commentCount}
+                comment_count = #{commentCount},
+            </if>
+            <if test = "imgFlag != null">
+                img_flag = #{imgFlag}
             </if>
         </set>
     </sql>
@@ -155,7 +162,8 @@
         answer_create_time,
         answer_modify_time,
         vote_count,
-        comment_count
+        comment_count,
+        img_flag
         )
         values (
         <include refid = "COMMON.BASE_INSERT_VALUE" />
@@ -168,7 +176,8 @@
         #{answerCreateTime},
         #{answerModifyTime},
         #{voteCount},
-        #{commentCount}
+        #{commentCount},
+        #{imgFlag}
         )
     </insert>
 

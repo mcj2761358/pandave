@@ -26,7 +26,6 @@
 
     <div align="center">
         <div style="width: 90%;">
-
             <header class="article-title">
                 <h1>$answerDetail.topicTitle</h1>
 
@@ -39,11 +38,14 @@
 
             <div class="article-content">
                 $answerDetail.answerContent
+##                <img rel="noreferrer" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=83857709,2848606682&fm=80">
+##                <img rel="noreferrer" src="https://pic3.zhimg.com/5c53ffb338300d348b6748a4d7fb8ae6_b.png">
             </div>
 
             <div class="article-footer">
-##                心里有座坟，藏着未亡人
-                不要追她，她只是一只小熊猫啊！
+            ##                心里有座坟，藏着未亡人
+            ##                不要追她，她只是一只小熊猫啊！
+                苟利国家生死以，岂因祸福避趋之
             </div>
         </div>
     </div>
@@ -52,6 +54,19 @@
 
 </body>
 </html>
+
+
+
+
+##
+##<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+##
+##<h1>直接盗链：</h1><br>
+##<img src="http://image-7.verycd.com/5f95d1b249b411d069ecdb2c7a370e3c160890(600x)/thumb.jpg"/><br>
+##<h1>js破解盗链：</h1><br>
+##<div id="hotlinking">
+##    <script type="text/javascript">showImg('http://image-7.verycd.com/5f95d1b249b411d069ecdb2c7a370e3c160890(600x)/thumb.jpg');</script>
+##</div><br>
 
 
 

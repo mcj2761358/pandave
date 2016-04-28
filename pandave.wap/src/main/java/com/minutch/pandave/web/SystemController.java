@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by Minutch on 16/2/22.
  */
@@ -27,6 +30,11 @@ public class SystemController {
     private UserService userService;
     @Autowired
     private TopicService topicService;
+
+    @Autowired
+    private HttpServletResponse response;
+    @Autowired
+    private HttpServletRequest request;
 
     @RequestMapping()
     public String system(Model model){
