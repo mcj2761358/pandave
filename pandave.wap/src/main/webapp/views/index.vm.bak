@@ -23,23 +23,23 @@
 <body>
 
 <div id="container" class="container-fluid">
-    <div class="row" align="center">
+    <div class="row">
 
         <!-- 左侧导航栏 -->
-##        <div class="col-sm-24 leftMenu">
-##            <div id="menuHeader">
-##                熊猫阅读
-##            </div>
-##
-##            <div id="menuEnd">
-##                小熊猫科技有限公司©
-##            </div>
-##        </div>
+        <div class="col-sm-24 leftMenu">
+            <div id="menuHeader">
+                熊猫阅读
+            </div>
+
+            <div id="menuEnd">
+                小熊猫科技有限公司©
+            </div>
+        </div>
 
 
         <!-- 右侧内容 -->
-        <div class="main">
-            <div id="mainHeader" align="left">
+        <div class="col-sm-60 main">
+            <div id="mainHeader">
                 <div class="row content-header-nav">
                     <span class="main-nav main-nav-active">首页推荐</span>
                 </div>
@@ -79,59 +79,59 @@
         </div>
 
         <!-- 左侧导航栏 -->
-##        <div class="col-sm-36 rightMenu">
-##
-##            <div class="hotDiv">
-##                <div class="catDiv">
-##                    <h3>
-##                        <span class="hotContent">热门分类</span>
-##                    </h3>
-##
-##                    <div class="cat1 commonCat col-sm-40">互联网</div>
-##                    <div class="cat2 commonCat col-sm-40">教育</div>
-##                    <div class="cat3 commonCat col-sm-40">影视</div>
-##
-##
-##                    <div class="cat3 commonCat col-sm-40">互联网</div>
-##                    <div class="cat2 commonCat col-sm-40">教育</div>
-##                    <div class="cat1 commonCat col-sm-40">影视</div>
-##
-##
-##                    <div class="cat1 commonCat col-sm-40">互联网</div>
-##                    <div class="cat2 commonCat col-sm-40">教育</div>
-##                    <div class="cat3 commonCat col-sm-40">影视</div>
-##                </div>
-##
-##                <div class="tagDiv">
-##                    <h3 class="tagTitle">
-##                        <span class="hotContent">热门标签</span>
-##                    </h3>
-##                    <a class="post-tag-group" href="#">闻鸡起舞</a>
-##                    <a class="post-tag-group" href="#">手不释卷</a>
-##                    <a class="post-tag-group" href="#">围城里的故事</a>
-##                    <a class="post-tag-group" href="#">肖恩克的救赎</a>
-##                    <a class="post-tag-group" href="#">北京</a>
-##                    <a class="post-tag-group" href="#">拥挤的人群</a>
-##                    <a class="post-tag-group" href="#">热泪盈眶</a>
-##                    <a class="post-tag-group" href="#">古诗词</a>
-##                    <a class="post-tag-group" href="#">跟着风走吧</a>
-##                    <a class="post-tag-group" href="#">闻鸡起舞</a>
-##                    <a class="post-tag-group" href="#">手不释卷</a>
-##                    <a class="post-tag-group" href="#">围城里的故事</a>
-##                    <a class="post-tag-group" href="#">肖恩克的救赎</a>
-##                    <a class="post-tag-group" href="#">北京</a>
-##                    <a class="post-tag-group" href="#">拥挤的人群</a>
-##                    <a class="post-tag-group" href="#">热泪盈眶</a>
-##                    <a class="post-tag-group" href="#">古诗词</a>
-##                    <a class="post-tag-group" href="#">跟着风走吧</a>
-##
-##                    <div class="changeTagDiv">
-##                        <button type="button" class="btn btn-danger changeTagBtn">换一批</button>
-##                    </div>
-##                </div>
-##
-##            </div>
-##        </div>
+        <div class="col-sm-36 rightMenu">
+
+            <div class="hotDiv">
+                <div class="catDiv">
+                    <h3>
+                        <span class="hotContent">热门分类</span>
+                    </h3>
+
+                    <div class="cat1 commonCat col-sm-40">互联网</div>
+                    <div class="cat2 commonCat col-sm-40">教育</div>
+                    <div class="cat3 commonCat col-sm-40">影视</div>
+
+
+                    <div class="cat3 commonCat col-sm-40">互联网</div>
+                    <div class="cat2 commonCat col-sm-40">教育</div>
+                    <div class="cat1 commonCat col-sm-40">影视</div>
+
+
+                    <div class="cat1 commonCat col-sm-40">互联网</div>
+                    <div class="cat2 commonCat col-sm-40">教育</div>
+                    <div class="cat3 commonCat col-sm-40">影视</div>
+                </div>
+
+                <div class="tagDiv">
+                    <h3 class="tagTitle">
+                        <span class="hotContent">热门标签</span>
+                    </h3>
+                    <a class="post-tag-group" href="#">闻鸡起舞</a>
+                    <a class="post-tag-group" href="#">手不释卷</a>
+                    <a class="post-tag-group" href="#">围城里的故事</a>
+                    <a class="post-tag-group" href="#">肖恩克的救赎</a>
+                    <a class="post-tag-group" href="#">北京</a>
+                    <a class="post-tag-group" href="#">拥挤的人群</a>
+                    <a class="post-tag-group" href="#">热泪盈眶</a>
+                    <a class="post-tag-group" href="#">古诗词</a>
+                    <a class="post-tag-group" href="#">跟着风走吧</a>
+                    <a class="post-tag-group" href="#">闻鸡起舞</a>
+                    <a class="post-tag-group" href="#">手不释卷</a>
+                    <a class="post-tag-group" href="#">围城里的故事</a>
+                    <a class="post-tag-group" href="#">肖恩克的救赎</a>
+                    <a class="post-tag-group" href="#">北京</a>
+                    <a class="post-tag-group" href="#">拥挤的人群</a>
+                    <a class="post-tag-group" href="#">热泪盈眶</a>
+                    <a class="post-tag-group" href="#">古诗词</a>
+                    <a class="post-tag-group" href="#">跟着风走吧</a>
+
+                    <div class="changeTagDiv">
+                        <button type="button" class="btn btn-danger changeTagBtn">换一批</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 </div>

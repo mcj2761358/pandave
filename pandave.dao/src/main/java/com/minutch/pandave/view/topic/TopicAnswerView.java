@@ -16,5 +16,6 @@ public class TopicAnswerView {
     private String answerAuthorName;
     private String answerAuthorSign;
     private String answerContent;
+    private String answerContentBrief;
     private int answerVote;
 }

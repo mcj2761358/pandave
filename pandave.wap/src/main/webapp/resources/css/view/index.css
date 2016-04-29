@@ -134,7 +134,8 @@ body {
 /*右侧内容栏*/
 .main {
     border: 0;
-    left: 20%;
+    width: 95%;
+    /*left: 20%;*/
 }
 
 #mainHeader {
@@ -170,6 +171,7 @@ body {
     padding: 24px;
     margin-right: 20px;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .post-title {

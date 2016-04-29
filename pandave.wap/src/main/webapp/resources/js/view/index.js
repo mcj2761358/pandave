@@ -29,13 +29,13 @@ function createPage(pageSize, buttons, total) {
         onPageClicked: function (obj, pageIndex) {
             console.log(obj);
             console.log(pageIndex);
-            queryStudent(pageIndex);
+            queryTopicAnswer(pageIndex);
         }
     });
 }
 
 var pageSize = 10;
-var bottonsSize = 10;
+var bottonsSize = 3;
 function queryTopicAnswer(pageIndex) {
     var param = {}
     param.pageSize = 10
@@ -72,12 +72,13 @@ function queryTopicAnswer(pageIndex) {
                             var answerAuthorName = topic.answerAuthorName;
                             var answerAuthorSign = topic.answerAuthorSign;
                             var answerContent = topic.answerContent;
+                            var answerContentBrief = topic.answerContentBrief;
                             var answerVote = topic.answerVote;
 
                             var topicDataHtml =
                                 '<article class="post col-sm-120">' +
                                 '<header class="post-title">' +
-                                '<a href="topic/queryAnswerDetail/'+answerId+'">'+
+                                '<a target="_blank" href="topic/queryAnswerDetail/'+answerId+'">'+
                                  topicTitle +
                                 '</a>'+
                                 '</header>' +
@@ -85,7 +86,7 @@ function queryTopicAnswer(pageIndex) {
                                 '   <span>' + answerAuthorName + ' ⋅ ' + answerModifyTime + '</span>' +
                                 '</div>' +
                                 '<p>' +
-                                answerContent +
+                                answerContentBrief +
                                 '</p>' +
                                 '</article>';
 
