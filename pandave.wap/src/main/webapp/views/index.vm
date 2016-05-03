@@ -47,28 +47,28 @@
 
             <div id="mainContent">
                 <div class="row contentDiv">
-                    <article class="post col-sm-120">
-                        <header class="post-title">
-                            那句让你热泪盈眶的诗词
-                        </header>
-                        <div class="post-author">
-                            <span>月光碎片 ⋅ 2015-10-21</span>
-                        </div>
-                        <p>
-                            所有诗词中，我被"而今听雨僧庐下 ，
-                            <br>鬓已星星也。悲欢离合总无情，
-                            <br>一任阶前，点滴到天明"所伤;
-                            <br>我被"青青子衿，悠悠我心。
-                            <br>纵我不往，子宁不嗣音"所感，
-                            <br>惟初读"一男附书至，二男新战死"时，泪满双眶.
-                            <br>...
-                        </p>
-                        <footer>
-                            <a class="post-tag" href="#">热泪盈眶</a>
-                            <a class="post-tag" href="#">古诗词</a>
-                            <a class="post-tag" href="#">听雨</a>
-                        </footer>
-                    </article>
+##                    <article class="post col-sm-120">
+##                        <header class="post-title">
+##                            那句让你热泪盈眶的诗词
+##                        </header>
+##                        <div class="post-author">
+##                            <span>月光碎片 ⋅ 2015-10-21</span>
+##                        </div>
+##                        <p>
+##                            所有诗词中，我被"而今听雨僧庐下 ，
+##                            <br>鬓已星星也。悲欢离合总无情，
+##                            <br>一任阶前，点滴到天明"所伤;
+##                            <br>我被"青青子衿，悠悠我心。
+##                            <br>纵我不往，子宁不嗣音"所感，
+##                            <br>惟初读"一男附书至，二男新战死"时，泪满双眶.
+##                            <br>...
+##                        </p>
+##                        <footer>
+##                            <a class="post-tag" href="#">热泪盈眶</a>
+##                            <a class="post-tag" href="#">古诗词</a>
+##                            <a class="post-tag" href="#">听雨</a>
+##                        </footer>
+##                    </article>
                 </div>
             </div>
 

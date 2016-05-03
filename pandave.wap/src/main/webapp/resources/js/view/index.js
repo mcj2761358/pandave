@@ -18,8 +18,22 @@ $(function () {
     queryTopicAnswer(0);
 
     //分页功能
-    //createPage(10, 10, 100);
+    //createPage(2, 4, 100);
 })
+
+var contentMap = {};
+
+function readAllContent(answerBreiefId){
+    console.log(answerBreiefId)
+    var className = '.'+answerBreiefId;
+    var valueContent = $(className).text();
+    //console.log(valueContent);
+
+    var briefClassName = '.brief'+answerBreiefId;
+    $(briefClassName).html('');
+    $(briefClassName).append(contentMap[answerBreiefId]);
+
+}
 
 function createPage(pageSize, buttons, total) {
     $(".pagination").jBootstrapPage({
@@ -27,18 +41,17 @@ function createPage(pageSize, buttons, total) {
         total: total,
         maxPageButton: buttons,
         onPageClicked: function (obj, pageIndex) {
-            console.log(obj);
             console.log(pageIndex);
             queryTopicAnswer(pageIndex);
         }
     });
 }
 
-var pageSize = 10;
-var bottonsSize = 3;
+var pageSize = 2;
+var bottonsSize = 10;
 function queryTopicAnswer(pageIndex) {
     var param = {}
-    param.pageSize = 10
+    param.pageSize = pageSize
     param.curPage = pageIndex + 1;
     //param.keyword = $('#keyword').val()
     $.ajax({
@@ -49,7 +62,6 @@ function queryTopicAnswer(pageIndex) {
         data: JSON.stringify(param),
         success: function (result) {
             if (result != null) {
-                console.log(result);
                 //请求数据成功
                 if (result.success) {
                     var resultData = result.data;
@@ -58,7 +70,6 @@ function queryTopicAnswer(pageIndex) {
                     $('.contentDiv').html('');
                     //加载新内容
                     var topicList = resultData.dataList;
-                    console.log(topicList);
                     if (topicList != null & topicList != undefined & topicList.length > 0) {
                         for (var index = 0; index < topicList.length; index++) {
                             //组装话题数据表格
@@ -74,6 +85,7 @@ function queryTopicAnswer(pageIndex) {
                             var answerContent = topic.answerContent;
                             var answerContentBrief = topic.answerContentBrief;
                             var answerVote = topic.answerVote;
+                            var answerVote = topic.answerVote;
 
                             var topicDataHtml =
                                 '<article class="post col-sm-120">' +
@@ -83,13 +95,13 @@ function queryTopicAnswer(pageIndex) {
                                 '</a>'+
                                 '</header>' +
                                 ' <div class="post-author">' +
-                                '   <span>' + answerAuthorName + ' ⋅ ' + answerModifyTime + '</span>' +
+                                '   <span>' + answerAuthorName + ' ⋅ ' + answerModifyTime + ' ⋅ 点赞数:' + answerVote + '</span>' +
                                 '</div>' +
-                                '<p>' +
+                                '<p class="brief'+answerId+'">' +
                                 answerContentBrief +
                                 '</p>' +
                                 '</article>';
-
+                            contentMap[answerId] = answerContent;
                             $('.contentDiv').append(topicDataHtml);
                         }
                     }

@@ -90,7 +90,7 @@ public class TopicController {
                 }
                 brief.append(String.valueOf(contentItem));
                 if (sumChineseChar == contentLength) {
-                    brief.append("......<a href=''>阅读全文</a>");
+                    brief.append("......<a href='javascript:readAllContent("+answerView.getAnswerId()+")' >阅读全文</a>");
                     break;
                 }
             }
