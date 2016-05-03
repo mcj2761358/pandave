@@ -310,10 +310,13 @@ body {
 }
 
 
+.pagination > li > a {
+    padding: 3px 8px !important;
+}
 
-
-
-
+.pagination > li > span {
+    padding: 3px 8px !important;
+}
 
 
 

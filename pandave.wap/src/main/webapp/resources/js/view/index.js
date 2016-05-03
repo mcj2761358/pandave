@@ -12,8 +12,6 @@ $(function () {
         $(this).addClass('main-nav-active');
     })
 
-
-
     //查询话题数据
     queryTopicAnswer(0);
 
@@ -35,20 +33,33 @@ function readAllContent(answerBreiefId){
 
 }
 
-function createPage(pageSize, buttons, total) {
-    $(".pagination").jBootstrapPage({
-        pageSize: pageSize,
-        total: total,
-        maxPageButton: buttons,
-        onPageClicked: function (obj, pageIndex) {
-            console.log(pageIndex);
-            queryTopicAnswer(pageIndex);
+function createPage(pageSize, total) {
+    //$(".pagination").jBootstrapPage({
+    //    pageSize: pageSize,
+    //    total: total,
+    //    maxPageButton: buttons,
+    //    onPageClicked: function (obj, pageIndex) {
+    //        console.log(pageIndex);
+    //        queryTopicAnswer(pageIndex);
+    //    }
+    //});
+
+    $('.pagination').pagination({
+        items: total,
+        itemsOnPage: pageSize,
+        displayedPages: 1,
+        edges:1,
+        cssStyle: 'light-theme',
+        prevText: '上一页',
+        nextText: '下一页',
+        onPageClick: function(pageNumber,event) {
+            console.log(pageNumber)
+            queryTopicAnswer(pageNumber);
         }
     });
 }
 
-var pageSize = 2;
-var bottonsSize = 10;
+var pageSize = 1;
 function queryTopicAnswer(pageIndex) {
     var param = {}
     param.pageSize = pageSize
@@ -107,7 +118,7 @@ function queryTopicAnswer(pageIndex) {
                     }
 
                     if (pageIndex == 0) {
-                        createPage(pageSize, bottonsSize, resultData.totalSize);
+                        createPage(pageSize, resultData.totalSize);
                     }
 
                 }

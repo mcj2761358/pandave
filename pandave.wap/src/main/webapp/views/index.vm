@@ -7,11 +7,15 @@
     <link href="/pandave/resources/img/base/favicon.ico" rel="icon">
 
     <link rel="stylesheet" href="/pandave/resources/css/lib/bootstrap.css"/>
+    <link rel="stylesheet" href="/pandave/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="/pandave/resources/css/view/index.css"/>
 
     <script type="text/javascript" src="/pandave/resources/js/lib/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/pandave/resources/js/lib/bootstrap.js"></script>
-    <script type="text/javascript" src="/pandave/resources/js/lib/jBootstrapPage.js"></script>
+##    <script type="text/javascript" src="/pandave/resources/js/lib/jBootstrapPage.js"></script>
+    <script type="text/javascript" src="/pandave/resources/js/lib/jquery.simplePagination.js"></script>
+
+
     <script type="text/javascript" src="/pandave/resources/js/lib/jquery.lazyload.js"></script>
 
     <script type="text/javascript" src="/pandave/resources/js/view/index.js"></script>
