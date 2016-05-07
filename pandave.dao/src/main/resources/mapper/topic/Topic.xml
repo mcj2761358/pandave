@@ -243,6 +243,9 @@
         from pandave_topic t
         join pandave_topic_answer s
         on t.id = s.topic_id
+        where s.be_ignore = is null
+        and t.is_deleted= 'N'
+        and s.is_deleted= 'N'
     </select>
 
     <!-- 根据条件查询话题回复数据 -->
@@ -260,6 +263,9 @@
         from pandave_topic t
         join pandave_topic_answer s
         on t.id = s.topic_id
+        where s.be_ignore = is null
+        and t.is_deleted= 'N'
+        and s.is_deleted= 'N'
         order by s.vote_count desc
         limit #{start},#{limit}
     </select>

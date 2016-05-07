@@ -16,6 +16,7 @@
         <result column = "vote_count" property = "voteCount" />
         <result column = "comment_count" property = "commentCount" />
         <result column = "img_flag" property = "imgFlag" />
+        <result column = "be_ignore" property = "beIgnore" />
     </resultMap>
 
     <sql id = "BaseWhereClause">
@@ -55,6 +56,9 @@
                 <if test = "imgFlag != null">
                     and img_flag = #{imgFlag}
                 </if>
+                <if test = "beIgnore != null">
+                    and be_ignore = #{beIgnore}
+                </if>
             </trim>
         </where>
     </sql>
@@ -93,7 +97,10 @@
                 comment_count = #{commentCount},
             </if>
             <if test = "imgFlag != null">
-                img_flag = #{imgFlag}
+                img_flag = #{imgFlag},
+            </if>
+            <if test = "beIgnore != null">
+                be_ignore = #{beIgnore}
             </if>
         </set>
     </sql>
@@ -163,7 +170,8 @@
         answer_modify_time,
         vote_count,
         comment_count,
-        img_flag
+        img_flag,
+        be_ignore
         )
         values (
         <include refid = "COMMON.BASE_INSERT_VALUE" />
@@ -177,7 +185,8 @@
         #{answerModifyTime},
         #{voteCount},
         #{commentCount},
-        #{imgFlag}
+        #{imgFlag},
+        #{beIgnore}
         )
     </insert>
 

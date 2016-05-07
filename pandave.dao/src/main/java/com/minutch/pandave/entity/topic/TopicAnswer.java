@@ -21,5 +21,6 @@ public class TopicAnswer extends BaseEntity {
   private Integer voteCount;
   private Integer commentCount;
   private String imgFlag;
+  private String beIgnore;
 
 }
