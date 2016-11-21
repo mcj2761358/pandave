@@ -1,0 +1,16 @@
+fox.run.env=${fox_run_env}
+fox.app.root=${fox_app_root}
+fox.app.context=${fox_app_context}
+
+jdbc.driverClassName=${fox_jdbc_driverClassName}
+jdbc.url=${fox_jdbc_url}
+jdbc.username=${fox_jdbc_username}
+jdbc.password=${fox_jdbc_password}
+
+fox.log.root=${fox_log_root}
+fox.log.level=${fox_log_level}
+fox.log.pattern=${fox_log_pattern}
+fox.log.charset=${fox_log_charset}
+
+
+fox.server.url=${fox_server_url}

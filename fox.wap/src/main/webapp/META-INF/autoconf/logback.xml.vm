@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration debug="false">
+	<property name="fox_log_pattern" value = "${fox_log_pattern}" />
+	<property name="LOG_CHARSET" value="${fox_log_charset}" />
+
+
+	<appender name="COMMON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${fox_log_root}/common.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${fox_log_root}/common.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<charset>${fox_log_charset}</charset>
+			<pattern>${fox_log_pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="DB" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		 <filter class="com.minutch.fox.filter.DbNoConneInfoFilter" />
+		<file>${fox_log_root}/db.log</file>
+		<append>true</append>
+		<param name="datePattern" value=".yyyy-MM-dd" />
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${fox_log_root}/db.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<charset>${fox_log_charset}</charset>
+			<pattern>${fox_log_pattern}</pattern>
+		</encoder>
+	</appender>
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${fox_log_root}/error.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${fox_log_root}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<encoder>
+			<charset>${fox_log_charset}</charset>
+			<pattern>${fox_log_pattern}</pattern>
+		</encoder>
+	</appender>
+	<appender name="MONITOR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${fox_log_root}/monitor.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${fox_log_root}/monitor.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<charset>${fox_log_charset}</charset>
+			<pattern>${fox_log_pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="SPRING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${fox_log_root}/spring.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${fox_log_root}/spring.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<charset>${fox_log_charset}</charset>
+			<pattern>${fox_log_pattern}</pattern>
+		</encoder>
+	</appender>
+	
+    <logger name="com.ibatis" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="DB" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="com.minutch.fox">
+		<level value="DEBUG" />
+	</logger>
+    <logger name="com.minutch.fox.dao" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="DB" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="com.minutch.fox.filter.MonitorFilter" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="MONITOR" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="java.sql" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="DB" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="java.sql.ResultSet" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DB" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="net.sf.ehcache">
+		<level value="ERROR" />
+	</logger>
+	<logger name="org.apache">
+		<level value="WARN" />
+	</logger>
+    <logger name="org.apache.commons.beanutils.converters">
+        <level value="ERROR" />
+    </logger>
+	<logger name="org.mybatis.spring" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="SPRING" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="SPRING" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="org.springframework.security">
+		<level value="ERROR" />
+	</logger> 
+	<root>
+		<level value="${fox_log_level}" />
+		<appender-ref ref="COMMON" />
+		<appender-ref ref="ERROR" />
+	</root>
+
+</configuration>

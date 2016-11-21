@@ -1,4 +1,4 @@
-# pandave
+# fox
 
 
 ## 一、为什么我们要创建熊猫阅读
@@ -19,7 +19,7 @@
 
 
   >项目名称
-  >>The Code Project Name Is Pandave, May be you want to know why named this, there is contain a sadness story.
+  >>The Code Project Name Is fox, May be you want to know why named this, there is contain a sadness story.
 
   >>so, i can't tell you anything until the project finish, but if you really really want to know, send email to me:907824379@qq.com.
 
@@ -51,10 +51,10 @@
 ## 四、不专业前端做的效果图
 
     >第一版首页(20160315)
-![image](https://raw.githubusercontent.com/mcj2761358/pandave/master/resources/20160315-index.jpg)
+![image](https://raw.githubusercontent.com/mcj2761358/fox/master/resources/20160315-index.jpg)
 
     >第一版首页(20160316)
-![image](https://raw.githubusercontent.com/mcj2761358/pandave/master/resources/20160316-index.jpg)
+![image](https://raw.githubusercontent.com/mcj2761358/fox/master/resources/20160316-index.jpg)
 
 
 
