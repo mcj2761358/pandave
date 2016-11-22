@@ -296,6 +296,14 @@
                 <version>2.0</version>
             </dependency>
 
+
+            <!-- common resource -->
+            <dependency>
+                <groupId>com.fox.base</groupId>
+                <artifactId>common-resource</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -341,5 +349,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+
     </dependencies>
 </project>

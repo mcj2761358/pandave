@@ -6,6 +6,7 @@ import com.minutch.fox.entity.system.User;
 import com.minutch.fox.entity.topic.Topic;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.SystemParam;
+import com.yuanpin.base.resource.CommonConfigManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,8 @@ public class SystemController {
     private HttpServletResponse response;
     @Autowired
     private HttpServletRequest request;
+    @Autowired
+    private CommonConfigManager commonConfigManager;
 
     @RequestMapping()
     public String system(Model model){
@@ -57,8 +60,16 @@ public class SystemController {
     @RequestMapping("index")
     public String index(Model model){
 
-
         return "index";
+    }
+
+
+    @RequestMapping("test")
+    @ResponseBody
+    public String test(Model model){
+
+        String a = commonConfigManager.getValue("WQR");
+        return a;
     }
 
     @RequestMapping("queryAll")

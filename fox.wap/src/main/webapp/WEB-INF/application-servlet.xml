@@ -24,6 +24,7 @@
     <import resource="data-source.xml" />
     <import resource="mybatis-config.xml" />
     <import resource="springMVC.xml"/>
+    <import resource="app-base.xml"/>
 
 </beans>
 

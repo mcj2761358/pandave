@@ -16,9 +16,19 @@
 			<pattern>${fox_log_pattern}</pattern>
 		</encoder>
 	</appender>
-
+    <appender name="CACHE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${fox_log_root}/cache.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${fox_log_root}/cache.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <charset>${fox_log_charset}</charset>
+            <pattern>${fox_log_pattern}</pattern>
+        </encoder>
+    </appender>
 	<appender name="DB" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		 <filter class="com.minutch.fox.filter.DbNoConneInfoFilter" />
+		 filter class="com.minutch.fox.filter.DbNoConneInfoFilter" />
 		<file>${fox_log_root}/db.log</file>
 		<append>true</append>
 		<param name="datePattern" value=".yyyy-MM-dd" />
@@ -86,6 +96,11 @@
 		<appender-ref ref="MONITOR" />
 		<appender-ref ref="ERROR" />
 	</logger>
+    <logger name="com.yuanpin.base.resource" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="CACHE" />
+        <appender-ref ref="ERROR" />
+    </logger>
 	<logger name="java.sql" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="DB" />
