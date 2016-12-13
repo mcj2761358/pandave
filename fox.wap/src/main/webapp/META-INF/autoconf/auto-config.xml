@@ -26,6 +26,15 @@
         <!-- 服务器地址 -->
         <property name="fox.server.url" defaultValue="http://localhost:8080/" description="服务器地址" />
 
+        <!-- 消息中间件RocketMQ配置 -->
+        <property name="fox.master.rocketMQ.consumer.groupName" defaultValue="FoxConsumerGroup" description="消息队列收消息分组" />
+        <property name="fox.master.rocketMQ.producer.groupName" defaultValue="FoxProducerGroup" description="消息队列发消息分组" />
+        <property name="fox.master.rocketMQ.default.topicName" defaultValue="testFoxTopic" description="消息Topic" />
+        <property name="fox.master.rocketMQ.namesrv" defaultValue="#" description="消息中间件rocketMq服务器地址配置" />
+        <property name="fox.master.rocketMQ.postfix" defaultValue="dev" description="mq环境鉴别，可以是任意的英文、数字，以便在一个mq服务器里启用不同的队列" required="false"/>
+        <property name="fox.master.rocketMQ.postfixType" defaultValue="topic" description="mq环境差异化，后缀加在topic OR tag上" required="false"/>
+        <property name="fox.master.rocketMQ.switch" defaultValue="off" description="消息中间件rocketMq开关,开发阶段建议设置为off，有需要时打开,线上建议设置为on" />
+
     </group>
 
     <script>
