@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+       <bean id="mqConfig" class="com.yuanpin.common.mq.MqConfigImpl">
+              <property name="rocketMqSwitch" value="${fox.master.rocketMQ.switch}"/>
+              <property name="mqPostfix" value="${fox.master.rocketMQ.postfix}"/>
+              <property name="mqPostfixType" value="${fox.master.rocketMQ.postfixType}"/>
+              <property name="consumerGroupName" value="${fox.master.rocketMQ.consumer.groupName}"/>
+              <property name="producerGroupName" value="${fox.master.rocketMQ.producer.groupName}"/>
+              <property name="defaultConsumerTopic" value="${fox.master.rocketMQ.default.topicName}"/>
+              <property name="defaultProducerTopic" value="${fox.master.rocketMQ.default.topicName}"/>
+              <property name="instanceName" value="fox"/>
+              <property name="namesrvAddr" value="${fox.master.rocketMQ.namesrv}"/>
+       </bean>
+
+       <bean id="sqMqConsumer" class="com.yuanpin.common.mq.consumer.MqConsumerHost" scope="singleton" />
+
+       <bean id="mqProducerHost" class="com.yuanpin.common.mq.producer.MqProducerHost"/>
+       <bean id="mqSender" class="com.yuanpin.common.mq.producer.MqSender"/>
+       <aop:aspectj-autoproxy/>
+
+</beans>

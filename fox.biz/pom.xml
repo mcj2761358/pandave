@@ -45,7 +45,10 @@
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.yuanpin.base</groupId>
+            <artifactId>sq-mq</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

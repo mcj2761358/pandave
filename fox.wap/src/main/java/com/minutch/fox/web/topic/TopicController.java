@@ -1,6 +1,8 @@
 package com.minutch.fox.web.topic;
 
 import com.minutch.fox.biz.topic.TopicService;
+import com.minutch.fox.entity.topic.Topic;
+import com.minutch.fox.mq.topic.TopicProducer;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.topic.TopicQueryParam;
 import com.minutch.fox.result.PageResultVO;
@@ -26,10 +28,10 @@ import java.util.List;
 @Slf4j
 public class TopicController {
 
-
-
     @Autowired
     private TopicService topicService;
+    @Autowired
+    private TopicProducer topicProducer;
 
     @RequestMapping("queryTopicAnswer")
     @ResponseBody
@@ -59,6 +61,15 @@ public class TopicController {
         return "topic/answerDetail";
     }
 
+    @RequestMapping("test")
+    @ResponseBody
+    public Result<?> test() {
+        Topic topic = new Topic();
+        topic.setId(1000L);
+        topic.setTitle("Hello MQ!");
+        topicProducer.sendTopic(topic);
+        return Result.wrapSuccessfulResult(topic);
+    }
 
     private static final int contentLength = 100;
     /**
@@ -97,7 +108,6 @@ public class TopicController {
             answerView.setAnswerContentBrief(brief.toString());
         }
     }
-
 
     private boolean isChineseChar(char item) {
         int length = String.valueOf(item).getBytes().length;

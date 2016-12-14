@@ -12,5 +12,12 @@ fox.log.level=${fox_log_level}
 fox.log.pattern=${fox_log_pattern}
 fox.log.charset=${fox_log_charset}
 
-
 fox.server.url=${fox_server_url}
+
+fox.master.rocketMQ.consumer.groupName=${fox_master_rocketMQ_consumer_groupName}
+fox.master.rocketMQ.producer.groupName=${fox_master_rocketMQ_producer_groupName}
+fox.master.rocketMQ.default.topicName=${fox_master_rocketMQ_default_topicName}
+fox.master.rocketMQ.namesrv=${fox_master_rocketMQ_namesrv}
+fox.master.rocketMQ.postfix=${fox_master_rocketMQ_postfix}
+fox.master.rocketMQ.postfixType=${fox_master_rocketMQ_postfixType}
+fox.master.rocketMQ.switch=${fox_master_rocketMQ_switch}

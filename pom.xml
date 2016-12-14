@@ -282,7 +282,11 @@
                 <artifactId>rocketmq-client</artifactId>
                 <version>3.2.6</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.yuanpin.base</groupId>
+                <artifactId>sq-mq</artifactId>
+                <version>1.1.5</version>
+            </dependency>
 
             <!-- Velocity -->
             <dependency>
