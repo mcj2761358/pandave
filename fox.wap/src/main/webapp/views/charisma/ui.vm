@@ -15,7 +15,6 @@
         #parse("charisma/public/leftMenu.vm")
 
         <div id="content" class="col-lg-10 col-sm-10">
-            <!-- content starts -->
             <div>
     <ul class="breadcrumb">
         <li>
@@ -45,13 +44,13 @@
             <div class="box-content">
                 <table class="table table-bordered table-striped responsive">
                     <tbody>
-                    <tr>
-                        <td><h3>Multiple File Upload</h3></td>
-                        <td>
-                            <input data-no-uniform="true" type="file" name="file_upload" id="file_upload">
-                        </td>
-                        <td></td>
-                    </tr>
+##                    <tr>
+##                        <td><h3>Multiple File Upload</h3></td>
+##                        <td>
+##                            <input data-no-uniform="true" type="file" name="file_upload" id="file_upload">
+##                        </td>
+##                        <td></td>
+##                    </tr>
                     <tr>
                         <td><h3>CSS3 Animations</h3></td>
                         <td>
@@ -64,13 +63,13 @@
                             <a target="_blank" href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td><h3>Star Rating</h3></td>
-                        <td>
-                            <div class="raty"></div>
-                        </td>
-                        <td><code>&lt;div class="raty"&gt;&lt;/div&gt;</code></td>
-                    </tr>
+##                    <tr>
+##                        <td><h3>Star Rating</h3></td>
+##                        <td>
+##                            <div class="raty"></div>
+##                        </td>
+##                        <td><code>&lt;div class="raty"&gt;&lt;/div&gt;</code></td>
+##                    </tr>
                     <tr>
                         <td><h3>Toggle Switch</h3></td>
                         <td>
@@ -372,21 +371,21 @@
             </div>
             <div class="box-content">
                 <ul class="ajax-loaders">
-                                            <li><img src="img/ajax-loaders/ajax-loader-1.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-1.gif"
                                  title="img/ajax-loaders/ajax-loader-1.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-2.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-2.gif"
                                  title="img/ajax-loaders/ajax-loader-2.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-3.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-3.gif"
                                  title="img/ajax-loaders/ajax-loader-3.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-4.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-4.gif"
                                  title="img/ajax-loaders/ajax-loader-4.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-5.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-5.gif"
                                  title="img/ajax-loaders/ajax-loader-5.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-6.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-6.gif"
                                  title="img/ajax-loaders/ajax-loader-6.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-7.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-7.gif"
                                  title="img/ajax-loaders/ajax-loader-7.gif"></li>
-                                            <li><img src="img/ajax-loaders/ajax-loader-8.gif"
+                                            <li><img src="${rc.contextPath}/resources/charisma/img/ajax-loaders/ajax-loader-8.gif"
                                  title="img/ajax-loaders/ajax-loader-8.gif"></li>
                                     </ul>
                 <span class="clearfix">From / More <a href="http://ajaxload.info/"

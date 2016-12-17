@@ -10,37 +10,37 @@
                 <!-- Main -->
                 <li class="nav-header">Main</li>
                 <li>
-                    <a class="ajax-link" href="index.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index">
                         <i class="glyphicon glyphicon-home"></i>
                         <span> Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="ui.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/ui">
                         <i class="glyphicon glyphicon-eye-open"></i>
                         <span> UI Features</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="form.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/form">
                         <i class="glyphicon glyphicon-edit"></i>
                         <span> Forms</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="chart.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/chart">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         <span> Charts</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="typography.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/typography">
                         <i class="glyphicon glyphicon-font"></i>
                         <span> Typography</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="gallery.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/gallery">
                         <i class="glyphicon glyphicon-picture"></i>
                         <span> Gallery</span>
                     </a>
@@ -49,7 +49,7 @@
                 <!-- Sample Section -->
                 <li class="nav-header hidden-md">Sample Section</li>
                 <li>
-                    <a class="ajax-link" href="table.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/table">
                         <i class="glyphicon glyphicon-align-justify"></i>
                         <span> Tables</span>
                     </a>
@@ -65,37 +65,37 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="ajax-link" href="calendar.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/calendar">
                         <i class="glyphicon glyphicon-calendar"></i>
                         <span> Calendar</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="grid.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/grid">
                         <i class="glyphicon glyphicon-th"></i>
                         <span> Grid</span>
                     </a>
                 </li>
                 <li>
-                    <a href="tour.html">
+                    <a href="${rc.contextPath}/index/tour">
                         <i class="glyphicon glyphicon-globe"></i>
                         <span> Tour</span>
                     </a>
                 </li>
                 <li>
-                    <a class="ajax-link" href="icon.html">
+                    <a class="ajax-link" href="${rc.contextPath}/index/icon">
                         <i class="glyphicon glyphicon-star"></i>
                         <span> Icons</span>
                     </a>
                 </li>
                 <li>
-                    <a href="error.html">
+                    <a href="${rc.contextPath}/index/error">
                         <i class="glyphicon glyphicon-ban-circle"></i>
                         <span> Error Page</span>
                     </a>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href="${rc.contextPath}/index/login">
                         <i class="glyphicon glyphicon-lock"></i>
                         <span> Login Page</span>
                     </a>

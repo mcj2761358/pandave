@@ -7,7 +7,8 @@ $(document).ready(function () {
     var msie = navigator.userAgent.match(/msie/i);
     $.browser = {};
     $.browser.msie = {};
-    switchTheme(currentTheme);
+    themePath = $('#rcContextPath').val();
+    switchTheme(currentTheme, themePath);
 
     $('.navbar-toggle').click(function (e) {
         e.preventDefault();
@@ -36,16 +37,17 @@ $(document).ready(function () {
     $('#themes a').click(function (e) {
         e.preventDefault();
         currentTheme = $(this).attr('data-value');
+        themePath = $('#rcContextPath').val();
         $.cookie('currentTheme', currentTheme, {expires: 365});
-        switchTheme(currentTheme);
+        switchTheme(currentTheme, themePath);
     });
 
 
-    function switchTheme(themeName) {
+    function switchTheme(themeName, themePath) {
         if (themeName == 'classic') {
-            $('#bs-css').attr('href', 'resources/charisma/bower_components/bootstrap/dist/css/bootstrap.min.css');
+            $('#bs-css').attr('href', themePath+'/resources/charisma/bower_components/bootstrap/dist/css/bootstrap.min.css');
         } else {
-            $('#bs-css').attr('href', 'resources/charisma/css/bootstrap-' + themeName + '.min.css');
+            $('#bs-css').attr('href', themePath+'/resources/charisma/css/bootstrap-' + themeName + '.min.css');
         }
 
         $('#themes i').removeClass('glyphicon glyphicon-ok whitespace').addClass('whitespace');
@@ -170,11 +172,11 @@ function docReady() {
     });
 
     //uploadify - multiple uploads
-    $('#file_upload').uploadify({
-        'swf': 'misc/uploadify.swf',
-        'uploader': 'misc/uploadify.php'
-        // Put your options here
-    });
+    //$('#file_upload').uploadify({
+    //    'swf': 'misc/uploadify.swf',
+    //    'uploader': 'misc/uploadify.php'
+    //    // Put your options here
+    //});
 
     //gallery controls container animation
     $('ul.gallery li').hover(function () {
