@@ -1,68 +1,65 @@
-package com.minutch.fox.web.charisma;
+package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.web.BaseController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Minutch on 16/11/28.
  */
-@RequestMapping("index")
+@RequestMapping("decoration")
 @Controller
-public class IndexController extends BaseController{
+public class DecorationController extends BaseController{
     @RequestMapping("")
     public String index() {
-        return "charisma/index";
+        return "decoration/index";
     }
     @RequestMapping("ui")
     public String ui() {
-        return "charisma/ui";
+        return "decoration/ui";
     }
     @RequestMapping("form")
     public String form() {
-        return "charisma/form";
+        return "decoration/form";
     }
     @RequestMapping("chart")
     public String chart() {
-        return "charisma/chart";
+        return "decoration/chart";
     }
     @RequestMapping("typography")
     public String typography() {
-        return "charisma/typography";
+        return "decoration/typography";
     }
     @RequestMapping("gallery")
     public String gallery() {
-        return "charisma/gallery";
+        return "decoration/gallery";
     }
     @RequestMapping("table")
     public String table() {
-        return "charisma/table";
+        return "decoration/table";
     }
     @RequestMapping("calendar")
     public String calendar() {
-        return "charisma/calendar";
+        return "decoration/calendar";
     }
     @RequestMapping("grid")
     public String grid() {
-        return "charisma/grid";
+        return "decoration/grid";
     }
     @RequestMapping("tour")
     public String tour() {
-        return "charisma/tour";
+        return "decoration/tour";
     }
     @RequestMapping("icon")
     public String icon() {
-        return "charisma/icon";
+        return "decoration/icon";
     }
     @RequestMapping("error")
     public String error() {
-        return "charisma/error";
+        return "decoration/error";
     }
     @RequestMapping("login")
     public String login() {
-        return "charisma/login";
+        return "decoration/login";
     }
 }
