@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.OrderDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Order"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "cus_id" property = "cusId" />
+        <result column = "cus_name" property = "cusName" />
+        <result column = "mobile_phone" property = "mobilePhone" />
+        <result column = "house_name" property = "houseName" />
+        <result column = "address" property = "address" />
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_num" property = "goodsNum" />
+        <result column = "goods_price" property = "goodsPrice" />
+        <result column = "order_amount" property = "orderAmount" />
+        <result column = "return_amount" property = "returnAmount" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "cusId != null">
+                    and cus_id = #{cusId}
+                </if>
+                <if test = "cusName != null">
+                    and cus_name = #{cusName}
+                </if>
+                <if test = "mobilePhone != null">
+                    and mobile_phone = #{mobilePhone}
+                </if>
+                <if test = "houseName != null">
+                    and house_name = #{houseName}
+                </if>
+                <if test = "address != null">
+                    and address = #{address}
+                </if>
+                <if test = "goodsName != null">
+                    and goods_name = #{goodsName}
+                </if>
+                <if test = "goodsNum != null">
+                    and goods_num = #{goodsNum}
+                </if>
+                <if test = "goodsPrice != null">
+                    and goods_price = #{goodsPrice}
+                </if>
+                <if test = "orderAmount != null">
+                    and order_amount = #{orderAmount}
+                </if>
+                <if test = "returnAmount != null">
+                    and return_amount = #{returnAmount}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "cusId != null">
+                cus_id = #{cusId},
+            </if>
+            <if test = "cusName != null">
+                cus_name = #{cusName},
+            </if>
+            <if test = "mobilePhone != null">
+                mobile_phone = #{mobilePhone},
+            </if>
+            <if test = "houseName != null">
+                house_name = #{houseName},
+            </if>
+            <if test = "address != null">
+                address = #{address},
+            </if>
+            <if test = "goodsName != null">
+                goods_name = #{goodsName},
+            </if>
+            <if test = "goodsNum != null">
+                goods_num = #{goodsNum},
+            </if>
+            <if test = "goodsPrice != null">
+                goods_price = #{goodsPrice},
+            </if>
+            <if test = "orderAmount != null">
+                order_amount = #{orderAmount},
+            </if>
+            <if test = "returnAmount != null">
+                return_amount = #{returnAmount},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_order
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_order
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_order
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_order
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_order
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_order
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_order (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        cus_id,
+        cus_name,
+        mobile_phone,
+        house_name,
+        address,
+        goods_name,
+        goods_num,
+        goods_price,
+        order_amount,
+        return_amount,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{cusId},
+        #{cusName},
+        #{mobilePhone},
+        #{houseName},
+        #{address},
+        #{goodsName},
+        #{goodsNum},
+        #{goodsPrice},
+        #{orderAmount},
+        #{returnAmount},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_order
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+</mapper>

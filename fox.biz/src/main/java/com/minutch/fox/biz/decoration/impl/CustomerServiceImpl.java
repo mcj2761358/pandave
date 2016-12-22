@@ -1,14 +1,14 @@
 package com.minutch.fox.biz.decoration.impl;
 
-import java.util.List;
-
 import com.minutch.fox.biz.base.BaseServiceImpl;
 import com.minutch.fox.biz.decoration.CustomerService;
+import com.minutch.fox.dao.decoration.CustomerDao;
+import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.param.decoration.CustomerQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.minutch.fox.dao.decoration.CustomerDao;
-import com.minutch.fox.entity.decoration.Customer;
+import java.util.List;
 
 
 @Service
@@ -35,5 +35,15 @@ public class CustomerServiceImpl extends BaseServiceImpl implements CustomerServ
 
   public int deleteByIds(Long[] ids) {
     return super.deleteByIds(customerDao, ids);
+  }
+
+  @Override
+  public List<Customer> queryCustomer(CustomerQueryParam param) {
+    return customerDao.queryCustomer(param, param.getStart(), param.getEnd());
+  }
+
+  @Override
+  public int queryCustomerCount(CustomerQueryParam param) {
+    return customerDao.queryCustomerCount(param);
   }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @MyBatisRepository
 public interface StudentDao extends BaseDao<Student> {
 
-    public List<Student> queryStudent(@Param("param") StudentQueryParam param, @Param("start") int start, @Param("limit") int limit);
+    List<Student> queryStudent(@Param("param") StudentQueryParam param, @Param("start") int start, @Param("limit") int limit);
 
-    public int queryStudentCount(@Param("param") StudentQueryParam param);
+    int queryStudentCount(@Param("param") StudentQueryParam param);
 }

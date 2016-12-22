@@ -32,4 +32,5 @@
 <script src='${rc.contextPath}/resources/charisma/js/jquery.history.js'></script>
 <!-- application script for Charisma demo -->
 <script src='${rc.contextPath}/resources/charisma/js/charisma.js'></script>
-
+<!-- alert modal-->
+<script src='${rc.contextPath}/resources/charisma/js/alertModal.js'></script>

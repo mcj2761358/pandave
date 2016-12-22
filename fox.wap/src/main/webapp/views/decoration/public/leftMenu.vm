@@ -8,7 +8,32 @@
             </div>
             <ul class="nav nav-pills nav-stacked main-menu">
                 <!-- Main -->
-                <li class="nav-header">Main</li>
+                <li class="nav-header">管理中心</li>
+                <!-- 用户管理 -->
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/createCustomer">
+                        <i class="glyphicon glyphicon-star"></i>
+                        <span> 创建客户</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/userList">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        <span> 客户管理</span>
+                    </a>
+                </li>
+                <!-- 订单管理 -->
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
+                        <i class="glyphicon glyphicon-align-justify"></i>
+                        <span> 订单管理</span>
+                    </a>
+                </li>
+
+
+
+                <!-- other -->
+                <li class="nav-header">附加功能</li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/decoration">
                         <i class="glyphicon glyphicon-home"></i>
@@ -45,9 +70,6 @@
                         <span> Gallery</span>
                     </a>
                 </li>
-
-                <!-- Sample Section -->
-                <li class="nav-header hidden-md">Sample Section</li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/decoration/table">
                         <i class="glyphicon glyphicon-align-justify"></i>

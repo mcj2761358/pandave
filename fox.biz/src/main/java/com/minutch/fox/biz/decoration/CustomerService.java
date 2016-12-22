@@ -1,18 +1,22 @@
 package com.minutch.fox.biz.decoration;
 
-import java.util.List; 
-
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.param.decoration.CustomerQueryParam;
+
+import java.util.List;
 
 public interface CustomerService {
-  List<Customer> getAll();
-  
-  Customer getById(Long id);
+    List<Customer> getAll();
 
-  boolean save(Customer customer);
+    Customer getById(Long id);
 
-  boolean deleteById( Long id);
+    boolean save(Customer customer);
 
-   int deleteByIds(Long[] ids);
+    boolean deleteById(Long id);
 
+    int deleteByIds(Long[] ids);
+
+    List<Customer> queryCustomer(CustomerQueryParam param);
+
+    int queryCustomerCount(CustomerQueryParam param);
 }

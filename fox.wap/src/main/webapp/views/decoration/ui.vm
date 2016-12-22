@@ -405,8 +405,8 @@
 
     #parse("decoration/public/footer.vm")
 
-</div><!--/.fluid-container-->
-        #parse("decoration/public/commonJS.vm")
+</div>
+    #parse("decoration/public/commonJS.vm")
 </body>
 </html>
 
