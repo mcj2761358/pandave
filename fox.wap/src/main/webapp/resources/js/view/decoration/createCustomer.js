@@ -13,9 +13,6 @@ $(function () {
 
 function createCustomer() {
 
-    var alertModal =  $('#alertModal');
-    var alertModalContent = $('#alertModalContent');
-
     var cusId = $('#cusId').val();
     var cusName = $('#cusName').val();
     var mobilePhone = $('#mobilePhone').val();

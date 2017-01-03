@@ -5,7 +5,7 @@
 
     <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.OrderPayment"
                extends = "COMMON.BASE_RESULT_MAP">
-        <result column = "order_id" property = "orderId" />
+        <result column = "cus_id" property = "cusId" />
         <result column = "return_amount" property = "returnAmount" />
         <result column = "remark" property = "remark" />
     </resultMap>
@@ -14,8 +14,8 @@
         <where>
             <trim prefixOverrides = "and">
                 <include refid = "COMMON.BASE_WHERE_CLAUSE" />
-                <if test = "orderId != null">
-                    and order_id = #{orderId}
+                <if test = "cusId != null">
+                    and cus_id = #{cusId}
                 </if>
                 <if test = "returnAmount != null">
                     and return_amount = #{returnAmount}
@@ -30,8 +30,8 @@
     <sql id = "BaseUpdateSet">
         <set>
             <include refid = "COMMON.BASE_UPDATE_SET" />
-            <if test = "orderId != null">
-                order_id = #{orderId},
+            <if test = "cusId != null">
+                cus_id = #{cusId},
             </if>
             <if test = "returnAmount != null">
                 return_amount = #{returnAmount},
@@ -97,13 +97,13 @@
     <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
         insert into decoration_order_payment (
         <include refid = "COMMON.BASE_INSERT_COLUMN" />
-        order_id,
+        cus_id,
         return_amount,
         remark
         )
         values (
         <include refid = "COMMON.BASE_INSERT_VALUE" />
-        #{orderId},
+        #{cusId},
         #{returnAmount},
         #{remark}
         )

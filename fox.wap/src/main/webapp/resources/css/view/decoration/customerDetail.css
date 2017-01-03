@@ -1,0 +1,19 @@
+.box-content {
+    overflow: hidden;
+}
+
+.red {
+    color: red !important;
+}
+.self-page {
+    width: 50%;
+}
+
+
+.well {
+    height: 40px;
+}
+
+.float-right {
+    float: right !important;
+}

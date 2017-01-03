@@ -150,7 +150,7 @@
         </if>
     </select>
 
-    <!-- 根据条件查询学员数据 -->
+    <!-- 根据条件查询客户数据 -->
     <select id="queryCustomer" resultMap="BaseResultMap">
         select *
         from decoration_customer

@@ -2,7 +2,9 @@ package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.CustomerService;
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.param.Result;
 import com.minutch.fox.web.BaseController;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("decoration")
 @Controller
+@Slf4j
 public class DecorationController extends BaseController {
 
     @Autowired
@@ -50,6 +53,54 @@ public class DecorationController extends BaseController {
         }
 
         return "decoration/userList";
+    }
+
+
+    @RequestMapping("createOrder")
+    public String createOrder(Long cusId, Model model) {
+
+        if (cusId==null) {
+            log.error("参数错误");
+            model.addAttribute("errorMsg", "参数错误，客户ID为空！");
+            return "decoration/error500";
+        }
+
+        Customer customer = customerService.getById(cusId);
+        if (customer == null) {
+            log.error("不存在的客户["+cusId+"]");
+            model.addAttribute("errorMsg", "不存在的客户["+cusId+"]");
+            return "decoration/error500";
+        }
+        model.addAttribute("customer", customer);
+        model.addAttribute("cusId", cusId);
+        return "decoration/createOrder";
+    }
+
+
+
+    @RequestMapping("customerDetail")
+    public String customerDetail(Long cusId, Model model) {
+
+        if (cusId==null) {
+            log.error("参数错误");
+            model.addAttribute("errorMsg", "参数错误，客户ID为空！");
+            return "decoration/error500";
+        }
+
+        Customer customer = customerService.getById(cusId);
+        if (customer == null) {
+            log.error("不存在的客户["+cusId+"]");
+            model.addAttribute("errorMsg", "不存在的客户["+cusId+"]");
+            return "decoration/error500";
+        }
+        model.addAttribute("customer", customer);
+        model.addAttribute("cusId", cusId);
+        return "decoration/customerDetail";
+    }
+
+    @RequestMapping("orderList")
+    public String orderList() {
+        return "decoration/orderList";
     }
 
     @RequestMapping("ui")
@@ -100,6 +151,11 @@ public class DecorationController extends BaseController {
     @RequestMapping("icon")
     public String icon() {
         return "decoration/icon";
+    }
+
+    @RequestMapping("error500")
+    public String error500() {
+        return "decoration/error500";
     }
 
     @RequestMapping("error")

@@ -4,6 +4,7 @@
 $(function () {
 
     queryUserList(0);
+
 });
 
 function createPage(pageSize, total) {
@@ -63,9 +64,10 @@ function queryUserList(pageIndex) {
                             var houseName = customer.houseName;
                             var address = customer.address;
 
+                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
                             var cusDataHtml =
                                 '<tr>' +
-                                '<td>'+cusName+'</td>' +
+                                '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
                                 '<td class="center">'+mobilePhone+'</td>' +
                                 '<td class="center">'+houseName+'</td>' +
                                 '<td class="center">'+address+'</td>' +

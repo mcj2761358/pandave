@@ -1,0 +1,104 @@
+/**
+ * Created by Minutch on 16/12/17.
+ */
+$(function () {
+    queryOrderList(0);
+});
+
+function createPage(pageSize, total) {
+
+    $('.pagination').pagination({
+        items: total,
+        itemsOnPage: pageSize,
+        displayedPages: 2,
+        edges:1,
+        cssStyle: 'light-theme',
+        prevText: '上一页',
+        nextText: '下一页',
+        onPageClick: function(pageNumber,event) {
+            queryOrderList(pageNumber-1)
+        }
+    });
+}
+
+
+
+
+var pageSize = 10;
+function queryOrderList(pageIndex) {
+
+    var contextPath = $('#rcContextPath').val();
+
+    var param = {};
+    param.pageSize = pageSize;
+    param.curPage = pageIndex + 1;
+    param.keyword = $('#keyword').val();
+
+    $.ajax({
+        url: contextPath +"/decoration/order/queryList",
+        datatype: 'json',
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(param),
+
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    var resultData = result.data;
+
+                    //清空content数据
+                    $('.contentDiv').html('');
+                    //加载新内容
+                    var orderList = resultData.dataList;
+                    if (orderList != null & orderList != undefined & orderList.length > 0) {
+                        for (var index = 0; index < orderList.length; index++) {
+                            //组装话题数据表格
+                            var order = orderList[index];
+
+                            var orderId = order.id;
+                            var cusId = order.cusId;
+                            var cusName = order.cusName;
+                            var mobilePhone = order.mobilePhone;
+                            var houseName = order.houseName;
+                            var goodsName = order.goodsName;
+                            var goodsNum = order.goodsNum;
+                            var orderAmount = order.orderAmount;
+                            var returnAmount = order.returnAmount;
+                            var beFinish = order.beFinish;
+
+                            if (beFinish == null || beFinish== undefined) {
+                                beFinish = '未结清';
+                            }
+                            if (beFinish == 'Y') {
+                                beFinish = '已结清';
+                            }
+
+                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
+                            var orderDataHtml = '<tr>'+
+                                '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
+                                '<td class="center">'+mobilePhone+'</td>'+
+                                '<td class="center">'+houseName+'</td>'+
+                                '<td class="center">'+goodsName+'</td>'+
+                                '<td class="center">'+goodsNum+'</td>'+
+                                '<td class="center">'+orderAmount+'</td>'+
+                                '<td class="center"></td>'+
+                                '<td class="center">'+
+                                '<a class="btn btn-info btn-sm">'+
+                                '<i class="glyphicon glyphicon-edit icon-white"></i>编辑'+
+                                '</a>'+
+                                '</td>'+
+                                '</tr>';
+                            $('.contentDiv').append(orderDataHtml);
+                        }
+                    }
+
+                    if (pageIndex == 0) {
+                        createPage(pageSize, resultData.totalSize);
+                    }
+
+                }
+            }
+        }
+    });
+}

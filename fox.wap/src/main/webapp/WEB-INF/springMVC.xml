@@ -44,8 +44,8 @@
                 </property>
                 <property name="objectMapper">
                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
-                        <!--<property name="serializationInclusion" value="ALWAYS"/>-->
-                        <property name="serializationInclusion" value="NON_NULL"/>
+                        <property name="serializationInclusion" value="ALWAYS"/>
+                        <!--<property name="serializationInclusion" value="NON_NULL"/>-->
                         <property name="dateFormat">
                             <bean class="com.minutch.fox.register.SmartDateFormat"/>
                         </property>
@@ -106,6 +106,8 @@
             </props>
         </property>
     </bean>
+
+
     <!-- 设置视图解析工具 -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">

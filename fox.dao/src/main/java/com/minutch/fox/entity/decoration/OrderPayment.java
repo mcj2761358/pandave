@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 public class OrderPayment extends BaseEntity {
 
-  private Long orderId;
+  private Long cusId;
   private BigDecimal returnAmount;
   private String remark;
 

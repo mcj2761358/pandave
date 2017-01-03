@@ -15,6 +15,7 @@
         <result column = "goods_price" property = "goodsPrice" />
         <result column = "order_amount" property = "orderAmount" />
         <result column = "return_amount" property = "returnAmount" />
+        <result column = "be_finish" property = "beFinish" />
         <result column = "remark" property = "remark" />
     </resultMap>
 
@@ -51,6 +52,9 @@
                 </if>
                 <if test = "returnAmount != null">
                     and return_amount = #{returnAmount}
+                </if>
+                <if test = "beFinish != null">
+                    and be_finish = #{beFinish}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
@@ -91,6 +95,9 @@
             </if>
             <if test = "returnAmount != null">
                 return_amount = #{returnAmount},
+            </if>
+            <if test = "beFinish != null">
+                be_finish = #{beFinish},
             </if>
             <if test = "remark != null">
                 remark = #{remark}
@@ -163,6 +170,7 @@
         goods_price,
         order_amount,
         return_amount,
+        be_finish,
         remark
         )
         values (
@@ -177,6 +185,7 @@
         #{goodsPrice},
         #{orderAmount},
         #{returnAmount},
+        #{beFinish},
         #{remark}
         )
     </insert>
@@ -188,4 +197,53 @@
         where id = #{id}
     </update>
 
+
+    <!-- 根据条件查询订单总数 -->
+    <select id="queryOrderCount" resultType="java.lang.Integer">
+        select count(*)
+        from decoration_order
+        where is_deleted = 'N'
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            cus_name  like concat('%',#{param.keyword},'%')
+            or mobile_phone like concat('%',#{param.keyword},'%')
+            or house_name like concat('%',#{param.keyword},'%')
+            )
+        </if>
+        <if test="param.cusId!=null">
+            and cus_id = #{param.cusId}
+        </if>
+    </select>
+
+    <!-- 根据条件查询订单数据 -->
+    <select id="queryOrder" resultMap="BaseResultMap">
+        select *
+        from decoration_order
+        where is_deleted = 'N'
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            cus_name  like concat('%',#{param.keyword},'%')
+            or mobile_phone like concat('%',#{param.keyword},'%')
+            or house_name like concat('%',#{param.keyword},'%')
+            )
+        </if>
+        <if test="param.cusId!=null">
+            and cus_id = #{param.cusId}
+        </if>
+        order by id desc
+        limit #{start},#{limit}
+    </select>
+
+
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "finishById">
+        update decoration_order
+        set gmt_modified = now(),
+        be_finish = 'Y'
+        where id = #{orderId}
+        and be_finish is null
+    </update>
 </mapper>
