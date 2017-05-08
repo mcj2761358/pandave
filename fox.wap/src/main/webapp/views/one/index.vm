@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+
+    #parse("one/public/commonStyle.vm")
+
+</head>
+<body>
+
+    #parse("one/public/commonHeader.vm")
+
+<div id="fh5co-main">
+    <div class="fh5co-intro text-center">
+    ##			<div class="container">
+    ##				<div class="row">
+    ##					<div class="col-md-8 col-md-offset-2">
+    ##						<h1 class="intro-lead">Make something you love</h1>
+    ##						<p class="">100% Free HTML5 Template by More Templates </p>
+    ##					</div>
+    ##				</div>
+    ##			</div>
+
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="/fox/resources/img/view/one/slide1.png" alt="九寨沟" style="display:inline">
+                    <div class="carousel-caption">
+                        <h1>九寨沟</h1>
+                        <p>九寨沟国家级自然保护区位于四川省阿坝藏族羌族自治州九寨沟县境内，是中国第一个以保护自然风景为主要目的的自然保护区，同时，也是中国著名风景名胜区和全国文明风景旅游区示范点。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img width="100%" src="/fox/resources/img/view/one/slide2.png" alt="丽江"  style="display:inline">
+                    <div class="carousel-caption">
+                        <h1>丽江</h1>
+                        <p>丽江古城，又名“大研古镇”，海拔2,400米（旅游要防内源氧缺乏症），是丽江纳西族自治县的中心城市，是中国历史文化名城之一，世界文化遗产，国家5A级旅游景区，全国文明风景旅游区示范点。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/fox/resources/img/view/one/slide3.png" alt="水帘洞"  style="display:inline">
+                    <div class="carousel-caption">
+                        <h1>水帘洞</h1>
+                        <p>桐柏山水帘洞位于河南省南阳市桐柏县城西5公里处，是国家级风景名胜区桐柏山淮源风景名胜区著名景点之一。</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+##        <div id="myCarousel" class="carousel slide">
+##            <!-- 轮播（Carousel）指标 -->
+##            <ol class="carousel-indicators">
+##                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+##                <li data-target="#myCarousel" data-slide-to="1"></li>
+##                <li data-target="#myCarousel" data-slide-to="2"></li>
+##            </ol>
+##            <!-- 轮播（Carousel）项目 -->
+##            <div class="carousel-inner">
+##                <div class="item active">
+##                    <img src="/fox/resources/img/view/one/slide1.png" alt="First slide">
+##                </div>
+##                <div class="item">
+##                    <img src="/fox/resources/img/view/one/slide2.png" alt="Second slide">
+##                </div>
+##                <div class="item">
+##                    <img src="/fox/resources/img/view/one/slide3.png" alt="Third slide">
+##                </div>
+##            </div>
+##            <!-- 轮播（Carousel）导航 -->
+##            <a class="carousel-control left" href="#myCarousel"
+##               data-slide="prev">&lsaquo;</a>
+##            <a class="carousel-control right" href="#myCarousel"
+##               data-slide="next">&rsaquo;</a>
+##        </div>
+    </div>
+
+    <div id="fh5co-portfolio">
+        <div class="fh5co-portfolio-item ">
+            <div class="fh5co-portfolio-figure animate-box"
+                 style="background-image: url(/fox/resources/img/view/one/work_1.jpg);"></div>
+            <div class="fh5co-portfolio-description">
+                <h2>Project First</h2>
+
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
+                    regelialia.</p>
+            ##					<p><a href="#" class="btn btn-primary">Read the casetudy</a></p>
+            </div>
+        </div>
+        <div class="fh5co-portfolio-item fh5co-img-right">
+            <div class="fh5co-portfolio-figure animate-box"
+                 style="background-image: url(/fox/resources/img/view/one/work_2.jpg);"></div>
+            <div class="fh5co-portfolio-description">
+                <h2>Project Second</h2>
+
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
+                    regelialia.</p>
+            ##					<p><a href="#" class="btn btn-primary">Read the casetudy</a></p>
+            </div>
+        </div>
+        <div class="fh5co-portfolio-item ">
+            <div class="fh5co-portfolio-figure animate-box"
+                 style="background-image: url(/fox/resources/img/view/one/work_3.jpg);"></div>
+            <div class="fh5co-portfolio-description">
+                <h2>Project Third</h2>
+
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
+                    regelialia.</p>
+            ##					<p><a href="#" class="btn btn-primary">Read the casetudy</a></p>
+            </div>
+        </div>
+        <div class="fh5co-portfolio-item fh5co-img-right">
+            <div class="fh5co-portfolio-figure animate-box"
+                 style="background-image: url(/fox/resources/img/view/one/work_4.jpg);"></div>
+            <div class="fh5co-portfolio-description">
+                <h2>Project Fourth</h2>
+
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
+                    regelialia.</p>
+            ##					<p><a href="#" class="btn btn-primary">Read the casetudy</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <h2 class="section-lead text-center">Leadership</h2>
+
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-staff to-animate">
+                            <figure>
+                                <img src="/fox/resources/img/view/one/user.jpg" alt="" class="img-responsive">
+                            </figure>
+                            <h3>Will Barrow</h3>
+
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                                there live the blind texts. </p>
+                            <ul class="fh5co-social">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-github"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-staff to-animate">
+                            <figure>
+                                <img src="/fox/resources/img/view/one/user_2.jpg" alt="" class="img-responsive">
+                            </figure>
+                            <h3>Max Conversion</h3>
+
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                                there live the blind texts. </p>
+                            <ul class="fh5co-social">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-github"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix visible-sm-block visible-xs-block"></div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-staff to-animate">
+                            <figure>
+                                <img src="/fox/resources/img/view/one/user_3.jpg" alt="" class="img-responsive">
+                            </figure>
+                            <h3>Hanson Deck</h3>
+
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                                there live the blind texts. </p>
+                            <ul class="fh5co-social">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-github"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-staff to-animate">
+                            <figure>
+                                <img src="/fox/resources/img/view/one/user.jpg" alt="" class="img-responsive">
+                            </figure>
+                            <h3>Sue Shei</h3>
+
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                                there live the blind texts. </p>
+                            <ul class="fh5co-social">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-github"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <h2 class="section-lead text-center">Features</h2>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-service">
+                            <div class="fh5co-icon to-animate"><i class="icon-present"></i></div>
+                            <div class="fh5co-desc">
+                                <h3>100% Free</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-service">
+                            <div class="fh5co-icon to-animate"><i class="icon-eye"></i></div>
+                            <div class="fh5co-desc">
+                                <h3>Retina Ready</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                        <div class="clearfix visible-sm-block visible-xs-block"></div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-service">
+                            <div class="fh5co-icon to-animate"><i class="icon-crop"></i></div>
+                            <div class="fh5co-desc">
+                                <h3>Fully Responsive</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-service">
+                            <div class="fh5co-icon to-animate"><i class="icon-speedometer"></i></div>
+                            <div class="fh5co-desc">
+                                <h3>Lightweight</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                        <div class="clearfix visible-sm-block visible-xs-block"></div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-service">
+                            <div class="fh5co-icon to-animate"><i class="icon-heart"></i></div>
+                            <div class="fh5co-desc">
+                                <h3>Made with Love</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 fh5co-service">
+                            <div class="fh5co-icon to-animate"><i class="icon-umbrella"></i></div>
+                            <div class="fh5co-desc">
+                                <h3>Eco Friendly</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                        <div class="clearfix visible-sm-block visible-xs-block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer id="fh5co-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank"
+                                                                             href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    #parse("one/public/commonJS.vm")
+
+
+</body>
+</html>

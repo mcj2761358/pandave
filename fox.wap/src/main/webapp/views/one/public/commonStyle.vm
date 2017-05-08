@@ -1,0 +1,13 @@
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link href="${rc.contextPath}/resources/img/base/favicon.ico" rel="icon">
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="${rc.contextPath}/resources/css/view/one/animate.css">
+<!-- Icomoon Icon Fonts-->
+##<link rel="stylesheet" href="${rc.contextPath}/resources/css/view/one/icomoon.css">
+<!-- Simple Line Icons -->
+##<link rel="stylesheet" href="${rc.contextPath}/resources/css/view/one/simple-line-icons.css">
+<!-- Theme Style -->
+<link rel="stylesheet" href="${rc.contextPath}/resources/css/view/one/style.css">
+<!-- Modernizr JS -->
+<script src="${rc.contextPath}/resources/js/lib/modernizr-2.6.2.min.js"></script>
