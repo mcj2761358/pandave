@@ -212,6 +212,7 @@
         select count(*)
         from decoration_order
         where is_deleted = 'N'
+        and store_id = #{param.storeId}
         <if test="param.keyword!=null and param.keyword!=''">
             and
             (
@@ -230,6 +231,7 @@
         select *
         from decoration_order
         where is_deleted = 'N'
+        and store_id = #{param.storeId}
         <if test="param.keyword!=null and param.keyword!=''">
             and
             (

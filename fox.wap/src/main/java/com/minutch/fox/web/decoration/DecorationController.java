@@ -31,9 +31,6 @@ public class DecorationController extends BaseController {
 
     @RequestMapping("userList")
     public String userList() {
-
-        Long storeId = sessionInfo.getStoreId();
-
         return "decoration/userList";
     }
 
@@ -54,7 +51,19 @@ public class DecorationController extends BaseController {
     @RequestMapping("deleteCustomer")
     public String deleteCustomer(Long cusId) {
 
+        Customer customer = customerService.getById(cusId);
+        if (customer == null) {
+            log.error("不存在的客户["+cusId+"]");
+            return "decoration/userList";
+        }
+
+        if (!sessionInfo.getStoreId().equals(customer.getStoreId())) {
+            log.error("客户["+cusId+"]不属于当前商家["+customer.getStoreId()+"]，无法删除.");
+            return "decoration/userList";
+        }
+
         if (cusId != null) {
+            log.info("商家["+sessionInfo.getStoreId()+"]删除了客户["+cusId+"]");
             customerService.deleteById(cusId);
         }
 
@@ -99,6 +108,7 @@ public class DecorationController extends BaseController {
             model.addAttribute("errorMsg", "不存在的客户["+cusId+"]");
             return "decoration/error500";
         }
+
         model.addAttribute("customer", customer);
         model.addAttribute("cusId", cusId);
         return "decoration/customerDetail";

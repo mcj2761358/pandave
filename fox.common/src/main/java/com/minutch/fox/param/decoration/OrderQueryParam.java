@@ -10,4 +10,5 @@ import lombok.Data;
 public class OrderQueryParam extends PageParam {
     private String keyword;
     private Long cusId;
+    private Long storeId;
 }

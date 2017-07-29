@@ -46,12 +46,12 @@ public class OrderController extends BaseController {
     @ResponseBody
     public Result<?> queryList(@RequestBody OrderQueryParam param) {
 
+        param.setStoreId(sessionInfo.getStoreId());
         int totalNum = orderService.queryOrderCount(param);
         PageResultVO<OrderVO> pageResultVO = new PageResultVO<>();
         pageResultVO.setPageSize(param.getPageSize());
         pageResultVO.setCurPage(param.getCurPage());
         pageResultVO.setTotalSize(totalNum);
-
         if (totalNum > 0) {
             List<Order> studentList = orderService.queryOrder(param);
             pageResultVO.setDataList(FoxBeanUtils.copyList(studentList, OrderVO.class));

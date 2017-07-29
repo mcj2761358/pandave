@@ -40,14 +40,13 @@ public class CustomerController extends BaseController {
     @ResponseBody
     public Result<?> queryList(@RequestBody CustomerQueryParam param) {
 
-        Long userId = sessionInfo.getStoreId();
+        param.setStoreId(sessionInfo.getStoreId());
 
         int totalNum = customerService.queryCustomerCount(param);
         PageResultVO<CustomerVO> pageResultVO = new PageResultVO<>();
         pageResultVO.setPageSize(param.getPageSize());
         pageResultVO.setCurPage(param.getCurPage());
         pageResultVO.setTotalSize(totalNum);
-
         if (totalNum > 0) {
             List<Customer> studentList = customerService.queryCustomer(param);
             pageResultVO.setDataList(FoxBeanUtils.copyList(studentList, CustomerVO.class));

@@ -9,4 +9,5 @@ import lombok.Data;
 @Data
 public class CustomerQueryParam extends PageParam {
     private String keyword;
+    private Long storeId;
 }
