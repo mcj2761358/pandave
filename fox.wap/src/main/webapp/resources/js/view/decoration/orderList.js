@@ -68,10 +68,10 @@ function queryOrderList(pageIndex) {
                             var beFinish = order.beFinish;
 
                             if (beFinish == null || beFinish== undefined) {
-                                beFinish = '未结清';
+                                beFinish = '<span style="color: red">未结清</span>';
                             }
                             if (beFinish == 'Y') {
-                                beFinish = '已结清';
+                                beFinish = '<span style="color: #32CD32">已结清</span>';
                             }
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
@@ -82,9 +82,9 @@ function queryOrderList(pageIndex) {
                                 '<td class="center">'+goodsName+'</td>'+
                                 '<td class="center">'+goodsNum+'</td>'+
                                 '<td class="center">'+orderAmount+'</td>'+
-                                '<td class="center"></td>'+
+                                '<td class="center">'+beFinish+'</td>'+
                                 '<td class="center">'+
-                                '<a class="btn btn-info btn-sm">'+
+                                '<a href="'+customerDetailUrl+'"  target="_blank" class="btn btn-info btn-sm">'+
                                 '<i class="glyphicon glyphicon-edit icon-white"></i>编辑'+
                                 '</a>'+
                                 '</td>'+

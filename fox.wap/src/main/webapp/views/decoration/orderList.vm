@@ -63,7 +63,7 @@
                                     <th>商品数量</th>
                                     <th>订单金额</th>
                                     <th>是否结清</th>
-                                    <th></th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody class="contentDiv">
@@ -76,11 +76,11 @@
                                     <td class="center">3</td>
                                     <td class="center">900</td>
                                     <td class="center">已结清</td>
-                                    <td class="center">
-                                        <a class="btn btn-info btn-sm">
-                                            <i class="glyphicon glyphicon-edit icon-white"></i>编辑
-                                        </a>
-                                    </td>
+##                                    <td class="center">
+##                                        <a class="btn btn-info btn-sm">
+##                                            <i class="glyphicon glyphicon-edit icon-white"></i>编辑
+##                                        </a>
+##                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

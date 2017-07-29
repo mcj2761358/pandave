@@ -2,6 +2,7 @@ package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.CustomerService;
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,8 @@ public class DecorationController extends BaseController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private SessionInfo sessionInfo;
 
     @RequestMapping("")
     public String index() {
@@ -28,6 +31,9 @@ public class DecorationController extends BaseController {
 
     @RequestMapping("userList")
     public String userList() {
+
+        Long storeId = sessionInfo.getStoreId();
+
         return "decoration/userList";
     }
 
@@ -105,52 +111,52 @@ public class DecorationController extends BaseController {
 
     @RequestMapping("ui")
     public String ui() {
-        return "decoration/ui";
+        return "decoration/other/ui";
     }
 
     @RequestMapping("form")
     public String form() {
-        return "decoration/form";
+        return "decoration/other/form";
     }
 
     @RequestMapping("chart")
     public String chart() {
-        return "decoration/chart";
+        return "decoration/other/chart";
     }
 
     @RequestMapping("typography")
     public String typography() {
-        return "decoration/typography";
+        return "decoration/other/typography";
     }
 
     @RequestMapping("gallery")
     public String gallery() {
-        return "decoration/gallery";
+        return "decoration/other/gallery";
     }
 
     @RequestMapping("table")
     public String table() {
-        return "decoration/table";
+        return "decoration/other/table";
     }
 
     @RequestMapping("calendar")
     public String calendar() {
-        return "decoration/calendar";
+        return "decoration/other/calendar";
     }
 
     @RequestMapping("grid")
     public String grid() {
-        return "decoration/grid";
+        return "decoration/other/grid";
     }
 
     @RequestMapping("tour")
     public String tour() {
-        return "decoration/tour";
+        return "decoration/other/tour";
     }
 
     @RequestMapping("icon")
     public String icon() {
-        return "decoration/icon";
+        return "decoration/other/icon";
     }
 
     @RequestMapping("error500")

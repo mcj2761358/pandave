@@ -9,4 +9,5 @@ public interface EmployeeConstants {
      * 记录SessionKey
      */
     String ATTRIBUTE_EMPLOYEE_ID = "employeeId";
+    String ATTRIBUTE_STORE_ID = "storeId";
 }

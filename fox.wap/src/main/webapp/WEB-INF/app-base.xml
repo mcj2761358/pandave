@@ -21,4 +21,9 @@
 			</map>
 		</property>
 	</bean>
+
+	<!-- SessionInfo -->
+	<bean id="sessionInfo" class="com.minutch.fox.http.impl.SessionInfoImpl" scope="thread">
+		<aop:scoped-proxy />
+	</bean>
 </beans>

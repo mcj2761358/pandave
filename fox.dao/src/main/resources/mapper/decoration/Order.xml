@@ -16,6 +16,7 @@
         <result column = "order_amount" property = "orderAmount" />
         <result column = "return_amount" property = "returnAmount" />
         <result column = "be_finish" property = "beFinish" />
+        <result column = "store_id" property = "storeId" />
         <result column = "remark" property = "remark" />
     </resultMap>
 
@@ -55,6 +56,9 @@
                 </if>
                 <if test = "beFinish != null">
                     and be_finish = #{beFinish}
+                </if>
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
@@ -98,6 +102,9 @@
             </if>
             <if test = "beFinish != null">
                 be_finish = #{beFinish},
+            </if>
+            <if test = "storeId != null">
+                store_id = #{storeId},
             </if>
             <if test = "remark != null">
                 remark = #{remark}
@@ -171,6 +178,7 @@
         order_amount,
         return_amount,
         be_finish,
+        store_id,
         remark
         )
         values (
@@ -186,6 +194,7 @@
         #{orderAmount},
         #{returnAmount},
         #{beFinish},
+        #{storeId},
         #{remark}
         )
     </insert>

@@ -21,7 +21,7 @@ public class EmployeeLoginFilter extends HandlerInterceptorAdapter {
     @Autowired
     private SystemConfig systemConfig;
 
-    private static final String LOGIN_URL = "fox/dance/";
+    private static final String LOGIN_URL = "fox/decoration/login";
     private static final String HEAD_AJAX_REQUEST = "XMLHttpRequest";
     private static final String HEAD__REQUEST_TYPE = "X-Requested-With";
 
@@ -32,13 +32,13 @@ public class EmployeeLoginFilter extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession session = request.getSession();
-        Long employeeId = (Long) session.getAttribute(EmployeeConstants.ATTRIBUTE_EMPLOYEE_ID);
+        Long storeId = (Long) session.getAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID);
         String requestType = request.getHeader(HEAD__REQUEST_TYPE);
 
         /************************************************************************************
          * 1.如果用户未登录，且是来自APP或者Ajax请求，返回Json格式的未登录错误码
          ************************************************************************************/
-        if (employeeId == null &&  HEAD_AJAX_REQUEST.equals(requestType)) {
+        if (storeId == null &&  HEAD_AJAX_REQUEST.equals(requestType)) {
 
             //以application/json方式返回
             response.addHeader(HEAD_CONTENT_TYPE,HEAD_CONTENT_TYPE_VALUE);
@@ -49,7 +49,7 @@ public class EmployeeLoginFilter extends HandlerInterceptorAdapter {
             return false;
         }
 
-        else if (employeeId == null) {
+        else if (storeId == null) {
             response.sendRedirect(systemConfig.getServerUrl()+LOGIN_URL);
             return false;
         }

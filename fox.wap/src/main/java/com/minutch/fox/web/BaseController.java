@@ -28,4 +28,17 @@ public class BaseController {
         }
         return employeeId;
     }
+    public Long getStoreId() {
+        Object userObject = request.getSession().getAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID);
+        if (userObject == null) {
+            return null;
+        }
+        Long storeId = null;
+        try {
+            storeId = Long.valueOf(userObject.toString());
+        } catch (Exception e) {
+            log.error("getStoreId:storeId error[" + userObject + "]", e);
+        }
+        return storeId;
+    }
 }

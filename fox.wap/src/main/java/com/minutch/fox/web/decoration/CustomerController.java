@@ -2,6 +2,7 @@ package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.CustomerService;
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.CustomerParam;
 import com.minutch.fox.param.decoration.CustomerQueryParam;
@@ -32,10 +33,14 @@ public class CustomerController extends BaseController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private SessionInfo sessionInfo;
 
     @RequestMapping("queryList")
     @ResponseBody
     public Result<?> queryList(@RequestBody CustomerQueryParam param) {
+
+        Long userId = sessionInfo.getStoreId();
 
         int totalNum = customerService.queryCustomerCount(param);
         PageResultVO<CustomerVO> pageResultVO = new PageResultVO<>();
@@ -93,7 +98,8 @@ public class CustomerController extends BaseController {
 
         Customer customer = new Customer();
         BeanUtils.copyProperties(param, customer);
-        customer.setDefaultBizValue();
+        customer.setDefaultBizValue(sessionInfo.getStoreId());
+        customer.setStoreId(sessionInfo.getStoreId());
 
         customerService.save(customer);
         return Result.wrapSuccessfulResult(customer);

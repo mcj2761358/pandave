@@ -182,10 +182,10 @@ function queryOrderList(pageIndex) {
                                 remark = '';
                             }
                             if (beFinish == null || beFinish== undefined) {
-                                beFinish = '未结清';
+                                beFinish = '<span style="color: red">未结清</span>';
                             }
                             if (beFinish == 'Y') {
-                                beFinish = '已结清';
+                                beFinish = '<span style="color: #32CD32">已结清</span>';
                             }
 
                             var orderDataHtml =

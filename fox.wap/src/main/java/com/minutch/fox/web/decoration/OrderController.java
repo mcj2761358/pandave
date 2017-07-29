@@ -4,6 +4,7 @@ import com.minutch.fox.biz.decoration.CustomerService;
 import com.minutch.fox.biz.decoration.OrderService;
 import com.minutch.fox.entity.decoration.Customer;
 import com.minutch.fox.entity.decoration.Order;
+import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.CustomerParam;
 import com.minutch.fox.param.decoration.OrderParam;
@@ -38,6 +39,8 @@ public class OrderController extends BaseController {
     private OrderService orderService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private SessionInfo sessionInfo;
 
     @RequestMapping("queryList")
     @ResponseBody
@@ -98,8 +101,8 @@ public class OrderController extends BaseController {
         param.setAddress(customer.getAddress());
         Order order = new Order();
         BeanUtils.copyProperties(param, order);
-        order.setDefaultBizValue();
-        System.out.println(order);
+        order.setDefaultBizValue(sessionInfo.getStoreId());
+        order.setStoreId(sessionInfo.getStoreId());
         orderService.save(order);
         return Result.wrapSuccessfulResult(order);
     }

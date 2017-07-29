@@ -23,6 +23,7 @@ public class Order extends BaseEntity {
   private BigDecimal orderAmount;
   private BigDecimal returnAmount;
   private String beFinish;
+  private Long storeId;
   private String remark;
 
 }

@@ -1,5 +1,6 @@
 package com.minutch.fox.entity.decoration;
 
+import java.util.Date;
 
 
 import com.minutch.fox.entity.base.BaseEntity;
@@ -9,13 +10,13 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class Customer extends BaseEntity {
+public class Store extends BaseEntity {
 
-  private String cusName;
+  private String storeName;
+  private String cardno;
   private String mobilePhone;
-  private String houseName;
-  private String address;
-  private Long storeId;
+  private String password;
+  private Date endTime;
   private String remark;
 
 }
