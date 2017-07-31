@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd " default-autowire="byName">
 
-	<bean id="resourceManager" class="com.yuanpin.base.resource.impl.ResourceManagerImpl" scope="singleton" init-method="init">
-		<property name="initSql" value="select * from fox_clot_info where is_deleted='N' and app_name in ('all')" />
-		<property name="dbType" value="mysql" />
-		<property name="maxDelay" value="10" />
-		<property name="initQueryPagesize" value="1000000" />
-	</bean>
-	<bean id="commonConfigManager" class="com.yuanpin.base.resource.impl.CommonConfigManagerImpl" scope="singleton" />
+	<!--<bean id="resourceManager" class="com.yuanpin.base.resource.impl.ResourceManagerImpl" scope="singleton" init-method="init">-->
+		<!--<property name="initSql" value="select * from fox_clot_info where is_deleted='N' and app_name in ('all')" />-->
+		<!--<property name="dbType" value="mysql" />-->
+		<!--<property name="maxDelay" value="10" />-->
+		<!--<property name="initQueryPagesize" value="1000000" />-->
+	<!--</bean>-->
+	<!--<bean id="commonConfigManager" class="com.yuanpin.base.resource.impl.CommonConfigManagerImpl" scope="singleton" />-->
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
 			<map>
