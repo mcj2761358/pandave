@@ -1,6 +1,5 @@
 package com.minutch.fox.mq.topic;
 
-import com.minutch.fox.entity.topic.Topic;
 import com.minutch.fox.mq.base.MQConstants;
 import com.yuanpin.common.mq.annotaion.MqConsumer;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class TopicConsumer {
 
     @MqConsumer(tags = MQConstants.TAGS_TOPIC_SEND)
-    public void sendTopic(Topic topic) {
+    public void sendTopic(String  topic) {
         System.out.println(topic);
     }
 }

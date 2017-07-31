@@ -1,5 +1,6 @@
 package com.minutch.fox.filter;
 
+import com.minutch.fox.constants.dance.EmployeeConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.MDC;
 import org.slf4j.Logger;
@@ -14,22 +15,30 @@ import java.io.IOException;
  * Created by Minutch on 15/6/13.
  */
 public class MonitorFilter implements Filter {
-    /**
-     * Session UserId常量属性
-     */
-    private String opKey = "userId";
-    /**
-     * Session 实际操作人常量属性
-     */
-    private String realOpKey = "operatorUserId";
-
-    private String noLog = "";
-
     private static final Logger logger = LoggerFactory.getLogger(MonitorFilter.class);
-
+    static String[] headsNames = {"X-Real-IP", "X-Forwarded-For", "remote_addr"};
     String MDC_IP = "IP";
     String MDC_OP = "OP"; // 实际操作人
     String MDC_OPAS = "OPAS"; // 代理掉的人
+    /**
+     * Session UserId常量属性
+     */
+    private String opKey = EmployeeConstants.ATTRIBUTE_STORE_ID;
+    /**
+     * Session 实际操作人常量属性
+     */
+    private String realOpKey = EmployeeConstants.ATTRIBUTE_STORE_ID;
+    private String noLog = "";
+
+    public static String getRemoteIp(HttpServletRequest request) {
+        for (String headName : headsNames) {
+            String header = request.getHeader(headName);
+            if (header != null) {
+                return header;
+            }
+        }
+        return request.getRemoteAddr();
+    }
 
     public void init(FilterConfig filterConfig) throws ServletException {
         logger.info(MonitorFilter.class.getName() + " Initing...");
@@ -93,17 +102,5 @@ public class MonitorFilter implements Filter {
 
     public void destroy() {
 
-    }
-
-    static String[] headsNames = {"X-Real-IP", "X-Forwarded-For", "remote_addr"};
-
-    public static String getRemoteIp(HttpServletRequest request) {
-        for (String headName : headsNames) {
-            String header = request.getHeader(headName);
-            if (header != null) {
-                return header;
-            }
-        }
-        return request.getRemoteAddr();
     }
 }

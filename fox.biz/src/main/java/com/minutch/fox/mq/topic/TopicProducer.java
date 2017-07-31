@@ -1,6 +1,5 @@
 package com.minutch.fox.mq.topic;
 
-import com.minutch.fox.entity.topic.Topic;
 import com.minutch.fox.mq.base.MQConstants;
 import com.yuanpin.common.mq.annotaion.MqProducer;
 import com.yuanpin.common.mq.producer.SqMessage;
@@ -16,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class TopicProducer {
 
     @MqProducer(tags = MQConstants.TAGS_TOPIC_SEND)
-    public SqMessage sendTopic(Topic topic) {
-        System.out.println("produce--" + topic);
-        SqMessage sqMessage = new SqMessage(topic.getId().toString(), topic);
+    public SqMessage sendTopic(String a) {
+        System.out.println("produce--" + a);
+        SqMessage sqMessage = new SqMessage(a, a);
         return sqMessage;
     }
 }
