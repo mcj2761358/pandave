@@ -302,11 +302,11 @@
 
 
             <!-- common resource -->
-            <dependency>
-                <groupId>com.fox.base</groupId>
-                <artifactId>common-resource</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.fox.base</groupId>-->
+                <!--<artifactId>common-resource</artifactId>-->
+                <!--<version>1.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
         </dependencies>
     </dependencyManagement>
