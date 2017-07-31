@@ -57,6 +57,7 @@
                                 <thead>
                                 <tr>
                                     <th>用户名称</th>
+                                    <th>录入时间</th>
                                     <th>手机号码</th>
                                     <th>小区名称</th>
                                     <th>商品名称</th>
@@ -68,20 +69,20 @@
                                 </thead>
                                 <tbody class="contentDiv">
                                 ##order data from db
-                                <tr>
-                                    <td>闵崇建</td>
-                                    <td class="center">13093765253</td>
-                                    <td class="center">复地上城</td>
-                                    <td class="center">卧室门卧室门卧室门卧室门</td>
-                                    <td class="center">3</td>
-                                    <td class="center">900</td>
-                                    <td class="center">已结清</td>
+##                                <tr>
+##                                    <td>闵崇建</td>
+##                                    <td class="center">13093765253</td>
+##                                    <td class="center">复地上城</td>
+##                                    <td class="center">卧室门卧室门卧室门卧室门</td>
+##                                    <td class="center">3</td>
+##                                    <td class="center">900</td>
+##                                    <td class="center">已结清</td>
 ##                                    <td class="center">
 ##                                        <a class="btn btn-info btn-sm">
 ##                                            <i class="glyphicon glyphicon-edit icon-white"></i>编辑
 ##                                        </a>
 ##                                    </td>
-                                </tr>
+##                                </tr>
                                 </tbody>
                             </table>
 

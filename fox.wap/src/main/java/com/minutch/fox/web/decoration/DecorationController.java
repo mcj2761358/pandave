@@ -4,8 +4,11 @@ import com.minutch.fox.biz.decoration.CustomerService;
 import com.minutch.fox.entity.decoration.Customer;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
+import com.minutch.fox.result.decoration.CustomerVO;
+import com.minutch.fox.utils.FoxBeanUtils;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,7 +112,13 @@ public class DecorationController extends BaseController {
             return "decoration/error500";
         }
 
-        model.addAttribute("customer", customer);
+
+
+        CustomerVO customerVO = new CustomerVO();
+        BeanUtils.copyProperties(customer, customerVO);
+
+
+        model.addAttribute("customer", customerVO);
         model.addAttribute("cusId", cusId);
         return "decoration/customerDetail";
     }

@@ -63,11 +63,13 @@ function queryUserList(pageIndex) {
                             var mobilePhone = customer.mobilePhone;
                             var houseName = customer.houseName;
                             var address = customer.address;
+                            var gmtCreate = customer.gmtCreate;
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
                             var cusDataHtml =
                                 '<tr>' +
                                 '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
+                                '<td class="center">'+gmtCreate+'</td>' +
                                 '<td class="center">'+mobilePhone+'</td>' +
                                 '<td class="center">'+houseName+'</td>' +
                                 '<td class="center">'+address+'</td>' +

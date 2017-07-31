@@ -59,6 +59,7 @@ function queryOrderList(pageIndex) {
                             var orderId = order.id;
                             var cusId = order.cusId;
                             var cusName = order.cusName;
+                            var gmtCreate = order.gmtCreate;
                             var mobilePhone = order.mobilePhone;
                             var houseName = order.houseName;
                             var goodsName = order.goodsName;
@@ -77,6 +78,7 @@ function queryOrderList(pageIndex) {
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
                             var orderDataHtml = '<tr>'+
                                 '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
+                                '<td class="center">'+gmtCreate+'</td>'+
                                 '<td class="center">'+mobilePhone+'</td>'+
                                 '<td class="center">'+houseName+'</td>'+
                                 '<td class="center">'+goodsName+'</td>'+

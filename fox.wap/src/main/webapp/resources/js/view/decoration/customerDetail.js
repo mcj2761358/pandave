@@ -176,6 +176,7 @@ function queryOrderList(pageIndex) {
                             var goodsPrice = order.goodsPrice;
                             var orderAmount = order.orderAmount;
                             var remark = order.remark;
+                            var gmtCreate = order.gmtCreate;
                             var beFinish = order.beFinish;
 
                             if (remark == null || remark== undefined) {
@@ -194,6 +195,7 @@ function queryOrderList(pageIndex) {
                                 '   <td class="center goodsNum">'+goodsNum+'</td>' +
                                 '   <td class="center goodsPrice">'+goodsPrice+'</td>' +
                                 '   <td class="center orderAmount">'+orderAmount+'</td>' +
+                                '   <td class="center gmtCreate">'+gmtCreate+'</td>' +
                                 '   <td class="center remark">'+remark+'</td>' +
                                 '   <td class="center beFinish">'+beFinish+'</td>' +
                                 '   <td class="center">' +
