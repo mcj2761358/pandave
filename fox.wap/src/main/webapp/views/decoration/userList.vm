@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/userList.css"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/userList.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/userList.js?v=1"></script>
 </head>
 
 <body>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>上古集团-登录页面</title>
     #parse("decoration/public/commonStyle.vm")
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/login.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/login.js?v=1"></script>
 
 </head>
 

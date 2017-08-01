@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/customerDetail.css"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=1"></script>
 </head>
 
 <body>
