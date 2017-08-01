@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Free HTML5 Bootstrap Admin Template</title>
+    <title>数据报表</title>
     #parse("decoration/public/commonStyle.vm")
 </head>
 
@@ -19,10 +19,10 @@
             <div>
     <ul class="breadcrumb">
         <li>
-            <a href="#">Home</a>
+            <a href="#">数据中心</a>
         </li>
         <li>
-            <a href="#">Charts</a>
+            <a href="#">数据报表</a>
         </li>
     </ul>
 </div>
@@ -32,7 +32,7 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well">
-                <h2><i class="glyphicon glyphicon-list-alt"></i> Chart with points</h2>
+                <h2><i class="glyphicon glyphicon-list-alt"></i> 曲线图</h2>
 
                 <div class="box-icon">
                     <a href="#" class="btn btn-setting btn-round btn-default"><i
@@ -45,59 +45,8 @@
             </div>
             <div class="box-content">
                 <div id="sincos" class="center" style="height:300px"></div>
-                <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span
+                <p id="hoverdata">鼠标位置 (<span id="x">0</span>, <span id="y">0</span>). <span
                         id="clickdata"></span></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="box col-md-12">
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2><i class="glyphicon glyphicon-list-alt"></i> Flot</h2>
-
-                <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                            class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                            class="glyphicon glyphicon-remove"></i></a>
-                </div>
-            </div>
-            <div class="box-content">
-                <div id="flotchart" class="center" style="height:300px"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="box col-md-12">
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2><i class="glyphicon glyphicon-list-alt"></i> Stack Example</h2>
-
-                <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                            class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                            class="glyphicon glyphicon-remove"></i></a>
-                </div>
-            </div>
-            <div class="box-content">
-                <div id="stackchart" class="center" style="height:300px;"></div>
-
-                <p class="stackControls center">
-                    <input class="btn btn-default" type="button" value="With stacking">
-                    <input class="btn btn-default" type="button" value="Without stacking">
-                </p>
-
-                <p class="graphControls center">
-                    <input class="btn btn-primary" type="button" value="Bars">
-                    <input class="btn btn-primary" type="button" value="Lines">
-                    <input class="btn btn-primary" type="button" value="Lines with steps">
-                </p>
             </div>
         </div>
     </div>

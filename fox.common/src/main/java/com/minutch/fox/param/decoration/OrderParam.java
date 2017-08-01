@@ -17,6 +17,7 @@ public class OrderParam {
     private String houseName;
     private String address;
     private String goodsName;
+    private String goodsModel;
     private Integer goodsNum;
     private BigDecimal goodsPrice;
     private BigDecimal orderAmount;

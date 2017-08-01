@@ -18,10 +18,19 @@ public class OrderVO {
     private String houseName;
     private String address;
     private String goodsName;
+    private String goodsModel;
     private Integer goodsNum;
     private BigDecimal goodsPrice;
     private BigDecimal orderAmount;
     private BigDecimal returnAmount;
     private String beFinish;
     private String remark;
+
+    public void setGoodsModel(String  goodsModel) {
+        if (goodsModel == null) {
+            this.goodsModel = "";
+        } else  {
+            this.goodsModel = goodsModel;
+        }
+    }
 }

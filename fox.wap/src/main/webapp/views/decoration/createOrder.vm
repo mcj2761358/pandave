@@ -23,7 +23,7 @@
             <div>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">管理中心</a>
+                        <a href="#">订单中心</a>
                     </li>
                     <li>
                         <a href="#"> 创建订单</a>
@@ -66,6 +66,7 @@
                                 <thead>
                                 <tr>
                                     <th>商品名称</th>
+                                    <th>商品型号</th>
                                     <th>商品数量</th>
                                     <th>商品单价</th>
                                     <th>订单总价</th>
@@ -75,7 +76,8 @@
                                 </thead>
                                 <tbody class="orderContentDiv">
                                 <tr class="">
-                                    <td class="goodsName">餐桌[1.2*1.6]6椅子</td>
+                                    <td class="goodsName">餐桌</td>
+                                    <td class="goodsName">[1.2*1.6]6椅子</td>
                                     <td class="center goodsNum">2</td>
                                     <td class="center goodsPrice">1250</td>
                                     <td class="center orderAmount">2200</td>
@@ -126,6 +128,14 @@
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="goodsName">
+                            </div>
+                            <label class="red control-label">*</label>
+                        </div>
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">商品型号</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="goodsModel">
                             </div>
                             <label class="red control-label">*</label>
                         </div>

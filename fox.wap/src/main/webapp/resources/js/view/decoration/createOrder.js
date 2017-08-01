@@ -19,6 +19,7 @@ function createOrder(orderId) {
 
     var cusId = $('#cusId').val();
     var goodsName = $('#goodsName').val();
+    var goodsModel = $('#goodsModel').val();
     var goodsNum = $('#goodsNum').val();
     var goodsPrice = $('#goodsPrice').val();
     var orderAmount = $('#orderAmount').val();
@@ -38,7 +39,6 @@ function createOrder(orderId) {
         return false;
     }
 
-
     if (isNaN(goodsPrice) || goodsPrice == '') {
         showAlertModel('商品单价必须为数字.');
         return false;
@@ -52,6 +52,7 @@ function createOrder(orderId) {
     param.id = orderId;
     param.cusId = cusId;
     param.goodsName = goodsName;
+    param.goodsModel = goodsModel;
     param.goodsNum = goodsNum;
     param.goodsPrice = goodsPrice;
     param.orderAmount = orderAmount;
@@ -75,6 +76,7 @@ function createOrder(orderId) {
 
                     var orderId = resultData.id;
                     var goodsName = resultData.goodsName;
+                    var goodsModel = resultData.goodsModel;
                     var goodsNum = resultData.goodsNum;
                     var goodsPrice = resultData.goodsPrice;
                     var orderAmount = resultData.orderAmount;
@@ -82,6 +84,7 @@ function createOrder(orderId) {
 
                     var orderRow = '  <tr class="D_'+orderId+'">' +
                         '<td class="goodsName">'+goodsName+'</td>' +
+                        '<td class="goodsModel">'+goodsModel+'</td>' +
                         '<td class="center goodsNum">'+goodsNum+'</td>' +
                         '   <td class="center goodsPrice">'+goodsPrice+'</td>' +
                         '   <td class="center orderAmount">'+orderAmount+'</td>' +
@@ -132,6 +135,7 @@ function handleDeleteOrder(orderId) {
 
 function clearOrderModal() {
     $('#goodsName').val('');
+    $('#goodsModel').val('');
     $('#goodsNum').val('');
     $('#goodsPrice').val('');
     $('#orderAmount').val('');

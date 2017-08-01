@@ -11,6 +11,7 @@
         <result column = "house_name" property = "houseName" />
         <result column = "address" property = "address" />
         <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_model" property = "goodsModel" />
         <result column = "goods_num" property = "goodsNum" />
         <result column = "goods_price" property = "goodsPrice" />
         <result column = "order_amount" property = "orderAmount" />
@@ -41,6 +42,9 @@
                 </if>
                 <if test = "goodsName != null">
                     and goods_name = #{goodsName}
+                </if>
+                <if test = "goodsModel != null">
+                    and goods_model = #{goodsModel}
                 </if>
                 <if test = "goodsNum != null">
                     and goods_num = #{goodsNum}
@@ -87,6 +91,9 @@
             </if>
             <if test = "goodsName != null">
                 goods_name = #{goodsName},
+            </if>
+            <if test = "goodsModel != null">
+                goods_model = #{goodsModel},
             </if>
             <if test = "goodsNum != null">
                 goods_num = #{goodsNum},
@@ -173,6 +180,7 @@
         house_name,
         address,
         goods_name,
+        goods_model,
         goods_num,
         goods_price,
         order_amount,
@@ -189,6 +197,7 @@
         #{houseName},
         #{address},
         #{goodsName},
+        #{goodsModel},
         #{goodsNum},
         #{goodsPrice},
         #{orderAmount},

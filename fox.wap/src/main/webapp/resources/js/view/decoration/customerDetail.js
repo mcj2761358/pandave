@@ -22,6 +22,7 @@ function saveOrder() {
     var cusId = $('#cusId').val();
     var orderId = $('#editOrderId').val();
     var goodsName = $('#goodsName').val();
+    var goodsModel = $('#goodsModel').val();
     var goodsNum = $('#goodsNum').val();
     var goodsPrice = $('#goodsPrice').val();
     var orderAmount = $('#orderAmount').val();
@@ -55,6 +56,7 @@ function saveOrder() {
     param.id = orderId;
     param.cusId = cusId;
     param.goodsName = goodsName;
+    param.goodsModel = goodsModel;
     param.goodsNum = goodsNum;
     param.goodsPrice = goodsPrice;
     param.orderAmount = orderAmount;
@@ -172,6 +174,7 @@ function queryOrderList(pageIndex) {
 
                             var orderId = order.id;
                             var goodsName = order.goodsName;
+                            var goodsModel = order.goodsModel;
                             var goodsNum = order.goodsNum;
                             var goodsPrice = order.goodsPrice;
                             var orderAmount = order.orderAmount;
@@ -192,6 +195,7 @@ function queryOrderList(pageIndex) {
                             var orderDataHtml =
                                 ' <tr class="D_'+orderId+'">' +
                                 '   <td class="goodsName">'+goodsName+'</td>' +
+                                '   <td class="goodsModel">'+goodsModel+'</td>' +
                                 '   <td class="center goodsNum">'+goodsNum+'</td>' +
                                 '   <td class="center goodsPrice">'+goodsPrice+'</td>' +
                                 '   <td class="center orderAmount">'+orderAmount+'</td>' +
@@ -274,6 +278,7 @@ function handleFinishOrder(orderId) {
 function editOrder(orderId) {
     var classOrder = '.D_' + orderId;
     var goodsName = $(classOrder +' .goodsName').html();
+    var goodsModel = $(classOrder +' .goodsModel').html();
     var goodsNum = $(classOrder +' .goodsNum').html();
     var goodsPrice = $(classOrder +' .goodsPrice').html();
     var orderAmount = $(classOrder +' .orderAmount').html();
@@ -281,6 +286,7 @@ function editOrder(orderId) {
 
     $('#editOrderId').val(orderId);
     $('#goodsName').val(goodsName);
+    $('#goodsModel').val(goodsModel);
     $('#goodsNum').val(goodsNum);
     $('#goodsPrice').val(goodsPrice);
     $('#orderAmount').val(orderAmount);

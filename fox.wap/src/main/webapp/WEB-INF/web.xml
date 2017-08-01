@@ -5,6 +5,10 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <session-config>
+        <session-timeout>3000</session-timeout>
+    </session-config>
+
     <!-- 字符编码过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>

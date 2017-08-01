@@ -63,6 +63,7 @@ function queryOrderList(pageIndex) {
                             var mobilePhone = order.mobilePhone;
                             var houseName = order.houseName;
                             var goodsName = order.goodsName;
+                            var goodsModel = order.goodsModel;
                             var goodsNum = order.goodsNum;
                             var orderAmount = order.orderAmount;
                             var returnAmount = order.returnAmount;
@@ -82,6 +83,7 @@ function queryOrderList(pageIndex) {
                                 '<td class="center">'+mobilePhone+'</td>'+
                                 '<td class="center">'+houseName+'</td>'+
                                 '<td class="center">'+goodsName+'</td>'+
+                                '<td class="center">'+goodsModel+'</td>'+
                                 '<td class="center">'+goodsNum+'</td>'+
                                 '<td class="center">'+orderAmount+'</td>'+
                                 '<td class="center">'+beFinish+'</td>'+
