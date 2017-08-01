@@ -1,79 +1,47 @@
 //chart with points
-if ($("#sincos").length) {
-    var sin = [], cos = [];
+$(function () {
 
-    for (var i = 0; i < 14; i += 0.5) {
-        sin.push([i, Math.sin(i) / i]);
-        cos.push([i, Math.cos(i)]);
-    }
+    var data = [
+        ["一月", 200],
+        ["二月", 315],
+        ["三月", 400],
+        ["四月", 130],
+        ["五月", 170],
+        ["六月", 292],
+        ["七月", 90],
+        ["八月", 190],
+        ["九月", 230],
+        ["十月", 220],
+        ["十一月",190],
+        ["十二月", 310],
+    ]
 
-    var plot = $.plot($("#sincos"),
-        [
-            { data: sin, label: "sin(x)/x"},
-            { data: cos, label: "cos(x)" }
-        ], {
-            series: {
-                lines: { show: true  },
-                points: { show: true }
-            },
-            grid: { hoverable: true, clickable: true, backgroundColor: { colors: ["#fff", "#eee"] } },
-            yaxis: { min: -1.2, max: 1.2 },
-            colors: ["#539F2E", "#3C67A5"]
-        });
-
-    function showTooltip(x, y, contents) {
-        $('<div id="tooltip">' + contents + '</div>').css({
-            position: 'absolute',
-            display: 'none',
-            top: y + 5,
-            left: x + 5,
-            border: '1px solid #fdd',
-            padding: '2px',
-            'background-color': '#dfeffc',
-            opacity: 0.80
-        }).appendTo("body").fadeIn(200);
-    }
-
-    var previousPoint = null;
-    $("#sincos").bind("plothover", function (event, pos, item) {
-        $("#x").text(pos.x.toFixed(2));
-        $("#y").text(pos.y.toFixed(2));
-
-        if (item) {
-            if (previousPoint != item.dataIndex) {
-                previousPoint = item.dataIndex;
-
-                $("#tooltip").remove();
-                var x = item.datapoint[0].toFixed(2),
-                    y = item.datapoint[1].toFixed(2);
-
-                showTooltip(item.pageX, item.pageY,
-                    item.series.label + " of " + x + " = " + y);
+    $.plot("#sincos", [
+        { data: data, label: "2016年度报表"},
+    ], {
+        series: {
+            bars: {
+                show: true,
+                barWidth: 0.6,
+                align: "center"
             }
-        }
-        else {
-            $("#tooltip").remove();
-            previousPoint = null;
-        }
+        },
+        xaxis: {
+            mode: "categories",
+            tickLength: 0
+        },
+        colors: ["#539F2E"]
     });
+});
 
-
-    $("#sincos").bind("plotclick", function (event, pos, item) {
-        if (item) {
-            $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
-            plot.highlight(item.series, item.datapoint);
-        }
-    });
-}
-
-//pie chart
+//畅销商品占比
 var data = [
-    { label: "Internet Explorer", data: 12},
-    { label: "Mobile", data: 27},
-    { label: "Safari", data: 85},
-    { label: "Opera", data: 64},
-    { label: "Firefox", data: 90},
-    { label: "Chrome", data: 112}
+    {label: "冰箱", data: 120000},
+    {label: "空调", data: 150000},
+    {label: "洗衣机", data: 80000},
+    {label: "油烟机", data: 200000},
+    {label: "扫地机器人", data: 160000},
+    {label: "实木床", data: 91000}
 ];
 
 if ($("#piechart").length) {
@@ -163,14 +131,14 @@ $("#updateInterval").val(updateInterval).change(function () {
 //realtime chart
 if ($("#realtimechart").length) {
     var options = {
-        series: { shadowSize: 1 }, // drawing is faster without shadows
-        yaxis: { min: 0, max: 100 },
-        xaxis: { show: false }
+        series: {shadowSize: 1}, // drawing is faster without shadows
+        yaxis: {min: 0, max: 100},
+        xaxis: {show: false}
     };
-    var plot = $.plot($("#realtimechart"), [ getRandomData() ], options);
+    var plot = $.plot($("#realtimechart"), [getRandomData()], options);
 
     function update() {
-        plot.setData([ getRandomData() ]);
+        plot.setData([getRandomData()]);
         // since the axes don't change, we don't need to call plot.setupGrid()
         plot.draw();
 
