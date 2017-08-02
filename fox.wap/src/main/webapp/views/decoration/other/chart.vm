@@ -17,128 +17,138 @@
         <div id="content" class="col-lg-10 col-sm-10">
             <!-- content starts -->
             <div>
-    <ul class="breadcrumb">
-        <li>
-            <a href="#">数据中心</a>
-        </li>
-        <li>
-            <a href="#">数据报表</a>
-        </li>
-    </ul>
-</div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">数据中心</a>
+                    </li>
+                    <li>
+                        <a href="#">数据报表</a>
+                    </li>
+                </ul>
+            </div>
 
-<div class="row">
 
-    <div class="box col-md-12">
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2><i class="glyphicon glyphicon-list-alt"></i> 年度报表(示例数据)</h2>
+            <!-- 年度报表 -->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 年度销售额报表(示例数据)</h2>
 
-                <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                            class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                            class="glyphicon glyphicon-remove"></i></a>
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="sincos" class="center" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/row-->
+
+
+            <!-- 热门商品 -->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 热门商品(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="hotGoods" class="center" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/row-->
+
+
+            <!-- 饼图 -->
+            <div class="row">
+                <div class="box col-md-6">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="piechart" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="box col-md-6">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="donutchart" style="height: 300px;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="box-content">
-                <div id="sincos" class="center" style="height:300px"></div>
-            </div>
+            <!--/row-->
+
+            <!-- chart libraries start -->
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/excanvas.min.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.categories.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.pie.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.stack.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.resize.js"></script>
+            <!-- chart libraries end -->
+            <script src="${rc.contextPath}/resources/charisma/js/init-chart.js?v=2"></script>
+
+            <!-- content ends -->
         </div>
+        <!--/#content.col-md-0-->
     </div>
-
-</div><!--/row-->
-
-<div class="row">
-    <div class="box col-md-4">
-        <div class="box-inner">
-            <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
-
-                <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                            class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                            class="glyphicon glyphicon-remove"></i></a>
-                </div>
-            </div>
-            <div class="box-content">
-                <div id="piechart" style="height:300px"></div>
-            </div>
-        </div>
-    </div>
-
-##    <div class="box col-md-4">
-##        <div class="box-inner">
-##            <div class="box-header well" data-original-title="">
-##                <h2><i class="glyphicon glyphicon-list-alt"></i> 实时成交</h2>
-##
-##                <div class="box-icon">
-##                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-##                            class="glyphicon glyphicon-cog"></i></a>
-##                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-##                            class="glyphicon glyphicon-chevron-up"></i></a>
-##                    <a href="#" class="btn btn-close btn-round btn-default"><i
-##                            class="glyphicon glyphicon-remove"></i></a>
-##                </div>
-##            </div>
-##            <div class="box-content">
-##                <div id="realtimechart" style="height:190px;"></div>
-##                <p>You can update a chart periodically to get a real-time effect by using a timer to insert the new data
-##                    in the plot and redraw it.</p>
-##
-##                <p>Time between updates: <input id="updateInterval" type="text" value=""
-##                                                style="text-align: right; width:5em"> milliseconds</p>
-##            </div>
-##        </div>
-##    </div>
-
-    <div class="box col-md-4">
-        <div class="box-inner">
-            <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
-
-                <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                            class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                            class="glyphicon glyphicon-remove"></i></a>
-                </div>
-            </div>
-            <div class="box-content">
-                <div id="donutchart" style="height: 300px;">
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!--/row-->
-
-<!-- chart libraries start -->
-<script src="${rc.contextPath}/resources/charisma/bower_components/flot/excanvas.min.js"></script>
-<script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.js"></script>
-<script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.categories.js"></script>
-<script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.pie.js"></script>
-<script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.stack.js"></script>
-<script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.resize.js"></script>
-<!-- chart libraries end -->
-<script src="${rc.contextPath}/resources/charisma/js/init-chart.js?v=0.1"></script>
-
-    <!-- content ends -->
-    </div><!--/#content.col-md-0-->
-</div><!--/fluid-row-->
+    <!--/fluid-row-->
 
     <hr>
 
     #parse("decoration/public/footer.vm")
 
-</div><!--/.fluid-container-->
+</div>
+<!--/.fluid-container-->
 
-#parse("decoration/public/commonJS.vm")
+    #parse("decoration/public/commonJS.vm")
 </body>
 </html>
