@@ -19,11 +19,9 @@ public class MonitorFilter implements Filter {
     static String[] headsNames = {"X-Real-IP", "X-Forwarded-For", "remote_addr"};
     String MDC_IP = "IP";
     String MDC_OP = "OP"; // 实际操作人
-    String MDC_OPAS = "OPAS"; // 代理掉的人
     /**
      * Session UserId常量属性
      */
-    private String opKey = EmployeeConstants.ATTRIBUTE_STORE_ID;
     /**
      * Session 实际操作人常量属性
      */
@@ -42,14 +40,14 @@ public class MonitorFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
         logger.info(MonitorFilter.class.getName() + " Initing...");
-        String opKeyStr = filterConfig.getInitParameter("opKey");
-        if (StringUtils.isNotBlank(opKeyStr)) {
-            this.opKey = opKeyStr;
-        }
-        String realOpKeyStr = filterConfig.getInitParameter("realOpKey");
-        if (StringUtils.isNotBlank(realOpKeyStr)) {
-            this.realOpKey = realOpKeyStr;
-        }
+//        String opKeyStr = filterConfig.getInitParameter("opKey");
+//        if (StringUtils.isNotBlank(opKeyStr)) {
+//            this.opKey = opKeyStr;
+//        }
+//        String realOpKeyStr = filterConfig.getInitParameter("realOpKey");
+//        if (StringUtils.isNotBlank(realOpKeyStr)) {
+//            this.realOpKey = realOpKeyStr;
+//        }
         String noLogStr = filterConfig.getInitParameter("noLog");
         if (StringUtils.isNotBlank(noLogStr)) {
             this.noLog = noLogStr;
@@ -62,13 +60,13 @@ public class MonitorFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpSession session = request.getSession();
-        Object userIdAs = session.getAttribute(opKey);
+//        Object userIdAs = session.getAttribute(opKey);
         Object userId = session.getAttribute(realOpKey);
         String remoteIp = getRemoteIp(request);
         // 将数据存入MDC
         MDC.put(MDC_IP, (remoteIp != null ? remoteIp : "N/A"));
         MDC.put(MDC_OP, (userId != null ? userId : "N/A"));
-        MDC.put(MDC_OPAS, (userIdAs != null ? userIdAs : "N/A"));
+//        MDC.put(MDC_OPAS, (userIdAs != null ? userIdAs : "N/A"));
 
         boolean hasExp = true;
         try {
