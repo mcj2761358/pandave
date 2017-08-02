@@ -112,12 +112,12 @@
 ##                        <span> Tour</span>
 ##                    </a>
 ##                </li>
-                <li>
-                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
-                        <i class="glyphicon glyphicon-star"></i>
-                        <span> Icons</span>
-                    </a>
-                </li>
+##                <li>
+##                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
+##                        <i class="glyphicon glyphicon-star"></i>
+##                        <span> Icons</span>
+##                    </a>
+##                </li>
 ##                <li>
 ##                    <a href="${rc.contextPath}/decoration/error">
 ##                        <i class="glyphicon glyphicon-ban-circle"></i>
