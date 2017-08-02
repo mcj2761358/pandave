@@ -36,7 +36,31 @@
                     <div class="jumbotron">
 
                         <p>
-                            小二正在快马加鞭的制作中……[/努力][/加油][/打气][/鼓励]
+                            一、有客户结账时，根据<a href="${rc.contextPath}/doc/queryCustomer">查询客户信息</a>找到客户，进入客户详情页，找到订单，点击【还款】按钮，如下图所示
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/payOrder1.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            二、为防止误操作，系统会提示您确认还款，点击【确认】按钮后，确认还款，如下图所示
+                        </p>
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/payOrder2.png" />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p>
+                            三、还款成功时，该订单显示已结清，如下图所示
+                        </p>
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/payOrder3.png" />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p align="center">
+                            【——本小节结束——】
                         </p>
 
                     </div>

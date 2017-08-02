@@ -36,7 +36,46 @@
                     <div class="jumbotron">
 
                         <p>
-                            小二正在快马加鞭的制作中……[/努力][/加油][/打气][/鼓励]
+                            一、当您需要添加订单时，需要先查询到客户的信息，根据<a href="${rc.contextPath}/doc/queryCustomer">查询客户信息</a>找到客户，然后点击客户名称链接，如下图所示
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/createOrder1.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            二、点击【创建订单】按钮，如下图所示
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/createOrder2.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p>
+                            三、输入订单信息后，点击【保存订单】按钮，如下图所示
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/createOrder3.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            四、订单创建成功后，您就能在订单信息里看到刚刚创建的订单了，如下图所示
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/createOrder4.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p align="center">
+                            【——本小节结束——】
                         </p>
 
                     </div>

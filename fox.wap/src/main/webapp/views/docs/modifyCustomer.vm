@@ -36,9 +36,27 @@
                     <div class="jumbotron">
 
                         <p>
-                            小二正在快马加鞭的制作中……[/努力][/加油][/打气][/鼓励]
+                            一、当您需要修改客户信息时，根据<a href="${rc.contextPath}/doc/queryCustomer">查询客户信息</a>找到客户，然后点击【编辑】按钮，如下图所示
                         </p>
 
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/modifyCustomer1.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            二、点击【编辑】按钮后，会跳转到信息修改页面，输入最新信息后，点击【保存客户】按钮
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/modifyCustomer2.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p align="center">
+                            【——本小节结束——】
+                        </p>
                     </div>
 
                 </div>

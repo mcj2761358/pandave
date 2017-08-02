@@ -36,9 +36,25 @@
                     <div class="jumbotron">
 
                         <p>
-                            小二正在快马加鞭的制作中……[/努力][/加油][/打气][/鼓励]
+                            一、您可以在订单管理页面看到最新的订单信息，如下图所示
                         </p>
 
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/queryCustomer1.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            二、您也可以输入客户名字，或者是手机号，或者是小区名称，查询特定客户的订单，如下图所示
+                        </p>
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/queryCustomer2.png" />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p align="center">
+                            【——本小节结束——】
+                        </p>
                     </div>
 
                 </div>
