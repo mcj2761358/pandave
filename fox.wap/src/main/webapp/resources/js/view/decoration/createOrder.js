@@ -101,7 +101,7 @@ function createOrder(orderId) {
                     clearOrderModal();
                     $('#orderModal').modal('hide');
                 } else {
-                    alert(result.errorMsg);
+                    showAlertModel(result.errorMsg);
                 }
             }
         }
@@ -125,7 +125,7 @@ function handleDeleteOrder(orderId) {
                 if (result.success) {
                     $('.D_'+ orderId).remove();
                 } else {
-                    alert(result.errorMsg);
+                    showAlertModel(result.errorMsg);
                 }
             }
         }

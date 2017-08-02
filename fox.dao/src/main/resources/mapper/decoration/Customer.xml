@@ -177,4 +177,14 @@
         order by id desc
         limit #{start},#{limit}
     </select>
+
+
+    <!-- 根据ID查询 -->
+    <select id = "queryByMobilePhone" resultMap = "BaseResultMap">
+        select *
+        from decoration_customer
+        where is_deleted= 'N'
+        and mobile_phone = #{mobilePhone}
+        limit 1;
+    </select>
 </mapper>

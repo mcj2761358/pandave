@@ -14,4 +14,6 @@ public interface CustomerDao extends BaseDao<Customer> {
     List<Customer> queryCustomer(@Param("param") CustomerQueryParam param, @Param("start") int start, @Param("limit") int limit);
 
     int queryCustomerCount(@Param("param") CustomerQueryParam param);
+
+    Customer queryByMobilePhone(@Param("mobilePhone")String mobilePhone);
 }

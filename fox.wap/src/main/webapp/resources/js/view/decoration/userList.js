@@ -115,7 +115,7 @@ function handleDeleteCustomer (cusId) {
                     console.log(resultData);
                     window.location.href = contextPath+"/decoration/userList";
                 } else{
-                    alert(result.errorMsg);
+                    showAlertModel(result.errorMsg);
                 }
             }
         }

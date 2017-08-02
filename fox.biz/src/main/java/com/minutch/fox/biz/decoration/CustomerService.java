@@ -19,4 +19,6 @@ public interface CustomerService {
     List<Customer> queryCustomer(CustomerQueryParam param);
 
     int queryCustomerCount(CustomerQueryParam param);
+
+    Customer queryByMobilePhone(String mobilePhone);
 }
