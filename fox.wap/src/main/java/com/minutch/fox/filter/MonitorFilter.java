@@ -19,7 +19,6 @@ public class MonitorFilter implements Filter {
     static String[] headsNames = {"X-Real-IP", "X-Forwarded-For", "remote_addr"};
     String MDC_IP = "IP";
     String MDC_OP = "OP"; // 实际操作人
-    String MDC_OPAS = "OPAS"; // 代理掉的人
     /**
      * Session UserId常量属性
      */
@@ -67,7 +66,7 @@ public class MonitorFilter implements Filter {
         // 将数据存入MDC
         MDC.put(MDC_IP, (remoteIp != null ? remoteIp : "N/A"));
         MDC.put(MDC_OP, (userId != null ? userId : "N/A"));
-        MDC.put(MDC_OPAS, (userId != null ? userId : "N/A"));
+//        MDC.put(MDC_OPAS, (userId != null ? userId : "N/A"));
 
         boolean hasExp = true;
         try {
