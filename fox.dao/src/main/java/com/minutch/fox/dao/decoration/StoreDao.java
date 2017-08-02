@@ -10,4 +10,6 @@ import org.apache.ibatis.annotations.Param;
 public interface StoreDao extends BaseDao<Store> {
 
     Store queryByMobilePhone(@Param("mobilePhone")String mobilePhone);
+
+    int updatePassword(@Param("id")Long id,@Param("password")String password);
 }

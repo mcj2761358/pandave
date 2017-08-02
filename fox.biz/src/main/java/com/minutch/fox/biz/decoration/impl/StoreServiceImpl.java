@@ -41,4 +41,9 @@ public class StoreServiceImpl extends BaseServiceImpl implements StoreService {
     public Store queryByMobilePhone(String mobilePhone) {
         return storeDao.queryByMobilePhone(mobilePhone);
     }
+
+    @Override
+    public int updatePassword(Long id, String password) {
+        return storeDao.updatePassword(id, password);
+    }
 }

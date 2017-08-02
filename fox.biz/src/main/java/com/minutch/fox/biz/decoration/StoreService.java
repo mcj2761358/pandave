@@ -17,4 +17,6 @@ public interface StoreService {
     int deleteByIds(Long[] ids);
 
     Store queryByMobilePhone(String mobilePhone);
+
+    int updatePassword(Long id, String password);
 }

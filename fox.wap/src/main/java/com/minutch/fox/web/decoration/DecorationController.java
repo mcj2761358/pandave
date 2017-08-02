@@ -192,4 +192,10 @@ public class DecorationController extends BaseController {
     public String login() {
         return "decoration/login";
     }
+
+
+    @RequestMapping("modifyPassword")
+    public String modifyPassword() {
+        return "decoration/modifyPassword";
+    }
 }

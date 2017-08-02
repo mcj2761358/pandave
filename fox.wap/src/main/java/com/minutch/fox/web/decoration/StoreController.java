@@ -5,6 +5,7 @@ import com.minutch.fox.constants.dance.EmployeeConstants;
 import com.minutch.fox.entity.decoration.Store;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.LoginParam;
+import com.minutch.fox.param.decoration.ModifyPasswordParam;
 import com.minutch.fox.utils.DataCheckUtils;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
@@ -79,4 +80,27 @@ public class StoreController extends BaseController {
         log.info("logout:" + getStoreId() + "退出成功！");
         return Result.wrapSuccessfulResult(null);
     }
+
+    @RequestMapping("modifyPassword")
+    @ResponseBody
+    public Result<?> modifyPassword(@RequestBody ModifyPasswordParam param) {
+
+        //检查密码
+        if (StringUtils.isBlank(param.getNewPassword())) {
+            log.error("密码不能为空.");
+            return Result.wrapErrorResult("", "新密码不能为空.");
+        }
+
+        Long storeId = getStoreId();
+        if (storeId == null) {
+            log.error("暂未登录.");
+            return Result.wrapErrorResult("", "请先登录.");
+        }
+
+        storeService.updatePassword(storeId, param.getNewPassword());
+
+        return Result.wrapSuccessfulResult(null);
+    }
+
+
 }

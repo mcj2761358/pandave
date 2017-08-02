@@ -153,4 +153,12 @@
         limit 1
     </select>
 
+    <!-- 修改手机号码 -->
+    <update id = "updatePassword">
+        update decoration_store
+        set password=#{password},
+        gmt_modified = now()
+        where id = #{id}
+    </update>
+
 </mapper>
