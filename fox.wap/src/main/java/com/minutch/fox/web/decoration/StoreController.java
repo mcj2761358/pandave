@@ -9,12 +9,14 @@ import com.minutch.fox.utils.DataCheckUtils;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.velocity.VelocityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -63,7 +65,8 @@ public class StoreController extends BaseController {
         }
 
         request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID, store.getId());
-
+        ServletContext application = request.getSession().getServletContext();
+        application.setAttribute("storeName",store.getStoreName());
         return Result.wrapSuccessfulResult(null);
     }
 

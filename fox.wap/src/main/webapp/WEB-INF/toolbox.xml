@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools>
+    <toolbox scope="application">
+        <tool key="testMinutch" class="com.minutch.fox.utils.DateUtils"/>
+    </toolbox>
+</tools>

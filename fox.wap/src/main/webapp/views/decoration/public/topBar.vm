@@ -9,7 +9,8 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-            <span>老余杭永正堂</span>
+            <span>$application.getAttribute("storeName")</span>
+            <span></span>
         </a>
 
         <!-- theme selector starts -->
