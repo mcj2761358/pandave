@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>用户手册中心</title>
+
+    #parse("docs/public/commonStyle.vm")
+</head>
+
+<body>
+
+    #parse("docs/public/topBar.vm")
+
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("docs/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">欢迎</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-content row">
+                            <div class="col-lg-12 col-md-12">
+                                <h1 align="center">飞天系统用户手册中心 <br>
+                                    <br>
+                                    <br>
+
+                                    <small>亲爱的商家，感谢您选择飞天系统，我们将以最好的服务报答您的信任！</small>
+                                </h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- content ends -->
+        </div>
+        <!--/#content.col-md-0-->
+    </div>
+    <!--/fluid-row-->
+
+    <hr>
+
+    #parse("docs/public/footer.vm")
+
+</div>
+<!--/.fluid-container-->
+
+    #parse("docs/public/commonJS.vm")
+</body>
+</html>

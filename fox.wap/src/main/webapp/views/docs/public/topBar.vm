@@ -1,0 +1,44 @@
+
+
+
+<!-- topbar starts -->
+<div class="navbar navbar-default" role="navigation">
+
+    <div class="navbar-inner">
+        <button type="button" class="navbar-toggle pull-left animated flip">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="width: 400px">
+            <span>飞天系统用户操作手册</span>
+        </a>
+
+        <!-- theme selector starts -->
+        <div class="btn-group pull-right theme-container animated tada">
+            <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-tint"></i><span
+                    class="hidden-sm hidden-xs">换心情</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" id="themes">
+                <li><a data-value="classic" href="#"><i class="whitespace"></i> 经典</a></li>
+                <li><a data-value="cerulean" href="#"><i class="whitespace"></i> 清新</a></li>
+                <li><a data-value="cyborg" href="#"><i class="whitespace"></i> 黑客</a></li>
+                <li><a data-value="simplex" href="#"><i class="whitespace"></i> 欢快</a></li>
+                <li><a data-value="darkly" href="#"><i class="whitespace"></i> 极客</a></li>
+                <li><a data-value="lumen" href="#"><i class="whitespace"></i> 春秋</a></li>
+                <li><a data-value="slate" href="#"><i class="whitespace"></i> 低沉</a></li>
+                <li><a data-value="spacelab" href="#"><i class="whitespace"></i> 简约</a></li>
+                <li><a data-value="united" href="#"><i class="whitespace"></i> 少女</a></li>
+            </ul>
+        </div>
+        <!-- theme selector ends -->
+
+        <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+        </ul>
+
+    </div>
+</div>
+<!-- topbar ends -->

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>用户手册中心</title>
+
+    #parse("docs/public/commonStyle.vm")
+</head>
+
+<body>
+
+    #parse("docs/public/topBar.vm")
+
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("docs/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">订单中心</a>
+                    </li>
+                    <li>
+                        <a href="#">修改订单信息</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="jumbotron">
+
+                        <p>
+                            小二正在快马加鞭的制作中……[/努力][/加油][/打气][/鼓励]
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <hr>
+
+    #parse("docs/public/footer.vm")
+
+</div>
+
+    #parse("docs/public/commonJS.vm")
+</body>
+</html>

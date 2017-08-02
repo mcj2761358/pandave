@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>用户手册中心</title>
+
+    #parse("docs/public/commonStyle.vm")
+</head>
+
+<body>
+
+    #parse("docs/public/topBar.vm")
+
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("docs/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">用户中心</a>
+                    </li>
+                    <li>
+                        <a href="#">添加客户信息</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="jumbotron">
+
+                        <p>
+                            一、新客户有意向购买商品时，需先录入客户信息
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/createCustomer0.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p>
+                            二、保存信息后，自动跳转到客户列表页面，您可以看到刚刚录入的客户信息，客户添加成功
+                        </p>
+
+                        <img width="100%" src="https://fauna-test.b0.upaiyun.com/icon/201707/createCustomer2.png" />
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <p align="center">
+                            【——本小节结束——】
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <hr>
+
+    #parse("docs/public/footer.vm")
+
+</div>
+
+    #parse("docs/public/commonJS.vm")
+</body>
+</html>
