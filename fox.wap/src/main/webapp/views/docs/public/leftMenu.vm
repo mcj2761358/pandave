@@ -12,23 +12,23 @@
                 <li class="nav-header">用户中心</li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/createCustomer">
-                        <span> 一、添加客户信息</span>
+                        <span> 一、添加客户手册</span>
                     </a>
                 </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/queryCustomer">
-                        <span> 二、查询客户信息</span>
+                        <span> 二、查询客户手册</span>
                     </a>
                 </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/modifyCustomer">
-                        <span> 三、修改客户信息</span>
+                        <span> 三、修改客户手册</span>
                     </a>
                 </li>
 
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/deleteCustomer">
-                        <span> 四、删除客户信息</span>
+                        <span> 四、删除客户手册</span>
                     </a>
                 </li>
 
@@ -36,28 +36,28 @@
                 <li class="nav-header">订单中心</li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/createOrder">
-                        <span> 一、添加订单信息</span>
+                        <span> 一、添加订单手册</span>
                     </a>
                 </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/queryOrder">
-                        <span> 二、查询订单信息</span>
+                        <span> 二、查询订单手册</span>
                     </a>
                 </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/modifyOrder">
-                        <span> 三、修改订单信息</span>
+                        <span> 三、修改订单手册</span>
                     </a>
                 </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/deleteOrder">
-                        <span> 四、删除订单信息</span>
+                        <span> 四、删除订单手册</span>
                     </a>
                 </li>
 
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/doc/payOrder">
-                        <span> 五、订单结算收款</span>
+                        <span> 五、订单结算手册</span>
                     </a>
                 </li>
 
