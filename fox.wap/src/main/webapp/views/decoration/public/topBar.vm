@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-            <span>$application.getAttribute("storeName")</span>
+            <span>$session.getAttribute("storeName")</span>
             <span></span>
         </a>
 

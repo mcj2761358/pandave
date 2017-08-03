@@ -66,8 +66,9 @@ public class StoreController extends BaseController {
         }
 
         request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID, store.getId());
-        ServletContext application = request.getSession().getServletContext();
-        application.setAttribute("storeName",store.getStoreName());
+        request.getSession().setAttribute("storeName", store.getStoreName());
+//        ServletContext application = request.getSession().getServletContext();
+//        application.setAttribute("storeName",store.getStoreName());
         return Result.wrapSuccessfulResult(null);
     }
 
