@@ -52,7 +52,7 @@
 
                                     <div class="col-sm-2">
                                         <select class="form-control" id="beFinish">
-                                            <option value="" selected="selected"></option>
+                                            <option value="" selected="selected">是否结账</option>
                                             <option value="Y">已结账</option>
                                             <option value="N">未结账</option>
                                         </select>
