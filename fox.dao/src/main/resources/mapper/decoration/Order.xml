@@ -248,6 +248,9 @@
         <if test="param.queryTimeStart!=null and param.queryTimeStart!='' and param.queryTimeEnd!=null and param.queryTimeEnd!=''">
             and remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
         </if>
+        <if test="param.gmtCreateStart!=null and param.gmtCreateStart!='' and param.gmtCreateEnd!=null and param.gmtCreateEnd!=''">
+            and gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
+        </if>
     </select>
 
     <!-- 根据条件查询订单数据 -->
@@ -272,6 +275,9 @@
         </if>
         <if test="param.queryTimeStart!=null and param.queryTimeStart!='' and param.queryTimeEnd!=null and param.queryTimeEnd!=''">
             and remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
+        </if>
+        <if test="param.gmtCreateStart!=null and param.gmtCreateStart!='' and param.gmtCreateEnd!=null and param.gmtCreateEnd!=''">
+            and gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
         </if>
         order by id desc
         limit #{start},#{limit}

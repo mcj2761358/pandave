@@ -69,30 +69,36 @@ public class OrderController extends BaseController {
 
     private void handOrderQueryParam(OrderQueryParam param) {
         String timeName = param.getTimeName();
-        if (StringUtils.isBlank(timeName)) {
-            return;
+        String queryTime = param.getQueryTime();
+        if (StringUtils.isNotBlank(timeName)) {
+
+            Date date = new Date();
+            String currentDate = DateUtils.dateFormat(date, DateUtils.Y_M_D);
+            String startDate = currentDate + START_TIME_POSTFIX;
+            String endDate = currentDate + END_TIME_POSTFIX;
+
+            if ("today".equals(timeName)) {
+
+            }
+            else if ("tomorrow".equals(timeName)) {
+                Date tomorrowDate = DateUtils.afterNDays(date, 1);
+                startDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + START_TIME_POSTFIX;
+                endDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+            }
+            else if ("nearly3".equals(timeName)) {
+                Date nearly3Date = DateUtils.afterNDays(date, 2);
+                endDate = DateUtils.dateFormat(nearly3Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+            }
+
+            param.setQueryTimeStart(startDate);
+            param.setQueryTimeEnd(endDate);
         }
 
-        Date date = new Date();
-        String currentDate = DateUtils.dateFormat(date, DateUtils.Y_M_D);
-        String startDate = currentDate + START_TIME_POSTFIX;
-        String endDate = currentDate + END_TIME_POSTFIX;
-
-        if ("today".equals(timeName)) {
-
-        }
-        else if ("tomorrow".equals(timeName)) {
-            Date tomorrowDate = DateUtils.afterNDays(date, 1);
-            startDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + START_TIME_POSTFIX;
-            endDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + END_TIME_POSTFIX;
-        }
-        else if ("nearly3".equals(timeName)) {
-            Date nearly3Date = DateUtils.afterNDays(date, 2);
-            endDate = DateUtils.dateFormat(nearly3Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+        if (StringUtils.isNotBlank(queryTime)) {
+            param.setGmtCreateStart(queryTime + START_TIME_POSTFIX);
+            param.setGmtCreateEnd(queryTime + END_TIME_POSTFIX);
         }
 
-        param.setQueryTimeStart(startDate);
-        param.setQueryTimeEnd(endDate);
     }
 
 

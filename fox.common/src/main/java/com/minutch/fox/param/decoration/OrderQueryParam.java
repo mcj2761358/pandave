@@ -14,6 +14,9 @@ public class OrderQueryParam extends PageParam {
 
     private Integer remindStatus;
     private String timeName; //近三日
+    private String queryTime; //按日期查询
+    private String gmtCreateStart; //按日期查询
+    private String gmtCreateEnd; //按日期查询
     private String queryTimeStart; //查询开始日期
     private String queryTimeEnd; //查询截止日期
 }

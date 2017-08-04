@@ -7,8 +7,10 @@
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/orderList.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/bootstrap-datetimepicker.min.css"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderList.js?v=1"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 
 <body>
@@ -43,10 +45,20 @@
                             <!-- 搜索框 -->
                             <div class="form-horizontal">
                                 <div class="form-group col-md-12 has-success">
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" id="keyword"
                                                placeholder="客户名称/手机号码/小区名称">
                                     </div>
+
+                                    <div class="col-sm-3">
+
+                                        <div class="input-group date queryTime col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dp">
+                                            <input class="form-control" size="16" id="queryTime" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+
                                     <button class="btn btn-success" onclick="queryOrderList(0);" id="searchOorderBtn">
                                         搜索订单
                                     </button>
@@ -99,6 +111,7 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderList.js?v=3.1"></script>
     #parse("decoration/public/footer.vm")
 </div>
     #parse("decoration/public/alertModal.vm")

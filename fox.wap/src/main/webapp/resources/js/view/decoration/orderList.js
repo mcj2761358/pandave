@@ -2,8 +2,24 @@
  * Created by Minutch on 16/12/17.
  */
 $(function () {
+
+    //绑定日期控件
+    $('.queryTime').datetimepicker({
+        language:  'zh-CN',
+        minView: "month",
+        autoclose: 1,
+    });
+
     queryOrderList(0);
 });
+
+
+function getFormattedDate(date) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear().toString().slice(2);
+    return day + '-' + month + '-' + year;
+}
 
 function createPage(pageSize, total) {
 
@@ -11,17 +27,15 @@ function createPage(pageSize, total) {
         items: total,
         itemsOnPage: pageSize,
         displayedPages: 2,
-        edges:1,
+        edges: 1,
         cssStyle: 'light-theme',
         prevText: '上一页',
         nextText: '下一页',
-        onPageClick: function(pageNumber,event) {
-            queryOrderList(pageNumber-1)
+        onPageClick: function (pageNumber, event) {
+            queryOrderList(pageNumber - 1)
         }
     });
 }
-
-
 
 
 var pageSize = 10;
@@ -33,9 +47,10 @@ function queryOrderList(pageIndex) {
     param.pageSize = pageSize;
     param.curPage = pageIndex + 1;
     param.keyword = $('#keyword').val();
+    param.queryTime = $('#queryTime').val();
 
     $.ajax({
-        url: contextPath +"/decoration/order/queryList",
+        url: contextPath + "/decoration/order/queryList",
         datatype: 'json',
         type: "POST",
         contentType: 'application/json',
@@ -69,29 +84,29 @@ function queryOrderList(pageIndex) {
                             var returnAmount = order.returnAmount;
                             var beFinish = order.beFinish;
 
-                            if (beFinish == null || beFinish== undefined) {
+                            if (beFinish == null || beFinish == undefined) {
                                 beFinish = '<span style="color: red">未结清</span>';
                             }
                             if (beFinish == 'Y') {
                                 beFinish = '<span style="color: #32CD32">已结清</span>';
                             }
 
-                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
-                            var orderDataHtml = '<tr>'+
-                                '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
-                                '<td class="center">'+gmtCreate+'</td>'+
-                                '<td class="center">'+mobilePhone+'</td>'+
-                                '<td class="center">'+houseName+'</td>'+
-                                '<td class="center">'+goodsName+'</td>'+
-                                '<td class="center">'+goodsModel+'</td>'+
-                                '<td class="center">'+goodsNum+'</td>'+
-                                '<td class="center">'+orderAmount+'</td>'+
-                                '<td class="center">'+beFinish+'</td>'+
-                                '<td class="center">'+
-                                '<a href="'+customerDetailUrl+'"  target="_blank" class="btn btn-info btn-sm">'+
-                                '<i class="glyphicon glyphicon-edit icon-white"></i>编辑'+
-                                '</a>'+
-                                '</td>'+
+                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId;
+                            var orderDataHtml = '<tr>' +
+                                '<td><a href="' + customerDetailUrl + '" target="_blank">' + cusName + '</a></td>' +
+                                '<td class="center">' + gmtCreate + '</td>' +
+                                '<td class="center">' + mobilePhone + '</td>' +
+                                '<td class="center">' + houseName + '</td>' +
+                                '<td class="center">' + goodsName + '</td>' +
+                                '<td class="center">' + goodsModel + '</td>' +
+                                '<td class="center">' + goodsNum + '</td>' +
+                                '<td class="center">' + orderAmount + '</td>' +
+                                '<td class="center">' + beFinish + '</td>' +
+                                '<td class="center">' +
+                                '<a href="' + customerDetailUrl + '"  target="_blank" class="btn btn-info btn-sm">' +
+                                '<i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
+                                '</a>' +
+                                '</td>' +
                                 '</tr>';
                             $('.contentDiv').append(orderDataHtml);
                         }
