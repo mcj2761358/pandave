@@ -5,7 +5,7 @@
 
     <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Notice"
                extends = "COMMON.BASE_RESULT_MAP">
-        <result column = "nitice_type" property = "niticeType" />
+        <result column = "notice_type" property = "noticeType" />
         <result column = "notice_message" property = "noticeMessage" />
         <result column = "url" property = "url" />
         <result column = "remark" property = "remark" />
@@ -15,8 +15,8 @@
         <where>
             <trim prefixOverrides = "and">
                 <include refid = "COMMON.BASE_WHERE_CLAUSE" />
-                <if test = "niticeType != null">
-                    and nitice_type = #{niticeType}
+                <if test = "noticeType != null">
+                    and notice_type = #{noticeType}
                 </if>
                 <if test = "noticeMessage != null">
                     and notice_message = #{noticeMessage}
@@ -34,8 +34,8 @@
     <sql id = "BaseUpdateSet">
         <set>
             <include refid = "COMMON.BASE_UPDATE_SET" />
-            <if test = "niticeType != null">
-                nitice_type = #{niticeType},
+            <if test = "noticeType != null">
+                notice_type = #{noticeType},
             </if>
             <if test = "noticeMessage != null">
                 notice_message = #{noticeMessage},
@@ -104,14 +104,14 @@
     <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
         insert into decoration_notice (
         <include refid = "COMMON.BASE_INSERT_COLUMN" />
-        nitice_type,
+        notice_type,
         notice_message,
         url,
         remark
         )
         values (
         <include refid = "COMMON.BASE_INSERT_VALUE" />
-        #{niticeType},
+        #{noticeType},
         #{noticeMessage},
         #{url},
         #{remark}
@@ -133,7 +133,7 @@
         from decoration_notice
         where is_deleted = 'N'
         order by id desc
-        limit 1;
+        limit 1
     </select>
-
+    
 </mapper>

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class Notice extends BaseEntity {
 
-  private String niticeType;
+  private String noticeType;
   private String noticeMessage;
   private String url;
   private String remark;

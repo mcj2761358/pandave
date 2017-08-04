@@ -154,6 +154,12 @@
                         <span> 修改密码</span>
                     </a>
                 </li>
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/contactUs">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span> 联系我们</span>
+                    </a>
+                </li>
                 <br/>
         </div>
     </div>

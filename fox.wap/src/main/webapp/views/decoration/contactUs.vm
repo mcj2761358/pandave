@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>联系我们</title>
+    #parse("decoration/public/commonStyle.vm")
+
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/createCustomer.css"/>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/createCustomer.js?v=1"></script>
+</head>
+
+<body>
+    #parse("decoration/public/topBar.vm")
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("decoration/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">系统中心</a>
+                    </li>
+                    <li>
+                        <a href="#"> 联系我们</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-content row">
+                            <div class="col-lg-12 col-md-12">
+                                   <h2 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系我们 <br>
+
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <small>包&nbsp;&nbsp;总(总负责人)：13857174925</small>
+                                    <br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       <small>沈&nbsp;&nbsp;工(产品咨询)：18767159821</small>
+                                       <br />
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       <small>闵&nbsp;&nbsp;工(产品咨询)：13093765253</small>
+                                       <br />
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       <small>小&nbsp;&nbsp;姚(思古山小仙女)：13666677268</small>
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    #parse("decoration/public/footer.vm")
+</div>
+    #parse("decoration/public/alertModal.vm")
+    #parse("decoration/public/commonJS.vm")
+</body>
+</html>
