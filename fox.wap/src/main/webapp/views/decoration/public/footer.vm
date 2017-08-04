@@ -1,11 +1,6 @@
 <footer class="row">
     <p />
-
+    <div align="center">
     <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="#">上古集团</a> 2016 - 2017</p>
-
-
-
-##    <div class="alert alert-success">
-##        公告：<strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
-##    </div>
+    </div>
 </footer>

@@ -4,7 +4,6 @@
 
     <meta charset="utf-8">
     <title>用户手册中心</title>
-
     #parse("docs/public/commonStyle.vm")
 </head>
 

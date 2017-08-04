@@ -13,6 +13,7 @@ public class OrderQueryParam extends PageParam {
     private Long storeId;
 
     private Integer remindStatus;
+    private String beFinish;
     private String timeName; //近三日
     private String queryTime; //按日期查询
     private String gmtCreateStart; //按日期查询

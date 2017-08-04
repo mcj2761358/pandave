@@ -48,6 +48,7 @@ function queryOrderList(pageIndex) {
     param.curPage = pageIndex + 1;
     param.keyword = $('#keyword').val();
     param.queryTime = $('#queryTime').val();
+    param.beFinish = $('#beFinish').val();
 
     $.ajax({
         url: contextPath + "/decoration/order/queryList",
@@ -84,7 +85,7 @@ function queryOrderList(pageIndex) {
                             var returnAmount = order.returnAmount;
                             var beFinish = order.beFinish;
 
-                            if (beFinish == null || beFinish == undefined) {
+                            if (beFinish == null || beFinish == undefined || beFinish=='N') {
                                 beFinish = '<span style="color: red">未结清</span>';
                             }
                             if (beFinish == 'Y') {

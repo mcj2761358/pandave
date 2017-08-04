@@ -239,6 +239,9 @@
             or house_name like concat('%',#{param.keyword},'%')
             )
         </if>
+        <if test="param.beFinish!=null and param.beFinish!=''">
+            and be_finish = #{param.beFinish}
+        </if>
         <if test="param.remindStatus != null">
             and remind_status = #{param.remindStatus}
         </if>
@@ -266,6 +269,9 @@
             or mobile_phone like concat('%',#{param.keyword},'%')
             or house_name like concat('%',#{param.keyword},'%')
             )
+        </if>
+        <if test="param.beFinish!=null and param.beFinish!=''">
+            and be_finish = #{param.beFinish}
         </if>
         <if test="param.remindStatus != null">
             and remind_status = #{param.remindStatus}

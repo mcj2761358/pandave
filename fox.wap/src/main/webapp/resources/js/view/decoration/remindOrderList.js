@@ -72,7 +72,7 @@ function queryOrderList(pageIndex) {
                             var remindTime = order.remindTime;
                             var beFinish = order.beFinish;
 
-                            if (beFinish == null || beFinish== undefined) {
+                            if (beFinish == null || beFinish== undefined || beFinish=='N') {
                                 beFinish = '<span style="color: red">未结清</span>';
                             }
                             if (beFinish == 'Y') {

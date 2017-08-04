@@ -141,6 +141,10 @@ public class OrderController extends BaseController {
         param.setAddress(customer.getAddress());
         Order order = new Order();
         BeanUtils.copyProperties(param, order);
+
+        if (order.getId() == null) {
+            order.setBeFinish("N");
+        }
         order.setDefaultBizValue(sessionInfo.getStoreId());
         order.setStoreId(sessionInfo.getStoreId());
         orderService.save(order);

@@ -45,19 +45,29 @@
                             <!-- 搜索框 -->
                             <div class="form-horizontal">
                                 <div class="form-group col-md-12 has-success">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <input type="text" class="form-control" id="keyword"
                                                placeholder="客户名称/手机号码/小区名称">
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <select class="form-control" id="beFinish">
+                                            <option value="" selected="selected"></option>
+                                            <option value="Y">已结账</option>
+                                            <option value="N">未结账</option>
+                                        </select>
                                     </div>
 
                                     <div class="col-sm-3">
 
                                         <div class="input-group date queryTime col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dp">
-                                            <input class="form-control" size="16" id="queryTime" type="text" value="" readonly>
+                                            <input class="form-control" size="16" id="queryTime" type="text" value="" placeholder="订单日期" readonly>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                         </div>
                                     </div>
+
+
 
                                     <button class="btn btn-success" onclick="queryOrderList(0);" id="searchOorderBtn">
                                         搜索订单
