@@ -11,6 +11,7 @@ import com.minutch.fox.param.decoration.OrderParam;
 import com.minutch.fox.param.decoration.OrderQueryParam;
 import com.minutch.fox.result.PageResultVO;
 import com.minutch.fox.result.decoration.OrderVO;
+import com.minutch.fox.utils.DateUtils;
 import com.minutch.fox.utils.FoxBeanUtils;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +37,8 @@ import java.util.List;
 @Slf4j
 public class OrderController extends BaseController {
 
+    private static final String START_TIME_POSTFIX = " 00:00:00";
+    private static final String END_TIME_POSTFIX = " 23:59:59";
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -45,6 +49,8 @@ public class OrderController extends BaseController {
     @RequestMapping("queryList")
     @ResponseBody
     public Result<?> queryList(@RequestBody OrderQueryParam param) {
+
+        handOrderQueryParam(param);
 
         param.setStoreId(sessionInfo.getStoreId());
         int totalNum = orderService.queryOrderCount(param);
@@ -59,6 +65,34 @@ public class OrderController extends BaseController {
             pageResultVO.setDataList(new ArrayList<OrderVO>());
         }
         return Result.wrapSuccessfulResult(pageResultVO);
+    }
+
+    private void handOrderQueryParam(OrderQueryParam param) {
+        String timeName = param.getTimeName();
+        if (StringUtils.isBlank(timeName)) {
+            return;
+        }
+
+        Date date = new Date();
+        String currentDate = DateUtils.dateFormat(date, DateUtils.Y_M_D);
+        String startDate = currentDate + START_TIME_POSTFIX;
+        String endDate = currentDate + END_TIME_POSTFIX;
+
+        if ("today".equals(timeName)) {
+
+        }
+        else if ("tomorrow".equals(timeName)) {
+            Date tomorrowDate = DateUtils.afterNDays(date, 1);
+            startDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + START_TIME_POSTFIX;
+            endDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+        }
+        else if ("nearly3".equals(timeName)) {
+            Date nearly3Date = DateUtils.afterNDays(date, 2);
+            endDate = DateUtils.dateFormat(nearly3Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+        }
+
+        param.setQueryTimeStart(startDate);
+        param.setQueryTimeEnd(endDate);
     }
 
 
@@ -122,16 +156,18 @@ public class OrderController extends BaseController {
     }
 
 
-    @RequestMapping("finishById")
+    @RequestMapping("handleRemindById")
     @ResponseBody
-    public Result<?> finishById(Long orderId) {
+    public Result<?> handleRemindById(Long orderId) {
 
         if (orderId == null) {
             log.error("订单id不能为空！");
             return Result.wrapErrorResult("","订单ID不能为空!");
         }
-        orderService.finishById(orderId);
-        log.info("finish order["+orderId+"]");
+        orderService.handleRemindById(orderId);
+        log.info("handle remind order["+orderId+"]");
         return Result.wrapSuccessfulResult(orderId);
     }
+
+
 }

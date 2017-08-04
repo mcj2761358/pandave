@@ -16,6 +16,7 @@
         <result column = "goods_price" property = "goodsPrice" />
         <result column = "order_amount" property = "orderAmount" />
         <result column = "return_amount" property = "returnAmount" />
+        <result column = "remind_time" property = "remindTime" />
         <result column = "be_finish" property = "beFinish" />
         <result column = "store_id" property = "storeId" />
         <result column = "remark" property = "remark" />
@@ -57,6 +58,9 @@
                 </if>
                 <if test = "returnAmount != null">
                     and return_amount = #{returnAmount}
+                </if>
+                <if test = "remindTime != null">
+                    and remind_time = #{remindTime}
                 </if>
                 <if test = "beFinish != null">
                     and be_finish = #{beFinish}
@@ -106,6 +110,9 @@
             </if>
             <if test = "returnAmount != null">
                 return_amount = #{returnAmount},
+            </if>
+            <if test = "remindTime != null">
+                remind_time = #{remindTime},
             </if>
             <if test = "beFinish != null">
                 be_finish = #{beFinish},
@@ -185,6 +192,7 @@
         goods_price,
         order_amount,
         return_amount,
+        remind_time,
         be_finish,
         store_id,
         remark
@@ -202,6 +210,7 @@
         #{goodsPrice},
         #{orderAmount},
         #{returnAmount},
+        #{remindTime},
         #{beFinish},
         #{storeId},
         #{remark}
@@ -230,8 +239,14 @@
             or house_name like concat('%',#{param.keyword},'%')
             )
         </if>
+        <if test="param.remindStatus != null">
+            and remind_status = #{param.remindStatus}
+        </if>
         <if test="param.cusId!=null">
             and cus_id = #{param.cusId}
+        </if>
+        <if test="param.queryTimeStart!=null and param.queryTimeStart!='' and param.queryTimeEnd!=null and param.queryTimeEnd!=''">
+            and remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
         </if>
     </select>
 
@@ -249,8 +264,14 @@
             or house_name like concat('%',#{param.keyword},'%')
             )
         </if>
+        <if test="param.remindStatus != null">
+            and remind_status = #{param.remindStatus}
+        </if>
         <if test="param.cusId!=null">
             and cus_id = #{param.cusId}
+        </if>
+        <if test="param.queryTimeStart!=null and param.queryTimeStart!='' and param.queryTimeEnd!=null and param.queryTimeEnd!=''">
+            and remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
         </if>
         order by id desc
         limit #{start},#{limit}
@@ -258,12 +279,21 @@
 
 
 
-    <!-- 根据IDS批量删除 -->
+    <!-- 订单结款 -->
     <update id = "finishById">
         update decoration_order
         set gmt_modified = now(),
         be_finish = 'Y'
         where id = #{orderId}
         and be_finish is null
+    </update>
+
+    <!-- 订单处理 -->
+    <update id = "handleRemindById">
+        update decoration_order
+        set gmt_modified = now(),
+        remind_status = 1
+        where id = #{orderId}
+        and remind_status = 0
     </update>
 </mapper>

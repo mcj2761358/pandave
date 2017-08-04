@@ -1,6 +1,7 @@
 package com.minutch.fox.entity.decoration;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 import com.minutch.fox.entity.base.BaseEntity;
@@ -23,6 +24,7 @@ public class Order extends BaseEntity {
   private BigDecimal goodsPrice;
   private BigDecimal orderAmount;
   private BigDecimal returnAmount;
+  private Date remindTime;
   private String beFinish;
   private Long storeId;
   private String remark;

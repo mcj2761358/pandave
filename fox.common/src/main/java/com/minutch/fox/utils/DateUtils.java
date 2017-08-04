@@ -235,8 +235,6 @@ public class DateUtils {
         return calendar.getTimeInMillis();
     }
 
-
-
     public static Date convertStringToDate(String dateStr) {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
@@ -246,6 +244,7 @@ public class DateUtils {
         }
         return null;
     }
+
     /**
      * {date}日期的{days}天后
      * @param date
@@ -263,6 +262,7 @@ public class DateUtils {
         Date resultDate = c.getTime();
         return resultDate;
     }
+
     /**
      * {date}日期的{days}天后
      * @param dateStr 格式(yyyy-MM-DD HH:mm:ss)
@@ -308,8 +308,12 @@ public class DateUtils {
         return calendar.getTime();
     }
 
-
     public static void main(String[] args) {
        System.out.println(getMonthEnd(new Date()));
+    }
+
+    public String getValue() {
+
+        return "XXXXXX";
     }
 }

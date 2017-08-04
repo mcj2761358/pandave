@@ -1,4 +1,3 @@
-
 <!-- left menu starts -->
 <div class="col-sm-2 col-lg-2">
     <div class="sidebar-nav">
@@ -25,12 +24,12 @@
 
                 <!-- 订单管理 -->
                 <li class="nav-header">订单中心</li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/createOrder">
-##                        <i class="glyphicon glyphicon-star"></i>
-##                        <span> 创建订单</span>
-##                    </a>
-##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/createOrder">
+            ##                        <i class="glyphicon glyphicon-star"></i>
+            ##                        <span> 创建订单</span>
+            ##                    </a>
+            ##                </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/decoration/orderList">
                         <i class="glyphicon glyphicon-align-justify"></i>
@@ -38,103 +37,125 @@
                     </a>
                 </li>
 
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/remindOrderList">
+                        <i class="glyphicon glyphicon glyphicon-book"></i>
+                        <span> 待处理订单</span>
+                    </a>
+                </li>
 
+
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
+                        <i class="glyphicon glyphicon-star"></i>
+                        <span> Icons</span>
+                    </a>
+                </li>
 
                 <!-- other -->
-##                <li class="nav-header">附加功能</li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration">
-##                        <i class="glyphicon glyphicon-home"></i>
-##                        <span> Dashboard</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/ui">
-##                        <i class="glyphicon glyphicon-eye-open"></i>
-##                        <span> UI Features</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/form">
-##                        <i class="glyphicon glyphicon-edit"></i>
-##                        <span> Forms</span>
-##                    </a>
-##                </li>
+            ##                <li class="nav-header">附加功能</li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration">
+            ##                        <i class="glyphicon glyphicon-home"></i>
+            ##                        <span> Dashboard</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/ui">
+            ##                        <i class="glyphicon glyphicon-eye-open"></i>
+            ##                        <span> UI Features</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/form">
+            ##                        <i class="glyphicon glyphicon-edit"></i>
+            ##                        <span> Forms</span>
+            ##                    </a>
+            ##                </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/decoration/chart">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         <span> 数据报表</span>
                     </a>
                 </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/typography">
-##                        <i class="glyphicon glyphicon-font"></i>
-##                        <span> Typography</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/gallery">
-##                        <i class="glyphicon glyphicon-picture"></i>
-##                        <span> Gallery</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/table">
-##                        <i class="glyphicon glyphicon-align-justify"></i>
-##                        <span> Tables</span>
-##                    </a>
-##                </li>
-##                <li class="accordion">
-##                    <a href="#">
-##                        <i class="glyphicon glyphicon-plus"></i>
-##                        <span> Accordion Menu</span>
-##                    </a>
-##                    <ul class="nav nav-pills nav-stacked">
-##                        <li><a href="#">Child Menu 1</a></li>
-##                        <li><a href="#">Child Menu 2</a></li>
-##                    </ul>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/calendar">
-##                        <i class="glyphicon glyphicon-calendar"></i>
-##                        <span> Calendar</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/grid">
-##                        <i class="glyphicon glyphicon-th"></i>
-##                        <span> Grid</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a href="${rc.contextPath}/decoration/tour">
-##                        <i class="glyphicon glyphicon-globe"></i>
-##                        <span> Tour</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
-##                        <i class="glyphicon glyphicon-star"></i>
-##                        <span> Icons</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a href="${rc.contextPath}/decoration/error">
-##                        <i class="glyphicon glyphicon-ban-circle"></i>
-##                        <span> Error Page</span>
-##                    </a>
-##                </li>
-##                <li>
-##                    <a href="${rc.contextPath}/decoration/login">
-##                        <i class="glyphicon glyphicon-lock"></i>
-##                        <span> Login Page</span>
-##                    </a>
-##                </li>
-##            </ul>
-##            <label id="for-is-ajax" for="is-ajax">
-##                <input id="is-ajax" type="checkbox"> Ajax on menu
-##            </label>
-                <br />
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/typography">
+            ##                        <i class="glyphicon glyphicon-font"></i>
+            ##                        <span> Typography</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/gallery">
+            ##                        <i class="glyphicon glyphicon-picture"></i>
+            ##                        <span> Gallery</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/table">
+            ##                        <i class="glyphicon glyphicon-align-justify"></i>
+            ##                        <span> Tables</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li class="accordion">
+            ##                    <a href="#">
+            ##                        <i class="glyphicon glyphicon-plus"></i>
+            ##                        <span> Accordion Menu</span>
+            ##                    </a>
+            ##                    <ul class="nav nav-pills nav-stacked">
+            ##                        <li><a href="#">Child Menu 1</a></li>
+            ##                        <li><a href="#">Child Menu 2</a></li>
+            ##                    </ul>
+            ##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/calendar">
+            ##                        <i class="glyphicon glyphicon-calendar"></i>
+            ##                        <span> Calendar</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/grid">
+            ##                        <i class="glyphicon glyphicon-th"></i>
+            ##                        <span> Grid</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a href="${rc.contextPath}/decoration/tour">
+            ##                        <i class="glyphicon glyphicon-globe"></i>
+            ##                        <span> Tour</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a href="${rc.contextPath}/decoration/error">
+            ##                        <i class="glyphicon glyphicon-ban-circle"></i>
+            ##                        <span> Error Page</span>
+            ##                    </a>
+            ##                </li>
+            ##                <li>
+            ##                    <a href="${rc.contextPath}/decoration/login">
+            ##                        <i class="glyphicon glyphicon-lock"></i>
+            ##                        <span> Login Page</span>
+            ##                    </a>
+            ##                </li>
+            ##            </ul>
+            ##            <label id="for-is-ajax" for="is-ajax">
+            ##                <input id="is-ajax" type="checkbox"> Ajax on menu
+            ##            </label>
+
+
+                <li class="nav-header">系统中心</li>
+                <li>
+                    <a class="ajax-link" target="_blank" href="${rc.contextPath}/doc/index">
+                        <i class="glyphicon glyphicon glyphicon-flag"></i>
+                        <span> 操作手册</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/modifyPassword">
+                        <i class="glyphicon glyphicon glyphicon-pencil"></i>
+                        <span> 修改密码</span>
+                    </a>
+                </li>
+                <br/>
         </div>
     </div>
 </div>

@@ -16,4 +16,6 @@ public interface OrderDao extends BaseDao<Order> {
     int queryOrderCount(@Param("param") OrderQueryParam param);
 
     int finishById(@Param("orderId")Long orderId);
+
+    int handleRemindById(@Param("orderId")Long orderId);
 }

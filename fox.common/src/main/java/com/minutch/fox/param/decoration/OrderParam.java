@@ -3,6 +3,7 @@ package com.minutch.fox.param.decoration;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by Minutch on 16/12/17.
@@ -22,6 +23,7 @@ public class OrderParam {
     private BigDecimal goodsPrice;
     private BigDecimal orderAmount;
     private BigDecimal returnAmount;
+    private Date remindTime;
     private String beFinish;
     private String remark;
 }

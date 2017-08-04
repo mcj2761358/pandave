@@ -21,4 +21,6 @@ public interface OrderService {
     int queryOrderCount(OrderQueryParam param);
 
     int finishById(Long orderId);
+
+    int handleRemindById(Long orderId);
 }

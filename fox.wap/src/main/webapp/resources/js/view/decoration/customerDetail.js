@@ -13,6 +13,18 @@ $(function () {
         $('#orderModal').modal(true);
     });
 
+    //绑定日期控件
+    $('.remindTime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+
     queryOrderList(0);
 });
 
@@ -26,6 +38,7 @@ function saveOrder() {
     var goodsNum = $('#goodsNum').val();
     var goodsPrice = $('#goodsPrice').val();
     var orderAmount = $('#orderAmount').val();
+    var remindTime = $('#remindTime').val();
     var remark = $('#remark').val();
 
     //数据检查
@@ -60,6 +73,7 @@ function saveOrder() {
     param.goodsNum = goodsNum;
     param.goodsPrice = goodsPrice;
     param.orderAmount = orderAmount;
+    param.remindTime = remindTime;
     param.remark = remark;
 
     var contextPath = $('#rcContextPath').val();

@@ -112,8 +112,6 @@ public class DecorationController extends BaseController {
             return "decoration/error500";
         }
 
-
-
         CustomerVO customerVO = new CustomerVO();
         BeanUtils.copyProperties(customer, customerVO);
 
@@ -126,6 +124,11 @@ public class DecorationController extends BaseController {
     @RequestMapping("orderList")
     public String orderList() {
         return "decoration/orderList";
+    }
+
+    @RequestMapping("remindOrderList")
+    public String remindOrderList() {
+        return "decoration/remindOrderList";
     }
 
     @RequestMapping("ui")

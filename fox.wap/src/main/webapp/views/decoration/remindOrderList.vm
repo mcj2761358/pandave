@@ -6,9 +6,9 @@
     #parse("decoration/public/commonStyle.vm")
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
-    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/orderList.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/remindOrderList.css"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderList.js?v=1"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/remindOrderList.js"></script>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
                         <a href="#">管理中心</a>
                     </li>
                     <li>
-                        <a href="#"> 订单列表</a>
+                        <a href="#"> 待处理订单</a>
                     </li>
                 </ul>
             </div>
@@ -35,7 +35,7 @@
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i class="glyphicon glyphicon-user"></i> 订单列表</h2>
+                            <h2><i class="glyphicon glyphicon-user"></i> 待处理订单</h2>
                         </div>
 
                         <div class="box-content">
@@ -43,12 +43,16 @@
                             <!-- 搜索框 -->
                             <div class="form-horizontal">
                                 <div class="form-group col-md-12 has-success">
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="keyword"
-                                               placeholder="客户名称/手机号码/小区名称">
+                                    <div class="col-sm-3">
+
+                                        <select class="form-control" id="timeName">
+                                            <option value="today" selected="selected">今天</option>
+                                            <option value="tomorrow">明天</option>
+                                            <option value="nearly3">最近3天</option>
+                                        </select>
                                     </div>
                                     <button class="btn btn-success" onclick="queryOrderList(0);" id="searchOorderBtn">
-                                        搜索订单
+                                        查询待处理订单
                                     </button>
                                 </div>
                             </div>
@@ -57,14 +61,13 @@
                                 <thead>
                                 <tr>
                                     <th>用户名称</th>
-                                    <th>录入时间</th>
+                                    <th>服务时间</th>
                                     <th>手机号码</th>
                                     <th>小区名称</th>
                                     <th>商品名称</th>
                                     <th>商品型号</th>
                                     <th>商品数量</th>
                                     <th>订单金额</th>
-                                    <th>是否结清</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>

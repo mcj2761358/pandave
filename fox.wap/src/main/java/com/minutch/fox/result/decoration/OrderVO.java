@@ -22,6 +22,7 @@ public class OrderVO {
     private Integer goodsNum;
     private BigDecimal goodsPrice;
     private BigDecimal orderAmount;
+    private Date remindTime;
     private BigDecimal returnAmount;
     private String beFinish;
     private String remark;
