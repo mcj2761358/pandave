@@ -46,7 +46,7 @@
 
 ##    <div>
 ##        <div class="alert alert-success alert-dismissable">
-##            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+##            <button type="button" onclick="closeNotice(1000)" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 ##            <h4>
 ##                【超级喜报】：贷款，存款，信用卡，当然浦发银行找阿芳，现在拨打——400-0820330，送服务时间3个月！
 ##            </h4>

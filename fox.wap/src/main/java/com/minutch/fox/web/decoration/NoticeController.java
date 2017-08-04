@@ -20,7 +20,7 @@ import java.util.*;
 @Controller
 @RequestMapping("notice")
 @Slf4j
-public class NoticeController extends BaseController{
+public class NoticeController extends BaseController {
 
     //缓存已经读取过通知的用户
     private static Map<Long, Set<Long>> noticedStoreMap = new HashMap<>();
@@ -47,14 +47,10 @@ public class NoticeController extends BaseController{
             Long noticeId = notice.getId();
             Set<Long> storeIdList = noticedStoreMap.get(noticeId);
             if (storeIdList == null) {
-                storeIdList = new HashSet<>();
-                noticedStoreMap.put(noticeId, storeIdList);
-                storeIdList.add(storeId);
                 return Result.wrapSuccessfulResult(vo);
-            } else  {
 
+            } else {
                 if (!storeIdList.contains(storeId)) {
-                    storeIdList.add(storeId);
                     return Result.wrapSuccessfulResult(vo);
                 }
             }
@@ -70,5 +66,32 @@ public class NoticeController extends BaseController{
         notice = null;
         noticedStoreMap = new HashMap<>();
         return Result.wrapSuccessfulResult(null);
+    }
+
+
+    @RequestMapping("closeNewNotice")
+    @ResponseBody
+    public Result<?> closeNewNotice(Long noticeId) {
+
+        if (noticeId == null) {
+            return Result.wrapSuccessfulResult(null);
+        }
+
+        Long storeId = getStoreId();
+        if (storeId == null) {
+            return Result.wrapSuccessfulResult(null);
+        }
+
+        Set<Long> storeIdList = noticedStoreMap.get(noticeId);
+        if (storeIdList == null) {
+            storeIdList = new HashSet<>();
+            noticedStoreMap.put(noticeId, storeIdList);
+            storeIdList.add(storeId);
+            return Result.wrapSuccessfulResult(null);
+        } else {
+            storeIdList.add(storeId);
+            return Result.wrapSuccessfulResult(null);
+
+        }
     }
 }

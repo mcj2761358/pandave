@@ -22,7 +22,7 @@ function queryNotice() {
                         var noticeMsg =
                             '<div>' +
                             '<div class="alert alert-success alert-dismissable">' +
-                            '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
+                            '<button onclick="closeNotice('+data.id+')" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
                             '<h4>' +
                             '【'+data.noticeTypeName+'】：'+data.noticeMessage +
                             '</h4>' +
@@ -35,6 +35,20 @@ function queryNotice() {
                 } else {
 
                 }
+            }
+        }
+    });
+}
+
+
+function closeNotice(noticeId) {
+
+    $.ajax({
+        url: "/fox/notice/closeNewNotice?noticeId="+noticeId,
+        type: "GET",
+        success: function (result) {
+            if (result != null) {
+               console.log(result)
             }
         }
     });
