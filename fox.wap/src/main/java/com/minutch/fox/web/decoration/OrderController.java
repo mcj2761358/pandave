@@ -156,6 +156,20 @@ public class OrderController extends BaseController {
     }
 
 
+
+    @RequestMapping("finishById")
+    @ResponseBody
+    public Result<?> finishById(Long orderId) {
+
+        if (orderId == null) {
+            log.error("订单id不能为空！");
+            return Result.wrapErrorResult("","订单ID不能为空!");
+        }
+        orderService.finishById(orderId);
+        log.info("finish order["+orderId+"]");
+        return Result.wrapSuccessfulResult(orderId);
+    }
+
     @RequestMapping("handleRemindById")
     @ResponseBody
     public Result<?> handleRemindById(Long orderId) {

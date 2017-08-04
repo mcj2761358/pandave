@@ -9,9 +9,12 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-            <span>$session.getAttribute("storeName")</span>
+            <span>
+                $session.getAttribute("storeName")
+            </span>
             <span></span>
         </a>
+
 
         <!-- theme selector starts -->
         <div class="btn-group pull-right theme-container animated tada">
