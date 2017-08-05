@@ -297,7 +297,6 @@
         set gmt_modified = now(),
         be_finish = 'Y'
         where id = #{orderId}
-        and be_finish is null
     </update>
 
     <!-- 订单处理 -->
