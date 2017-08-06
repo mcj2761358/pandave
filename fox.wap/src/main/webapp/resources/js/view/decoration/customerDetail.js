@@ -194,10 +194,14 @@ function queryOrderList(pageIndex) {
                             var orderAmount = order.orderAmount;
                             var remark = order.remark;
                             var gmtCreate = order.gmtCreate;
+                            var remindTime = order.remindTime;
                             var beFinish = order.beFinish;
 
                             if (remark == null || remark== undefined) {
                                 remark = '';
+                            }
+                            if (remindTime ==null || remindTime == undefined) {
+                                remindTime = '';
                             }
                             if (beFinish == null || beFinish== undefined || beFinish=='N') {
                                 beFinish = '<span style="color: red">未结清</span>';
@@ -226,6 +230,8 @@ function queryOrderList(pageIndex) {
                                 '       <a class="btn btn-danger btn-sm" onclick="deleteOrder('+orderId+')">' +
                                 '           <i class="glyphicon glyphicon-trash icon-white"></i>删除' +
                                 '       </a>' +
+                                '<input class="remindTime"  value="'+remindTime+'" hidden type="text"/>' +
+                                ''+
                                 '   </td>' +
                                 '</tr>';
 
@@ -295,6 +301,7 @@ function editOrder(orderId) {
     var goodsModel = $(classOrder +' .goodsModel').html();
     var goodsNum = $(classOrder +' .goodsNum').html();
     var goodsPrice = $(classOrder +' .goodsPrice').html();
+    var remindTime = $(classOrder +' .remindTime').val();
     var orderAmount = $(classOrder +' .orderAmount').html();
     var remark = $(classOrder +' .remark').html();
 
@@ -303,6 +310,7 @@ function editOrder(orderId) {
     $('#goodsModel').val(goodsModel);
     $('#goodsNum').val(goodsNum);
     $('#goodsPrice').val(goodsPrice);
+    $('#remindTime').val(remindTime);
     $('#orderAmount').val(orderAmount);
     $('#remark').val(remark);
     $('#orderModal').modal(true);
