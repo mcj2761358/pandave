@@ -125,6 +125,7 @@ function clearOrderModal() {
     $('#goodsName').val('');
     $('#goodsNum').val('');
     $('#goodsPrice').val('');
+    $('#inGoodsPrice').val('');
     $('#goodsModel').val('');
     $('#orderAmount').val('');
     $('#remark').val('');
@@ -305,6 +306,10 @@ function editOrder(orderId) {
     var remindTime = $(classOrder +' .remindTime').val();
     var orderAmount = $(classOrder +' .orderAmount').html();
     var remark = $(classOrder +' .remark').html();
+
+    if (inGoodsPrice == null ) {
+        inGoodsPrice = '';
+    }
 
     $('#editOrderId').val(orderId);
     $('#goodsName').val(goodsName);
