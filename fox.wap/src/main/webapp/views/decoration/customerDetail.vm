@@ -35,6 +35,7 @@
 
 
             <div class="row">
+
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
@@ -58,11 +59,51 @@
                     </div>
                 </div>
 
+
+                <!-- 开单 -->
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i></i> 我要开单</h2>
+                        </div>
+                        <div class="box-content">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>商品型号</th>
+                                    <th>商品数量</th>
+                                    <th>商品单价</th>
+                                    <th>订单总价</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody class="orderCreateDiv">
+                                <tr class="">
+                                    <td><input id="cGoodsName"/></td>
+                                    <td><input id="cGoodsModel"/></td>
+                                    <td><input id="cGoodsNum"/></td>
+                                    <td><input id="cGoodsPrice"/></td>
+                                    <td><input id="cOrderAmount"/></td>
+                                    <td class="center">
+                                        <a class="btn btn-info btn-sm" onclick="simpleCreateOrder()">
+                                            <i class="glyphicon glyphicon-edit icon-white"></i>快速开单
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
                 <!-- 订单信息 -->
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i></i> 订单信息</h2>
+                            <h2><i></i> 所有订单</h2>
 
                             <h2 class="modal-title float-right">
                                 <a class="btn btn-primary btn-sm" onclick="createOrder()">
@@ -109,11 +150,15 @@
                                 <ul class="pagination self-page"></ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
+
 
     #parse("decoration/public/footer.vm")
 </div>
@@ -189,9 +234,11 @@
 
                             <div class="col-sm-8">
 
-                                <div class="input-group date remindTime"   data-date-format="yyyy-mm-dd" data-link-field="dp">
+                                <div class="input-group date remindTime" data-date-format="yyyy-mm-dd"
+                                     data-link-field="dp">
                                     <input class="form-control" id="remindTime" size="16" type="text" value="" readonly>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                 </div>
 
@@ -215,7 +262,7 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.4"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.5"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 </body>

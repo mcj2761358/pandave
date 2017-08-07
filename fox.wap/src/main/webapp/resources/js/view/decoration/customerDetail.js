@@ -97,6 +97,84 @@ function saveOrder() {
     });
 }
 
+
+
+
+function simpleCreateOrder() {
+
+    var cusId = $('#cusId').val();
+
+    var goodsName = $('#cGoodsName').val();
+    var goodsModel = $('#cGoodsModel').val();
+    var goodsNum = $('#cGoodsNum').val();
+    var goodsPrice = $('#cGoodsPrice').val();
+    var orderAmount = $('#cOrderAmount').val();
+
+    //数据检查
+    if (goodsName == null || goodsName == '') {
+        showAlertModel('请填写商品名称');
+        return false;
+    }
+    if (isNaN(goodsNum) || goodsNum == '') {
+        showAlertModel('商品数量必须为数字.');
+        return false;
+    }
+    if (goodsNum.indexOf(".") > -1) {
+        showAlertModel('商品数量必须为整数.');
+        return false;
+    }
+
+    if (isNaN(goodsPrice) || goodsPrice == '') {
+        showAlertModel('商品单价必须为数字.');
+        return false;
+    }
+    if (isNaN(orderAmount) || orderAmount == '') {
+        showAlertModel('订单金额必须为数字.');
+        return false;
+    }
+
+    var param = {};
+    param.cusId = cusId;
+    param.goodsName = goodsName;
+    param.goodsModel = goodsModel;
+    param.goodsNum = goodsNum;
+    param.goodsPrice = goodsPrice;
+    param.orderAmount = orderAmount;
+
+    var contextPath = $('#rcContextPath').val();
+
+    $.ajax({
+        url: contextPath + "/decoration/order/save",
+        datatype: 'json',
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(param),
+
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    clearSimpleOrderModal();
+                    queryOrderList(0);
+                } else {
+                    alert(result.errorMsg);
+                }
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
 //删除信息按按钮事件
 function deleteOrder(orderId) {
     showChooseModel("确认要删除该订单吗?", handleDeleteOrder, orderId);
@@ -119,6 +197,16 @@ function handleDeleteOrder(orderId) {
             }
         }
     });
+}
+
+
+function clearSimpleOrderModal() {
+    $('#cGoodsName').val('');
+    $('#cGoodsModel').val('');
+    $('#cGoodsNum').val('');
+    $('#inGoodsPrice').val('');
+    $('#cGoodsPrice').val('');
+    $('#cOrderAmount').val('');
 }
 
 function clearOrderModal() {
