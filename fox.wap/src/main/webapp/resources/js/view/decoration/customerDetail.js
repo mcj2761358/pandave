@@ -210,6 +210,11 @@ function queryOrderList(pageIndex) {
                                 beFinish = '<span style="color: #32CD32">已结清</span>';
                             }
 
+                            if (inGoodsPrice == null | inGoodsPrice == undefined) {
+                                inGoodsPrice = '';
+                            }
+
+
                             var orderDataHtml =
                                 ' <tr class="D_'+orderId+'">' +
                                 '   <td class="goodsName">'+goodsName+'</td>' +
@@ -307,9 +312,6 @@ function editOrder(orderId) {
     var orderAmount = $(classOrder +' .orderAmount').html();
     var remark = $(classOrder +' .remark').html();
 
-    if (inGoodsPrice == null ) {
-        inGoodsPrice = '';
-    }
 
     $('#editOrderId').val(orderId);
     $('#goodsName').val(goodsName);
