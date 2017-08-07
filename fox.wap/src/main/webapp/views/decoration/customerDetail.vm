@@ -162,6 +162,13 @@
                             <label class="red control-label">*</label>
                         </div>
                         <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">商品进价</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inGoodsPrice">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 has-success">
                             <label class="col-sm-3 control-label">商品单价</label>
 
                             <div class="col-sm-8">
@@ -182,7 +189,7 @@
 
                             <div class="col-sm-8">
 
-                                <div class="input-group date remindTime"   data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="remindTime">
+                                <div class="input-group date remindTime"   data-date-format="yyyy-mm-dd" data-link-field="dp">
                                     <input class="form-control" id="remindTime" size="16" type="text" value="" readonly>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -208,7 +215,7 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.2"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.3"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 </body>

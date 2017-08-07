@@ -21,6 +21,7 @@ public class OrderParam {
     private String goodsModel;
     private Integer goodsNum;
     private BigDecimal goodsPrice;
+    private BigDecimal inGoodsPrice;
     private BigDecimal orderAmount;
     private BigDecimal returnAmount;
     private Date remindTime;

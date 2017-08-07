@@ -14,6 +14,7 @@
         <result column = "goods_model" property = "goodsModel" />
         <result column = "goods_num" property = "goodsNum" />
         <result column = "goods_price" property = "goodsPrice" />
+        <result column = "in_goods_price" property = "inGoodsPrice" />
         <result column = "order_amount" property = "orderAmount" />
         <result column = "return_amount" property = "returnAmount" />
         <result column = "remind_time" property = "remindTime" />
@@ -52,6 +53,9 @@
                 </if>
                 <if test = "goodsPrice != null">
                     and goods_price = #{goodsPrice}
+                </if>
+                <if test = "inGoodsPrice != null">
+                    and in_goods_price = #{inGoodsPrice}
                 </if>
                 <if test = "orderAmount != null">
                     and order_amount = #{orderAmount}
@@ -104,6 +108,9 @@
             </if>
             <if test = "goodsPrice != null">
                 goods_price = #{goodsPrice},
+            </if>
+            <if test = "inGoodsPrice != null">
+                in_goods_price = #{inGoodsPrice},
             </if>
             <if test = "orderAmount != null">
                 order_amount = #{orderAmount},
@@ -190,6 +197,7 @@
         goods_model,
         goods_num,
         goods_price,
+        in_goods_price,
         order_amount,
         return_amount,
         remind_time,
@@ -208,6 +216,7 @@
         #{goodsModel},
         #{goodsNum},
         #{goodsPrice},
+        #{inGoodsPrice},
         #{orderAmount},
         #{returnAmount},
         #{remindTime},

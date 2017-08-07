@@ -69,7 +69,7 @@ function queryOrderList(pageIndex) {
                             var goodsNum = order.goodsNum;
                             var orderAmount = order.orderAmount;
                             var returnAmount = order.returnAmount;
-                            var remindTime = order.remindTime;
+                            var remindTime = order.remindTimePos;
                             var beFinish = order.beFinish;
 
                             if (beFinish == null || beFinish== undefined || beFinish=='N') {

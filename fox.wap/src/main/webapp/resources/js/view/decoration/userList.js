@@ -63,7 +63,7 @@ function queryUserList(pageIndex) {
                             var mobilePhone = customer.mobilePhone;
                             var houseName = customer.houseName;
                             var address = customer.address;
-                            var gmtCreate = customer.gmtCreate;
+                            var gmtCreate = customer.gmtCreatePos;
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
                             var cusDataHtml =

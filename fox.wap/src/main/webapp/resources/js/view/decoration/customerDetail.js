@@ -16,13 +16,8 @@ $(function () {
     //绑定日期控件
     $('.remindTime').datetimepicker({
         language:  'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        showMeridian: 1
+        minView: "month",
+        autoclose: 1
     });
 
     queryOrderList(0);
@@ -37,6 +32,7 @@ function saveOrder() {
     var goodsModel = $('#goodsModel').val();
     var goodsNum = $('#goodsNum').val();
     var goodsPrice = $('#goodsPrice').val();
+    var inGoodsPrice = $('#inGoodsPrice').val();
     var orderAmount = $('#orderAmount').val();
     var remindTime = $('#remindTime').val();
     var remark = $('#remark').val();
@@ -72,6 +68,7 @@ function saveOrder() {
     param.goodsModel = goodsModel;
     param.goodsNum = goodsNum;
     param.goodsPrice = goodsPrice;
+    param.inGoodsPrice = inGoodsPrice;
     param.orderAmount = orderAmount;
     param.remindTime = remindTime;
     param.remark = remark;
@@ -128,6 +125,7 @@ function clearOrderModal() {
     $('#goodsName').val('');
     $('#goodsNum').val('');
     $('#goodsPrice').val('');
+    $('#goodsModel').val('');
     $('#orderAmount').val('');
     $('#remark').val('');
 }
@@ -191,10 +189,11 @@ function queryOrderList(pageIndex) {
                             var goodsModel = order.goodsModel;
                             var goodsNum = order.goodsNum;
                             var goodsPrice = order.goodsPrice;
+                            var inGoodsPrice = order.inGoodsPrice;
                             var orderAmount = order.orderAmount;
                             var remark = order.remark;
-                            var gmtCreate = order.gmtCreate;
-                            var remindTime = order.remindTime;
+                            var gmtCreate = order.gmtCreatePos;
+                            var remindTime = order.remindTimePos;
                             var beFinish = order.beFinish;
 
                             if (remark == null || remark== undefined) {
@@ -231,6 +230,7 @@ function queryOrderList(pageIndex) {
                                 '           <i class="glyphicon glyphicon-trash icon-white"></i>删除' +
                                 '       </a>' +
                                 '<input class="remindTime"  value="'+remindTime+'" hidden type="text"/>' +
+                                '<input class="inGoodsPrice"  value="'+inGoodsPrice+'" hidden type="text"/>' +
                                 ''+
                                 '   </td>' +
                                 '</tr>';
@@ -301,6 +301,7 @@ function editOrder(orderId) {
     var goodsModel = $(classOrder +' .goodsModel').html();
     var goodsNum = $(classOrder +' .goodsNum').html();
     var goodsPrice = $(classOrder +' .goodsPrice').html();
+    var inGoodsPrice = $(classOrder +' .inGoodsPrice').val();
     var remindTime = $(classOrder +' .remindTime').val();
     var orderAmount = $(classOrder +' .orderAmount').html();
     var remark = $(classOrder +' .remark').html();
@@ -310,6 +311,7 @@ function editOrder(orderId) {
     $('#goodsModel').val(goodsModel);
     $('#goodsNum').val(goodsNum);
     $('#goodsPrice').val(goodsPrice);
+    $('#inGoodsPrice').val(inGoodsPrice);
     $('#remindTime').val(remindTime);
     $('#orderAmount').val(orderAmount);
     $('#remark').val(remark);

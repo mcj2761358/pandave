@@ -22,7 +22,7 @@ public class CustomerVO {
     public void setGmtCreate(Date gmtCreate) {
         if (gmtCreate != null) {
             this.gmtCreate = gmtCreate;
-            this.gmtCreatePos = DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D_HMS);
+            this.gmtCreatePos = DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D);
         }
     }
 }

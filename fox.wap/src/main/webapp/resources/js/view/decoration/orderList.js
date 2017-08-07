@@ -75,7 +75,7 @@ function queryOrderList(pageIndex) {
                             var orderId = order.id;
                             var cusId = order.cusId;
                             var cusName = order.cusName;
-                            var gmtCreate = order.gmtCreate;
+                            var gmtCreate = order.gmtCreatePos;
                             var mobilePhone = order.mobilePhone;
                             var houseName = order.houseName;
                             var goodsName = order.goodsName;
