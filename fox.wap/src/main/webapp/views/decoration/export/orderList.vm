@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+    <style>
+        td {
+            border: 1px solid
+        }
+    </style>
+</head>
+<body>
+<table style="border: solid 1px black;">
+    <tr>
+        <td>商品名称</td>
+        <td>商品型号</td>
+        <td>数量</td>
+        <td>商品单价(单位：元)</td>
+        <td>总价(单位：元)</td>
+        <td>备注</td>
+    </tr>
+
+
+    #foreach ($order in $orderList)
+        <tr>
+            <td>$!order.goodsName</td>
+            <td>$!order.goodsModel</td>
+            <td>$!order.goodsNum</td>
+            <td>$!order.goodsPrice</td>
+            <td>$!order.orderAmount</td>
+            <td>$!order.remark</td>
+        </tr>
+    #end
+
+
+    #set($leftAmount=($!customer.totalAmount)-($!customer.preAmount))
+    <tr>
+        <td colspan="2">总金额：$!customer.totalAmount 元</td>
+        <td colspan="2">定金：$!customer.preAmount 元</td>
+        <td colspan="2">剩余款项：$!leftAmount 元</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -15,7 +15,7 @@ $(function () {
 
     //绑定日期控件
     $('.remindTime').datetimepicker({
-        language:  'zh-CN',
+        language: 'zh-CN',
         minView: "month",
         autoclose: 1
     });
@@ -98,8 +98,6 @@ function saveOrder() {
 }
 
 
-
-
 function simpleCreateOrder() {
 
     var cusId = $('#cusId').val();
@@ -157,7 +155,7 @@ function simpleCreateOrder() {
                     clearSimpleOrderModal();
                     queryOrderList(0);
                 } else {
-                    alert(result.errorMsg);
+                    showAlertModel(result.errorMsg);
                 }
             }
         }
@@ -165,8 +163,10 @@ function simpleCreateOrder() {
 }
 
 
-
-
+/**
+ * 自动计算订单金额
+ * @returns {boolean}
+ */
 function exeOrderAmount() {
     var goodsNum = $('#cGoodsNum').val();
     var goodsPrice = $('#cGoodsPrice').val();
@@ -187,15 +187,73 @@ function exeOrderAmount() {
     }
 
     //if (isNaN(orderAmount) || orderAmount == '') {
-        $('#cOrderAmount').val(goodsNum * goodsPrice)
+    $('#cOrderAmount').val(goodsNum * goodsPrice)
     //}
 
 }
 
 
+/**
+ * 计算总金额
+ */
+function exeTotalAmount() {
+    var cusId = $('#cusId').val();
+    var totalAmount = $('#totalAmount').val();
+    var preAmount = $('#preAmount').val();
+
+    if (isNaN(totalAmount) || totalAmount == '') {
+        preAmount = 0;
+    }
+
+    if (isNaN(preAmount) || preAmount == '') {
+        preAmount = 0;
+    }
+
+    $('#leftAmount').html(totalAmount - preAmount);
+}
 
 
+function saveTotalAmount() {
+    var cusId = $('#cusId').val();
+    var totalAmount = $('#totalAmount').val();
+    var preAmount = $('#preAmount').val();
 
+
+    if (isNaN(totalAmount) || totalAmount == '') {
+        showAlertModel('总金额必须为数字.');
+        return false;
+    }
+    if (isNaN(preAmount) || preAmount == '') {
+        showAlertModel('定金必须为数字.');
+        return false;
+    }
+
+    var param = {};
+    param.cusId = cusId;
+    param.totalAmount = totalAmount;
+    param.preAmount = preAmount;
+    var contextPath = $('#rcContextPath').val();
+
+    $.ajax({
+        url: contextPath + "/decoration/order/saveOrderTotalAmount",
+        datatype: 'json',
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(param),
+
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    $('#saveTotalAmountBtn').popover('show');
+                } else {
+                    showAlertModel(result.errorMsg);
+                }
+            }
+        }
+    });
+
+}
 
 
 //删除信息按按钮事件
@@ -213,7 +271,7 @@ function handleDeleteOrder(orderId) {
             if (result != null) {
                 //请求数据成功
                 if (result.success) {
-                    $('.D_'+ orderId).remove();
+                    $('.D_' + orderId).remove();
                 } else {
                     alert(result.errorMsg);
                 }
@@ -243,27 +301,24 @@ function clearOrderModal() {
 }
 
 
-
 function createPage(pageSize, total) {
 
     $('.pagination').pagination({
         items: total,
         itemsOnPage: pageSize,
         displayedPages: 2,
-        edges:1,
+        edges: 1,
         cssStyle: 'light-theme',
         prevText: '上一页',
         nextText: '下一页',
-        onPageClick: function(pageNumber,event) {
-            queryOrderList(pageNumber-1)
+        onPageClick: function (pageNumber, event) {
+            queryOrderList(pageNumber - 1)
         }
     });
 }
 
 
-
-
-var pageSize = 10;
+var pageSize = 100;
 function queryOrderList(pageIndex) {
 
     var contextPath = $('#rcContextPath').val();
@@ -275,7 +330,7 @@ function queryOrderList(pageIndex) {
     param.cusId = $('#cusId').val();
 
     $.ajax({
-        url: contextPath +"/decoration/order/queryList",
+        url: contextPath + "/decoration/order/queryList",
         datatype: 'json',
         type: "POST",
         contentType: 'application/json',
@@ -308,13 +363,13 @@ function queryOrderList(pageIndex) {
                             var remindTime = order.remindTimePos;
                             var beFinish = order.beFinish;
 
-                            if (remark == null || remark== undefined) {
+                            if (remark == null || remark == undefined) {
                                 remark = '';
                             }
-                            if (remindTime ==null || remindTime == undefined) {
+                            if (remindTime == null || remindTime == undefined) {
                                 remindTime = '';
                             }
-                            if (beFinish == null || beFinish== undefined || beFinish=='N') {
+                            if (beFinish == null || beFinish == undefined || beFinish == 'N') {
                                 beFinish = '<span style="color: red">未结清</span>';
                             }
                             if (beFinish == 'Y') {
@@ -327,28 +382,28 @@ function queryOrderList(pageIndex) {
 
 
                             var orderDataHtml =
-                                ' <tr class="D_'+orderId+'">' +
-                                '   <td class="goodsName">'+goodsName+'</td>' +
-                                '   <td class="goodsModel">'+goodsModel+'</td>' +
-                                '   <td class="center goodsNum">'+goodsNum+'</td>' +
-                                '   <td class="center goodsPrice">'+goodsPrice+'</td>' +
-                                '   <td class="center orderAmount">'+orderAmount+'</td>' +
-                                '   <td class="center gmtCreate">'+gmtCreate+'</td>' +
-                                '   <td class="center remark">'+remark+'</td>' +
-                                '   <td class="center beFinish">'+beFinish+'</td>' +
+                                ' <tr class="D_' + orderId + '">' +
+                                '   <td class="goodsName"><input value="' + orderId + '" type="checkbox" name="order" /> ' + goodsName + '</td>' +
+                                '   <td class="goodsModel">' + goodsModel + '</td>' +
+                                '   <td class="center goodsNum">' + goodsNum + '</td>' +
+                                '   <td class="center goodsPrice">' + goodsPrice + '</td>' +
+                                '   <td class="center orderAmount">' + orderAmount + '</td>' +
+                                '   <td class="center gmtCreate">' + gmtCreate + '</td>' +
+                                '   <td class="center remark">' + remark + '</td>' +
+                                '   <td class="center beFinish">' + beFinish + '</td>' +
                                 '   <td class="center">' +
-                                '       <a class="btn btn-info btn-sm" onclick="editOrder('+orderId+')">' +
+                                '       <a class="btn btn-info btn-sm" onclick="editOrder(' + orderId + ')">' +
                                 '           <i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
                                 '       </a>' +
-                                '       <a class="btn btn-primary btn-sm" onclick="finishOrder('+orderId+')">' +
+                                '       <a class="btn btn-primary btn-sm" onclick="finishOrder(' + orderId + ')">' +
                                 '           <i class="glyphicon glyphicon-wrench icon-white"></i>还款' +
                                 '       </a>' +
-                                '       <a class="btn btn-danger btn-sm" onclick="deleteOrder('+orderId+')">' +
+                                '       <a class="btn btn-danger btn-sm" onclick="deleteOrder(' + orderId + ')">' +
                                 '           <i class="glyphicon glyphicon-trash icon-white"></i>删除' +
                                 '       </a>' +
-                                '<input class="remindTime"  value="'+remindTime+'" hidden type="text"/>' +
-                                '<input class="inGoodsPrice"  value="'+inGoodsPrice+'" hidden type="text"/>' +
-                                ''+
+                                '<input class="remindTime"  value="' + remindTime + '" hidden type="text"/>' +
+                                '<input class="inGoodsPrice"  value="' + inGoodsPrice + '" hidden type="text"/>' +
+                                '' +
                                 '   </td>' +
                                 '</tr>';
 
@@ -367,8 +422,6 @@ function queryOrderList(pageIndex) {
 }
 
 
-
-
 //新建订单
 function createOrder() {
     clearOrderModal();
@@ -380,8 +433,8 @@ function createOrder() {
 function finishOrder(orderId) {
 
     var classOrder = '.D_' + orderId;
-    var beFinish =  $(classOrder +' .beFinish').html();
-    if (beFinish == '已结清'){
+    var beFinish = $(classOrder + ' .beFinish').html();
+    if (beFinish == '已结清') {
         showAlertModel('该订单已经结清.');
         return;
     }
@@ -401,7 +454,7 @@ function handleFinishOrder(orderId) {
                 //请求数据成功
                 if (result.success) {
                     var classOrder = '.D_' + orderId;
-                    $(classOrder +' .beFinish').html('已结清');
+                    $(classOrder + ' .beFinish').html('已结清');
                 } else {
                     alert(result.errorMsg);
                 }
@@ -414,14 +467,14 @@ function handleFinishOrder(orderId) {
 //编辑订单
 function editOrder(orderId) {
     var classOrder = '.D_' + orderId;
-    var goodsName = $(classOrder +' .goodsName').html();
-    var goodsModel = $(classOrder +' .goodsModel').html();
-    var goodsNum = $(classOrder +' .goodsNum').html();
-    var goodsPrice = $(classOrder +' .goodsPrice').html();
-    var inGoodsPrice = $(classOrder +' .inGoodsPrice').val();
-    var remindTime = $(classOrder +' .remindTime').val();
-    var orderAmount = $(classOrder +' .orderAmount').html();
-    var remark = $(classOrder +' .remark').html();
+    var goodsName = $(classOrder + ' .goodsName').html();
+    var goodsModel = $(classOrder + ' .goodsModel').html();
+    var goodsNum = $(classOrder + ' .goodsNum').html();
+    var goodsPrice = $(classOrder + ' .goodsPrice').html();
+    var inGoodsPrice = $(classOrder + ' .inGoodsPrice').val();
+    var remindTime = $(classOrder + ' .remindTime').val();
+    var orderAmount = $(classOrder + ' .orderAmount').html();
+    var remark = $(classOrder + ' .remark').html();
 
 
     $('#editOrderId').val(orderId);
@@ -436,4 +489,34 @@ function editOrder(orderId) {
     $('#orderModal').modal(true);
 
 }
+
+
+//导出订单
+function exportOrder() {
+
+    //获取所有选中的checkbox
+    var chkValue = [];
+    $('input[name="order"]:checked').each(function () {
+
+        var val = $(this).val();
+        chkValue.push(val);
+    });
+
+    if (chkValue.length == 0) {
+        showAlertModel('请勾选要打印的订单.');
+        return;
+    }
+
+    var cusId = $('#cusId').val();
+    var contextPath = $('#rcContextPath').val();
+    window.location.href = contextPath+'/export/orderList?cusId='+cusId + '&orderIds='+chkValue;
+}
+
+
+
+
+
+
+
+
 

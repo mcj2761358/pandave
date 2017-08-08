@@ -10,6 +10,8 @@
         <result column = "house_name" property = "houseName" />
         <result column = "address" property = "address" />
         <result column = "store_id" property = "storeId" />
+        <result column = "total_amount" property = "totalAmount" />
+        <result column = "pre_amount" property = "preAmount" />
         <result column = "remark" property = "remark" />
     </resultMap>
 
@@ -31,6 +33,12 @@
                 </if>
                 <if test = "storeId != null">
                     and store_id = #{storeId}
+                </if>
+                <if test = "totalAmount != null">
+                    and total_amount = #{totalAmount}
+                </if>
+                <if test = "preAmount != null">
+                    and pre_amount = #{preAmount}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
@@ -56,6 +64,12 @@
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
+            </if>
+            <if test = "totalAmount != null">
+                total_amount = #{totalAmount},
+            </if>
+            <if test = "preAmount != null">
+                pre_amount = #{preAmount},
             </if>
             <if test = "remark != null">
                 remark = #{remark}
@@ -123,6 +137,8 @@
         house_name,
         address,
         store_id,
+        total_amount,
+        pre_amount,
         remark
         )
         values (
@@ -132,6 +148,8 @@
         #{houseName},
         #{address},
         #{storeId},
+        #{totalAmount},
+        #{preAmount},
         #{remark}
         )
     </insert>
@@ -187,4 +205,13 @@
         and mobile_phone = #{mobilePhone}
         limit 1;
     </select>
+
+    <update id="saveTotalAmount">
+        update decoration_customer
+        set gmt_modified = now(),
+        total_amount = #{param.totalAmount},
+        pre_amount = #{param.preAmount}
+        where store_id = #{param.storeId}
+        and id =#{param.cusId}
+    </update>
 </mapper>

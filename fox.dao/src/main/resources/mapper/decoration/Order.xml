@@ -316,4 +316,17 @@
         where id = #{orderId}
         and remind_status = 0
     </update>
+
+
+    <!-- 根据ids查询 -->
+    <select id = "queryByIds" resultMap = "BaseResultMap">
+        select *
+        from decoration_order
+        where is_deleted = 'N'
+        and id in (
+        <foreach collection = "idList" index = "index" item = "id" separator = ",">
+            #{id}
+        </foreach>
+        )
+    </select>
 </mapper>

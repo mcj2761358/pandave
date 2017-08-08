@@ -6,7 +6,7 @@ import com.minutch.fox.entity.decoration.Customer;
 import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
-import com.minutch.fox.param.decoration.CustomerParam;
+import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderParam;
 import com.minutch.fox.param.decoration.OrderQueryParam;
 import com.minutch.fox.result.PageResultVO;
@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -194,4 +193,17 @@ public class OrderController extends BaseController {
     }
 
 
+    @RequestMapping("saveOrderTotalAmount")
+    @ResponseBody
+    public Result<?> saveOrderTotalAmount(@RequestBody CustomerTotalAmountParam param) {
+
+        if (param.getCusId() == null) {
+            log.error("cusId 不能为空");
+            return Result.wrapSuccessfulResult("未知的客户,请刷新页面后重试.");
+        }
+
+        param.setStoreId(getStoreId());
+        customerService.saveTotalAmount(param);
+        return Result.wrapSuccessfulResult(null);
+    }
 }

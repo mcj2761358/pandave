@@ -110,6 +110,13 @@
                                     <i class="glyphicon glyphicon-edit icon-white"></i>创建订单
                                 </a>
                             </h2>
+
+                            <h2 class="modal-title float-right">
+                                <a class="btn btn-success btn-sm" id="exportBtn" onclick="exportOrder()">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>导出订单打印
+                                </a>
+                            </h2>
+
                         </div>
                         <div class="box-content">
                             <table class="table table-striped table-bordered">
@@ -146,10 +153,33 @@
                                 </tbody>
                             </table>
 
-                            <div align="center">
-                                <ul class="pagination self-page"></ul>
+
+                            <!-- 个人所有订单不分页 -->
+##                            <div align="center">
+##                                <ul class="pagination self-page"></ul>
+##                            </div>
+
+                            #set($leftAmount=($customer.totalAmount)-($customer.preAmount))
+
+
+                            <div align="right" class="box-footer">
+                                    总金额:<input style="width:60px;" value="$customer.totalAmount" onblur="exeTotalAmount()" id="totalAmount"/>元<span style="margin-right: 15px;"></span>
+                                    定金:<input style="width:60px;" value="$customer.preAmount" onblur="exeTotalAmount()" id="preAmount"/>元<span style="margin-right: 15px;"></span>
+                                    剩余款项:<span style="color: red"><u id="leftAmount">$leftAmount</u></span>元
+                                    <a class="btn btn-success btn-sm"
+                                       role="button"
+                                       data-content="保存金额信息成功"
+                                       data-placement="top"
+                                       id="saveTotalAmountBtn"
+                                       data-toggle="popover"
+                                       data-trigger="focus"
+                                       onclick="saveTotalAmount()">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>保存金额
+                                    </a>
                             </div>
+
                         </div>
+
 
                     </div>
                 </div>
@@ -262,7 +292,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.6"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.9"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 </body>

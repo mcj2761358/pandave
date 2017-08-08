@@ -4,6 +4,7 @@ import com.minutch.fox.dao.base.BaseDao;
 import com.minutch.fox.dao.base.MyBatisRepository;
 import com.minutch.fox.entity.decoration.Customer;
 import com.minutch.fox.param.decoration.CustomerQueryParam;
+import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface CustomerDao extends BaseDao<Customer> {
     int queryCustomerCount(@Param("param") CustomerQueryParam param);
 
     Customer queryByMobilePhone(@Param("mobilePhone")String mobilePhone);
+
+    int saveTotalAmount(@Param("param")CustomerTotalAmountParam param);
 }

@@ -3,6 +3,7 @@ package com.minutch.fox.result.decoration;
 import com.minutch.fox.utils.DateUtils;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,6 +18,9 @@ public class CustomerVO {
     private String mobilePhone;
     private String houseName;
     private String address;
+    private Long storeId;
+    private BigDecimal totalAmount;
+    private BigDecimal preAmount;
     private String remark;
 
     public void setGmtCreate(Date gmtCreate) {

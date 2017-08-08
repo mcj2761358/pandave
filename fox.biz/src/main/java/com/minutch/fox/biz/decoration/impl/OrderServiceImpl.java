@@ -60,4 +60,9 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     public int handleRemindById(Long orderId) {
         return orderDao.handleRemindById(orderId);
     }
+
+    @Override
+    public List<Order> queryByIds(List<Long> idList) {
+        return orderDao.queryByIds(idList);
+    }
 }

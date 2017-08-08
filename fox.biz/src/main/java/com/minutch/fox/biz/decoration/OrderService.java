@@ -23,4 +23,6 @@ public interface OrderService {
     int finishById(Long orderId);
 
     int handleRemindById(Long orderId);
+
+    List<Order> queryByIds(List<Long> idList);
 }
