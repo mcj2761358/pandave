@@ -167,7 +167,30 @@ function simpleCreateOrder() {
 
 
 
+function exeOrderAmount() {
+    var goodsNum = $('#cGoodsNum').val();
+    var goodsPrice = $('#cGoodsPrice').val();
+    var orderAmount = $('#cOrderAmount').val();
 
+    if (isNaN(goodsNum) || goodsNum == '') {
+        //showAlertModel('商品数量必须为数字.');
+        return false;
+    }
+    if (goodsNum.indexOf(".") > -1) {
+        //showAlertModel('商品数量必须为整数.');
+        return false;
+    }
+
+    if (isNaN(goodsPrice) || goodsPrice == '') {
+        //showAlertModel('商品单价必须为数字.');
+        return false;
+    }
+
+    //if (isNaN(orderAmount) || orderAmount == '') {
+        $('#cOrderAmount').val(goodsNum * goodsPrice)
+    //}
+
+}
 
 
 
