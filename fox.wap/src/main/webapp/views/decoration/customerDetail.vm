@@ -113,7 +113,7 @@
 
                             <h2 class="modal-title float-right">
                                 <a class="btn btn-success btn-sm" id="exportBtn" onclick="exportOrder()">
-                                    <i class="glyphicon glyphicon-edit icon-white"></i>导出订单打印
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>导出订单并打印
                                 </a>
                             </h2>
 
