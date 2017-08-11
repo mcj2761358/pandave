@@ -385,7 +385,7 @@ function queryOrderList(pageIndex) {
 
                             var orderDataHtml =
                                 ' <tr class="D_' + orderId + '">' +
-                                '   <td class="goodsName"><input value="' + orderId + '" type="checkbox" name="order" /> ' + goodsName + '</td>' +
+                                '   <td class="goodsName" value="'+goodsName+'"><input value="' + orderId + '" type="checkbox" name="order" /> ' + goodsName + '</td>' +
                                 '   <td class="goodsModel">' + goodsModel + '</td>' +
                                 '   <td class="center goodsNum">' + goodsNum + '</td>' +
                                 '   <td class="center goodsPrice">' + goodsPrice + '</td>' +
@@ -469,7 +469,7 @@ function handleFinishOrder(orderId) {
 //编辑订单
 function editOrder(orderId) {
     var classOrder = '.D_' + orderId;
-    var goodsName = $(classOrder + ' .goodsName').html();
+    var goodsName = $(classOrder + ' .goodsName').attr('value');
     var goodsModel = $(classOrder + ' .goodsModel').html();
     var goodsNum = $(classOrder + ' .goodsNum').html();
     var goodsPrice = $(classOrder + ' .goodsPrice').html();
