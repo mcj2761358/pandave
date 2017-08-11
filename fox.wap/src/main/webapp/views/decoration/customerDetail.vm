@@ -169,7 +169,7 @@
                                     <a class="btn btn-success btn-sm"
                                        role="button"
                                        data-content="保存金额信息成功"
-                                       data-placement="top"
+                                       data-placement="bottom"
                                        id="saveTotalAmountBtn"
                                        data-toggle="popover"
                                        data-trigger="focus"
@@ -292,7 +292,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=2.9"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=3.0"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 </body>

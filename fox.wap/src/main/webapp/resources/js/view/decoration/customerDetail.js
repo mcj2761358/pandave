@@ -210,6 +210,8 @@ function exeTotalAmount() {
     }
 
     $('#leftAmount').html(totalAmount - preAmount);
+
+    saveTotalAmount();
 }
 
 
