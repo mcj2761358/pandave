@@ -204,6 +204,31 @@ function exeOrderAmount() {
 }
 
 
+function exeFoxOrderAmount() {
+    var goodsNum = $('#goodsNum').val();
+    var goodsPrice = $('#goodsPrice').val();
+    var orderAmount = $('#orderAmount').val();
+
+    if (isNaN(goodsNum) || goodsNum == '') {
+        //showAlertModel('商品数量必须为数字.');
+        return false;
+    }
+    if (goodsNum.indexOf(".") > -1) {
+        //showAlertModel('商品数量必须为整数.');
+        return false;
+    }
+
+    if (isNaN(goodsPrice) || goodsPrice == '') {
+        //showAlertModel('商品单价必须为数字.');
+        return false;
+    }
+
+    //if (isNaN(orderAmount) || orderAmount == '') {
+    $('#orderAmount').val(goodsNum * goodsPrice)
+    //}
+}
+
+
 /**
  * 计算总金额
  */

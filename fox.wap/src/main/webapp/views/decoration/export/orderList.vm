@@ -19,16 +19,13 @@
         <td colspan="6"><span style="font:20px;">$!store.storeName</span></td>
     </tr>
     <tr>
-        <td colspan="3">客户名称：$!customer.cusName 元</td>
-        <td colspan="3">联系电话：$!customer.mobilePhone 元</td>
+        <td colspan="3">客户名称：$!customer.cusName</td>
+        <td colspan="3">联系电话：$!customer.mobilePhone</td>
     </tr>
     <tr>
-        <td colspan="6">送货地址：$!customer.houseName $!customer.address 元</td>
+        <td colspan="6">送货地址：$!customer.houseName $!customer.address</td>
     </tr>
 
-    <tr>
-        <td colspan="6"><hr/></td>
-    </tr>
     <tr>
         <td>商品名称</td>
         <td>商品型号</td>
@@ -51,9 +48,6 @@
         </tr>
     #end
 
-    <tr>
-        <td colspan="6"><hr/></td>
-    </tr>
 
     #set($leftAmount=($!customer.totalAmount)-($!customer.preAmount))
     <tr>

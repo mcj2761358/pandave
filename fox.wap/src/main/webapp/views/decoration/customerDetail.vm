@@ -163,9 +163,9 @@
 
 
                             <div align="right" class="box-footer">
-                                    总金额:<input style="width:60px;" value="$customer.totalAmount" onblur="exeTotalAmount()" id="totalAmount"/>元<span style="margin-right: 15px;"></span>
-                                    定金:<input style="width:60px;" value="$customer.preAmount" onblur="exeTotalAmount()" id="preAmount"/>元<span style="margin-right: 15px;"></span>
-                                    剩余款项:<span style="color: red"><u id="leftAmount">$leftAmount</u></span>元
+                                    总金额:<input style="width:60px;" value="$!customer.totalAmount" onblur="exeTotalAmount()" id="totalAmount"/>元<span style="margin-right: 15px;"></span>
+                                    定金:<input style="width:60px;" value="$!customer.preAmount" onblur="exeTotalAmount()" id="preAmount"/>元<span style="margin-right: 15px;"></span>
+                                    剩余款项:<span style="color: red"><u id="leftAmount">$!leftAmount</u></span>元
                                     <a class="btn btn-success btn-sm"
                                        role="button"
                                        data-content="保存金额信息成功"
@@ -232,7 +232,7 @@
                             <label class="col-sm-3 control-label">商品数量</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="goodsNum">
+                                <input type="text" onblur="exeFoxOrderAmount()" class="form-control" id="goodsNum">
                             </div>
                             <label class="red control-label">*</label>
                         </div>
@@ -251,7 +251,7 @@
                             <label class="col-sm-3 control-label">商品单价</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="goodsPrice">
+                                <input type="text" onblur="exeFoxOrderAmount()" class="form-control" id="goodsPrice">
                             </div>
                             <label class="red control-label">*</label>
                         </div>
@@ -315,7 +315,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=3.2"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=3.3"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 </body>
