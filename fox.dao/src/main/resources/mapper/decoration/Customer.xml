@@ -10,6 +10,7 @@
         <result column = "house_name" property = "houseName" />
         <result column = "address" property = "address" />
         <result column = "store_id" property = "storeId" />
+        <result column = "emp_id" property = "empId" />
         <result column = "total_amount" property = "totalAmount" />
         <result column = "pre_amount" property = "preAmount" />
         <result column = "remark" property = "remark" />
@@ -33,6 +34,9 @@
                 </if>
                 <if test = "storeId != null">
                     and store_id = #{storeId}
+                </if>
+                <if test = "empId != null">
+                    and emp_id = #{empId}
                 </if>
                 <if test = "totalAmount != null">
                     and total_amount = #{totalAmount}
@@ -64,6 +68,9 @@
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
+            </if>
+            <if test = "empId != null">
+                emp_id = #{empId},
             </if>
             <if test = "totalAmount != null">
                 total_amount = #{totalAmount},
@@ -137,6 +144,7 @@
         house_name,
         address,
         store_id,
+        emp_id,
         total_amount,
         pre_amount,
         remark
@@ -148,6 +156,7 @@
         #{houseName},
         #{address},
         #{storeId},
+        #{empId},
         #{totalAmount},
         #{preAmount},
         #{remark}

@@ -18,28 +18,26 @@ import java.io.OutputStream;
  */
 public class EmployeeLoginFilter extends HandlerInterceptorAdapter {
 
-    @Autowired
-    private SystemConfig systemConfig;
-
     private static final String LOGIN_URL = "fox/decoration/login";
     private static final String HEAD_AJAX_REQUEST = "XMLHttpRequest";
     private static final String HEAD__REQUEST_TYPE = "X-Requested-With";
-
     private static final String HEAD_CONTENT_TYPE = "Content-Type";
     private static final String HEAD_CONTENT_TYPE_VALUE = "application/json;charset=UTF-8";
+    @Autowired
+    private SystemConfig systemConfig;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession session = request.getSession();
         Long storeId = (Long) session.getAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID);
+//        Long empId = (Long) session.getAttribute(EmployeeConstants.ATTRIBUTE_EMPLOYEE_ID);
         String requestType = request.getHeader(HEAD__REQUEST_TYPE);
 
         /************************************************************************************
          * 1.如果用户未登录，且是来自APP或者Ajax请求，返回Json格式的未登录错误码
          ************************************************************************************/
         if (storeId == null &&  HEAD_AJAX_REQUEST.equals(requestType)) {
-
             //以application/json方式返回
             response.addHeader(HEAD_CONTENT_TYPE,HEAD_CONTENT_TYPE_VALUE);
 

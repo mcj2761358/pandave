@@ -144,8 +144,14 @@ public class OrderController extends BaseController {
         if (order.getId() == null) {
             order.setBeFinish("N");
         }
-        order.setDefaultBizValue(sessionInfo.getStoreId());
+        order.setDefaultBizValue(sessionInfo.getEmpId());
+
+        if (param.getCreateTime() != null) {
+            order.setGmtCreate(param.getCreateTime());
+        }
+
         order.setStoreId(sessionInfo.getStoreId());
+        order.setEmpId(sessionInfo.getEmpId());
         orderService.save(order);
         return Result.wrapSuccessfulResult(order);
     }

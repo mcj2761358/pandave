@@ -20,7 +20,7 @@
         <!-- 日志信息配置 -->
         <property name="fox.log.root" defaultValue="${fox.app.root}/logs" description="log文件目录" />
         <property name="fox.log.level" defaultValue="INFO" description="log级别" />
-        <property name="fox.log.pattern" defaultValue="[%d{'MM-dd HH:mm:ss,SSS',GMT+8:00}] %-5p [%.10t][%X{IP}][%X{OP}][%X{OPAS}] %logger{36}[%L] - %m%n" description="log格式" />
+        <property name="fox.log.pattern" defaultValue="[%d{'MM-dd HH:mm:ss,SSS',GMT+8:00}] %-5p [%.10t][%X{IP}][%X{STORE}][%X{EMP}] %logger{36}[%L] - %m%n" description="log格式" />
         <property name="fox.log.charset" defaultValue="UTF-8" description="log文件编码类型" />
 
         <!-- 服务器地址 -->

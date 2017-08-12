@@ -107,8 +107,9 @@ public class CustomerController extends BaseController {
 
         customer = new Customer();
         BeanUtils.copyProperties(param, customer);
-        customer.setDefaultBizValue(sessionInfo.getStoreId());
+        customer.setDefaultBizValue(sessionInfo.getEmpId());
         customer.setStoreId(sessionInfo.getStoreId());
+        customer.setEmpId(getEmpId());
 
         customerService.save(customer);
         return Result.wrapSuccessfulResult(customer);

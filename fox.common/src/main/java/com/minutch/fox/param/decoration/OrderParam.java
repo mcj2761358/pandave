@@ -25,6 +25,7 @@ public class OrderParam {
     private BigDecimal orderAmount;
     private BigDecimal returnAmount;
     private Date remindTime;
+    private Date createTime;
     private String beFinish;
     private String remark;
 }

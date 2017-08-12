@@ -76,6 +76,7 @@ function queryOrderList(pageIndex) {
                             var cusId = order.cusId;
                             var cusName = order.cusName;
                             var gmtCreate = order.gmtCreatePos;
+                            var remindTime = order.remindTimePos;
                             var mobilePhone = order.mobilePhone;
                             var houseName = order.houseName;
                             var goodsName = order.goodsName;
@@ -91,11 +92,14 @@ function queryOrderList(pageIndex) {
                             if (beFinish == 'Y') {
                                 beFinish = '<span style="color: #32CD32">已结清</span>';
                             }
+                            if (remindTime == null || remindTime==undefined) {
+                                remindTime = '';
+                            }
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId;
                             var orderDataHtml = '<tr>' +
                                 '<td><a href="' + customerDetailUrl + '" target="_blank">' + cusName + '</a></td>' +
-                                '<td class="center">' + gmtCreate + '</td>' +
+                                '<td class="center">' + remindTime + '</td>' +
                                 '<td class="center">' + mobilePhone + '</td>' +
                                 '<td class="center">' + houseName + '</td>' +
                                 '<td class="center">' + goodsName + '</td>' +

@@ -28,6 +28,7 @@ public class Order extends BaseEntity {
   private Date remindTime;
   private String beFinish;
   private Long storeId;
+  private Long empId;
   private String remark;
 
 }

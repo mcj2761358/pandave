@@ -8,6 +8,8 @@ public interface EmployeeConstants {
     /**
      * 记录SessionKey
      */
-    String ATTRIBUTE_EMPLOYEE_ID = "employeeId";
+    String ATTRIBUTE_EMPLOYEE_ID = "empId";
     String ATTRIBUTE_STORE_ID = "storeId";
+    String ATTRIBUTE_STORE_NAME = "storeName";
+    String ATTRIBUTE_EMPLOYEE_NAME= "employeeName";
 }

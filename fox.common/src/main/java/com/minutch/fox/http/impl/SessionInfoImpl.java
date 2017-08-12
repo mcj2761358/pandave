@@ -10,16 +10,19 @@ import lombok.Data;
 public class SessionInfoImpl implements SessionInfo {
 
      private Long storeId;
+     private Long empId;
      private String ip;
 
 
     public void clean() {
         storeId = null;
+        empId = null;
         ip = null;
     }
 
     public void copy(SessionInfo sessionInfo) {
         this.storeId = sessionInfo.getStoreId();
+        this.empId = sessionInfo.getEmpId();
         this.ip = sessionInfo.getIp();
     }
 }

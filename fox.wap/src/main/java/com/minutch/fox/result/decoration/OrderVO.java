@@ -29,6 +29,8 @@ public class OrderVO {
     private String remindTimePos;
     private BigDecimal returnAmount;
     private String beFinish;
+    private Long storeId;
+    private Long empId;
     private String remark;
 
     public void setGoodsModel(String  goodsModel) {

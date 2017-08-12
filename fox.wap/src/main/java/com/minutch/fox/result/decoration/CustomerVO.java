@@ -19,6 +19,7 @@ public class CustomerVO {
     private String houseName;
     private String address;
     private Long storeId;
+    private Long empId;
     private BigDecimal totalAmount;
     private BigDecimal preAmount;
     private String remark;

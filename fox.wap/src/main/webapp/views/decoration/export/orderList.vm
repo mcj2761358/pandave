@@ -10,15 +10,34 @@
     </style>
 </head>
 <body>
-<table style="border: solid 1px black;">
+
+
+<br/>
+<table style="border: solid 1px darkseagreen;">
+
+    <tr align="center">
+        <td colspan="6"><span style="font:20px;">$!store.storeName</span></td>
+    </tr>
+    <tr>
+        <td colspan="3">客户名称：$!customer.cusName 元</td>
+        <td colspan="3">联系电话：$!customer.mobilePhone 元</td>
+    </tr>
+    <tr>
+        <td colspan="6">送货地址：$!customer.houseName $!customer.address 元</td>
+    </tr>
+
+    <tr>
+        <td colspan="6"><hr/></td>
+    </tr>
     <tr>
         <td>商品名称</td>
         <td>商品型号</td>
         <td>数量</td>
-        <td>商品单价(单位：元)</td>
-        <td>总价(单位：元)</td>
+        <td>商品单价</td>
+        <td>总价</td>
         <td>备注</td>
     </tr>
+
 
 
     #foreach ($order in $orderList)
@@ -26,12 +45,15 @@
             <td>$!order.goodsName</td>
             <td>$!order.goodsModel</td>
             <td>$!order.goodsNum</td>
-            <td>$!order.goodsPrice</td>
-            <td>$!order.orderAmount</td>
+            <td>$!order.goodsPrice 元</td>
+            <td>$!order.orderAmount 元</td>
             <td>$!order.remark</td>
         </tr>
     #end
 
+    <tr>
+        <td colspan="6"><hr/></td>
+    </tr>
 
     #set($leftAmount=($!customer.totalAmount)-($!customer.preAmount))
     <tr>
@@ -39,6 +61,9 @@
         <td colspan="2">定金：$!customer.preAmount 元</td>
         <td colspan="2">剩余款项：$!leftAmount 元</td>
     </tr>
+
 </table>
+<br/>
+
 </body>
 </html>

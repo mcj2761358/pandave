@@ -20,6 +20,15 @@ $(function () {
         autoclose: 1
     });
 
+
+    //绑定日期控件
+    $('.createTimeCon').datetimepicker({
+        language: 'zh-CN',
+        minView: "month",
+        autoclose: 1
+    });
+
+
     queryOrderList(0);
 });
 
@@ -35,6 +44,7 @@ function saveOrder() {
     var inGoodsPrice = $('#inGoodsPrice').val();
     var orderAmount = $('#orderAmount').val();
     var remindTime = $('#remindTime').val();
+    var createTime = $('#createTime').val();
     var remark = $('#remark').val();
 
     //数据检查
@@ -71,6 +81,7 @@ function saveOrder() {
     param.inGoodsPrice = inGoodsPrice;
     param.orderAmount = orderAmount;
     param.remindTime = remindTime;
+    param.createTime = createTime;
     param.remark = remark;
 
     var contextPath = $('#rcContextPath').val();
@@ -404,6 +415,7 @@ function queryOrderList(pageIndex) {
                                 '           <i class="glyphicon glyphicon-trash icon-white"></i>删除' +
                                 '       </a>' +
                                 '<input class="remindTime"  value="' + remindTime + '" hidden type="text"/>' +
+                                '<input class="createTime"  value="' + gmtCreate + '" hidden type="text"/>' +
                                 '<input class="inGoodsPrice"  value="' + inGoodsPrice + '" hidden type="text"/>' +
                                 '' +
                                 '   </td>' +
@@ -475,6 +487,7 @@ function editOrder(orderId) {
     var goodsPrice = $(classOrder + ' .goodsPrice').html();
     var inGoodsPrice = $(classOrder + ' .inGoodsPrice').val();
     var remindTime = $(classOrder + ' .remindTime').val();
+    var createTime = $(classOrder + ' .createTime').val();
     var orderAmount = $(classOrder + ' .orderAmount').html();
     var remark = $(classOrder + ' .remark').html();
 
@@ -486,6 +499,7 @@ function editOrder(orderId) {
     $('#goodsPrice').val(goodsPrice);
     $('#inGoodsPrice').val(inGoodsPrice);
     $('#remindTime').val(remindTime);
+    $('#createTime').val(createTime);
     $('#orderAmount').val(orderAmount);
     $('#remark').val(remark);
     $('#orderModal').modal(true);

@@ -42,20 +42,22 @@
                         <span> 待处理订单</span>
                     </a>
                 </li>
-                <li>
-                    <a class="ajax-link" href="${rc.contextPath}/decoration/chart">
-                        <i class="glyphicon glyphicon-list-alt"></i>
-                        <span> 数据报表</span>
-                    </a>
-                </li>
 
+                #if ($!permissionRule.noCharts != 'Y')
+                    <li>
+                        <a class="ajax-link" href="${rc.contextPath}/decoration/chart">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                            <span> 数据报表</span>
+                        </a>
+                    </li>
+                #end
 
-##                <li>
-##                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
-##                        <i class="glyphicon glyphicon-star"></i>
-##                        <span> Icons</span>
-##                    </a>
-##                </li>
+            ##                <li>
+            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">
+            ##                        <i class="glyphicon glyphicon-star"></i>
+            ##                        <span> Icons</span>
+            ##                    </a>
+            ##                </li>
 
                 <!-- other -->
             ##                <li class="nav-header">附加功能</li>

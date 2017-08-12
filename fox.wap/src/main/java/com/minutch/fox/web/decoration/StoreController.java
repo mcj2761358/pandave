@@ -1,7 +1,9 @@
 package com.minutch.fox.web.decoration;
 
+import com.minutch.fox.biz.decoration.EmployeeService;
 import com.minutch.fox.biz.decoration.StoreService;
 import com.minutch.fox.constants.dance.EmployeeConstants;
+import com.minutch.fox.entity.decoration.Employee;
 import com.minutch.fox.entity.decoration.Store;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.LoginParam;
@@ -10,14 +12,12 @@ import com.minutch.fox.utils.DataCheckUtils;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.velocity.VelocityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +31,8 @@ public class StoreController extends BaseController {
 
     @Autowired
     private StoreService storeService;
+    @Autowired
+    private EmployeeService employeeService;
 
     @RequestMapping("login")
     @ResponseBody
@@ -53,20 +55,28 @@ public class StoreController extends BaseController {
             return Result.wrapErrorResult("", "密码不能为空.");
         }
 
-        Store store = storeService.queryByMobilePhone(mobilePhone);
-        if (store == null) {
+        Employee employee = employeeService.queryByMobilePhone(mobilePhone);
+        if (employee == null) {
             log.error("该手机号[" + mobilePhone + "]暂未注册，请联系管理员.");
             return Result.wrapErrorResult("", "手机号[" + mobilePhone + "]暂未注册，请联系管理员.");
         }
 
         //检查密码
-        if (!password.equals(store.getPassword())) {
-            log.error("密码[" + password + "]与系统登记的密码[" + store.getPassword() + "]不一致.");
+        if (!password.equals(employee.getEmpPassword())) {
+            log.error("密码[" + password + "]与系统登记的密码[" + employee.getEmpPassword() + "]不一致.");
             return Result.wrapErrorResult("", "密码错误,请新输入密码.");
         }
 
-        request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID, store.getId());
-        request.getSession().setAttribute("storeName", store.getStoreName());
+        request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID, employee.getStoreId());
+        request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_EMPLOYEE_ID, employee.getId());
+        request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_EMPLOYEE_NAME, employee.getEmpName());
+
+        Store store = storeService.getById(employee.getStoreId());
+        if (store != null) {
+            request.getSession().setAttribute(EmployeeConstants.ATTRIBUTE_STORE_NAME, store.getStoreName());
+        }
+
+
 //        ServletContext application = request.getSession().getServletContext();
 //        application.setAttribute("storeName",store.getStoreName());
         return Result.wrapSuccessfulResult(null);

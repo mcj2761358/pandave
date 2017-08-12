@@ -20,6 +20,7 @@
         <result column = "remind_time" property = "remindTime" />
         <result column = "be_finish" property = "beFinish" />
         <result column = "store_id" property = "storeId" />
+        <result column = "emp_id" property = "empId" />
         <result column = "remark" property = "remark" />
     </resultMap>
 
@@ -71,6 +72,9 @@
                 </if>
                 <if test = "storeId != null">
                     and store_id = #{storeId}
+                </if>
+                <if test = "empId != null">
+                    and emp_id = #{empId}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
@@ -126,6 +130,9 @@
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
+            </if>
+            <if test = "empId != null">
+                emp_id = #{empId},
             </if>
             <if test = "remark != null">
                 remark = #{remark}
@@ -203,6 +210,7 @@
         remind_time,
         be_finish,
         store_id,
+        emp_id,
         remark
         )
         values (
@@ -221,6 +229,7 @@
         #{returnAmount},
         #{remindTime},
         #{beFinish},
+        #{empId},
         #{storeId},
         #{remark}
         )

@@ -18,8 +18,19 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class SessionFilter extends HandlerInterceptorAdapter {
 
+    static String[] headsNames = { "X-Real-IP", "X-Forwarded-For", "remote_addr" };
     @Autowired
     private SessionInfo sessionInfo;
+
+    public static String getRemoteIp(HttpServletRequest request) {
+        for (String headName : headsNames) {
+            String header = request.getHeader(headName);
+            if (header != null) {
+                return header;
+            }
+        }
+        return request.getRemoteAddr();
+    }
 
     public void init() {
     }
@@ -31,6 +42,7 @@ public class SessionFilter extends HandlerInterceptorAdapter {
         SessionInfoImpl sessionData = new SessionInfoImpl();
         sessionData.setStoreId(getStoreId(request));
         sessionData.setIp(getRemoteIp(request));
+        sessionData.setEmpId(getEmpId(request));
         ((SessionInfoImpl)sessionInfo).copy(sessionData);
         return super.preHandle(request, response, handler);
     }
@@ -41,7 +53,6 @@ public class SessionFilter extends HandlerInterceptorAdapter {
         ((SessionInfoImpl)sessionInfo).clean();
         super.postHandle(request, response, handler, modelAndView);
     }
-
 
     public Long getStoreId(HttpServletRequest request) {
         Object userObject = request.getSession().getAttribute(EmployeeConstants.ATTRIBUTE_STORE_ID);
@@ -57,15 +68,17 @@ public class SessionFilter extends HandlerInterceptorAdapter {
         return storeId;
     }
 
-    static String[] headsNames = { "X-Real-IP", "X-Forwarded-For", "remote_addr" };
-
-    public static String getRemoteIp(HttpServletRequest request) {
-        for (String headName : headsNames) {
-            String header = request.getHeader(headName);
-            if (header != null) {
-                return header;
-            }
+    public Long getEmpId(HttpServletRequest request) {
+        Object userObject = request.getSession().getAttribute(EmployeeConstants.ATTRIBUTE_EMPLOYEE_ID);
+        if (userObject == null) {
+            return null;
         }
-        return request.getRemoteAddr();
+        Long empId = null;
+        try {
+            empId = Long.valueOf(userObject.toString());
+        } catch (Exception e) {
+            log.error("getEmpId:empId error[" + userObject + "]", e);
+        }
+        return empId;
     }
 }

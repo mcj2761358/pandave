@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "com.minutch.fox.dao.decoration.StoreDao">
+<mapper namespace = "com.minutch.fox.dao.decoration.EmployeeDao">
 
-    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Store"
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Employee"
                extends = "COMMON.BASE_RESULT_MAP">
-        <result column = "store_name" property = "storeName" />
-        <result column = "cardno" property = "cardno" />
-        <result column = "mobile_phone" property = "mobilePhone" />
-        <result column = "password" property = "password" />
-        <result column = "end_time" property = "endTime" />
+        <result column = "emp_mobile" property = "empMobile" />
+        <result column = "emp_password" property = "empPassword" />
+        <result column = "emp_name" property = "empName" />
+        <result column = "store_id" property = "storeId" />
         <result column = "remark" property = "remark" />
+        <result column = "permission_rule" property = "permissionRule" />
     </resultMap>
 
     <sql id = "BaseWhereClause">
         <where>
             <trim prefixOverrides = "and">
                 <include refid = "COMMON.BASE_WHERE_CLAUSE" />
-                <if test = "storeName != null">
-                    and store_name = #{storeName}
+                <if test = "empMobile != null">
+                    and emp_mobile = #{empMobile}
                 </if>
-                <if test = "cardno != null">
-                    and cardno = #{cardno}
+                <if test = "empPassword != null">
+                    and emp_password = #{empPassword}
                 </if>
-                <if test = "mobilePhone != null">
-                    and mobile_phone = #{mobilePhone}
+                <if test = "empName != null">
+                    and emp_name = #{empName}
                 </if>
-                <if test = "password != null">
-                    and password = #{password}
-                </if>
-                <if test = "endTime != null">
-                    and end_time = #{endTime}
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
+                </if>
+                <if test = "permissionRule != null">
+                    and permission_rule = #{permissionRule}
                 </if>
             </trim>
         </where>
@@ -42,23 +42,23 @@
     <sql id = "BaseUpdateSet">
         <set>
             <include refid = "COMMON.BASE_UPDATE_SET" />
-            <if test = "storeName != null">
-                store_name = #{storeName},
+            <if test = "empMobile != null">
+                emp_mobile = #{empMobile},
             </if>
-            <if test = "cardno != null">
-                cardno = #{cardno},
+            <if test = "empPassword != null">
+                emp_password = #{empPassword},
             </if>
-            <if test = "mobilePhone != null">
-                mobile_phone = #{mobilePhone},
+            <if test = "empName != null">
+                emp_name = #{empName},
             </if>
-            <if test = "password != null">
-                password = #{password},
-            </if>
-            <if test = "endTime != null">
-                end_time = #{endTime},
+            <if test = "storeId != null">
+                store_id = #{storeId},
             </if>
             <if test = "remark != null">
-                remark = #{remark}
+                remark = #{remark},
+            </if>
+            <if test = "permissionRule != null">
+                permission_rule = #{permissionRule}
             </if>
         </set>
     </sql>
@@ -66,7 +66,7 @@
     <!-- 查询总数 -->
     <select id = "selectCount" resultType = "java.lang.Integer">
         select count(id)
-        from decoration_store
+        from decoration_employee
         <include refid = "BaseWhereClause" />
     </select>
 
@@ -74,7 +74,7 @@
     <select id = "select" resultMap = "BaseResultMap">
         select
         <include refid = "COMMON.ALL_COLUMN_LIST" />
-        from decoration_store
+        from decoration_employee
         <include refid = "BaseWhereClause" />
         <include refid = "COMMON.ORDER_BY" />
         <include refid = "COMMON.LIMIT" />
@@ -84,13 +84,13 @@
     <select id = "selectById" resultMap = "BaseResultMap">
         select
         <include refid = "COMMON.ALL_COLUMN_LIST" />
-        from decoration_store
+        from decoration_employee
         where id = #{id}
     </select>
 
     <!-- 根据IDS批量删除 -->
     <update id = "deleteByIds">
-        update decoration_store
+        update decoration_employee
         set is_deleted='Y'
         where id in
         (
@@ -102,63 +102,62 @@
 
     <!-- 根据ID删除 -->
     <update id = "deleteById">
-        update decoration_store
+        update decoration_employee
         set is_deleted='Y'
         where id=#{id}
     </update>
 
     <!-- 删除 -->
     <delete id = "delete">
-        update decoration_store
+        update decoration_employee
         set is_deleted='Y'
         <include refid = "BaseWhereClause" />
     </delete>
 
     <!-- 添加   -->
     <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
-        insert into decoration_store (
+        insert into decoration_employee (
         <include refid = "COMMON.BASE_INSERT_COLUMN" />
-        store_name,
-        cardno,
-        mobile_phone,
-        password,
-        end_time,
-        remark
+        emp_mobile,
+        emp_password,
+        emp_name,
+        store_id,
+        remark,
+        permission_rule
         )
         values (
         <include refid = "COMMON.BASE_INSERT_VALUE" />
-        #{storeName},
-        #{cardno},
-        #{mobilePhone},
-        #{password},
-        #{endTime},
-        #{remark}
+        #{empMobile},
+        #{empPassword},
+        #{empName},
+        #{storeId},
+        #{remark},
+        #{permissionRule}
         )
     </insert>
 
     <!-- 通过ID更新 -->
     <update id = "updateById">
-        update decoration_store
+        update decoration_employee
         <include refid = "BaseUpdateSet" />
         where id = #{id}
     </update>
 
-
     <!-- 根据手机号查询 -->
     <select id = "queryByMobilePhone" resultMap = "BaseResultMap">
         select *
-        from decoration_store
+        from decoration_employee
         where is_deleted = 'N'
-        and mobile_phone = #{mobilePhone}
+        and emp_mobile = #{empMobile}
         limit 1
     </select>
 
+
     <!-- 修改登录密码 -->
     <update id = "updatePassword">
-        update decoration_store
-        set password=#{password},
+        update decoration_employee
+        set emp_password=#{empPassword},
         gmt_modified = now()
         where id = #{id}
     </update>
-
 </mapper>

@@ -6,5 +6,6 @@ package com.minutch.fox.http;
 public interface SessionInfo {
 
     public Long getStoreId();
+    public Long getEmpId();
     public String getIp();
 }
