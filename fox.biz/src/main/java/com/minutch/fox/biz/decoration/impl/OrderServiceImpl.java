@@ -5,6 +5,7 @@ import com.minutch.fox.biz.decoration.OrderService;
 import com.minutch.fox.dao.decoration.OrderDao;
 import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.param.decoration.OrderQueryParam;
+import com.minutch.fox.view.decoration.OrderView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> queryOrder(OrderQueryParam param) {
+    public List<OrderView> queryOrder(OrderQueryParam param) {
         return orderDao.queryOrder(param, param.getStart(), param.getEnd());
     }
 
@@ -64,5 +65,10 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     @Override
     public List<Order> queryByIds(List<Long> idList) {
         return orderDao.queryByIds(idList);
+    }
+
+    @Override
+    public List<Order> queryByHeaderId(Long headerId) {
+        return orderDao.queryByHeaderId(headerId);
     }
 }

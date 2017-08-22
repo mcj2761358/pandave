@@ -13,12 +13,16 @@ import java.util.Date;
 public class OrderVO {
     private Long id;
     private Long cusId;
+    private Long headerId;
     private String cusName;
+
+
     private Date gmtCreate;
     private String gmtCreatePos;
     private String mobilePhone;
     private String houseName;
     private String address;
+    private Long goodsId;
     private String goodsName;
     private String goodsModel;
     private Integer goodsNum;
@@ -32,6 +36,10 @@ public class OrderVO {
     private Long storeId;
     private Long empId;
     private String remark;
+
+
+    private BigDecimal totalAmount;
+    private BigDecimal preAmount;
 
     public void setGoodsModel(String  goodsModel) {
         if (goodsModel == null) {

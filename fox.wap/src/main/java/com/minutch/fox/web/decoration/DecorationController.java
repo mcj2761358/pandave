@@ -1,18 +1,33 @@
 package com.minutch.fox.web.decoration;
 
+import com.google.gson.Gson;
 import com.minutch.fox.biz.decoration.CustomerService;
+import com.minutch.fox.biz.decoration.GoodsService;
+import com.minutch.fox.biz.decoration.OrderHeaderService;
+import com.minutch.fox.biz.decoration.OrderService;
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.entity.decoration.Goods;
+import com.minutch.fox.entity.decoration.Order;
+import com.minutch.fox.entity.decoration.OrderHeader;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
-import com.minutch.fox.result.decoration.CustomerVO;
+import com.minutch.fox.result.decoration.*;
 import com.minutch.fox.utils.FoxBeanUtils;
+import com.minutch.fox.utils.ListUtils;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Minutch on 16/11/28.
@@ -22,10 +37,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class DecorationController extends BaseController {
 
+    Gson gson = new Gson();
     @Autowired
     private CustomerService customerService;
     @Autowired
     private SessionInfo sessionInfo;
+    @Autowired
+    private OrderHeaderService orderHeaderService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private GoodsService goodsService;
 
     @RequestMapping("")
     public String index() {
@@ -73,7 +95,6 @@ public class DecorationController extends BaseController {
         return "decoration/userList";
     }
 
-
     @RequestMapping("createOrder")
     public String createOrder(Long cusId, Model model) {
 
@@ -94,10 +115,8 @@ public class DecorationController extends BaseController {
         return "decoration/createOrder";
     }
 
-
-
     @RequestMapping("customerDetail")
-    public String customerDetail(Long cusId, Model model) {
+    public String customerDetail(Long cusId,String orderSn,Model model) {
 
         if (cusId==null) {
             log.error("参数错误");
@@ -118,12 +137,89 @@ public class DecorationController extends BaseController {
 
         model.addAttribute("customer", customerVO);
         model.addAttribute("cusId", cusId);
+        model.addAttribute("orderSn", orderSn);
+
+
+        List<OrderHeaderVO> orderHeaderVOList = new ArrayList<>();
+
+        if (StringUtils.isNotBlank(orderSn)) {
+            OrderHeader orderHeader = orderHeaderService.queryByOrderSn(orderSn, cusId);
+            if (orderHeader != null) {
+                OrderHeaderVO headerVO = new OrderHeaderVO();
+                BeanUtils.copyProperties(orderHeader, headerVO);
+
+                Long headerId = headerVO.getId();
+                List<Order> orderList = orderService.queryByHeaderId(headerId);
+                if (ListUtils.isNotBlank(orderList)) {
+                    headerVO.setOrderList(FoxBeanUtils.copyList(orderList, OrderVO.class));
+                }
+                orderHeaderVOList.add(headerVO);
+            }
+        } else {
+            orderHeaderVOList = queryCustomerOrderList(cusId);
+        }
+
+        model.addAttribute("orderHeaderList", orderHeaderVOList);
+
+
+        List<Goods> goodsList = goodsService.queryAllStoreGoods(sessionInfo.getStoreId());
+        if (ListUtils.isNotBlank(goodsList)) {
+           List<StoreGoodsSearchMapVO> searchMap = new ArrayList<>();
+            List<StoreGoodsSearchVO> searchList = FoxBeanUtils.copyList(goodsList, StoreGoodsSearchVO.class);
+            for (StoreGoodsSearchVO searchVO:searchList) {
+                searchVO.makeSearchKey();
+                StoreGoodsSearchMapVO mapVO = new StoreGoodsSearchMapVO();
+                mapVO.setKey(searchVO.getSearchKey());
+                mapVO.setValue(gson.toJson(searchVO));
+                searchMap.add(mapVO);
+            }
+            model.addAttribute("searchMapJson", gson.toJson(searchMap));
+        }
+
         return "decoration/customerDetail";
     }
+
+
+    @RequestMapping("queryCustomerOrderList")
+    @ResponseBody
+    public List<OrderHeaderVO> queryCustomerOrderList(Long cusId) {
+
+        if (cusId == null) {
+            log.error("cus id is null.");
+            return new ArrayList<>();
+        }
+        Long storeId = getStoreId();
+        List<OrderHeader> orderHeaderList = orderHeaderService.queryByCusId(storeId, cusId);
+        if (ListUtils.isBlank(orderHeaderList)) {
+            return new ArrayList<>();
+        }
+
+        List<OrderHeaderVO> orderHeaderVOList = FoxBeanUtils.copyList(orderHeaderList, OrderHeaderVO.class);
+        for (OrderHeaderVO headerVO:orderHeaderVOList) {
+            Long headerId = headerVO.getId();
+            List<Order> orderList = orderService.queryByHeaderId(headerId);
+            if (ListUtils.isNotBlank(orderList)) {
+                headerVO.setOrderList(FoxBeanUtils.copyList(orderList, OrderVO.class));
+            }
+        }
+        return orderHeaderVOList;
+    }
+
+
 
     @RequestMapping("orderList")
     public String orderList() {
         return "decoration/orderList";
+    }
+
+    @RequestMapping("orderHeaderList")
+    public String orderHeaderList() {
+        return "decoration/orderHeaderList";
+    }
+
+    @RequestMapping("goodsList")
+    public String goodsList() {
+        return "decoration/goodsList";
     }
 
     @RequestMapping("remindOrderList")

@@ -1,6 +1,10 @@
 /**
  * Created by Minutch on 16/12/17.
  */
+
+var searchMap = {};
+var jsonData = [];
+
 $(function () {
 
     //绑定创建订单按钮事件
@@ -29,14 +33,210 @@ $(function () {
     });
 
 
-    queryOrderList(0);
 });
+
+function initGoodsData(goodsList) {
+    if (goodsList==null || goodsList==undefined) {
+        return;
+    }
+
+   for (var i=0; i<goodsList.length; i++) {
+       var goods = goodsList[i];
+       jsonData.push(goods.key);
+       searchMap[goods.key] = goods.value;
+   }
+}
+
+
+function bindSearch(headerId) {
+
+    var mainSearchId = '#goodsSearch'+headerId;
+
+    var goodsModelId = '#fillGoodsModel' + headerId;
+    var goodsPriceId = '#fillGoodsPrice' + headerId;
+    var goodsId = '#fillGoodsId' + headerId;
+
+    var mainResultId = '#searchResult'+headerId;
+    var uniCompleteClass = 'autocomplete'+headerId;
+    var autoCompleteClass = 'autocomplete autocomplete'+headerId;
+    var autoCompleteDom = $('<ul class="'+autoCompleteClass+'"></ul>')
+
+    //Bug:汉字不能查询的问题和空值的时候要出现值
+    //var jsonData = ["张三", "李四", "1科比", "罗晋", "张娜", "张芳", "123", "allen lverson", "bob dylan", "bob1", "bob2", "1nba"];
+    var selectedItem = null; //定义全局变量
+    var old_searchtext = null;
+    var $autoComplete = autoCompleteDom.hide().insertAfter(mainSearchId);
+
+    //定义函数获取鼠标显示颜色
+    var setSelectedItem = function (item, eventKeyCode) {
+        selectedItem = item;
+        if (selectedItem == null || $('ul[class="'+autoCompleteClass+'"]').find("li").length <= 0) {
+            //没有选择值则移除ul
+            $('ul[class="'+autoCompleteClass+'"]').empty().hide();
+            return false;
+        }
+
+        if (selectedItem < 0) { //向上移出界
+            $autoComplete.find("li").removeClass("selected");
+
+            var searchKey = $(mainResultId).val();
+            var searchObject = JSON.parse(searchMap[searchKey]);
+            $(goodsModelId).val(searchObject.goodsModel);
+            $(goodsPriceId).val(searchObject.goodsPrice);
+            $(goodsId).val(searchObject.id);
+
+            $(mainSearchId).val(searchObject.goodsName);
+            console.log('get1:' + searchKey)
+            selectedItem = null;
+            return false;
+        }
+
+        if (selectedItem >= $autoComplete.find("li").length) {  //向下移出界
+            $autoComplete.find("li").removeClass("selected");
+
+            var searchKey = $(mainResultId).val();
+            var searchObject = JSON.parse(searchMap[searchKey]);
+            $(goodsModelId).val(searchObject.goodsModel);
+            $(goodsPriceId).val(searchObject.goodsPrice);
+            $(goodsId).val(searchObject.id);
+            $(mainSearchId).val(searchObject.goodsName);
+
+            console.log('get2:' + searchKey)
+            selectedItem = null;
+            return false;
+        }
+
+        //移动上下键获取文本值
+        $(mainSearchId).val();
+
+        var searchKey = $autoComplete.find("li").removeClass("selected").eq(selectedItem).addClass("selected").text();
+        var searchObject = JSON.parse(searchMap[searchKey]);
+        $(goodsModelId).val(searchObject.goodsModel);
+        $(goodsPriceId).val(searchObject.goodsPrice);
+        $(goodsId).val(searchObject.id);
+        $(mainSearchId).val(searchObject.goodsName);
+        console.log('get3:' + searchKey)
+        $autoComplete.show();
+    };
+
+    //按回车键获取值，但不能获取==>这里改为直接提交
+    var populateSearchField = function () {
+
+        var searchKey = $autoComplete.find("li").eq(selectedItem).text();
+        var searchObject = JSON.parse(searchMap[searchKey]);
+        $(goodsModelId).val(searchObject.goodsModel);
+        $(goodsPriceId).val(searchObject.goodsPrice);
+        $(goodsId).val(searchObject.id);
+        $(mainSearchId).val(searchObject.goodsName);
+
+        console.log('get4:' + $autoComplete.find("li").eq(selectedItem).text())
+        //移除ul
+        $('ul[class="'+autoCompleteClass+'"]').empty().hide();
+    };
+
+    var searchLabel = $("#search_title").remove().text();
+    $("#form1").submit(function () {
+        if ($(mainSearchId).val() == searchLabel) {
+            $(mainSearchId).val('');
+        }
+    });
+
+    $(mainSearchId).addClass("placeholder")
+        .val(searchLabel)
+        .focus(function () {
+            if (this.value == searchLabel) {
+                $(this).removeClass("placeholder").val('');
+            }
+        })
+        .blur(function () {
+            if (this.value == "") {
+                $(this).addClass("placeholder").val(searchLabel);
+            }
+        })
+        .attr(uniCompleteClass, "off")                  //关闭search_text文本框（即浏览器）自带的自动完成功能
+        .keydown(function () {
+            old_searchtext = $(this).val();           //按下时获取文本值
+        })
+        .keyup(function (event) {
+            var InComeDescription = $(this).val();    //按键释放时触发
+            //没有值直接返回,提高性能
+            if (InComeDescription == null || InComeDescription.length <= 0) {
+                return false;
+            }
+
+            //代码为40及以下的为特殊键（回车、方向、退出键等），为8backspace键,32空格键,13 回车
+            if (event.keyCode > 40 || event.keyCode == 8 || event.keyCode == 32) {
+                selectedItem = null; //每次输入新的数据时清空，以使下拉列表显示正常
+                //有数据(可加个判断InComeDescritption不为空才取值)
+                $searchtextvalue = $(mainResultId).val(InComeDescription);
+
+                if (jsonData.length) {
+                    //var objData = jQuery.parseJSON(jsonData);
+                    var objData = jsonData;
+                    //先把以前的记录清空，不然下拉列表会重复
+                    $('ul[class="'+autoCompleteClass+'"]').empty();
+                    $.each(objData, function (index, term) {
+                        if (term.indexOf(InComeDescription) > -1) {
+                            $('<li></li>').text(term)
+                                .appendTo($autoComplete)
+                                .mouseover(function () {
+                                    setSelectedItem(index, null);
+                                })
+                                .click(function () {//实现选择值到文本框
+                                    console.log('get5:' + $autoComplete.find("li").eq(selectedItem).text())
+
+                                    var searchKey = term;
+                                    var searchObject = JSON.parse(searchMap[searchKey]);
+                                    $(goodsModelId).val(searchObject.goodsModel);
+                                    $(goodsPriceId).val(searchObject.goodsPrice);
+                                    $(goodsId).val(searchObject.id);
+                                    $(mainSearchId).val(searchObject.goodsName);
+                                    $('ul[class="'+autoCompleteClass+'"]').hide();
+                                });
+                        }
+                    });
+
+                    $autoComplete.show();//按百度默认不选择第一行
+                    // setSelectedItem(0);//默认选中第一行,不然这时不显示
+                } else {
+                    //没有数据就不显示
+                    setSelectedItem(null, null);
+                }
+            } else if (event.keyCode == 38) {
+                //用户按了上方向键
+                if (selectedItem == null) {
+                    return false;
+                } //不选
+                setSelectedItem(selectedItem - 1, 38);
+
+            } else if (event.keyCode == 40) {
+                //用户按了向下方向键
+                if (selectedItem == null) {
+                    selectedItem = -1;
+                } //选择第一行
+                setSelectedItem(selectedItem + 1, 40);
+            }
+        })
+        .keypress(function (event) {
+            if (event.keyCode == 13 && selectedItem != null) {
+                populateSearchField();
+                event.preventDefault();
+            }
+        })
+        //失去焦点关闭下拉列表,因为blur先于click事件调用，所以这时在延迟以使当click事件执行时能执行
+        .blur(function (event) {
+            setTimeout(function () {
+                setSelectedItem(null)
+            }, 250);
+        });
+}
 
 
 function saveOrder() {
 
     var cusId = $('#cusId').val();
     var orderId = $('#editOrderId').val();
+    var headerId = $('#editHeaderId').val();
     var goodsName = $('#goodsName').val();
     var goodsModel = $('#goodsModel').val();
     var goodsNum = $('#goodsNum').val();
@@ -74,6 +274,7 @@ function saveOrder() {
     var param = {};
     param.id = orderId;
     param.cusId = cusId;
+    param.headerId = headerId;
     param.goodsName = goodsName;
     param.goodsModel = goodsModel;
     param.goodsNum = goodsNum;
@@ -97,9 +298,15 @@ function saveOrder() {
             if (result != null) {
                 //请求数据成功
                 if (result.success) {
-                    clearOrderModal();
-                    queryOrderList(0);
-                    $('#orderModal').modal('hide');
+
+
+                    var orderSn = $('#fromOrderSn').val();
+                    var param = "?cusId=" + cusId;
+                    if (orderSn != null) {
+                        param = "&orderSn="+orderSn;
+                    }
+                    window.location.href = contextPath + "/decoration/customerDetail" + param;
+
                 } else {
                     alert(result.errorMsg);
                 }
@@ -109,15 +316,22 @@ function saveOrder() {
 }
 
 
-function simpleCreateOrder() {
+function addOrder(orderId) {
+    $('.quick_order_' + orderId).css('display', 'block');
+}
+
+function simpleCreateOrder(headerId) {
 
     var cusId = $('#cusId').val();
 
-    var goodsName = $('#cGoodsName').val();
-    var goodsModel = $('#cGoodsModel').val();
-    var goodsNum = $('#cGoodsNum').val();
-    var goodsPrice = $('#cGoodsPrice').val();
-    var orderAmount = $('#cOrderAmount').val();
+    var classHeader = '.quick_order_' + headerId;
+
+    var goodsName = $(classHeader + ' .goodsName').val();
+    var goodsModel = $(classHeader + ' .goodsModel').val();
+    var goodsNum = $(classHeader + ' .goodsNum').val();
+    var goodsPrice = $(classHeader + ' .goodsPrice').val();
+    var orderAmount = $(classHeader + ' .orderAmount').val();
+    var goodsId = $(classHeader + ' .goodsId').val();
 
     //数据检查
     if (goodsName == null || goodsName == '') {
@@ -143,12 +357,14 @@ function simpleCreateOrder() {
     }
 
     var param = {};
+    param.headerId = headerId;
     param.cusId = cusId;
     param.goodsName = goodsName;
     param.goodsModel = goodsModel;
     param.goodsNum = goodsNum;
     param.goodsPrice = goodsPrice;
     param.orderAmount = orderAmount;
+    param.goodsId = goodsId;
 
     var contextPath = $('#rcContextPath').val();
 
@@ -164,7 +380,8 @@ function simpleCreateOrder() {
                 //请求数据成功
                 if (result.success) {
                     clearSimpleOrderModal();
-                    queryOrderList(0);
+                    //queryOrderList(0);
+                    window.location.href = contextPath + "/decoration/customerDetail?cusId=" + cusId;
                 } else {
                     showAlertModel(result.errorMsg);
                 }
@@ -178,28 +395,27 @@ function simpleCreateOrder() {
  * 自动计算订单金额
  * @returns {boolean}
  */
-function exeOrderAmount() {
-    var goodsNum = $('#cGoodsNum').val();
-    var goodsPrice = $('#cGoodsPrice').val();
-    var orderAmount = $('#cOrderAmount').val();
+function exeOrderAmount(headerId) {
+
+    var classHeader = '.quick_order_' + headerId;
+
+    var goodsNum = $(classHeader + ' .goodsNum').val();
+    var goodsPrice = $(classHeader + ' .goodsPrice').val();
+    var orderAmount = $(classHeader + ' .orderAmount').val();
+
 
     if (isNaN(goodsNum) || goodsNum == '') {
-        //showAlertModel('商品数量必须为数字.');
-        return false;
+        goodsNum = 0;
     }
-    if (goodsNum.indexOf(".") > -1) {
-        //showAlertModel('商品数量必须为整数.');
-        return false;
+    else if (goodsNum.indexOf(".") > -1) {
+        goodsNum = 0;
     }
 
     if (isNaN(goodsPrice) || goodsPrice == '') {
-        //showAlertModel('商品单价必须为数字.');
-        return false;
+        goodsPrice = 0;
     }
 
-    //if (isNaN(orderAmount) || orderAmount == '') {
-    $('#cOrderAmount').val(goodsNum * goodsPrice)
-    //}
+    $(classHeader + ' .orderAmount').val(goodsNum * goodsPrice)
 
 }
 
@@ -232,10 +448,10 @@ function exeFoxOrderAmount() {
 /**
  * 计算总金额
  */
-function exeTotalAmount() {
-    var cusId = $('#cusId').val();
-    var totalAmount = $('#totalAmount').val();
-    var preAmount = $('#preAmount').val();
+function exeTotalAmount(headerId) {
+
+    var totalAmount = $('.totalAmount_' + headerId).val();
+    var preAmount = $('.preAmount_' + headerId).val();
 
     if (isNaN(totalAmount) || totalAmount == '') {
         preAmount = 0;
@@ -245,29 +461,50 @@ function exeTotalAmount() {
         preAmount = 0;
     }
 
-    $('#leftAmount').html(totalAmount - preAmount);
+    $('.leftAmount_' + headerId).html(totalAmount - preAmount);
 
-    saveTotalAmount();
+    var allTotalAmount = 0;
+    $('input.totalAmount').each(function () {
+        var thisTotalAmount = parseFloat($(this).val());
+        if (isNaN(thisTotalAmount) || thisTotalAmount == '') {
+            thisTotalAmount = 0;
+        }
+        allTotalAmount += thisTotalAmount;
+    });
+
+    var allPreAmount = 0;
+    $('input.preAmount').each(function () {
+        var thisPreAmount = parseFloat($(this).val());
+        if (isNaN(thisPreAmount) || thisPreAmount == '') {
+            thisPreAmount = 0;
+        }
+        allPreAmount += thisPreAmount;
+    });
+
+    var allLeftAmount = allTotalAmount - allPreAmount;
+    $('#allTotalAmount').html(allTotalAmount + ' 元')
+    $('#allPreAmount').html(allPreAmount + ' 元')
+    $('#allLeftAmount').html(allLeftAmount + ' 元')
+
+    saveTotalAmount(headerId);
 }
 
 
-function saveTotalAmount() {
-    var cusId = $('#cusId').val();
-    var totalAmount = $('#totalAmount').val();
-    var preAmount = $('#preAmount').val();
+function saveTotalAmount(headerId) {
+
+    var totalAmount = $('.totalAmount_' + headerId).val();
+    var preAmount = $('.preAmount_' + headerId).val();
 
 
     if (isNaN(totalAmount) || totalAmount == '') {
-        showAlertModel('总金额必须为数字.');
-        return false;
+        totalAmount = 0;
     }
     if (isNaN(preAmount) || preAmount == '') {
-        showAlertModel('定金必须为数字.');
-        return false;
+        preAmount = 0;
     }
 
     var param = {};
-    param.cusId = cusId;
+    param.headerId = headerId;
     param.totalAmount = totalAmount;
     param.preAmount = preAmount;
     var contextPath = $('#rcContextPath').val();
@@ -339,133 +576,132 @@ function clearOrderModal() {
 }
 
 
-function createPage(pageSize, total) {
+//function createPage(pageSize, total) {
+//
+//    $('.pagination').pagination({
+//        items: total,
+//        itemsOnPage: pageSize,
+//        displayedPages: 2,
+//        edges: 1,
+//        cssStyle: 'light-theme',
+//        prevText: '上一页',
+//        nextText: '下一页',
+//        onPageClick: function (pageNumber, event) {
+//            queryOrderList(pageNumber - 1)
+//        }
+//    });
+//}
 
-    $('.pagination').pagination({
-        items: total,
-        itemsOnPage: pageSize,
-        displayedPages: 2,
-        edges: 1,
-        cssStyle: 'light-theme',
-        prevText: '上一页',
-        nextText: '下一页',
-        onPageClick: function (pageNumber, event) {
-            queryOrderList(pageNumber - 1)
-        }
-    });
-}
-
-
-var pageSize = 100;
-function queryOrderList(pageIndex) {
-
-    var contextPath = $('#rcContextPath').val();
-
-    var param = {};
-    param.pageSize = pageSize;
-    param.curPage = pageIndex + 1;
-    param.keyword = $('#keyword').val();
-    param.cusId = $('#cusId').val();
-
-    $.ajax({
-        url: contextPath + "/decoration/order/queryList",
-        datatype: 'json',
-        type: "POST",
-        contentType: 'application/json',
-        data: JSON.stringify(param),
-
-        success: function (result) {
-            if (result != null) {
-                //请求数据成功
-                if (result.success) {
-                    var resultData = result.data;
-
-                    //清空content数据
-                    $('.orderContentDiv').html('');
-                    //加载新内容
-                    var orderList = resultData.dataList;
-                    if (orderList != null & orderList != undefined & orderList.length > 0) {
-                        for (var index = 0; index < orderList.length; index++) {
-                            //组装话题数据表格
-                            var order = orderList[index];
-
-                            var orderId = order.id;
-                            var goodsName = order.goodsName;
-                            var goodsModel = order.goodsModel;
-                            var goodsNum = order.goodsNum;
-                            var goodsPrice = order.goodsPrice;
-                            var inGoodsPrice = order.inGoodsPrice;
-                            var orderAmount = order.orderAmount;
-                            var remark = order.remark;
-                            var gmtCreate = order.gmtCreatePos;
-                            var remindTime = order.remindTimePos;
-                            var beFinish = order.beFinish;
-
-                            if (remark == null || remark == undefined) {
-                                remark = '';
-                            }
-                            if (remindTime == null || remindTime == undefined) {
-                                remindTime = '';
-                            }
-                            if (beFinish == null || beFinish == undefined || beFinish == 'N') {
-                                beFinish = '<span style="color: red">未结清</span>';
-                            }
-                            if (beFinish == 'Y') {
-                                beFinish = '<span style="color: #32CD32">已结清</span>';
-                            }
-
-                            if (inGoodsPrice == null | inGoodsPrice == undefined) {
-                                inGoodsPrice = '';
-                            }
-
-
-                            var orderDataHtml =
-                                ' <tr class="D_' + orderId + '">' +
-                                '   <td class="goodsName" value="'+goodsName+'"><input value="' + orderId + '" type="checkbox" name="order" /> ' + goodsName + '</td>' +
-                                '   <td class="goodsModel">' + goodsModel + '</td>' +
-                                '   <td class="center goodsNum">' + goodsNum + '</td>' +
-                                '   <td class="center goodsPrice">' + goodsPrice + '</td>' +
-                                '   <td class="center orderAmount">' + orderAmount + '</td>' +
-                                '   <td class="center gmtCreate">' + gmtCreate + '</td>' +
-                                '   <td class="center remark">' + remark + '</td>' +
-                                '   <td class="center beFinish">' + beFinish + '</td>' +
-                                '   <td class="center">' +
-                                '       <a class="btn btn-info btn-sm" onclick="editOrder(' + orderId + ')">' +
-                                '           <i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
-                                '       </a>' +
-                                '       <a class="btn btn-primary btn-sm" onclick="finishOrder(' + orderId + ')">' +
-                                '           <i class="glyphicon glyphicon-wrench icon-white"></i>还款' +
-                                '       </a>' +
-                                '       <a class="btn btn-danger btn-sm" onclick="deleteOrder(' + orderId + ')">' +
-                                '           <i class="glyphicon glyphicon-trash icon-white"></i>删除' +
-                                '       </a>' +
-                                '<input class="remindTime"  value="' + remindTime + '" hidden type="text"/>' +
-                                '<input class="createTime"  value="' + gmtCreate + '" hidden type="text"/>' +
-                                '<input class="inGoodsPrice"  value="' + inGoodsPrice + '" hidden type="text"/>' +
-                                '' +
-                                '   </td>' +
-                                '</tr>';
-
-                            $('.orderContentDiv').append(orderDataHtml);
-                        }
-                    }
-
-                    if (pageIndex == 0) {
-                        createPage(pageSize, resultData.totalSize);
-                    }
-
-                }
-            }
-        }
-    });
-}
+//var pageSize = 100;
+//function queryOrderList(pageIndex) {
+//
+//    var contextPath = $('#rcContextPath').val();
+//
+//    var param = {};
+//    param.pageSize = pageSize;
+//    param.curPage = pageIndex + 1;
+//    param.keyword = $('#keyword').val();
+//    param.cusId = $('#cusId').val();
+//
+//    $.ajax({
+//        url: contextPath + "/decoration/order/queryList",
+//        datatype: 'json',
+//        type: "POST",
+//        contentType: 'application/json',
+//        data: JSON.stringify(param),
+//
+//        success: function (result) {
+//            if (result != null) {
+//                //请求数据成功
+//                if (result.success) {
+//                    var resultData = result.data;
+//
+//                    //清空content数据
+//                    $('.orderContentDiv').html('');
+//                    //加载新内容
+//                    var orderList = resultData.dataList;
+//                    if (orderList != null & orderList != undefined & orderList.length > 0) {
+//                        for (var index = 0; index < orderList.length; index++) {
+//                            //组装话题数据表格
+//                            var order = orderList[index];
+//
+//                            var orderId = order.id;
+//                            var goodsName = order.goodsName;
+//                            var goodsModel = order.goodsModel;
+//                            var goodsNum = order.goodsNum;
+//                            var goodsPrice = order.goodsPrice;
+//                            var inGoodsPrice = order.inGoodsPrice;
+//                            var orderAmount = order.orderAmount;
+//                            var remark = order.remark;
+//                            var gmtCreate = order.gmtCreatePos;
+//                            var remindTime = order.remindTimePos;
+//                            var beFinish = order.beFinish;
+//
+//                            if (remark == null || remark == undefined) {
+//                                remark = '';
+//                            }
+//                            if (remindTime == null || remindTime == undefined) {
+//                                remindTime = '';
+//                            }
+//                            if (beFinish == null || beFinish == undefined || beFinish == 'N') {
+//                                beFinish = '<span style="color: red">未结清</span>';
+//                            }
+//                            if (beFinish == 'Y') {
+//                                beFinish = '<span style="color: #32CD32">已结清</span>';
+//                            }
+//
+//                            if (inGoodsPrice == null | inGoodsPrice == undefined) {
+//                                inGoodsPrice = '';
+//                            }
+//
+//
+//                            var orderDataHtml =
+//                                ' <tr class="D_' + orderId + '">' +
+//                                '   <td class="goodsName" value="'+goodsName+'"><input value="' + orderId + '" type="checkbox" name="order" /> ' + goodsName + '</td>' +
+//                                '   <td class="goodsModel">' + goodsModel + '</td>' +
+//                                '   <td class="center goodsNum">' + goodsNum + '</td>' +
+//                                '   <td class="center goodsPrice">' + goodsPrice + '</td>' +
+//                                '   <td class="center orderAmount">' + orderAmount + '</td>' +
+//                                '   <td class="center gmtCreate">' + gmtCreate + '</td>' +
+//                                '   <td class="center remark">' + remark + '</td>' +
+//                                '   <td class="center beFinish">' + beFinish + '</td>' +
+//                                '   <td class="center">' +
+//                                '       <a class="btn btn-info btn-sm" onclick="editOrder(' + orderId + ')">' +
+//                                '           <i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
+//                                '       </a>' +
+//                                '       <a class="btn btn-primary btn-sm" onclick="finishOrder(' + orderId + ')">' +
+//                                '           <i class="glyphicon glyphicon-wrench icon-white"></i>还款' +
+//                                '       </a>' +
+//                                '       <a class="btn btn-danger btn-sm" onclick="deleteOrder(' + orderId + ')">' +
+//                                '           <i class="glyphicon glyphicon-trash icon-white"></i>删除' +
+//                                '       </a>' +
+//                                '<input class="remindTime"  value="' + remindTime + '" hidden type="text"/>' +
+//                                '<input class="createTime"  value="' + gmtCreate + '" hidden type="text"/>' +
+//                                '<input class="inGoodsPrice"  value="' + inGoodsPrice + '" hidden type="text"/>' +
+//                                '' +
+//                                '   </td>' +
+//                                '</tr>';
+//
+//                            $('.orderContentDiv').append(orderDataHtml);
+//                        }
+//                    }
+//
+//                    if (pageIndex == 0) {
+//                        createPage(pageSize, resultData.totalSize);
+//                    }
+//
+//                }
+//            }
+//        }
+//    });
+//}
 
 
 //新建订单
-function createOrder() {
-    clearOrderModal();
-    $('#orderModal').modal(true);
-}
+//function createOrder() {
+//    clearOrderModal();
+//    $('#orderModal').modal(true);
+//}
 
 
 //结清订单
@@ -504,7 +740,7 @@ function handleFinishOrder(orderId) {
 
 
 //编辑订单
-function editOrder(orderId) {
+function editOrder(orderId, headerId) {
     var classOrder = '.D_' + orderId;
     var goodsName = $(classOrder + ' .goodsName').attr('value');
     var goodsModel = $(classOrder + ' .goodsModel').html();
@@ -518,6 +754,7 @@ function editOrder(orderId) {
 
 
     $('#editOrderId').val(orderId);
+    $('#editHeaderId').val(headerId);
     $('#goodsName').val(goodsName);
     $('#goodsModel').val(goodsModel);
     $('#goodsNum').val(goodsNum);
@@ -550,7 +787,7 @@ function exportOrder() {
 
     var cusId = $('#cusId').val();
     var contextPath = $('#rcContextPath').val();
-    window.location.href = contextPath+'/export/orderList?cusId='+cusId + '&orderIds='+chkValue;
+    window.location.href = contextPath + '/export/orderList?cusId=' + cusId + '&orderIds=' + chkValue;
 }
 
 

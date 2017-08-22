@@ -15,7 +15,7 @@ public class OneController {
     @RequestMapping()
     public String index(){
 
-        return "one/index";
+        return "main/index";
     }
 
     @RequestMapping("right")

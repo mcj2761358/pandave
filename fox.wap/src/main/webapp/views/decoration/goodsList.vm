@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>商品管理</title>
+    #parse("decoration/public/commonStyle.vm")
+
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/goodsList.css?v=1.0"/>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.51"></script>
+</head>
+
+<body>
+    #parse("decoration/public/topBar.vm")
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("decoration/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">商品中心</a>
+                    </li>
+                    <li>
+                        <a href="#"> 商品管理</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 开单 -->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i></i> 新建商品</h2>
+                        </div>
+                        <div class="box-content">
+                            <table class="table table-striped table-bordered quick_order_0">
+                                <thead>
+                                <tr>
+                                    <th>商品名称<span style="color: red">*</span></th>
+                                    <th>商品型号<span style="color: red">*</span></th>
+                                    <th>商品进货价格</th>
+                                    <th>商品售卖价格</th>
+                                    <th>订库存数量</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody class="goodsCreateDiv">
+                                <tr>
+                                    <td><span style="color:red;" class="beNew">(新)</span><input id="goodsId" hidden/><input id="goodsName"/></td>
+                                    <td><input id="goodsModel"/></td>
+                                    <td><input style="width:90px;"id="inGoodsPrice"/></td>
+                                    <td><input style="width:90px;"id="goodsPrice"/></td>
+                                    <td><input style="width:90px;" id="stockNum"/></td>
+                                    <td class="center">
+                                        <a class="btn btn-info btn-sm" onclick="simpleSaveGoods()">
+                                            <i class="glyphicon glyphicon-edit icon-white"></i>新建商品
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" onclick="clearGoodsInfo()">
+                                            <i class="glyphicon glyphicon-plane icon-white"></i>清空数据
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well order-header" data-original-title="">
+                            <h2>
+                                <i class="glyphicon glyphicon-user"></i> 商品列表
+                            </h2>
+
+
+                            <h2 class="modal-title float-right">
+                                <a class="btn btn-success btn-sm" id="goodsModalBtn">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>新建商品
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="box-content">
+
+                            <!-- 搜索框 -->
+                            <div class="form-horizontal">
+                                <div class="form-group col-md-12 has-success">
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="keyword" placeholder="商品名称/商品型号">
+                                    </div>
+                                    <button class="btn btn-success" onclick="queryGoodsList(0);" id="searchGoodsBtn">
+                                        搜索商品
+                                    </button>
+
+                                    <button class="btn btn-warning editGoodsOption" onclick="editGoodsList()">编辑商品</button>
+                                </div>
+                            </div>
+
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>商品型号</th>
+                                    <th>商品价格</th>
+                                    <th>商品库存</th>
+                                    <th>录入时间</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody class="contentDiv">
+                                ##customer data from db
+                                </tbody>
+                            </table>
+
+                            <div align="center">
+                                <ul class="pagination self-page"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/span-->
+
+            </div>
+        </div>
+    </div>
+
+    #parse("decoration/public/footer.vm")
+</div>
+
+
+<div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    商品信息:
+                </h4>
+            </div>
+            <div class="modal-body" style="color: #666666;">
+
+                <div class="row">
+                    <div class="form-horizontal">
+                        <!-- 客户ID -->
+                        <input type="hidden" id="editGoodsId"/>
+
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">商品名称</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editGoodsName">
+                            </div>
+                            <label class="red control-label">*</label>
+                        </div>
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">商品型号</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editGoodsModel">
+                            </div>
+                            <label class="red control-label">*</label>
+                        </div>
+
+                        #if ($!permissionRule.noInPrice != 'Y')
+                            <div class="form-group col-md-12 has-success">
+                                <label class="col-sm-3 control-label">商品进货价格</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="editInGoodsPrice">
+                                </div>
+                            </div>
+                        #end
+
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">商品售卖价格</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editGoodsPrice">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">库存数量</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editStockNum">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">备 注</label>
+
+                            <div class="col-sm-8">
+                                <input class="form-control" id="editRemark">
+                            </div>
+                        </div>
+
+                        <div align="center">
+                            <button type="button" class="btn btn-danger btn-sm" id="saveGoodsBtn"> 保存商品</button>
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"> 取 消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    #parse("decoration/public/alertModal.vm")
+    #parse("decoration/public/commonJS.vm")
+</body>
+</html>

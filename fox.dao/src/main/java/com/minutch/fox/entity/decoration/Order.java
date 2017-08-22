@@ -13,11 +13,13 @@ import lombok.EqualsAndHashCode;
 @Data
 public class Order extends BaseEntity {
 
+  private Long headerId;
   private Long cusId;
   private String cusName;
   private String mobilePhone;
   private String houseName;
   private String address;
+  private Long goodsId;
   private String goodsName;
   private String goodsModel;
   private Integer goodsNum;

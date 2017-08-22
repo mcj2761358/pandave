@@ -2,6 +2,7 @@ package com.minutch.fox.biz.decoration;
 
 import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.param.decoration.OrderQueryParam;
+import com.minutch.fox.view.decoration.OrderView;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface OrderService {
 
     int deleteByIds(Long[] ids);
 
-    List<Order> queryOrder(OrderQueryParam param);
+    List<OrderView> queryOrder(OrderQueryParam param);
 
     int queryOrderCount(OrderQueryParam param);
 
@@ -25,4 +26,6 @@ public interface OrderService {
     int handleRemindById(Long orderId);
 
     List<Order> queryByIds(List<Long> idList);
+
+    List<Order> queryByHeaderId(Long headerId);
 }

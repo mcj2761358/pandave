@@ -212,15 +212,8 @@
         from decoration_customer
         where is_deleted= 'N'
         and mobile_phone = #{mobilePhone}
+        and store_id = #{storeId}
         limit 1;
     </select>
 
-    <update id="saveTotalAmount">
-        update decoration_customer
-        set gmt_modified = now(),
-        total_amount = #{param.totalAmount},
-        pre_amount = #{param.preAmount}
-        where store_id = #{param.storeId}
-        and id =#{param.cusId}
-    </update>
 </mapper>

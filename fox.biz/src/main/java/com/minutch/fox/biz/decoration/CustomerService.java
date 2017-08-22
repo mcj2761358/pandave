@@ -21,7 +21,5 @@ public interface CustomerService {
 
     int queryCustomerCount(CustomerQueryParam param);
 
-    Customer queryByMobilePhone(String mobilePhone);
-
-    int saveTotalAmount(CustomerTotalAmountParam param);
+    Customer queryByMobilePhone(String mobilePhone,Long storeId);
 }

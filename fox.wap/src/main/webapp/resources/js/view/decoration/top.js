@@ -16,15 +16,15 @@ function queryNotice() {
                 console.log(result);
                 //请求数据成功
                 if (result.success) {
-                    data = result.data;
-                    if (data != null) {
+                    notice = result.data;
+                    if (notice != null) {
 
                         var noticeMsg =
                             '<div>' +
                             '<div class="alert alert-success alert-dismissable">' +
-                            '<button onclick="closeNotice('+data.id+')" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
+                            '<button onclick="closeNotice('+notice.id+')" type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
                             '<h4>' +
-                            '【'+data.noticeTypeName+'】：'+data.noticeMessage +
+                            '【'+notice.noticeTypeName+'】：'+notice.noticeMessage +
                             '</h4>' +
                             '</div>' +
                             '</div>';

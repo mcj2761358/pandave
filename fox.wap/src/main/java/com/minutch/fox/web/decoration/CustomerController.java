@@ -98,9 +98,10 @@ public class CustomerController extends BaseController {
         Customer customer;
         if (param.getId() == null) {
             //判断当前手机号是否已经被注册
-            customer = customerService.queryByMobilePhone(param.getMobilePhone());
-            if (customer != null && customer.getStoreId().equals(sessionInfo.getStoreId())) {
-                log.error("客户[" + param.getMobilePhone() + "]已存在.");return Result.wrapErrorResult("", "客户[" + param.getMobilePhone() + "]已存在，请到[客户管理]查询此客户信息.");
+            customer = customerService.queryByMobilePhone(param.getMobilePhone(), sessionInfo.getStoreId());
+            if (customer != null) {
+                log.error("客户[" + param.getMobilePhone() + "]已存在.");
+                return Result.wrapErrorResult("", "客户[" + param.getMobilePhone() + "]已存在，请到[客户管理]查询此客户信息.");
             }
         }
 

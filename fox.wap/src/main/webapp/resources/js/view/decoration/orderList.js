@@ -98,7 +98,7 @@ function queryOrderList(pageIndex) {
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId;
                             var orderDataHtml = '<tr>' +
-                                '<td><a href="' + customerDetailUrl + '" target="_blank">' + cusName + '</a></td>' +
+                                '<td><a href="' + customerDetailUrl + '" target="_self">' + cusName + '</a></td>' +
                                 '<td class="center">' + remindTime + '</td>' +
                                 '<td class="center">' + mobilePhone + '</td>' +
                                 '<td class="center">' + houseName + '</td>' +

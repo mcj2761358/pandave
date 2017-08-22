@@ -21,7 +21,7 @@
 
 <!-- jQuery -->
 <script src='${rc.contextPath}/resources/charisma/bower_components/jquery/jquery.min.js'></script>
-<script src='${rc.contextPath}/resources/js/view/decoration/top.js?v=1'></script>
+<script src='${rc.contextPath}/resources/js/view/decoration/top.js?v=1.1'></script>
 
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>

@@ -49,12 +49,7 @@ public class CustomerServiceImpl extends BaseServiceImpl implements CustomerServ
     }
 
     @Override
-    public Customer queryByMobilePhone(String mobilePhone) {
-        return customerDao.queryByMobilePhone(mobilePhone);
-    }
-
-    @Override
-    public int saveTotalAmount(CustomerTotalAmountParam param) {
-        return customerDao.saveTotalAmount(param);
+    public Customer queryByMobilePhone(String mobilePhone,Long storeId) {
+        return customerDao.queryByMobilePhone(mobilePhone,storeId);
     }
 }

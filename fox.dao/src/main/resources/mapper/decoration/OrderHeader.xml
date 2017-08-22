@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.OrderHeaderDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.OrderHeader"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "cus_name" property = "cusName" />
+        <result column = "cus_id" property = "cusId" />
+        <result column = "mobile_phone" property = "mobilePhone" />
+        <result column = "house_name" property = "houseName" />
+        <result column = "address" property = "address" />
+        <result column = "order_sn" property = "orderSn" />
+        <result column = "total_amount" property = "totalAmount" />
+        <result column = "pre_amount" property = "preAmount" />
+        <result column = "store_id" property = "storeId" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "cusName != null">
+                    and cus_name = #{cusName}
+                </if>
+                <if test = "cusId != null">
+                    and cus_id = #{cusId}
+                </if>
+                <if test = "mobilePhone != null">
+                    and mobile_phone = #{mobilePhone}
+                </if>
+                <if test = "houseName != null">
+                    and house_name = #{houseName}
+                </if>
+                <if test = "address != null">
+                    and address = #{address}
+                </if>
+                <if test = "orderSn != null">
+                    and order_sn = #{orderSn}
+                </if>
+                <if test = "totalAmount != null">
+                    and total_amount = #{totalAmount}
+                </if>
+                <if test = "preAmount != null">
+                    and pre_amount = #{preAmount}
+                </if>
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "cusName != null">
+                cus_name = #{cusName},
+            </if>
+            <if test = "cusId != null">
+                cus_id = #{cusId},
+            </if>
+            <if test = "mobilePhone != null">
+                mobile_phone = #{mobilePhone},
+            </if>
+            <if test = "houseName != null">
+                house_name = #{houseName},
+            </if>
+            <if test = "address != null">
+                address = #{address},
+            </if>
+            <if test = "orderSn != null">
+                order_sn = #{orderSn},
+            </if>
+            <if test = "totalAmount != null">
+                total_amount = #{totalAmount},
+            </if>
+            <if test = "preAmount != null">
+                pre_amount = #{preAmount},
+            </if>
+            <if test = "storeId != null">
+                store_id = #{storeId},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_order_header
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_order_header
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_order_header
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_order_header
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_order_header
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_order_header
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_order_header (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        cus_name,
+        cus_id,
+        mobile_phone,
+        house_name,
+        address,
+        order_sn,
+        total_amount,
+        pre_amount,
+        store_id,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{cusName},
+        #{cusId},
+        #{mobilePhone},
+        #{houseName},
+        #{address},
+        #{orderSn},
+        #{totalAmount},
+        #{preAmount},
+        #{storeId},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_order_header
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+    <!-- 查询客户所有订单 -->
+    <select id = "queryByCusId" resultMap = "BaseResultMap">
+        select *
+        from decoration_order_header
+        where is_deleted = 'N'
+        and cus_id = #{cusId}
+        and store_id = #{storeId}
+    </select>
+
+    <!-- 保存订单总金额 -->
+    <update id="saveTotalAmount">
+        update decoration_order_header
+        set gmt_modified = now(),
+        total_amount = #{param.totalAmount},
+        pre_amount = #{param.preAmount}
+        where store_id = #{param.storeId}
+        and id =#{param.headerId}
+    </update>
+
+
+    <!-- 查询订单 -->
+    <sql id="queryHeaderCond">
+        and store_id = #{param.storeId}
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            cus_name  like concat('%',#{param.keyword},'%')
+            or mobile_phone like concat('%',#{param.keyword},'%')
+            or house_name like concat('%',#{param.keyword},'%')
+            )
+        </if>
+        <if test="param.gmtCreateStart!=null and param.gmtCreateStart!='' and param.gmtCreateEnd!=null and param.gmtCreateEnd!=''">
+            and gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
+        </if>
+    </sql>
+
+    <!-- 根据条件查询客户总数 -->
+    <select id="queryHeaderCount" resultType="java.lang.Integer">
+        select count(*)
+        from decoration_order_header
+        where is_deleted = 'N'
+       <include refid="queryHeaderCond" />
+    </select>
+
+    <!-- 根据条件查询客户数据 -->
+    <select id="queryHeader" resultMap="BaseResultMap">
+        select *
+        from decoration_order_header
+        where is_deleted = 'N'
+        <include refid="queryHeaderCond" />
+        order by id desc
+        limit #{start},#{limit}
+    </select>
+
+    <!-- 根据订单号查询 -->
+    <select id = "queryByOrderSn" resultMap = "BaseResultMap">
+        select *
+        from decoration_order_header
+        where is_deleted = 'N'
+        and order_sn = #{orderSn}
+        and cus_id = #{cusId}
+    </select>
+
+
+</mapper>

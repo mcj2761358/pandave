@@ -63,16 +63,17 @@ function queryUserList(pageIndex) {
                             var mobilePhone = customer.mobilePhone;
                             var houseName = customer.houseName;
                             var address = customer.address;
+                            var remark = customer.remark;
                             var gmtCreate = customer.gmtCreatePos;
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
                             var cusDataHtml =
                                 '<tr>' +
-                                '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
-                                '<td class="center">'+gmtCreate+'</td>' +
+                                '<td><a href="'+customerDetailUrl+'" target="_self">'+cusName+'</a></td>' +
                                 '<td class="center">'+mobilePhone+'</td>' +
                                 '<td class="center">'+houseName+'</td>' +
                                 '<td class="center">'+address+'</td>' +
+                                '<td class="center">'+remark+'</td>' +
                                 '<td class="center">' +
                                 '<a class="btn btn-info btn-sm" href="'+contextPath+'/decoration/createCustomer?cusId='+cusId+'">' +
                                 '<i class="glyphicon glyphicon-edit icon-white"></i>编辑' +

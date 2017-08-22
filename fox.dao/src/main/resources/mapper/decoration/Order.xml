@@ -5,11 +5,37 @@
 
     <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Order"
                extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "header_id" property = "headerId" />
         <result column = "cus_id" property = "cusId" />
         <result column = "cus_name" property = "cusName" />
         <result column = "mobile_phone" property = "mobilePhone" />
         <result column = "house_name" property = "houseName" />
         <result column = "address" property = "address" />
+        <result column = "goods_id" property = "goodsId" />
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_model" property = "goodsModel" />
+        <result column = "goods_num" property = "goodsNum" />
+        <result column = "goods_price" property = "goodsPrice" />
+        <result column = "in_goods_price" property = "inGoodsPrice" />
+        <result column = "order_amount" property = "orderAmount" />
+        <result column = "return_amount" property = "returnAmount" />
+        <result column = "remind_time" property = "remindTime" />
+        <result column = "be_finish" property = "beFinish" />
+        <result column = "store_id" property = "storeId" />
+        <result column = "emp_id" property = "empId" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+
+    <resultMap id = "orderViewMap" type = "com.minutch.fox.view.decoration.OrderView">
+        <result column = "id" property = "id" />
+        <result column = "header_id" property = "headerId" />
+        <result column = "cus_id" property = "cusId" />
+        <result column = "cus_name" property = "cusName" />
+        <result column = "mobile_phone" property = "mobilePhone" />
+        <result column = "house_name" property = "houseName" />
+        <result column = "address" property = "address" />
+        <result column = "goods_id" property = "goodsId" />
         <result column = "goods_name" property = "goodsName" />
         <result column = "goods_model" property = "goodsModel" />
         <result column = "goods_num" property = "goodsNum" />
@@ -28,6 +54,9 @@
         <where>
             <trim prefixOverrides = "and">
                 <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "headerId != null">
+                    and header_id = #{headerId}
+                </if>
                 <if test = "cusId != null">
                     and cus_id = #{cusId}
                 </if>
@@ -42,6 +71,9 @@
                 </if>
                 <if test = "address != null">
                     and address = #{address}
+                </if>
+                <if test = "goodsId != null">
+                    and goods_id = #{goodsId}
                 </if>
                 <if test = "goodsName != null">
                     and goods_name = #{goodsName}
@@ -86,6 +118,9 @@
     <sql id = "BaseUpdateSet">
         <set>
             <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "headerId != null">
+                header_id = #{headerId},
+            </if>
             <if test = "cusId != null">
                 cus_id = #{cusId},
             </if>
@@ -100,6 +135,9 @@
             </if>
             <if test = "address != null">
                 address = #{address},
+            </if>
+            <if test = "goodsId != null">
+                goods_id = #{goodsId},
             </if>
             <if test = "goodsName != null">
                 goods_name = #{goodsName},
@@ -195,11 +233,13 @@
     <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
         insert into decoration_order (
         <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        header_id,
         cus_id,
         cus_name,
         mobile_phone,
         house_name,
         address,
+        goods_id,
         goods_name,
         goods_model,
         goods_num,
@@ -215,11 +255,13 @@
         )
         values (
         <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{headerId},
         #{cusId},
         #{cusName},
         #{mobilePhone},
         #{houseName},
         #{address},
+        #{goodsId},
         #{goodsName},
         #{goodsModel},
         #{goodsNum},
@@ -246,65 +288,82 @@
     <!-- 根据条件查询订单总数 -->
     <select id="queryOrderCount" resultType="java.lang.Integer">
         select count(*)
-        from decoration_order
-        where is_deleted = 'N'
-        and store_id = #{param.storeId}
-        <if test="param.keyword!=null and param.keyword!=''">
-            and
-            (
-            cus_name  like concat('%',#{param.keyword},'%')
-            or mobile_phone like concat('%',#{param.keyword},'%')
-            or house_name like concat('%',#{param.keyword},'%')
-            )
-        </if>
-        <if test="param.beFinish!=null and param.beFinish!=''">
-            and be_finish = #{param.beFinish}
-        </if>
-        <if test="param.remindStatus != null">
-            and remind_status = #{param.remindStatus}
-        </if>
-        <if test="param.cusId!=null">
-            and cus_id = #{param.cusId}
-        </if>
-        <if test="param.queryTimeStart!=null and param.queryTimeStart!='' and param.queryTimeEnd!=null and param.queryTimeEnd!=''">
-            and remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
-        </if>
-        <if test="param.gmtCreateStart!=null and param.gmtCreateStart!='' and param.gmtCreateEnd!=null and param.gmtCreateEnd!=''">
-            and gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
-        </if>
+        from decoration_order o
+        right join decoration_order_header h
+        on o.header_id = h.id
+        where o.is_deleted = 'N'
+        and h.is_deleted = 'N'
+        <include refid="queryOrderCond" />
     </select>
 
     <!-- 根据条件查询订单数据 -->
-    <select id="queryOrder" resultMap="BaseResultMap">
-        select *
-        from decoration_order
-        where is_deleted = 'N'
-        and store_id = #{param.storeId}
+    <select id="queryOrder" resultMap="orderViewMap">
+        select
+        o.id,
+        o.header_id,
+        h.cus_id,
+        h.cus_name,
+        h.mobile_phone,
+        h.house_name,
+        h.address,
+        o.goods_id,
+        o.goods_name,
+        o.goods_model,
+        o.goods_num,
+        o.goods_price,
+        o.in_goods_price,
+        o.order_amount,
+        o.remind_time,
+        o.be_finish,
+        o.store_id,
+        o.emp_id,
+        o.remark
+        from decoration_order o
+        right join decoration_order_header h
+        on o.header_id = h.id
+        where o.is_deleted = 'N'
+        and h.is_deleted = 'N'
+        <include refid="queryOrderCond" />
+        order by o.id desc
+        limit #{start},#{limit}
+    </select>
+
+
+    <sql id="queryOrderCond">
+        and o.store_id = #{param.storeId}
         <if test="param.keyword!=null and param.keyword!=''">
             and
             (
-            cus_name  like concat('%',#{param.keyword},'%')
-            or mobile_phone like concat('%',#{param.keyword},'%')
-            or house_name like concat('%',#{param.keyword},'%')
+            h.cus_name  like concat('%',#{param.keyword},'%')
+            or h.mobile_phone like concat('%',#{param.keyword},'%')
+            or h.house_name like concat('%',#{param.keyword},'%')
             )
         </if>
         <if test="param.beFinish!=null and param.beFinish!=''">
-            and be_finish = #{param.beFinish}
+            and o.be_finish = #{param.beFinish}
         </if>
         <if test="param.remindStatus != null">
-            and remind_status = #{param.remindStatus}
+            and o.remind_status = #{param.remindStatus}
         </if>
         <if test="param.cusId!=null">
-            and cus_id = #{param.cusId}
+            and h.cus_id = #{param.cusId}
         </if>
         <if test="param.queryTimeStart!=null and param.queryTimeStart!='' and param.queryTimeEnd!=null and param.queryTimeEnd!=''">
-            and remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
+            and o.remind_time between #{param.queryTimeStart} and #{param.queryTimeEnd}
         </if>
         <if test="param.gmtCreateStart!=null and param.gmtCreateStart!='' and param.gmtCreateEnd!=null and param.gmtCreateEnd!=''">
-            and gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
+            and o.gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
         </if>
-        order by id desc
-        limit #{start},#{limit}
+    </sql>
+
+
+
+    <!-- 根据headerId查询 -->
+    <select id = "queryByHeaderId" resultMap = "BaseResultMap">
+        select *
+        from decoration_order
+        where is_deleted = 'N'
+        and header_id = #{headerId}
     </select>
 
 

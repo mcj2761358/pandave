@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.GoodsDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Goods"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_model" property = "goodsModel" />
+        <result column = "goods_price" property = "goodsPrice" />
+        <result column = "in_goods_price" property = "inGoodsPrice" />
+        <result column = "stock_num" property = "stockNum" />
+        <result column = "store_id" property = "storeId" />
+        <result column = "emp_id" property = "empId" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "goodsName != null">
+                    and goods_name = #{goodsName}
+                </if>
+                <if test = "goodsModel != null">
+                    and goods_model = #{goodsModel}
+                </if>
+                <if test = "goodsPrice != null">
+                    and goods_price = #{goodsPrice}
+                </if>
+                <if test = "inGoodsPrice != null">
+                    and in_goods_price = #{inGoodsPrice}
+                </if>
+                <if test = "stockNum != null">
+                    and stock_num = #{stockNum}
+                </if>
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
+                </if>
+                <if test = "empId != null">
+                    and emp_id = #{empId}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "goodsName != null">
+                goods_name = #{goodsName},
+            </if>
+            <if test = "goodsModel != null">
+                goods_model = #{goodsModel},
+            </if>
+            <if test = "goodsPrice != null">
+                goods_price = #{goodsPrice},
+            </if>
+            <if test = "inGoodsPrice != null">
+                in_goods_price = #{inGoodsPrice},
+            </if>
+            <if test = "stockNum != null">
+                stock_num = #{stockNum},
+            </if>
+            <if test = "storeId != null">
+                store_id = #{storeId},
+            </if>
+            <if test = "empId != null">
+                emp_id = #{empId},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_goods
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_goods
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_goods
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_goods
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_goods
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_goods
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_goods (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        goods_name,
+        goods_model,
+        goods_price,
+        in_goods_price,
+        stock_num,
+        store_id,
+        emp_id,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{goodsName},
+        #{goodsModel},
+        #{goodsPrice},
+        #{inGoodsPrice},
+        #{stockNum},
+        #{storeId},
+        #{empId},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_goods
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+    
+    <sql id="goodsQueryCond">
+        and store_id = #{param.storeId}
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            goods_name  like concat('%',#{param.keyword},'%')
+            or goods_model like concat('%',#{param.keyword},'%')
+            )
+        </if>
+    </sql>
+    
+    <!-- 根据条件查询客户总数 -->
+    <select id="queryGoodsCount" resultType="java.lang.Integer">
+        select count(*)
+        from decoration_goods
+        where is_deleted = 'N'
+        <include refid="goodsQueryCond" />
+    </select>
+
+    <!-- 根据条件查询客户数据 -->
+    <select id="queryGoods" resultMap="BaseResultMap">
+        select *
+        from decoration_goods
+        where is_deleted = 'N'
+        <include refid="goodsQueryCond" />
+        order by id desc
+        limit #{start},#{limit}
+    </select>
+
+    <!-- 根据商品名称和型号查询 -->
+    <select id="queryByNameAndModel" resultMap="BaseResultMap">
+        select * from decoration_goods
+        where is_deleted = 'N'
+        and goods_name = #{goodsName}
+        and goods_model = #{goodsModel}
+        and store_id = #{storeId}
+        limit 1
+    </select>
+
+    <!-- 查询所有商品 -->
+    <select id="queryAllStoreGoods" resultMap="BaseResultMap">
+        select * from decoration_goods
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
+
+    <!-- 更新商品库存 -->
+    <update id="updateStockNum">
+      update  decoration_goods
+      set stock_num = stock_num - #{goodsNum}
+      where id = #{goodsId}
+    </update>
+</mapper>

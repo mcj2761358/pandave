@@ -24,14 +24,14 @@
 
                 <!-- 订单管理 -->
                 <li class="nav-header">订单中心</li>
-            ##                <li>
-            ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/createOrder">
-            ##                        <i class="glyphicon glyphicon-star"></i>
-            ##                        <span> 创建订单</span>
-            ##                    </a>
-            ##                </li>
+##                <li>
+##                    <a class="ajax-link" href="${rc.contextPath}/decoration/orderList">
+##                        <i class="glyphicon glyphicon-align-justify"></i>
+##                        <span> 订单管理</span>
+##                    </a>
+##                </li>
                 <li>
-                    <a class="ajax-link" href="${rc.contextPath}/decoration/orderList">
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/orderHeaderList">
                         <i class="glyphicon glyphicon-align-justify"></i>
                         <span> 订单管理</span>
                     </a>
@@ -51,6 +51,15 @@
                         </a>
                     </li>
                 #end
+
+                <!-- 商品管理 -->
+                <li class="nav-header">商品中心</li>
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/goodsList">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        <span> 商品管理</span>
+                    </a>
+                </li>
 
             ##                <li>
             ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/icon">

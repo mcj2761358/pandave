@@ -10,13 +10,16 @@ import java.util.Date;
  */
 @Data
 public class OrderParam {
-    private Long id;
 
+    private Long headerId;
+
+    private Long id;
     private Long cusId;
     private String cusName;
     private String mobilePhone;
     private String houseName;
     private String address;
+    private Long goodsId;
     private String goodsName;
     private String goodsModel;
     private Integer goodsNum;

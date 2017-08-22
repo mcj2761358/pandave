@@ -1,24 +1,34 @@
 package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.CustomerService;
+import com.minutch.fox.biz.decoration.GoodsService;
+import com.minutch.fox.biz.decoration.OrderHeaderService;
 import com.minutch.fox.biz.decoration.OrderService;
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.entity.decoration.Goods;
 import com.minutch.fox.entity.decoration.Order;
+import com.minutch.fox.entity.decoration.OrderHeader;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
+import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
 import com.minutch.fox.param.decoration.OrderParam;
 import com.minutch.fox.param.decoration.OrderQueryParam;
 import com.minutch.fox.result.PageResultVO;
+import com.minutch.fox.result.decoration.OrderHeaderVO;
 import com.minutch.fox.result.decoration.OrderVO;
 import com.minutch.fox.utils.DateUtils;
 import com.minutch.fox.utils.FoxBeanUtils;
+import com.minutch.fox.utils.GenerationUtils;
+import com.minutch.fox.utils.ListUtils;
+import com.minutch.fox.view.decoration.OrderView;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,6 +54,43 @@ public class OrderController extends BaseController {
     private CustomerService customerService;
     @Autowired
     private SessionInfo sessionInfo;
+    @Autowired
+    private OrderHeaderService orderHeaderService;
+    @Autowired
+    private GoodsService goodsService;
+
+
+
+    @RequestMapping("queryHeaderList")
+    @ResponseBody
+    public Result<?> queryHeaderList(@RequestBody OrderHeaderQueryParam param) {
+
+        handOrderHeaderQueryParam(param);
+
+        param.setStoreId(sessionInfo.getStoreId());
+        int totalNum = orderHeaderService.queryHeaderCount(param);
+        PageResultVO<OrderHeaderVO> pageResultVO = new PageResultVO<>();
+        pageResultVO.setPageSize(param.getPageSize());
+        pageResultVO.setCurPage(param.getCurPage());
+        pageResultVO.setTotalSize(totalNum);
+        if (totalNum > 0) {
+            List<OrderHeader> orderList = orderHeaderService.queryHeader(param);
+            pageResultVO.setDataList(FoxBeanUtils.copyList(orderList, OrderHeaderVO.class));
+        } else {
+            pageResultVO.setDataList(new ArrayList<OrderHeaderVO>());
+        }
+        return Result.wrapSuccessfulResult(pageResultVO);
+
+    }
+
+    private void handOrderHeaderQueryParam(OrderHeaderQueryParam param) {
+
+        String queryTime = param.getQueryTime();
+        if (StringUtils.isNotBlank(queryTime)) {
+            param.setGmtCreateStart(queryTime + START_TIME_POSTFIX);
+            param.setGmtCreateEnd(queryTime + END_TIME_POSTFIX);
+        }
+    }
 
     @RequestMapping("queryList")
     @ResponseBody
@@ -58,13 +105,14 @@ public class OrderController extends BaseController {
         pageResultVO.setCurPage(param.getCurPage());
         pageResultVO.setTotalSize(totalNum);
         if (totalNum > 0) {
-            List<Order> orderList = orderService.queryOrder(param);
+            List<OrderView> orderList = orderService.queryOrder(param);
             pageResultVO.setDataList(FoxBeanUtils.copyList(orderList, OrderVO.class));
         } else {
             pageResultVO.setDataList(new ArrayList<OrderVO>());
         }
         return Result.wrapSuccessfulResult(pageResultVO);
     }
+
 
     private void handOrderQueryParam(OrderQueryParam param) {
         String timeName = param.getTimeName();
@@ -88,6 +136,14 @@ public class OrderController extends BaseController {
                 Date nearly3Date = DateUtils.afterNDays(date, 2);
                 endDate = DateUtils.dateFormat(nearly3Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
             }
+            else if ("nearly7".equals(timeName)) {
+                Date nearly7Date = DateUtils.afterNDays(date, 6);
+                endDate = DateUtils.dateFormat(nearly7Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+            }
+            else if ("all".equals(timeName)) {
+                Date allDate = DateUtils.afterNDays(date, 10000);
+                endDate = DateUtils.dateFormat(allDate, DateUtils.Y_M_D) + END_TIME_POSTFIX;
+            }
 
             param.setQueryTimeStart(startDate);
             param.setQueryTimeEnd(endDate);
@@ -103,7 +159,12 @@ public class OrderController extends BaseController {
 
     @RequestMapping("save")
     @ResponseBody
+    @Transactional
     public Result<?> save(@RequestBody OrderParam param) {
+
+        if (0L ==   param.getHeaderId()) {
+            param.setHeaderId(null);
+        }
 
         //数据检查
         if (StringUtils.isBlank(param.getGoodsName())) {
@@ -134,15 +195,48 @@ public class OrderController extends BaseController {
             return Result.wrapErrorResult("","不存在的客户ID["+param.getCusId()+"]");
         }
 
-        param.setCusName(customer.getCusName());
-        param.setHouseName(customer.getHouseName());
-        param.setMobilePhone(customer.getMobilePhone());
-        param.setAddress(customer.getAddress());
+        //判断是否有订单头
+        Long headerId = param.getHeaderId();
+        if (headerId == null) {
+            OrderHeader orderHeader = new OrderHeader();
+            orderHeader.setDefaultBizValue(sessionInfo.getEmpId());
+            orderHeader.setStoreId(sessionInfo.getStoreId());
+            orderHeader.setCusId(param.getCusId());
+            orderHeader.setCusName(customer.getCusName());
+            orderHeader.setHouseName(customer.getHouseName());
+            orderHeader.setMobilePhone(customer.getMobilePhone());
+            orderHeader.setAddress(customer.getAddress());
+            orderHeader.setOrderSn(generateOrderSn());
+            orderHeader.setTotalAmount(BigDecimal.ZERO);
+            orderHeader.setPreAmount(BigDecimal.ZERO);
+
+            orderHeaderService.save(orderHeader);
+            headerId = orderHeader.getId();
+        }
+
+//        param.setCusName(customer.getCusName());
+//        param.setHouseName(customer.getHouseName());
+//        param.setMobilePhone(customer.getMobilePhone());
+//        param.setAddress(customer.getAddress());
+        param.setCusId(null);
+
         Order order = new Order();
         BeanUtils.copyProperties(param, order);
 
         if (order.getId() == null) {
             order.setBeFinish("N");
+            order.setHeaderId(headerId);
+
+            //如果是新订单，判断商品是否来自库存商品，如果是，减去库存量
+            Long goodsId = param.getGoodsId();
+            if (goodsId != null) {
+                Goods goods = goodsService.getById(goodsId);
+                if (goods != null
+                        && goods.getGoodsName().equals(param.getGoodsName())
+                        && goods.getGoodsModel().equals(param.getGoodsModel())) {
+                    goodsService.updateStockNum(goodsId, param.getGoodsNum());
+                }
+            }
         }
         order.setDefaultBizValue(sessionInfo.getEmpId());
 
@@ -156,6 +250,12 @@ public class OrderController extends BaseController {
         return Result.wrapSuccessfulResult(order);
     }
 
+
+    private String generateOrderSn() {
+        Date currentDate = new Date();
+        String dateStr = DateUtils.dateFormat(currentDate, DateUtils.YMDHMS);
+        return "SN"+ dateStr + GenerationUtils.generateRandomCode(3);
+    }
 
     @RequestMapping("deleteById")
     @ResponseBody
@@ -203,13 +303,13 @@ public class OrderController extends BaseController {
     @ResponseBody
     public Result<?> saveOrderTotalAmount(@RequestBody CustomerTotalAmountParam param) {
 
-        if (param.getCusId() == null) {
-            log.error("cusId 不能为空");
-            return Result.wrapSuccessfulResult("未知的客户,请刷新页面后重试.");
+        if (param.getHeaderId() == null) {
+            log.error("headerId 不能为空");
+            return Result.wrapSuccessfulResult("未知的订单,请刷新页面后重试.");
         }
 
         param.setStoreId(getStoreId());
-        customerService.saveTotalAmount(param);
+        orderHeaderService.saveTotalAmount(param);
         return Result.wrapSuccessfulResult(null);
     }
 }

@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>客户详情</title>
+    <title>客户订单</title>
     #parse("decoration/public/commonStyle.vm")
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/bootstrap-datetimepicker.min.css"/>
-    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/customerDetail.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/customerDetail.css?v=1.4"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -28,14 +28,16 @@
                         <a href="#">用户中心</a>
                     </li>
                     <li>
-                        <a href="#"> 客户详情</a>
+                        <a href="#"> 客户订单</a>
                     </li>
                 </ul>
             </div>
 
+            <input id="fromOrderSn" value="$!orderSn" hidden/>
 
             <div class="row">
 
+                #if(!$orderSn)
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
@@ -67,7 +69,7 @@
                             <h2><i></i> 我要开单</h2>
                         </div>
                         <div class="box-content">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered quick_order_0">
                                 <thead>
                                 <tr>
                                     <th>商品名称</th>
@@ -80,14 +82,18 @@
                                 </thead>
                                 <tbody class="orderCreateDiv">
                                 <tr class="">
-                                    <td><input id="cGoodsName"/></td>
-                                    <td><input id="cGoodsModel"/></td>
-                                    <td><input id="cGoodsNum" onblur="exeOrderAmount()"/></td>
-                                    <td><input id="cGoodsPrice"  onblur="exeOrderAmount()"/></td>
-                                    <td><input id="cOrderAmount"/></td>
+                                    <td>
+                                        <input class="goodsName" id="goodsSearch0"/>
+                                        <input type="hidden" id="searchResult0"/>
+                                        <input type="hidden" id="fillGoodsId0" class="goodsId"/>
+                                    </td>
+                                    <td><input class="goodsModel" id="fillGoodsModel0"/></td>
+                                    <td><input class="goodsNum" onblur="exeOrderAmount(0)"/></td>
+                                    <td><input class="goodsPrice" id="fillGoodsPrice0" onblur="exeOrderAmount(0)"/></td>
+                                    <td><input class="orderAmount"/></td>
                                     <td class="center">
-                                        <a class="btn btn-info btn-sm" onclick="simpleCreateOrder()">
-                                            <i class="glyphicon glyphicon-edit icon-white"></i>快速开单
+                                        <a class="btn btn-info btn-sm" onclick="simpleCreateOrder(0)">
+                                            <i class="glyphicon glyphicon-edit icon-white"></i>新开单子
                                         </a>
                                     </td>
                                 </tr>
@@ -98,18 +104,13 @@
 
                     </div>
                 </div>
+                #end
 
                 <!-- 订单信息 -->
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i></i> 所有订单</h2>
-
-                            <h2 class="modal-title float-right">
-                                <a class="btn btn-primary btn-sm" onclick="createOrder()">
-                                    <i class="glyphicon glyphicon-edit icon-white"></i>创建订单
-                                </a>
-                            </h2>
+                            <h2><i></i> 订单信息</h2>
 
                             <h2 class="modal-title float-right">
                                 <a class="btn btn-success btn-sm" id="exportBtn" onclick="exportOrder()">
@@ -118,68 +119,180 @@
                             </h2>
 
                         </div>
-                        <div class="box-content">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>商品名称</th>
-                                    <th>商品型号</th>
-                                    <th>商品数量</th>
-                                    <th>商品单价</th>
-                                    <th>订单总价</th>
-                                    <th>录入时间</th>
-                                    <th>备注</th>
-                                    <th>是否结清</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody class="orderContentDiv">
-                                ##                                <tr class="">
-##                                    <td class="goodsName">餐桌[1.2*1.6]6椅子</td>
-##                                    <td class="center goodsNum">2</td>
-##                                    <td class="center goodsPrice">1250</td>
-##                                    <td class="center orderAmount">2200</td>
-##                                    <td class="center">型号[XKSLO-9028] 2017-01-20上门安装</td>
-##                                    <td class="center">已还</td>
-##                                    <td class="center">
-##                                        <a class="btn btn-info btn-sm" onclick="createOrder(orderId)">
-##                                            <i class="glyphicon glyphicon-edit icon-white"></i>编辑
-##                                        </a>
-##                                        <a class="btn btn-danger btn-sm">
-##                                            <i class="glyphicon glyphicon-trash icon-white" onclick="deleteOrder(orderId)"></i>删除
-##                                        </a>
-##                                    </td>
-##                                </tr>
-                                </tbody>
-                            </table>
+
+                        <!-- 分割线 -->
+                        <hr class="order-hr"/>
+                        #set ($allTotalAmount = 0)
+                        #set ($allPreAmount = 0)
+                        #set ($allLeftAmount = 0)
+                        #foreach ($orderHeader in $orderHeaderList)
 
 
-                            <!-- 个人所有订单不分页 -->
-##                            <div align="center">
-##                                <ul class="pagination self-page"></ul>
-##                            </div>
+                            #set ($totalAmount = 0)
+                            <!-- 订单1 -->
+                            <div style="margin-left: 10px;">
+                                <span style="font-size: 18px;">订单号：$!orderHeader.orderSn</span>
+                            </div>
+                            <div class="box-content">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>商品名称</th>
+                                        <th>商品型号</th>
+                                        <th>商品数量</th>
+                                        <th>商品单价</th>
+                                    ##                                        <th>录入时间</th>
+                                        <th>备注</th>
+                                        <th>是否结清</th>
+                                        <th>订单总价</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
 
-                            #set($leftAmount=($customer.totalAmount)-($customer.preAmount))
+                                    <tbody class="orderContentDiv_$!orderHeader.id">
+
+                                        #foreach ($order in $orderHeader.orderList)
 
 
-                            <div align="right" class="box-footer">
-                                    总金额:<input style="width:60px;" value="$!customer.totalAmount" onblur="exeTotalAmount()" id="totalAmount"/>元<span style="margin-right: 15px;"></span>
-                                    定金:<input style="width:60px;" value="$!customer.preAmount" onblur="exeTotalAmount()" id="preAmount"/>元<span style="margin-right: 15px;"></span>
-                                    剩余款项:<span style="color: red"><u id="leftAmount">$!leftAmount</u></span>元
-                                    <a class="btn btn-success btn-sm"
-                                       role="button"
-                                       data-content="保存金额信息成功"
-                                       data-placement="bottom"
-                                       id="saveTotalAmountBtn"
-                                       data-toggle="popover"
-                                       data-trigger="focus"
-                                       onclick="saveTotalAmount()">
-                                        <i class="glyphicon glyphicon-edit icon-white"></i>保存金额
+                                            #set($totalAmount = $!order.orderAmount + $!totalAmount)
+
+                                        <tr class="D_$!order.id">
+                                            <td class="goodsName" value="$!order.goodsName">
+                                                <input value="$!order.id" type="checkbox" name="order">$!order.goodsName
+                                            </td>
+                                            <td class="goodsModel" value="">$!order.goodsModel</td>
+                                            <td class="center goodsNum right">$!order.goodsNum</td>
+                                            <td class="center orderAmount right">$!order.orderAmount</td>
+                                        ##                                            <td class="center gmtCreate">$!order.gmtCreatePos</td>
+                                            <td class="center remark">$!order.reamrk</td>
+                                            <td class="center beFinish">
+
+
+                                                #if ($!order.beFinish == 'Y')
+                                                    <span style='color: #32CD32'>已结清</span>
+                                                #else
+                                                    <span style='color: red'>未结清</span>
+                                                #end
+
+                                            </td>
+                                            <td class="center goodsPrice">$!order.goodsPrice</td>
+                                            <td class="center">
+                                                <a class="btn btn-info btn-sm"
+                                                   onclick="editOrder($!order.id,$!orderHeader.id)">
+                                                    <i class="glyphicon glyphicon-edit icon-white"></i>编辑
+                                                </a>
+
+                                                #if ($!order.beFinish == 'Y')
+                                                    <a class="btn btn-default btn-sm disabled"
+                                                       onclick="finishOrder($!order.id)">
+                                                        <i class="glyphicon glyphicon-wrench icon-white"></i>还款
+                                                    </a>
+                                                #else
+                                                    <a class="btn btn-primary btn-sm" onclick="finishOrder($!order.id)">
+                                                        <i class="glyphicon glyphicon-wrench icon-white"></i>还款
+                                                    </a>
+                                                #end
+
+
+                                                <a class="btn btn-danger btn-sm" onclick="deleteOrder($!order.id)"> <i
+                                                        class="glyphicon glyphicon-trash icon-white"></i>删除 </a>
+
+                                                <input class="remindTime" value="$!order.remindTimePos" hidden
+                                                       type="text">
+                                                <input class="createTime" value="$!order.gmtCreatePos" hidden
+                                                       type="text">
+                                                <input class="inGoodsPrice" value="$!order.inGoodsPrice" hidden
+                                                       type="text">
+                                            </td>
+                                        </tr>
+                                        #end
+
+
+                                    </tbody>
+
+
+                                </table>
+
+
+                                <!-- 个人所有订单不分页 -->
+                            ##                            <div align="center">
+                            ##                                <ul class="pagination self-page"></ul>
+                            ##                            </div>
+
+                                <table style="display: none;"
+                                       class="table table-striped table-bordered quick_order_$orderHeader.id">
+                                    <thead>
+                                    <tr>
+                                        <th>商品名称</th>
+                                        <th>商品型号</th>
+                                        <th>商品数量</th>
+                                        <th>商品单价</th>
+                                        <th>订单总价</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="orderCreateDiv">
+                                    <tr class="">
+                                        <td>
+                                            <input class="goodsName" id="goodsSearch$!orderHeader.id"/>
+                                            <input type="hidden" id="searchResult$!orderHeader.id"/>
+                                            <input type="hidden" id="fillGoodsId$!orderHeader.id" class="goodsId"/>
+                                        </td>
+                                        <td><input class="goodsModel" id="fillGoodsModel$!orderHeader.id"/></td>
+                                        <td><input class="goodsNum" onblur="exeOrderAmount($!orderHeader.id)"/></td>
+                                        <td><input class="goodsPrice" id="fillGoodsPrice$!orderHeader.id"
+                                                   onblur="exeOrderAmount($!orderHeader.id)"/></td>
+                                        <td><input class="orderAmount"/></td>
+                                        <td class="center">
+                                            <a class="btn btn-info btn-sm"
+                                               onclick="simpleCreateOrder($!orderHeader.id)">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>保存
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+                                #set($leftAmount=($!orderHeader.totalAmount)-($!orderHeader.preAmount))
+                                #set($allTotalAmount = $!allTotalAmount  + $!orderHeader.totalAmount)
+                                #set($allPreAmount = $!allPreAmount  + $!orderHeader.preAmount)
+                                #set($allLeftAmount = $!allLeftAmount + $!leftAmount)
+
+                                <div align="right" class="box-footer">
+                                    总金额：<span style="margin-right: 50px;">$!totalAmount</span>
+
+                                    实际总金额:<input style="width:60px;" class="totalAmount totalAmount_$!orderHeader.id"
+                                                 value="$!orderHeader.totalAmount"
+                                                 onblur="exeTotalAmount($!orderHeader.id)"
+                                                 id="totalAmount"/>元<span style="margin-right: 15px;"></span>
+                                    预付金额:<input style="width:60px;" class="preAmount preAmount_$!orderHeader.id"
+                                                value="$!orderHeader.preAmount"
+                                                onblur="exeTotalAmount($!orderHeader.id)"
+                                                id="preAmount"/>元<span style="margin-right: 15px;"></span>
+                                    剩余款项:<span style="color: red"><u
+                                        class="leftAmount leftAmount_$!orderHeader.id">$!leftAmount</u></span>元
+                                    <a class="btn btn-success btn-sm" onclick="addOrder($!orderHeader.id)">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>追加商品
                                     </a>
+                                </div>
+
+
                             </div>
 
-                        </div>
 
+                            <!-- 分割线 -->
+                            <hr class="order-hr"/>
+                        #end
+
+
+                        <div align="right" class="box-footer">
+                            总金额:<span id="allTotalAmount" style="width:60px;margin-right: 15px;"> $!allTotalAmount
+                            元</span>
+                            定金:<span id="allPreAmount" style="width:60px;margin-right: 15px;"> $!allPreAmount 元</span>
+                            剩余款项:<span id="allLeftAmount" style="width:60px;margin-right: 15px;"> $!allLeftAmount
+                            元</span>
+                        </div>
 
                     </div>
                 </div>
@@ -212,6 +325,7 @@
                         <!-- 客户ID -->
                         <input type="hidden" id="cusId" value="${cusId}"/>
                         <input type="hidden" id="editOrderId"/>
+                        <input type="hidden" id="editHeaderId"/>
 
                         <div class="form-group col-md-12 has-success">
                             <label class="col-sm-3 control-label">商品名称</label>
@@ -238,13 +352,13 @@
                         </div>
 
                         #if ($!permissionRule.noInPrice != 'Y')
-                        <div class="form-group col-md-12 has-success">
-                            <label class="col-sm-3 control-label">商品进价</label>
+                            <div class="form-group col-md-12 has-success">
+                                <label class="col-sm-3 control-label">商品进价</label>
 
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inGoodsPrice">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inGoodsPrice">
+                                </div>
                             </div>
-                        </div>
                         #end
 
                         <div class="form-group col-md-12 has-success">
@@ -267,6 +381,7 @@
 
                         <div class="form-group col-md-12 has-success">
                             <label class="col-sm-3 control-label">送货时间</label>
+
                             <div class="col-sm-8">
 
                                 <div class="input-group date remindTime" data-date-format="yyyy-mm-dd"
@@ -283,6 +398,7 @@
 
                         <div class="form-group col-md-12 has-success">
                             <label class="col-sm-3 control-label">下单时间</label>
+
                             <div class="col-sm-8">
 
                                 <div class="input-group date createTimeCon" data-date-format="yyyy-mm-dd"
@@ -315,8 +431,23 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=3.3"></script>
+
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=3.97"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
+<script type="text/javascript">
+
+    ##        #foreach ($searchData in $searchMap)
+    ##                jsonData.push('$!searchData.key')
+    ##                searchMap['$!searchData.key'] = '$!searchData.value'
+    ##        #end
+
+    initGoodsData($!searchMapJson);
+    bindSearch(0);
+        #foreach ($orderHeader in $orderHeaderList)
+        bindSearch($!orderHeader.id);
+        #end
+</script>
+
 </body>
 </html>

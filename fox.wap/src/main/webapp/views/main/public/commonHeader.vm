@@ -1,0 +1,37 @@
+##<header id="fh5co-header" role="banner">
+
+##    <nav class="navbar navbar-default" role="navigation">
+##        <div class="container">
+##            <div class="row">
+##                <div class="col-md-10 col-md-offset-1">
+##                    <div class="navbar-header">
+##                        <!-- Mobile Toggle Menu Button -->
+##                        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle visible-xs-block" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+##                        <a class="navbar-brand" href="${rc.contextPath}/one">Clean</a>
+##                    </div>
+##                    <div id="fh5co-navbar" class="navbar-collapse collapse">
+##                        <ul class="nav navbar-nav navbar-right">
+##                            <li class="active"><a href="${rc.contextPath}/one"><span>Home <span class="border"></span></span></a></li>
+##                            <li><a href="${rc.contextPath}/one/right"><span>Right Sidebar <span class="border"></span></span></a></li>
+##                            <li><a href="${rc.contextPath}/one/left"><span>Left Sidebar <span class="border"></span></span></a></li>
+##                        </ul>
+##                    </div>
+##                </div>
+##            </div>
+##        </div>
+##    </nav>
+
+##    <img width="100%" src="/fox/resources/img/view/header/header2.jpg">
+##</header>
+
+
+<header class="main-header"
+        style="background-image: url(/fox/resources/img/view/header/header-bg-5.jpg);">
+    <div class="container">
+        <div class="header-div" style="margin-top: 80px; margin-bottom: 70px;">
+            <div align="center">
+                <h3>耶和华啊，你是我的灯！</h3>
+            </div>
+        </div>
+    </div>
+</header>

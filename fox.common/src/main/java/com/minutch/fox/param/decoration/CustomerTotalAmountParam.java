@@ -12,6 +12,6 @@ public class CustomerTotalAmountParam {
 
     private BigDecimal totalAmount;
     private BigDecimal preAmount;
-    private Long cusId;
+    private Long headerId;
     private Long storeId;
 }

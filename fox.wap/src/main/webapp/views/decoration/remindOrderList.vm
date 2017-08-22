@@ -49,6 +49,8 @@
                                             <option value="today" selected="selected">今天</option>
                                             <option value="tomorrow">明天</option>
                                             <option value="nearly3">最近3天</option>
+                                            <option value="nearly7">最近一周</option>
+                                            <option value="all">全部</option>
                                         </select>
                                     </div>
                                     <button class="btn btn-success" onclick="queryOrderList(0);" id="searchOorderBtn">
