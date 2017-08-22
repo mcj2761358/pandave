@@ -30,6 +30,7 @@
             <mvc:exclude-mapping path="/resources/charisma/bower_components/**"/>
             <mvc:exclude-mapping path="/**/*.css"/>
             <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.ttf"/>
             <mvc:exclude-mapping path="/**/doc/**"/>
             <ref bean="employeeLoginFilter"/>
         </mvc:interceptor>
@@ -42,6 +43,7 @@
             <mvc:exclude-mapping path="/views/**"/>
             <mvc:exclude-mapping path="/**/*.css"/>
             <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.ttf"/>
             <mvc:exclude-mapping path="/**/*.vm"/>
             <ref bean="sessionFilter"/>
         </mvc:interceptor>
