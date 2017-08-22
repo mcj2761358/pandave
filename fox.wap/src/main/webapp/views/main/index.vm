@@ -676,7 +676,7 @@
 		</div>
 	</div>
 
-		#parse("main/public/commonJs.vm")
+		#parse("main/public/commonJS.vm")
 
 	</body>
 </html>
