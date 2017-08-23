@@ -88,7 +88,7 @@
                 <!-- 客户管理 -->
                 <div class="col-md-40">
                     <div class="fh5co-portfolio animate-box">
-                        <div>
+                        <a>
                             <div class="portfolio-entry"
                                  style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-7.jpg);">
                                 <div class="desc">
@@ -107,14 +107,14 @@
                                     <li><i class="icon-heart2"></i>1000+</li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
                 <!-- 商品管理 -->
                 <div class="col-md-40">
                     <div class="fh5co-portfolio animate-box">
-                        <div>
+                        <a>
                             <div class="portfolio-entry"
                                  style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-3.jpg);">
                                 <div class="desc">
@@ -132,13 +132,13 @@
                                     <li><i class="icon-heart2"></i>1000+</li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <!-- 订单管理 -->
                 <div class="col-md-40">
                     <div class="fh5co-portfolio animate-box">
-                        <div>
+                        <a>
                             <div class="portfolio-entry"
                                  style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-2.jpg);">
                                 <div class="desc">
@@ -158,14 +158,14 @@
                                     <li><i class="icon-heart2"></i>20000+</li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
                 <!-- 报表统计 -->
                 <div class="col-md-40">
                     <div class="fh5co-portfolio animate-box">
-                        <div>
+                        <a>
                             <div class="portfolio-entry"
                                  style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-9.jpg);">
                                 <div class="desc">
@@ -187,14 +187,14 @@
                                     <li><i class="icon-heart2"></i>100+</li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
                 <!-- 库存管理 -->
                 <div class="col-md-40">
                     <div class="fh5co-portfolio animate-box">
-                        <div>
+                        <a>
                             <div class="portfolio-entry"
                                  style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-1.jpg);">
                                 <div class="desc">
@@ -211,7 +211,7 @@
                                     <li><i class="icon-heart2"></i>10000+</li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -219,7 +219,7 @@
                 <!-- 营销推广 -->
                 <div class="col-md-40">
                     <div class="fh5co-portfolio animate-box">
-                        <div>
+                        <a>
                             <div class="portfolio-entry"
                                  style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-8.jpg);">
                                 <div class="desc">
@@ -240,7 +240,7 @@
                                     <li><i class="icon-heart2"></i>200+</li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
