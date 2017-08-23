@@ -11,9 +11,12 @@
 <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/main/simple-line-icons.css">
 
 <!-- Theme Style -->
-<link rel="stylesheet" href="${rc.contextPath}/resources/css/view/main/style.css">
+<link rel="stylesheet" href="${rc.contextPath}/resources/css/view/main/style.css?v=1.0">
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/bootstrap.min.css">
 <!-- Modernizr JS -->
 <script src="${rc.contextPath}/resources/js/lib/modernizr-2.6.2.min.js"></script>
 
+
+<!-- The fav icon -->
+<link rel="shortcut icon" href='${rc.contextPath}/resources/charisma/img/shang.jpeg'>

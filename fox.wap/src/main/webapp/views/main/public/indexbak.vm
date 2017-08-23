@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+	<meta charset="utf-8">
+	<title>上古集团</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		#parse("main/public/commonStyle.vm")
+	</head>
+	<body>
+
+	<!-- Header -->
+	<header role="banner" id="fh5co-header">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default navbar-fixed-top">
+					<div class="navbar-header">
+						<!-- Mobile Toggle Menu Button -->
+						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+						<a class="navbar-brand" href="index.html">上古集团.</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="#" data-nav-section="home"><span>首页</span></a></li>
+                            <li><a href="#" data-nav-section="explore"><span>产品</span></a></li>
+							<li><a href="#" data-nav-section="services"><span>套餐</span></a></li>
+							<li><a href="#" data-nav-section="testimony"><span>客户</span></a></li>
+							<li><a href="#" data-nav-section="pricing"><span>我们</span></a></li>
+							<li><a href="#" data-nav-section="blog"><span>历程</span></a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+	  </div>
+	</header>
+
+	<!-- 首页 -->
+	<section id="fh5co-home" data-section="home" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/full_image_4.jpg);" data-stellar-background-ratio="0.5">
+		<div class="gradient"></div>
+		<div class="container">
+			<div class="text-wrap">
+				<div class="text-inner">
+					<div class="row">
+						<div class="col-md-80 col-md-offset-20 text-center">
+							<h1 class="animate-box">
+								<span class="big">这群无知无畏的人</span> <br>
+								<span>将要做一件</span> <br>
+								<span class="medium">改变</span><br>
+								<span>家居家装</span> <br>
+								<span class="medium">个体户的大事</span></h1>
+ 							<div class="call-to-action">
+								<a href="http://106.14.148.10/fox/decoration/userList" target="_blank" class="demo animate-box"><i class="icon-power"></i> 开启新的历程</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 产品 -->
+    <section id="fh5co-explore" data-section="explore">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-120 section-heading text-center">
+                    <h2 class="animate-box">产品介绍</h2>
+                    <div class="row">
+                        <div class="col-md-80 col-md-offset-20 subtext animate-box">
+                            <h3>
+								我们将帮您解决客户管理，商品管理，订单管理，报表统计，库存管理，营销推广等一系列提升营业销售的问题！
+							</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<!-- 产品明细 -->
+        <div class="fh5co-project">
+            <div class="container">
+                <div class="row">
+
+					<!-- 客户管理 -->
+                    <div class="col-md-40">
+                        <div class="fh5co-portfolio animate-box">
+                            <a href="#">
+                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-7.jpg);">
+                                    <div class="desc">
+                                        <p>
+											想找到一周前的客户？<br/>
+											想知道客户的购物需求?<br/>
+											想知道一年有多少客户来本店购物?<br/>
+											想知道这一年一共有哪些客户?<br/>
+											统统在这里！
+										</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-text text-center">
+                                    <h3>客户管理</h3>
+                                    <ul class="stuff">
+                                        <li><i class="icon-heart2"></i>1000+</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+					<!-- 商品管理 -->
+                    <div class="col-md-40">
+                        <div class="fh5co-portfolio animate-box">
+                            <a href="#">
+                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-3.jpg);">
+                                    <div class="desc">
+                                        <p>
+											我们将帮您管理您的商品<br/>
+											您可以看到你所有的商品信息<br/>
+											您可以看到所有商品的库存<br/>
+											您可要知晓您卖的最好的商品
+										</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-text text-center">
+                                    <h3>商品管理</h3>
+                                    <ul class="stuff">
+                                        <li><i class="icon-heart2"></i>1000+</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+					<!-- 订单管理 -->
+                    <div class="col-md-40">
+                        <div class="fh5co-portfolio animate-box">
+                            <a href="#">
+                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-2.jpg);">
+                                    <div class="desc">
+                                        <p>
+											每一天的每一笔订单<br/>
+											每一个客户的每一笔订单<br/>
+											每一个订单的每一笔金额<br/>
+											每一个订单的时间<br/>
+											每一个订单的发货时间<br/>
+											一目了然！
+										</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-text text-center">
+                                    <h3>订单管理</h3>
+                                    <ul class="stuff">
+                                        <li><i class="icon-heart2"></i>20000+</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+					<!-- 报表统计 -->
+                    <div class="col-md-40">
+                        <div class="fh5co-portfolio animate-box">
+                            <a href="#">
+                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-9.jpg);">
+                                    <div class="desc">
+                                        <p>上百种报表：<br/>
+                                            每日销售额统计，<br/>
+                                            每日利润统计，<br/>
+                                            每月销售额统计，<br/>
+                                            每月利润统计，<br/>
+                                            年度销售额统计，<br/>
+                                            年度利润统计，<br/>
+                                            客户小区分布统计，<br/>
+                                            热卖商品统计...<br/>
+                                            多维度展现您店铺的当前状况.</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-text text-center">
+                                    <h3>报表统计</h3>
+                                    <ul class="stuff">
+                                        <li><i class="icon-heart2"></i>100+</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+					<!-- 库存管理 -->
+                    <div class="col-md-40">
+                        <div class="fh5co-portfolio animate-box">
+                            <a href="#">
+                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-1.jpg);">
+                                    <div class="desc">
+                                        <p>
+											实时管理现有库存<br/>
+											下单自动扣除库存<br/>
+											库存不足提醒进货<br/>
+										</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-text text-center">
+                                    <h3>库存管理</h3>
+                                    <ul class="stuff">
+                                        <li><i class="icon-heart2"></i>10000+</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <!-- 营销推广 -->
+                    <div class="col-md-40">
+                        <div class="fh5co-portfolio animate-box">
+                            <a href="#">
+                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-8.jpg);">
+                                    <div class="desc">
+                                        <p>
+                                            还只是发微信朋友圈推广？<br />
+                                            NO！<br />
+                                            我们帮您:<br/>
+                                            制作活动宣传网站<br/>
+                                            短信定向推送<br/>
+                                            易拉宝宣传设计<br/>
+                                            微信朋友圈互动宣传...<br/>
+										</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-text text-center">
+                                    <h3>营销推广</h3>
+                                    <ul class="stuff">
+                                        <li><i class="icon-heart2"></i>200+</li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+##                    <div class="col-md-40">
+##                        <div class="fh5co-portfolio animate-box">
+##                            <a href="#">
+##                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-6.jpg);">
+##                                    <div class="desc">
+##                                        <p>上百种报表：<br/>
+##                                            每日销售额统计<br/>
+##                                            每日利润统计<br/>
+##                                            每月销售额统计<br/>
+##                                            每月利润统计<br/>
+##                                            年度销售额统计<br/>
+##                                            年度利润统计<br/>
+##                                            客户小区分布统计<br/>
+##                                            热卖商品统计...<br/>
+##                                            多维度展现您店铺的当前状况</p>
+##                                    </div>
+##                                </div>
+##                                <div class="portfolio-text text-center">
+##                                    <h3>报表管理</h3>
+##                                    <ul class="stuff">
+##                                        <li><i class="icon-heart2"></i>100+</li>
+##                                    </ul>
+##                                </div>
+##                            </a>
+##                        </div>
+##                    </div>
+##                    <div class="col-md-40">
+##                        <div class="fh5co-portfolio animate-box">
+##                            <a href="#">
+##                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-4.jpg);">
+##                                    <div class="desc">
+##                                        <p>Solid Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+##                                    </div>
+##                                </div>
+##                                <div class="portfolio-text text-center">
+##                                    <h3>Soon</h3>
+##                                    <ul class="stuff">
+##                                        <li><i class="icon-heart2"></i>200</li>
+##                                        <li><i class="icon-eye2"></i>248</li>
+##                                        <li><i class="icon-download"></i>240</li>
+##                                    </ul>
+##                                </div>
+##                            </a>
+##                        </div>
+##                    </div>
+##                    <div class="col-md-40">
+##                        <div class="fh5co-portfolio animate-box">
+##                            <a href="#">
+##                                <div class="portfolio-entry" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/portfolio-5.jpg);">
+##                                    <div class="desc">
+##                                        <p>
+##
+##                                        </p>
+##                                    </div>
+##                                </div>
+##                                <div class="portfolio-text text-center">
+##                                    <h3>营销推广</h3>
+##                                    <ul class="stuff">
+##                                        <li><i class="icon-heart2"></i>200+</li>
+##                                    </ul>
+##                                </div>
+##                            </a>
+##                        </div>
+##                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+		<!-- 我们的数据 -->
+        <div id="fh5co-counter-section" class="fh5co-counters">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-120 animate-box" align="center">
+                        <p></span>我们的数据，每一天都在刷新纪录！</p>
+						<br/>
+                    </div>
+                </div>
+                <div class="row animate-box">
+                    <div class="col-md-23 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="8" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">商家数量</span>
+                    </div>
+                    <div class="col-md-23 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="39" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">客户数量</span>
+                    </div>
+                    <div class="col-md-23 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="201" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">商品数量</span>
+                    </div>
+                    <div class="col-md-23 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="89" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">订单数量</span>
+                    </div>
+                    <div class="col-md-23 text-center">
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="2893008.00" data-speed="5000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">总销售额</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+	<!-- 产品套餐 -->
+    <section id="fh5co-services" data-section="services">
+		<div class="fh5co-services">
+			<div class="container">
+				<div class="row">
+
+					<!-- 体验版 -->
+					<div class="col-md-30 text-center">
+
+                        <div class="box-services">
+                            <div class="icon animate-box">
+                                <span><i class="icon-paper-plane"></i></span>
+                            </div>
+                            <div class="fh5co-post animate-box">
+                                <h3>体验版</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            </div>
+                        </div>
+					</div>
+
+                    <!-- 基础版 -->
+
+					<div class="col-md-30 text-center">
+                        <div class="box-services">
+                            <div class="icon animate-box">
+                                <span><i class="icon-screen-desktop"></i></span>
+                            </div>
+                            <div class="fh5co-post animate-box">
+                                <h3>基础版</h3>
+
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
+                                    Consonantia, there live the blind texts.</p>
+                            </div>
+                        </div>
+
+					</div>
+
+                    <!-- 钻石版 -->
+					<div class="col-md-30 text-center"> 
+                        <div class="box-services">
+                            <div class="icon animate-box">
+                                <span><i class="icon-energy"></i></i></span>
+                            </div>
+                            <div class="fh5co-post animate-box">
+                                <h3>钻石版</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            </div>
+                        </div>
+					</div>
+                    <!-- 至尊版 -->
+                    <div class="col-md-30 text-center">
+
+                        <div class="box-services">
+                            <div class="icon animate-box">
+                                <span><i class="icon-trophy"></i></span>
+                            </div>
+                            <div class="fh5co-post animate-box">
+                                <h3>至尊版</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            </div>
+                        </div>
+                    </div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="fh5co-testimony" data-section="testimony">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-120 section-heading text-center">
+					<h2 class="animate-box"><span>Our Happy Clients</span></h2>
+					<div class="row">
+						<div class="col-md-80 col-md-offset-20 subtext animate-box">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-40">
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-1.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Vokalia and Consonantia, there live the blind texts Far far away, behind the word mountains</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-2.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-4.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+				</div>
+
+				<div class="col-md-40">
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-3.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains. Vokalia and Consonantia</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-5.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-1.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+				</div>
+
+				<div class="col-md-40">
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-6.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-3.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+
+					<div class="testimony-entry animate-box">
+						<div class="feed-bubble">
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="author-img" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/user-4.jpg);"></div>
+						<span class="user">Randy White <br> <small>Bloger, Analyst</small></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id="fh5co-pricing" data-section="pricing">
+		<section class="pricing-section bg-3">
+      	<div class="container">
+      		<div class="row">
+					<div class="col-md-120 section-heading text-center">
+						<h2 class="animate-box">Pricing</h2>
+						<div class="row">
+							<div class="col-md-80 col-md-offset-20 subtext animate-box">
+								<h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+      		<div class="row">
+      			<div class="col-md-40 text-center animate-box">
+      				<div class="pricing__item">
+	                    <h3 class="pricing__title">Startup</h3>
+	                    <div class="pricing__price"><span class="pricing_currency">$</span>9.90</div>
+	                    <p class="pricing__sentence">Small business solution</p>
+	                    <ul class="pricing__feature-list">
+	                        <li class="pricing__feature">Unlimited calls</li>
+	                        <li class="pricing__feature">Free hosting</li>
+	                        <li class="pricing__feature">40MB of storage space</li>
+	                    </ul>
+	                    <p><a href="#" class="btn btn-primary btn-lg pricing__action">Read More</a></p>
+	                </div>	
+      			</div>
+      			<div class="col-md-40 text-center animate-box">
+      				<div class="pricing__item">
+	                    <h3 class="pricing__title">Medium</h3>
+	                    <div class="pricing__price"><span class="pricing_currency">$</span>29,90</div>
+	                    <p class="pricing__sentence">Medium business solution</p>
+	                    <ul class="pricing__feature-list">
+	                        <li class="pricing__feature">Unlimited calls</li>
+	                        <li class="pricing__feature">Free hosting</li>
+	                        <li class="pricing__feature">10 hours of support</li>
+	                        <li class="pricing__feature">Social media integration</li>
+	                        <li class="pricing__feature">1GB of storage space</li>
+	                    </ul>
+	                    <p><a href="#" class="btn btn-primary btn-lg pricing__action">Read More</a></p>
+	                </div>
+      			</div>
+      			<div class="col-md-40 text-center animate-box">
+      				<div class="pricing__item">
+	                    <h3 class="pricing__title">Large</h3>
+	                    <div class="pricing__price"><span class="pricing_currency">$</span>59,90</div>
+	                    <p class="pricing__sentence">Gigantic business solution</p>
+	                    <ul class="pricing__feature-list">
+	                        <li class="pricing__feature">Unlimited calls</li>
+	                        <li class="pricing__feature">Free hosting</li>
+	                        <li class="pricing__feature">Unlimited hours of support</li>
+	                        <li class="pricing__feature">Social media integration</li>
+	                        <li class="pricing__feature">Anaylitcs integration</li>
+	                        <li class="pricing__feature">Unlimited storage space</li>
+	                    </ul>
+	                    <p><a href="#" class="btn btn-primary btn-lg pricing__action">Read More</a></p>
+	                </div>
+      			</div>
+      		</div>
+      	</div>
+     </section>
+	</section>	
+
+	<section id="fh5co-blog" data-section="blog">
+		<div class="fh5co-blog">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-120 section-heading text-center">
+						<h2 class="animate-box"><span>Read Our Blog</span></h2>
+						<div class="row">
+							<div class="col-md-80 col-md-offset-20 subtext">
+								<h3 class="animate-box">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove. </h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-40 animate-box blog">
+						<a href="#" class="entry">
+							<div class="blog-bg" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/blog-1.jpg);">
+								<div class="date">
+									<span>03</span>
+									<small>Mar</small>
+								</div>
+								<div class="desc">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+							<div class="desc-grid">
+								<h3>Download Free HTML5 Template</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-40 animate-box blog">
+						<a href="#" class="entry">
+							<div class="blog-bg" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/blog-2.jpg);">
+								<div class="date">
+									<span>01</span>
+									<small>Mar</small>
+								</div>
+								<div class="desc">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+							<div class="desc-grid">
+								<h4>Download Free HTML5 Template</h4>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-40 animate-box blog">
+						<a href="#" class="entry">
+							<div class="blog-bg" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/blog-3.jpg);">
+								<div class="date">
+									<span>28</span>
+									<small>Feb</small>
+								</div>
+								<div class="desc">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+							<div class="desc-grid">
+								<h3>Download Free HTML5 Template</h3>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-40 animate-box blog">
+						<a href="#" class="entry">
+							<div class="blog-bg" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/blog-3.jpg);">
+								<div class="date">
+									<span>28</span>
+									<small>Feb</small>
+								</div>
+								<div class="desc">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+							<div class="desc-grid">
+								<h3>Download Free HTML5 Template</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-40 animate-box blog">
+						<a href="#" class="entry">
+							<div class="blog-bg" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/blog-1.jpg);">
+								<div class="date">
+									<span>27</span>
+									<small>Feb</small>
+								</div>
+								<div class="desc">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+							<div class="desc-grid">
+								<h3>Download Free HTML5 Template</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-40 animate-box blog">
+						<a href="#" class="entry">
+							<div class="blog-bg" style="background-image: url(https://fauna-test.b0.upaiyun.com/main/blog-2.jpg);">
+								<div class="date">
+									<span>25</span>
+									<small>Feb</small>
+								</div>
+								<div class="desc">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+							<div class="desc-grid">
+								<h3>Download Free HTML5 Template</h3>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<div id="fh5co-footer" role="contentinfo">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-40 animate-box">
+					<h3 class="section-title">上古集团</h3>
+					<p>在很久很久以前, <br/>
+                        有一群小矮人, <br/>
+                        他们倚靠着着上帝的能力,<br/>
+                        打败了不可一世的大怪兽——管家婆！</p>
+					
+				</div>
+
+				<div class="col-md-40 animate-box">
+					<h3 class="section-title">在这里等你</h3>
+					<ul class="contact-info">
+						<li><i class="icon-map"></i>杭州市余杭区余杭街道</li>
+						<li><i class="icon-phone"></i>+ 130-9376-5253</li>
+						<li><i class="icon-globe"></i><a href="#">www.biubiubiu.ren.com</a></li>
+					</ul>
+				</div>
+				<div class="col-md-40 animate-box">
+					<h3 class="section-title">一直都在</h3>
+					<form class="contact-form">
+						<div class="form-group">
+							<label for="name" class="sr-only">姓名</label>
+							<input type="name" class="form-control" id="name" placeholder="姓名">
+						</div>
+						<div class="form-group">
+							<label for="mobile" class="sr-only">手机号码</label>
+							<input type="mobile" class="form-control" id="mobile" placeholder="手机号码">
+						</div>
+						<div class="form-group">
+							<label for="message" class="sr-only">留言咨询</label>
+							<textarea class="form-control" id="message" rows="7" placeholder="留言咨询"></textarea>
+						</div>
+						<div class="form-group">
+							<input type="submit" id="btn-submit" class="btn btn-send-message btn-md" value="提交">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-120" align="center">
+					<p class="copy-right">&copy; 2017 上古集团. All Rights Reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		#parse("main/public/commonJS.vm")
+
+	</body>
+</html>
+
