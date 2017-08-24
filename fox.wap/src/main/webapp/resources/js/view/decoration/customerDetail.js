@@ -302,7 +302,7 @@ function saveOrder() {
 
                     var orderSn = $('#fromOrderSn').val();
                     var param = "?cusId=" + cusId;
-                    if (orderSn != null) {
+                    if (orderSn != null && orderSn != '') {
                         param = "&orderSn="+orderSn;
                     }
                     window.location.href = contextPath + "/decoration/customerDetail" + param;
