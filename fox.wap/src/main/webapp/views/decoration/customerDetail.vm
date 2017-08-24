@@ -162,7 +162,7 @@
                                             </td>
                                             <td class="goodsModel" value="">$!order.goodsModel</td>
                                             <td class="center goodsNum right">$!order.goodsNum</td>
-                                            <td class="center orderAmount right">$!order.orderAmount</td>
+                                            <td class="center goodsPrice">$!order.goodsPrice</td>
                                         ##                                            <td class="center gmtCreate">$!order.gmtCreatePos</td>
                                             <td class="center remark">$!order.reamrk</td>
                                             <td class="center beFinish">
@@ -175,7 +175,7 @@
                                                 #end
 
                                             </td>
-                                            <td class="center goodsPrice">$!order.goodsPrice</td>
+                                            <td class="center orderAmount right">$!order.orderAmount</td>
                                             <td class="center">
                                                 <a class="btn btn-info btn-sm"
                                                    onclick="editOrder($!order.id,$!orderHeader.id)">
