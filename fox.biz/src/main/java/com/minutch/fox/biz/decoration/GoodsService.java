@@ -25,4 +25,6 @@ public interface GoodsService {
     List<Goods> queryAllStoreGoods(Long storeId);
 
     int updateStockNum(Long goodsId,int goodsNum);
+
+    int queryTotalCount(Long storeId);
 }

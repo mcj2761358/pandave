@@ -2,6 +2,7 @@ package com.minutch.fox.biz.decoration;
 
 
 import com.minutch.fox.entity.decoration.Store;
+import com.minutch.fox.enu.decoration.StoreLevelEnum;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface StoreService {
     Store queryByMobilePhone(String mobilePhone);
 
     int updatePassword(Long id, String password);
+
+    StoreLevelEnum queryStoreLevel(Long storeId);
 }

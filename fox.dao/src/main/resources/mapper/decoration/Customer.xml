@@ -216,4 +216,11 @@
         limit 1;
     </select>
 
+    <!-- 查询客户总数 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+        select count(id)
+        from decoration_customer
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
 </mapper>

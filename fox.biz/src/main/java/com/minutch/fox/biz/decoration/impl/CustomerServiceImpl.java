@@ -5,7 +5,6 @@ import com.minutch.fox.biz.decoration.CustomerService;
 import com.minutch.fox.dao.decoration.CustomerDao;
 import com.minutch.fox.entity.decoration.Customer;
 import com.minutch.fox.param.decoration.CustomerQueryParam;
-import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +50,10 @@ public class CustomerServiceImpl extends BaseServiceImpl implements CustomerServ
     @Override
     public Customer queryByMobilePhone(String mobilePhone,Long storeId) {
         return customerDao.queryByMobilePhone(mobilePhone,storeId);
+    }
+
+    @Override
+    public int queryTotalCount(Long storeId) {
+        return customerDao.queryTotalCount(storeId);
     }
 }

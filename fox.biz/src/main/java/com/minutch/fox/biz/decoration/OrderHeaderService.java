@@ -26,4 +26,6 @@ public interface OrderHeaderService {
     int queryHeaderCount(OrderHeaderQueryParam param);
 
     OrderHeader queryByOrderSn(String orderSn,Long cusId);
+
+    int queryTotalCount(Long storeId);
 }

@@ -214,4 +214,13 @@
       set stock_num = stock_num - #{goodsNum}
       where id = #{goodsId}
     </update>
+
+
+    <!-- 查询商品总数 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+        select count(id)
+        from decoration_goods
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
 </mapper>

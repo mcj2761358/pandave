@@ -1,13 +1,11 @@
 package com.minutch.fox.web.decoration;
 
-import com.minutch.fox.biz.decoration.CustomerService;
-import com.minutch.fox.biz.decoration.GoodsService;
-import com.minutch.fox.biz.decoration.OrderHeaderService;
-import com.minutch.fox.biz.decoration.OrderService;
+import com.minutch.fox.biz.decoration.*;
 import com.minutch.fox.entity.decoration.Customer;
 import com.minutch.fox.entity.decoration.Goods;
 import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.entity.decoration.OrderHeader;
+import com.minutch.fox.enu.decoration.StoreLevelEnum;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
@@ -20,7 +18,6 @@ import com.minutch.fox.result.decoration.OrderVO;
 import com.minutch.fox.utils.DateUtils;
 import com.minutch.fox.utils.FoxBeanUtils;
 import com.minutch.fox.utils.GenerationUtils;
-import com.minutch.fox.utils.ListUtils;
 import com.minutch.fox.view.decoration.OrderView;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
@@ -58,6 +55,8 @@ public class OrderController extends BaseController {
     private OrderHeaderService orderHeaderService;
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private StoreService storeService;
 
 
 
@@ -198,6 +197,16 @@ public class OrderController extends BaseController {
         //判断是否有订单头
         Long headerId = param.getHeaderId();
         if (headerId == null) {
+
+
+            //判断当前等级的商家是否还能创建订单
+            int totalNum = orderHeaderService.queryTotalCount(sessionInfo.getStoreId());
+            StoreLevelEnum storeLevel = storeService.queryStoreLevel(sessionInfo.getStoreId());
+            if (storeLevel.getOrderHeaderNum() <= totalNum) {
+                log.error("您当前的套餐是【"+storeLevel.getLevelName()+"】,最多创建["+storeLevel.getOrderHeaderNum()+"]个订单,请联系客服升级套餐.");
+                return Result.wrapErrorResult("", "您当前的套餐是【"+storeLevel.getLevelName()+"】,最多创建["+storeLevel.getOrderHeaderNum()+"]个订单,请联系客服升级套餐.");
+            }
+
             OrderHeader orderHeader = new OrderHeader();
             orderHeader.setDefaultBizValue(sessionInfo.getEmpId());
             orderHeader.setStoreId(sessionInfo.getStoreId());
@@ -209,7 +218,6 @@ public class OrderController extends BaseController {
             orderHeader.setOrderSn(generateOrderSn());
             orderHeader.setTotalAmount(BigDecimal.ZERO);
             orderHeader.setPreAmount(BigDecimal.ZERO);
-
             orderHeaderService.save(orderHeader);
             headerId = orderHeader.getId();
         }

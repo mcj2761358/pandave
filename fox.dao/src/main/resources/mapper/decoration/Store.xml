@@ -9,6 +9,7 @@
         <result column = "cardno" property = "cardno" />
         <result column = "mobile_phone" property = "mobilePhone" />
         <result column = "password" property = "password" />
+        <result column = "store_level" property = "storeLevel" />
         <result column = "end_time" property = "endTime" />
         <result column = "remark" property = "remark" />
     </resultMap>
@@ -28,6 +29,9 @@
                 </if>
                 <if test = "password != null">
                     and password = #{password}
+                </if>
+                <if test = "storeLevel != null">
+                    and store_level = #{storeLevel}
                 </if>
                 <if test = "endTime != null">
                     and end_time = #{endTime}
@@ -53,6 +57,9 @@
             </if>
             <if test = "password != null">
                 password = #{password},
+            </if>
+            <if test = "storeLevel != null">
+                store_level = #{storeLevel},
             </if>
             <if test = "endTime != null">
                 end_time = #{endTime},
@@ -122,6 +129,7 @@
         cardno,
         mobile_phone,
         password,
+        store_level,
         end_time,
         remark
         )
@@ -131,6 +139,7 @@
         #{cardno},
         #{mobilePhone},
         #{password},
+        #{storeLevel},
         #{endTime},
         #{remark}
         )

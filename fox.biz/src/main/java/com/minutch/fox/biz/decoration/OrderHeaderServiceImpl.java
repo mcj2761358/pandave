@@ -63,4 +63,9 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     public OrderHeader queryByOrderSn(String orderSn, Long cusId) {
         return orderHeaderDao.queryByOrderSn(orderSn, cusId);
     }
+
+    @Override
+    public int queryTotalCount(Long storeId) {
+        return orderHeaderDao.queryTotalCount(storeId);
+    }
 }

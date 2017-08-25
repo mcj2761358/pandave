@@ -14,6 +14,7 @@ public class StoreVO {
     private String cardno;
     private String mobilePhone;
     private String password;
+    private String storeLevel;
     private Date endTime;
     private String remark;
 }

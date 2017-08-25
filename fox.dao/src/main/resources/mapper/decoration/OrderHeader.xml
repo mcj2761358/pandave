@@ -243,4 +243,11 @@
     </select>
 
 
+    <!-- 查询订单总数 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+        select count(id)
+        from decoration_order_header
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
 </mapper>

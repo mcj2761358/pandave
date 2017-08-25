@@ -20,4 +20,6 @@ public interface OrderHeaderDao extends BaseDao<OrderHeader> {
     int queryHeaderCount(@Param("param") OrderHeaderQueryParam param);
 
     OrderHeader queryByOrderSn(@Param("orderSn")String orderSn,@Param("cusId")Long cusId);
+
+    int queryTotalCount(@Param("storeId")Long storeId);
 }

@@ -1,7 +1,9 @@
 package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.CustomerService;
+import com.minutch.fox.biz.decoration.StoreService;
 import com.minutch.fox.entity.decoration.Customer;
+import com.minutch.fox.enu.decoration.StoreLevelEnum;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.CustomerParam;
@@ -35,6 +37,8 @@ public class CustomerController extends BaseController {
     private CustomerService customerService;
     @Autowired
     private SessionInfo sessionInfo;
+    @Autowired
+    private StoreService storeService;
 
     @RequestMapping("queryList")
     @ResponseBody
@@ -102,6 +106,15 @@ public class CustomerController extends BaseController {
             if (customer != null) {
                 log.error("客户[" + param.getMobilePhone() + "]已存在.");
                 return Result.wrapErrorResult("", "客户[" + param.getMobilePhone() + "]已存在，请到[客户管理]查询此客户信息.");
+            }
+
+            //判断当前等级的商家是否还能创建客户
+            int totalNum = customerService.queryTotalCount(sessionInfo.getStoreId());
+            StoreLevelEnum storeLevel = storeService.queryStoreLevel(sessionInfo.getStoreId());
+            if (storeLevel.getCustomerNum() <= totalNum) {
+
+                log.error("您当前的套餐是【"+storeLevel.getLevelName()+"】,最多创建["+storeLevel.getCustomerNum()+"]个客户,请联系客服升级套餐.");
+                return Result.wrapErrorResult("", "您当前的套餐是【"+storeLevel.getLevelName()+"】,最多创建["+storeLevel.getCustomerNum()+"]个客户,请联系客服升级套餐.");
             }
         }
 
