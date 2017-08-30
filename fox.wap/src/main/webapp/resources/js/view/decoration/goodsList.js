@@ -44,6 +44,7 @@ function simpleSaveGoods() {
     var goodsModel = $('#goodsModel').val();
     var goodsPrice = $('#goodsPrice').val();
     var inGoodsPrice = $('#inGoodsPrice').val();
+    var stockNum = $('#stockNum').val();
     var whId =$('#whId option:selected').val();
     var whName =$('#whId option:selected').text();
 
