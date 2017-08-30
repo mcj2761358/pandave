@@ -8,6 +8,10 @@
         <result column = "emp_mobile" property = "empMobile" />
         <result column = "emp_password" property = "empPassword" />
         <result column = "emp_name" property = "empName" />
+        <result column = "address" property = "address" />
+        <result column = "sex" property = "sex" />
+        <result column = "birthday" property = "birthday" />
+        <result column = "cardno" property = "cardno" />
         <result column = "store_id" property = "storeId" />
         <result column = "remark" property = "remark" />
         <result column = "permission_rule" property = "permissionRule" />
@@ -25,6 +29,18 @@
                 </if>
                 <if test = "empName != null">
                     and emp_name = #{empName}
+                </if>
+                <if test = "address != null">
+                    and address = #{address}
+                </if>
+                <if test = "sex != null">
+                    and sex = #{sex}
+                </if>
+                <if test = "birthday != null">
+                    and birthday = #{birthday}
+                </if>
+                <if test = "cardno != null">
+                    and cardno = #{cardno}
                 </if>
                 <if test = "storeId != null">
                     and store_id = #{storeId}
@@ -50,6 +66,18 @@
             </if>
             <if test = "empName != null">
                 emp_name = #{empName},
+            </if>
+            <if test = "address != null">
+                address = #{address},
+            </if>
+            <if test = "sex != null">
+                sex = #{sex},
+            </if>
+            <if test = "birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test = "cardno != null">
+                cardno = #{cardno},
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
@@ -121,6 +149,10 @@
         emp_mobile,
         emp_password,
         emp_name,
+        address,
+        sex,
+        birthday,
+        cardno,
         store_id,
         remark,
         permission_rule
@@ -130,6 +162,10 @@
         #{empMobile},
         #{empPassword},
         #{empName},
+        #{address},
+        #{sex},
+        #{birthday},
+        #{cardno},
         #{storeId},
         #{remark},
         #{permissionRule}

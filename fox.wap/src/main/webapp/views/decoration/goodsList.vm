@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/goodsList.css?v=1.0"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.54"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.55"></script>
 </head>
 
 <body>
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12 has-success">
-                            <label class="col-sm-3 control-label">库存数量</label>
+                            <label class="col-sm-3 control-label">所在仓库</label>
 
                             <div class="col-sm-8">
                                 <select class="form-control" id="editWhId">

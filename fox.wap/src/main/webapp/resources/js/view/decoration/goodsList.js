@@ -258,7 +258,7 @@ function queryGoodsList(pageIndex) {
                                 '<td class="gmtCreate">'+gmtCreate+'</td>' +
                                 '<td class="center">' +
                                 '<input class="goodsId" value="'+goodsId+'" hidden/>'+
-                                '<input class="inGoodsPrice" value="'+inGoodsPrice+'" hidden/>'+
+                                '<input class="inGoodsPriceHidden" value="'+inGoodsPrice+'" hidden/>'+
                                 '<a class="optionBtn btn btn-info btn-sm" onclick="editGoods('+goodsId+')">' +
                                 '<i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
                                 '</a> ' +
@@ -288,7 +288,7 @@ function editGoods(goodsId) {
     var goodsName = $(classGoods + ' .goodsName').html();
     var goodsModel = $(classGoods + ' .goodsModel').html();
     var goodsPrice = $(classGoods + ' .goodsPrice').html();
-    var inGoodsPrice = $(classGoods + ' .inGoodsPrice').val();
+    var inGoodsPrice = $(classGoods + ' .inGoodsPriceHidden').val();
     var stockNum = $(classGoods + ' .stockNum').html();
 
     $('#editGoodsId').val(goodsId);

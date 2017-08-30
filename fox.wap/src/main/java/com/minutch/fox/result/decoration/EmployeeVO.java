@@ -5,6 +5,8 @@ import com.minutch.fox.pojo.PermissionRulePO;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Date;
+
 /**
  * Created by Minutch on 17/8/12.
  */
@@ -14,6 +16,10 @@ public class EmployeeVO {
     private String empMobile;
     private String empPassword;
     private String empName;
+    private String address;
+    private Date birthday;
+    private String sex;
+    private String cardno;
     private Long storeId;
     private String remark;
     private String permissionRule;
