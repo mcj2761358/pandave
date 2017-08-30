@@ -33,10 +33,6 @@ function createCustomer() {
         showAlertModel('请填写小区名称');
         return false;
     }
-    if (address==null || address=='') {
-        showAlertModel('请填写详细地址');
-        return false;
-    }
 
     var param = {};
     param.id = cusId;

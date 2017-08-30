@@ -94,10 +94,10 @@ public class CustomerController extends BaseController {
             log.error("小区名称不能为空.");
             return Result.wrapErrorResult("","小区名称不能为空.");
         }
-        if (StringUtils.isBlank(param.getAddress())) {
-            log.error("详细地址不能为空.");
-            return Result.wrapErrorResult("","详细地址不能为空.");
-        }
+//        if (StringUtils.isBlank(param.getAddress())) {
+//            log.error("详细地址不能为空.");
+//            return Result.wrapErrorResult("","详细地址不能为空.");
+//        }
 
         Customer customer;
         if (param.getId() == null) {

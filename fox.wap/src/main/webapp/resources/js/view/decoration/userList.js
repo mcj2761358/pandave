@@ -25,6 +25,68 @@ function createPage(pageSize, total) {
 
 
 
+function simpleCreateCustomer() {
+
+    var cusId = $('#cusId').val();
+    var cusName = $('#cusName').val();
+    var mobilePhone = $('#mobilePhone').val();
+    var houseName = $('#houseName').val();
+    var address = $('#address').val();
+
+    //数据检查
+    if (cusName==null || cusName=='') {
+        showAlertModel('请填写客户姓名');
+        return false;
+    }
+    if (mobilePhone==null || mobilePhone=='') {
+        showAlertModel('请填写手机号码');
+        return false;
+    }
+    if (houseName==null || houseName=='') {
+        showAlertModel('请填写小区名称');
+        return false;
+    }
+    var param = {};
+    param.id = cusId;
+    param.cusName = cusName;
+    param.mobilePhone = mobilePhone;
+    param.houseName = houseName;
+    param.address = address;
+
+    var contextPath = $('#rcContextPath').val();
+
+    $.ajax({
+        url: contextPath +"/decoration/customer/save",
+        datatype: 'json',
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(param),
+
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    var resultData = result.data;
+                    console.log(resultData);
+                    window.location.href = contextPath+"/decoration/userList";
+                } else{
+                    showAlertModel(result.errorMsg);
+                }
+            }
+        }
+    });
+}
+
+
+
+function clearCustomerInfo() {
+    $('#cusId').val('');
+    $('#cusName').val('');
+    $('#mobilePhone').val('');
+    $('#houseName').val('');
+    $('#address').val('');
+}
+
 
 var pageSize = 10;
 function queryUserList(pageIndex) {
@@ -65,6 +127,10 @@ function queryUserList(pageIndex) {
                             var address = customer.address;
                             var remark = customer.remark;
                             var gmtCreate = customer.gmtCreatePos;
+
+                            if (remark==null) {
+                                remark = '';
+                            }
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
                             var cusDataHtml =
