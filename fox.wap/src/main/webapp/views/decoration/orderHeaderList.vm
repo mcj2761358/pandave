@@ -50,13 +50,13 @@
                                                placeholder="客户名称/手机号码/小区名称">
                                     </div>
 
-##                                    <div class="col-sm-2">
-##                                        <select class="form-control" id="beFinish">
-##                                            <option value="" selected="selected">是否结账</option>
-##                                            <option value="Y">已结账</option>
-##                                            <option value="N">未结账</option>
-##                                        </select>
-##                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" id="beFinish">
+                                            <option value="" selected="selected">是否结账</option>
+                                            <option value="YY">已结账</option>
+                                            <option value="NN">未结账</option>
+                                        </select>
+                                    </div>
 
                                     <div class="col-sm-3">
 
@@ -79,6 +79,7 @@
                                 <thead>
                                 <tr>
                                     <th>订单号</th>
+                                    <th>创建时间</th>
                                     <th>用户名称</th>
                                     <th>手机号码</th>
                                     <th>小区名称</th>
@@ -118,7 +119,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderHeaderList.js?v=1.02"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderHeaderList.js?v=1.03"></script>
     #parse("decoration/public/footer.vm")
 </div>
     #parse("decoration/public/alertModal.vm")

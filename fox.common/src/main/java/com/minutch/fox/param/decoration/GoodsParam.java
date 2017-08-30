@@ -16,6 +16,8 @@ public class GoodsParam {
     private BigDecimal goodsPrice;
     private BigDecimal inGoodsPrice;
     private Integer stockNum;
+    private Long whId;
+    private String whName;
 
     private String remark;
 }

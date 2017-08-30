@@ -15,7 +15,7 @@ public interface GoodsDao extends BaseDao<Goods> {
 
     int queryGoodsCount(@Param("param") GoodsQueryParam param);
 
-    Goods queryByNameAndModel(@Param("goodsName")String goodsName,@Param("goodsModel")String goodsModel,@Param("storeId")Long storeId);
+    Goods queryByNameAndModel(@Param("goodsName")String goodsName,@Param("goodsModel")String goodsModel,@Param("whId")Long whId,@Param("storeId")Long storeId);
 
     List<Goods> queryAllStoreGoods(@Param("storeId")Long storeId);
 

@@ -10,6 +10,8 @@
         <result column = "goods_price" property = "goodsPrice" />
         <result column = "in_goods_price" property = "inGoodsPrice" />
         <result column = "stock_num" property = "stockNum" />
+        <result column = "wh_id" property = "whId" />
+        <result column = "wh_name" property = "whName" />
         <result column = "store_id" property = "storeId" />
         <result column = "emp_id" property = "empId" />
         <result column = "remark" property = "remark" />
@@ -64,6 +66,12 @@
             </if>
             <if test = "stockNum != null">
                 stock_num = #{stockNum},
+            </if>
+            <if test = "whId != null">
+                wh_id = #{whId},
+            </if>
+            <if test = "whName != null">
+                wh_name = #{whName},
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
@@ -137,6 +145,8 @@
         goods_price,
         in_goods_price,
         stock_num,
+        wh_id,
+        wh_name,
         store_id,
         emp_id,
         remark
@@ -148,6 +158,8 @@
         #{goodsPrice},
         #{inGoodsPrice},
         #{stockNum},
+        #{whId},
+        #{whName},
         #{storeId},
         #{empId},
         #{remark}
@@ -197,6 +209,9 @@
         where is_deleted = 'N'
         and goods_name = #{goodsName}
         and goods_model = #{goodsModel}
+        <if test="whId!=null">
+            and wh_id = #{whId}
+        </if>
         and store_id = #{storeId}
         limit 1
     </select>

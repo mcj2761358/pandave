@@ -142,8 +142,9 @@
                                         <th>商品数量</th>
                                         <th>商品单价</th>
                                     ##                                        <th>录入时间</th>
+                                        <th>送货时间</th>
                                         <th>备注</th>
-                                        <th>是否结清</th>
+##                                        <th>是否结清</th>
                                         <th>订单总价</th>
                                         <th>操作</th>
                                     </tr>
@@ -164,17 +165,18 @@
                                             <td class="center goodsNum right">$!order.goodsNum</td>
                                             <td class="center goodsPrice">$!order.goodsPrice</td>
                                         ##                                            <td class="center gmtCreate">$!order.gmtCreatePos</td>
+                                            <td class="center remark">$!order.remindTimePos</td>
                                             <td class="center remark">$!order.reamrk</td>
-                                            <td class="center beFinish">
+##                                            <td class="center beFinish">
 
 
-                                                #if ($!order.beFinish == 'Y')
-                                                    <span style='color: #32CD32'>已结清</span>
-                                                #else
-                                                    <span style='color: red'>未结清</span>
-                                                #end
+##                                                #if ($!order.beFinish == 'Y')
+##                                                    <span style='color: #32CD32'>已结清</span>
+##                                                #else
+##                                                    <span style='color: red'>未结清</span>
+##                                                #end
 
-                                            </td>
+##                                            </td>
                                             <td class="center orderAmount right">$!order.orderAmount</td>
                                             <td class="center">
                                                 <a class="btn btn-info btn-sm"
@@ -182,16 +184,16 @@
                                                     <i class="glyphicon glyphicon-edit icon-white"></i>编辑
                                                 </a>
 
-                                                #if ($!order.beFinish == 'Y')
-                                                    <a class="btn btn-default btn-sm disabled"
-                                                       onclick="finishOrder($!order.id)">
-                                                        <i class="glyphicon glyphicon-wrench icon-white"></i>还款
-                                                    </a>
-                                                #else
-                                                    <a class="btn btn-primary btn-sm" onclick="finishOrder($!order.id)">
-                                                        <i class="glyphicon glyphicon-wrench icon-white"></i>还款
-                                                    </a>
-                                                #end
+##                                                #if ($!order.beFinish == 'Y')
+##                                                    <a class="btn btn-default btn-sm disabled"
+##                                                       onclick="finishOrder($!order.id)">
+##                                                        <i class="glyphicon glyphicon-wrench icon-white"></i>还款
+##                                                    </a>
+##                                                #else
+##                                                    <a class="btn btn-primary btn-sm" onclick="finishOrder($!order.id)">
+##                                                        <i class="glyphicon glyphicon-wrench icon-white"></i>还款
+##                                                    </a>
+##                                                #end
 
 
                                                 <a class="btn btn-danger btn-sm" onclick="deleteOrder($!order.id)"> <i

@@ -20,6 +20,8 @@ public class GoodsVO {
     private BigDecimal goodsPrice;
     private BigDecimal inGoodsPrice;
     private Integer stockNum;
+    private Long whId;
+    private String whName;
     private Long storeId;
     private Long empId;
     private String remark;

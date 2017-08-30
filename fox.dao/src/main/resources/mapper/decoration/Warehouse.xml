@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.WarehouseDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Warehouse"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "wh_name" property = "whName" />
+        <result column = "store_id" property = "storeId" />
+        <result column = "emp_id" property = "empId" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "whName != null">
+                    and wh_name = #{whName}
+                </if>
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
+                </if>
+                <if test = "empId != null">
+                    and emp_id = #{empId}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "whName != null">
+                wh_name = #{whName},
+            </if>
+            <if test = "storeId != null">
+                store_id = #{storeId},
+            </if>
+            <if test = "empId != null">
+                emp_id = #{empId},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_warehouse
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_warehouse
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_warehouse
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_warehouse
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_warehouse
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_warehouse
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_warehouse (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        wh_name,
+        store_id,
+        emp_id,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{whName},
+        #{storeId},
+        #{empId},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_warehouse
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+
+
+    <!-- 查询商家所有仓库 -->
+    <select id="queryAllWarehouse" resultMap="BaseResultMap">
+        select * from decoration_warehouse
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
+</mapper>

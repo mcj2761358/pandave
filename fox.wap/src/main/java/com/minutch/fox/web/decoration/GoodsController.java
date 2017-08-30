@@ -89,7 +89,7 @@ public class GoodsController extends BaseController {
         Goods goods;
         if (param.getId() == null) {
             //判断当前商品是否已经被注册
-            goods = goodsService.queryByNameAndModel(param.getGoodsName(), param.getGoodsModel(), sessionInfo.getStoreId());
+            goods = goodsService.queryByNameAndModel(param.getGoodsName(), param.getGoodsModel(), sessionInfo.getStoreId(), param.getWhId());
             if (goods != null) {
                 log.error("商品[" + param.getGoodsName()+param.getGoodsModel() + "]已存在.");
                 return Result.wrapErrorResult("", "商品[" + param.getGoodsName()+param.getGoodsModel() + "]已存在.");

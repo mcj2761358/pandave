@@ -49,8 +49,8 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods queryByNameAndModel(String goodsName, String goodsModel, Long storeId) {
-        return goodsDao.queryByNameAndModel(goodsName, goodsModel, storeId);
+    public Goods queryByNameAndModel(String goodsName, String goodsModel, Long whId, Long storeId) {
+        return goodsDao.queryByNameAndModel(goodsName, goodsModel, whId, storeId);
     }
 
     @Override

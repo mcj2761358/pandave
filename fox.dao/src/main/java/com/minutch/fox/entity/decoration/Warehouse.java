@@ -1,6 +1,5 @@
 package com.minutch.fox.entity.decoration;
 
-import java.math.BigDecimal;
 
 
 import com.minutch.fox.entity.base.BaseEntity;
@@ -10,14 +9,8 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class Goods extends BaseEntity {
+public class Warehouse extends BaseEntity {
 
-  private String goodsName;
-  private String goodsModel;
-  private BigDecimal goodsPrice;
-  private BigDecimal inGoodsPrice;
-  private Integer stockNum;
-  private Long whId;
   private String whName;
   private Long storeId;
   private Long empId;

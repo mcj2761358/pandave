@@ -213,6 +213,12 @@
         <if test="param.gmtCreateStart!=null and param.gmtCreateStart!='' and param.gmtCreateEnd!=null and param.gmtCreateEnd!=''">
             and gmt_create between #{param.gmtCreateStart} and #{param.gmtCreateEnd}
         </if>
+        <if test="param.beFinish=='YY'">
+            and (total_amount-pre_amount)=0
+        </if>
+        <if test="param.beFinish=='NN'">
+            and (total_amount-pre_amount)>0
+        </if>
     </sql>
 
     <!-- 根据条件查询客户总数 -->

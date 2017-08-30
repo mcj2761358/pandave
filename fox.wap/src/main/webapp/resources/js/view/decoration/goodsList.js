@@ -44,7 +44,8 @@ function simpleSaveGoods() {
     var goodsModel = $('#goodsModel').val();
     var goodsPrice = $('#goodsPrice').val();
     var inGoodsPrice = $('#inGoodsPrice').val();
-    var stockNum = $('#stockNum').val();
+    var whId =$('#whId option:selected').val();
+    var whName =$('#whId option:selected').text();
 
     if (goodsName == '') {
         showAlertModel("请填写商品名称.");
@@ -75,6 +76,8 @@ function simpleSaveGoods() {
     param.goodsPrice = goodsPrice;
     param.inGoodsPrice = inGoodsPrice;
     param.stockNum = stockNum;
+    param.whId = whId;
+    param.whName = whName;
 
 
     var contextPath = $('#rcContextPath').val();
@@ -111,6 +114,9 @@ function saveGoods() {
     var goodsPrice = $('#editGoodsPrice').val();
     var inGoodsPrice = $('#editInGoodsPrice').val();
     var stockNum = $('#editStockNum').val();
+
+    var whId =$('#editWhId option:selected').val();
+    var whName =$('#editWhId option:selected').text();
     var remark = $('#editRemark').val();
 
     if (goodsName == '') {
@@ -142,6 +148,8 @@ function saveGoods() {
     param.goodsPrice = goodsPrice;
     param.inGoodsPrice = inGoodsPrice;
     param.stockNum = stockNum;
+    param.whId = whId;
+    param.whName = whName;
     param.remark = remark;
 
     var contextPath = $('#rcContextPath').val();
@@ -232,14 +240,21 @@ function queryGoodsList(pageIndex) {
                             var goodsPrice = goods.goodsPrice;
                             var inGoodsPrice = goods.inGoodsPrice;
                             var stockNum = goods.stockNum;
+                            var whName = goods.whName;
                             var gmtCreate = goods.gmtCreatePos;
+
+                            if (whName == null) {
+                                whName = '';
+                            }
 
                             var goodsDataHtml =
                                 '<tr class="goodsInfo_'+goodsId+'">' +
                                 '<td class="goodsName">'+goodsName+'</td>' +
                                 '<td class="goodsModel">'+goodsModel+'</td>' +
+                                '<td class="inGoodsPrice">'+inGoodsPrice+'</td>' +
                                 '<td class="goodsPrice">'+goodsPrice+'</td>' +
                                 '<td class="stockNum">'+stockNum+'</td>' +
+                                '<td class="whName">'+whName+'</td>' +
                                 '<td class="gmtCreate">'+gmtCreate+'</td>' +
                                 '<td class="center">' +
                                 '<input class="goodsId" value="'+goodsId+'" hidden/>'+

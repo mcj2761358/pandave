@@ -20,7 +20,7 @@ public interface GoodsService {
 
     int queryGoodsCount(GoodsQueryParam param);
 
-    Goods queryByNameAndModel(String goodsName, String goodsModel, Long storeId);
+    Goods queryByNameAndModel(String goodsName, String goodsModel, Long whId, Long storeId);
 
     List<Goods> queryAllStoreGoods(Long storeId);
 

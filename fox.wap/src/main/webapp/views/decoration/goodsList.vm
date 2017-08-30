@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/goodsList.css?v=1.0"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.51"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.54"></script>
 </head>
 
 <body>
@@ -47,16 +47,26 @@
                                     <th>商品进货价格</th>
                                     <th>商品售卖价格</th>
                                     <th>订库存数量</th>
+                                    <th>仓库</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody class="goodsCreateDiv">
                                 <tr>
-                                    <td><span style="color:red;" class="beNew">(新)</span><input id="goodsId" hidden/><input id="goodsName"/></td>
-                                    <td><input id="goodsModel"/></td>
-                                    <td><input style="width:90px;"id="inGoodsPrice"/></td>
-                                    <td><input style="width:90px;"id="goodsPrice"/></td>
-                                    <td><input style="width:90px;" id="stockNum"/></td>
+                                    <td><span style="color:red;" class="beNew">(新)</span><input id="goodsId" hidden/>
+                                        <input  style="width:90px;" id="goodsName"/></td>
+                                    <td><input  style="width:90px;" id="goodsModel"/></td>
+                                    <td><input style="width:80px;" id="inGoodsPrice"/></td>
+                                    <td><input style="width:80px;" id="goodsPrice"/></td>
+                                    <td><input style="width:80px;" id="stockNum"/></td>
+                                    <td>
+                                        <select class="form-control" id="whId">
+                                            <option value="" selected="selected"></option>
+                                            #foreach($wh in $whList)
+                                                <option value="$!wh.id">$!wh.whName</option>
+                                            #end
+                                        </select>
+                                    </td>
                                     <td class="center">
                                         <a class="btn btn-info btn-sm" onclick="simpleSaveGoods()">
                                             <i class="glyphicon glyphicon-edit icon-white"></i>新建商品
@@ -113,8 +123,10 @@
                                 <tr>
                                     <th>商品名称</th>
                                     <th>商品型号</th>
-                                    <th>商品价格</th>
+                                    <th>商品进价</th>
+                                    <th>商品售价</th>
                                     <th>商品库存</th>
+                                    <th>所在仓库</th>
                                     <th>录入时间</th>
                                     <th></th>
                                 </tr>
@@ -196,6 +208,18 @@
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editStockNum">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">库存数量</label>
+
+                            <div class="col-sm-8">
+                                <select class="form-control" id="editWhId">
+                                    <option value="" selected="selected"></option>
+                                    #foreach($wh in $whList)
+                                        <option value="$!wh.id">$!wh.whName</option>
+                                    #end
+                                </select>
                             </div>
                         </div>
 

@@ -1,16 +1,9 @@
 package com.minutch.fox.web.decoration;
 
 import com.google.gson.Gson;
-import com.minutch.fox.biz.decoration.CustomerService;
-import com.minutch.fox.biz.decoration.GoodsService;
-import com.minutch.fox.biz.decoration.OrderHeaderService;
-import com.minutch.fox.biz.decoration.OrderService;
-import com.minutch.fox.entity.decoration.Customer;
-import com.minutch.fox.entity.decoration.Goods;
-import com.minutch.fox.entity.decoration.Order;
-import com.minutch.fox.entity.decoration.OrderHeader;
+import com.minutch.fox.biz.decoration.*;
+import com.minutch.fox.entity.decoration.*;
 import com.minutch.fox.http.SessionInfo;
-import com.minutch.fox.param.Result;
 import com.minutch.fox.result.decoration.*;
 import com.minutch.fox.utils.FoxBeanUtils;
 import com.minutch.fox.utils.ListUtils;
@@ -25,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Minutch on 16/11/28.
@@ -48,6 +39,8 @@ public class DecorationController extends BaseController {
     private OrderService orderService;
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private WarehouseService warehouseService;
 
     @RequestMapping("")
     public String index() {
@@ -218,7 +211,11 @@ public class DecorationController extends BaseController {
     }
 
     @RequestMapping("goodsList")
-    public String goodsList() {
+    public String goodsList(Model model) {
+
+        Long storeId = getStoreId();
+        List<Warehouse> whList = warehouseService.queryAllWarehouse(storeId);
+        model.addAttribute("whList", whList);
         return "decoration/goodsList";
     }
 
