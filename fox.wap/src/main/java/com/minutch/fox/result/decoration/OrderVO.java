@@ -22,6 +22,7 @@ public class OrderVO {
     private String mobilePhone;
     private String houseName;
     private String address;
+    private String orderSn;
     private Long goodsId;
     private String goodsName;
     private String goodsModel;
@@ -36,6 +37,7 @@ public class OrderVO {
     private Long storeId;
     private Long empId;
     private String remark;
+    private boolean beNew;
 
 
     private BigDecimal totalAmount;
@@ -53,6 +55,12 @@ public class OrderVO {
         this.gmtCreate = gmtCreate;
         if(gmtCreate != null) {
             this.gmtCreatePos = DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D);
+
+
+            //判断是否当天
+            if (DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D).equals(DateUtils.formatDate(new Date(), DateUtils.Y_M_D))) {
+                beNew = true;
+            }
         }
     }
 

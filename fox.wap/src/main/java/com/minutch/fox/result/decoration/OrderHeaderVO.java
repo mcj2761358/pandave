@@ -26,7 +26,9 @@ public class OrderHeaderVO {
     private BigDecimal totalAmount;
     private BigDecimal preAmount;
     private Long storeId;
+    private String empName;
     private String remark;
+    private boolean beNew;
 
     private List<OrderVO> orderList;
 
@@ -36,6 +38,12 @@ public class OrderHeaderVO {
         this.gmtCreate = gmtCreate;
         if(gmtCreate != null) {
             this.gmtCreatePos = DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D);
+
+
+            //判断是否当天
+            if (DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D).equals(DateUtils.formatDate(new Date(), DateUtils.Y_M_D))) {
+                beNew = true;
+            }
         }
     }
 }

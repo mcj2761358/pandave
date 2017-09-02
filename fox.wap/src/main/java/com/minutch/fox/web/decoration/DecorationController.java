@@ -42,8 +42,8 @@ public class DecorationController extends BaseController {
     @Autowired
     private WarehouseService warehouseService;
 
-    @RequestMapping("")
-    public String index() {
+    @RequestMapping("dashboard")
+    public String dashboard() {
         return "decoration/index";
     }
 
@@ -100,7 +100,7 @@ public class DecorationController extends BaseController {
         Customer customer = customerService.getById(cusId);
         if (customer == null) {
             log.error("不存在的客户["+cusId+"]");
-            model.addAttribute("errorMsg", "不存在的客户["+cusId+"]");
+            model.addAttribute("errorMsg", "不存在的客户[" + cusId +"]");
             return "decoration/error500";
         }
         model.addAttribute("customer", customer);
@@ -124,17 +124,16 @@ public class DecorationController extends BaseController {
             return "decoration/error500";
         }
 
+        //查询客户信息
         CustomerVO customerVO = new CustomerVO();
         BeanUtils.copyProperties(customer, customerVO);
-
-
         model.addAttribute("customer", customerVO);
         model.addAttribute("cusId", cusId);
         model.addAttribute("orderSn", orderSn);
 
 
+        //查询订单信息
         List<OrderHeaderVO> orderHeaderVOList = new ArrayList<>();
-
         if (StringUtils.isNotBlank(orderSn)) {
             OrderHeader orderHeader = orderHeaderService.queryByOrderSn(orderSn, cusId);
             if (orderHeader != null) {
@@ -151,10 +150,9 @@ public class DecorationController extends BaseController {
         } else {
             orderHeaderVOList = queryCustomerOrderList(cusId);
         }
-
         model.addAttribute("orderHeaderList", orderHeaderVOList);
 
-
+        //查询商品信息
         List<Goods> goodsList = goodsService.queryAllStoreGoods(sessionInfo.getStoreId());
         if (ListUtils.isNotBlank(goodsList)) {
            List<StoreGoodsSearchMapVO> searchMap = new ArrayList<>();
@@ -168,6 +166,15 @@ public class DecorationController extends BaseController {
             }
             model.addAttribute("searchMapJson", gson.toJson(searchMap));
         }
+
+
+        //查询员工信息
+        List<Employee> empList = employeeService.queryAllStoreEmp(sessionInfo.getStoreId());
+        if (ListUtils.isNotBlank(empList)) {
+            List<EmployeeVO> empVoList = FoxBeanUtils.copyList(empList, EmployeeVO.class);
+            model.addAttribute("empList", empVoList);
+        }
+
 
         return "decoration/customerDetail";
     }
@@ -209,6 +216,13 @@ public class DecorationController extends BaseController {
     public String orderHeaderList() {
         return "decoration/orderHeaderList";
     }
+
+
+    @RequestMapping("employeeList")
+    public String employeeList() {
+        return "decoration/employeeList";
+    }
+
 
     @RequestMapping("goodsList")
     public String goodsList(Model model) {

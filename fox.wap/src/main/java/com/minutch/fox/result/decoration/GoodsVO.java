@@ -25,12 +25,18 @@ public class GoodsVO {
     private Long storeId;
     private Long empId;
     private String remark;
-
+    private boolean beNew;
 
     public void setGmtCreate(Date gmtCreate) {
         if (gmtCreate != null) {
             this.gmtCreate = gmtCreate;
             this.gmtCreatePos = DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D);
+
+
+            //判断是否当天
+            if (DateUtils.formatDate(gmtCreate, DateUtils.Y_M_D).equals(DateUtils.formatDate(new Date(), DateUtils.Y_M_D))) {
+                beNew = true;
+            }
         }
     }
 }

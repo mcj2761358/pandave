@@ -22,6 +22,7 @@ public class DateUtils {
     public static final String D = "dd";
     public static final String YMDHM = "yyyyMMddHHmm";
     public static final String YMDHMS = "yyyyMMddHHmmss";
+    public static final String MDHMS = "yyMMddHHmmss";
     public static final String ymd = "yyyy/MM/dd";
     public static final String ymd_HM = "yyyy/MM/dd HH:mm";
     public static final String ymd_HMS = "yyyy/MM/dd HH:mm:ss";

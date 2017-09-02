@@ -71,6 +71,7 @@ function queryOrderList(pageIndex) {
                             var returnAmount = order.returnAmount;
                             var remindTime = order.remindTimePos;
                             var beFinish = order.beFinish;
+                            var orderSn = order.orderSn;
 
                             if (beFinish == null || beFinish== undefined || beFinish=='N') {
                                 beFinish = '<span style="color: red">未结清</span>';
@@ -82,8 +83,12 @@ function queryOrderList(pageIndex) {
                                 remindTime = '';
                             }
 
+                            var beNew = order.beNew;
+                            if (beNew == true) {
+                                cusName += '<span style="color: red">(新)</span>';
+                            }
 
-                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;
+                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId+'&orderSn='+orderSn;
                             var orderDataHtml = '<tr>'+
                                 '<td><a href="'+customerDetailUrl+'" target="_blank">'+cusName+'</a></td>' +
                                 '<td class="center">'+remindTime+'</td>'+

@@ -2,6 +2,7 @@ package com.minutch.fox.result.decoration;
 
 import com.google.gson.Gson;
 import com.minutch.fox.pojo.PermissionRulePO;
+import com.minutch.fox.utils.DateUtils;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,6 +19,7 @@ public class EmployeeVO {
     private String empName;
     private String address;
     private Date birthday;
+    private String birthdayPos;
     private String sex;
     private String cardno;
     private Long storeId;
@@ -34,6 +36,13 @@ public class EmployeeVO {
 
         if (permissionRulePO == null) {
             permissionRulePO = new PermissionRulePO();
+        }
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+        if (birthday != null) {
+            birthdayPos = DateUtils.dateFormat(birthday, DateUtils.Y_M_D);
         }
     }
 }

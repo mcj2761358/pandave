@@ -1,17 +1,14 @@
 package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.*;
-import com.minutch.fox.entity.decoration.Customer;
-import com.minutch.fox.entity.decoration.Goods;
-import com.minutch.fox.entity.decoration.Order;
-import com.minutch.fox.entity.decoration.OrderHeader;
+import com.minutch.fox.entity.decoration.*;
 import com.minutch.fox.enu.decoration.StoreLevelEnum;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
-import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
-import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
-import com.minutch.fox.param.decoration.OrderParam;
-import com.minutch.fox.param.decoration.OrderQueryParam;
+import com.minutch.fox.param.decoration.*;
+import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
+import com.minutch.fox.param.decoration.order.OrderSaleParam;
+import com.minutch.fox.param.decoration.order.ReturnOrderParam;
 import com.minutch.fox.result.PageResultVO;
 import com.minutch.fox.result.decoration.OrderHeaderVO;
 import com.minutch.fox.result.decoration.OrderVO;
@@ -57,8 +54,8 @@ public class OrderController extends BaseController {
     private GoodsService goodsService;
     @Autowired
     private StoreService storeService;
-
-
+    @Autowired
+    private ReturnOrderService returnOrderService;
 
     @RequestMapping("queryHeaderList")
     @ResponseBody
@@ -95,7 +92,7 @@ public class OrderController extends BaseController {
     @ResponseBody
     public Result<?> queryList(@RequestBody OrderQueryParam param) {
 
-        handOrderQueryParam(param);
+        orderService.handOrderQueryParam(param);
 
         param.setStoreId(sessionInfo.getStoreId());
         int totalNum = orderService.queryOrderCount(param);
@@ -110,49 +107,6 @@ public class OrderController extends BaseController {
             pageResultVO.setDataList(new ArrayList<OrderVO>());
         }
         return Result.wrapSuccessfulResult(pageResultVO);
-    }
-
-
-    private void handOrderQueryParam(OrderQueryParam param) {
-        String timeName = param.getTimeName();
-        String queryTime = param.getQueryTime();
-        if (StringUtils.isNotBlank(timeName)) {
-
-            Date date = new Date();
-            String currentDate = DateUtils.dateFormat(date, DateUtils.Y_M_D);
-            String startDate = currentDate + START_TIME_POSTFIX;
-            String endDate = currentDate + END_TIME_POSTFIX;
-
-            if ("today".equals(timeName)) {
-
-            }
-            else if ("tomorrow".equals(timeName)) {
-                Date tomorrowDate = DateUtils.afterNDays(date, 1);
-                startDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + START_TIME_POSTFIX;
-                endDate = DateUtils.dateFormat(tomorrowDate, DateUtils.Y_M_D) + END_TIME_POSTFIX;
-            }
-            else if ("nearly3".equals(timeName)) {
-                Date nearly3Date = DateUtils.afterNDays(date, 2);
-                endDate = DateUtils.dateFormat(nearly3Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
-            }
-            else if ("nearly7".equals(timeName)) {
-                Date nearly7Date = DateUtils.afterNDays(date, 6);
-                endDate = DateUtils.dateFormat(nearly7Date, DateUtils.Y_M_D) + END_TIME_POSTFIX;
-            }
-            else if ("all".equals(timeName)) {
-                Date allDate = DateUtils.afterNDays(date, 10000);
-                endDate = DateUtils.dateFormat(allDate, DateUtils.Y_M_D) + END_TIME_POSTFIX;
-            }
-
-            param.setQueryTimeStart(startDate);
-            param.setQueryTimeEnd(endDate);
-        }
-
-        if (StringUtils.isNotBlank(queryTime)) {
-            param.setGmtCreateStart(queryTime + START_TIME_POSTFIX);
-            param.setGmtCreateEnd(queryTime + END_TIME_POSTFIX);
-        }
-
     }
 
 
@@ -261,8 +215,8 @@ public class OrderController extends BaseController {
 
     private String generateOrderSn() {
         Date currentDate = new Date();
-        String dateStr = DateUtils.dateFormat(currentDate, DateUtils.YMDHMS);
-        return "SN"+ dateStr + GenerationUtils.generateRandomCode(3);
+        String dateStr = DateUtils.dateFormat(currentDate, DateUtils.MDHMS);
+        return "N"+ dateStr + GenerationUtils.generateRandomCode(3);
     }
 
     @RequestMapping("deleteById")
@@ -313,11 +267,80 @@ public class OrderController extends BaseController {
 
         if (param.getHeaderId() == null) {
             log.error("headerId 不能为空");
-            return Result.wrapSuccessfulResult("未知的订单,请刷新页面后重试.");
+            return Result.wrapErrorResult("", "未知的订单,请刷新页面后重试.");
         }
 
         param.setStoreId(getStoreId());
         orderHeaderService.saveTotalAmount(param);
         return Result.wrapSuccessfulResult(null);
     }
+
+    @RequestMapping("updateEmpName")
+    @ResponseBody
+    public Result<?> updateEmpName(@RequestBody OrderSaleParam param) {
+
+        if (param.getHeaderId() == null) {
+            log.error("headerId 不能为空");
+            return Result.wrapErrorResult("", "未知的订单,请刷新页面后重试.");
+        }
+
+        param.setStoreId(getStoreId());
+        orderHeaderService.updateEmpName(param);
+        return Result.wrapSuccessfulResult(null);
+    }
+
+    @RequestMapping("handleReturnOrder")
+    @ResponseBody
+    @Transactional
+    public Result<?> handleReturnOrder(@RequestBody ReturnOrderParam param) {
+
+        if (param.getOrderId() == null) {
+            log.error("订单号ID不能为空");
+            return Result.wrapSuccessfulResult("未知的订单,请刷新页面后重试.");
+        }
+
+        //判断退货数量
+        if (param.getGoodsNum() < 1) {
+            log.error("订单["+param.getOrderId()+"]退货数量["+param.getGoodsNum()+"]不能小于1");
+            return Result.wrapErrorResult("", "退货数量[" + param.getGoodsNum() + "]不能小于1");
+        }
+        if (param.getOrderAmount()==null) {
+            log.error("订单["+param.getOrderId()+"]退货金额["+param.getOrderAmount()+"]不能为空");
+            return Result.wrapErrorResult("", "退货金额量[" + param.getOrderAmount() + "]不能为空");
+        }
+        //判断创建订单时，是否有减库存
+        Order order = orderService.getById(param.getOrderId());
+        if (order == null) {
+            log.error("不存在的订单["+param.getOrderId()+"]");
+            return Result.wrapErrorResult("", "不存在的订单["+param.getOrderId()+"]");
+        }
+        Long goodsId = order.getGoodsId();
+        if (goodsId != null) {
+            Goods goods = goodsService.getById(goodsId);
+            if (goods!=null
+                    && goods.getGoodsName().equals(order.getGoodsName())
+                    && goods.getGoodsModel().equals(order.getGoodsModel())) {
+                //恢复库存
+                goodsService.updateStockNum(goodsId, -param.getGoodsNum());
+            }
+        }
+
+        //更新订单信息
+        orderService.handleReturnOrder(param.getOrderId(), param.getGoodsNum(), param.getOrderAmount());
+        //记录退货信息
+        ReturnOrder returnOrder = new ReturnOrder();
+        returnOrder.setOrderId(param.getOrderId());
+        returnOrder.setGoodsNum(param.getGoodsNum());
+        returnOrder.setOrderAmount(param.getOrderAmount());
+        returnOrder.setStoreId(sessionInfo.getStoreId());
+        returnOrder.setEmpId(sessionInfo.getEmpId());
+        returnOrder.setDefaultBizValue(sessionInfo.getEmpId());
+        returnOrderService.save(returnOrder);
+
+
+//        param.setStoreId(getStoreId());
+//        orderHeaderService.saveTotalAmount(param);
+        return Result.wrapSuccessfulResult(null);
+    }
+
 }

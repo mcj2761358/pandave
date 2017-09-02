@@ -2,10 +2,13 @@ package com.minutch.fox.dao.decoration;
 import com.minutch.fox.dao.base.BaseDao;
 import com.minutch.fox.dao.base.MyBatisRepository;
 import com.minutch.fox.entity.decoration.OrderHeader;
-import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
+import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
+import com.minutch.fox.param.decoration.order.OrderSaleParam;
+import com.minutch.fox.param.decoration.order.DashboardOrderHeaderParam;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @MyBatisRepository
@@ -22,4 +25,10 @@ public interface OrderHeaderDao extends BaseDao<OrderHeader> {
     OrderHeader queryByOrderSn(@Param("orderSn")String orderSn,@Param("cusId")Long cusId);
 
     int queryTotalCount(@Param("storeId")Long storeId);
+
+    int updateEmpName(@Param("param")OrderSaleParam param);
+
+    BigDecimal queryTotalAmountByTime(@Param("param")DashboardOrderHeaderParam param);
+
+    int queryTotalNumByTime(@Param("param")DashboardOrderHeaderParam param);
 }

@@ -1,11 +1,14 @@
 package com.minutch.fox.biz.decoration.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.minutch.fox.biz.base.BaseServiceImpl;
 import com.minutch.fox.biz.decoration.OrderHeaderService;
-import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
+import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
+import com.minutch.fox.param.decoration.order.OrderSaleParam;
+import com.minutch.fox.param.decoration.order.DashboardOrderHeaderParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +71,20 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     @Override
     public int queryTotalCount(Long storeId) {
         return orderHeaderDao.queryTotalCount(storeId);
+    }
+
+    @Override
+    public int updateEmpName(OrderSaleParam param) {
+        return orderHeaderDao.updateEmpName(param);
+    }
+
+    @Override
+    public BigDecimal queryTotalAmountByTime(DashboardOrderHeaderParam param) {
+        return orderHeaderDao.queryTotalAmountByTime(param);
+    }
+
+    @Override
+    public int queryTotalNumByTime(DashboardOrderHeaderParam param) {
+        return orderHeaderDao.queryTotalNumByTime(param);
     }
 }

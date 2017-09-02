@@ -4,9 +4,12 @@ import com.minutch.fox.dao.base.BaseDao;
 import com.minutch.fox.dao.base.MyBatisRepository;
 import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.param.decoration.OrderQueryParam;
+import com.minutch.fox.param.decoration.order.DashboardOrderGoodsParam;
+import com.minutch.fox.view.decoration.OrderGoodsView;
 import com.minutch.fox.view.decoration.OrderView;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @MyBatisRepository
@@ -23,4 +26,8 @@ public interface OrderDao extends BaseDao<Order> {
     List<Order> queryByIds(@Param("idList")List<Long> idList);
 
     List<Order> queryByHeaderId(@Param("headerId")Long headerId);
+
+    int handleReturnOrder(@Param("orderId")Long orderId,@Param("goodsNum")int goodsNum,@Param("orderAmount")BigDecimal orderAmount);
+
+    List<OrderGoodsView> queryOrderGoodsNumByTime(@Param("param")DashboardOrderGoodsParam param);
 }

@@ -1,9 +1,12 @@
 package com.minutch.fox.biz.decoration;
 
 import com.minutch.fox.entity.decoration.OrderHeader;
-import com.minutch.fox.param.decoration.CustomerTotalAmountParam;
+import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
+import com.minutch.fox.param.decoration.order.OrderSaleParam;
+import com.minutch.fox.param.decoration.order.DashboardOrderHeaderParam;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface OrderHeaderService {
@@ -28,4 +31,10 @@ public interface OrderHeaderService {
     OrderHeader queryByOrderSn(String orderSn,Long cusId);
 
     int queryTotalCount(Long storeId);
+
+    int updateEmpName(OrderSaleParam param);
+
+    BigDecimal queryTotalAmountByTime(DashboardOrderHeaderParam param);
+
+    int queryTotalNumByTime(DashboardOrderHeaderParam param);
 }

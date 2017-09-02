@@ -67,4 +67,9 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
     public int queryTotalCount(Long storeId) {
         return goodsDao.queryTotalCount(storeId);
     }
+
+    @Override
+    public List<Goods> queryStockNumAsc(Long storeId) {
+        return goodsDao.queryStockNumAsc(storeId);
+    }
 }

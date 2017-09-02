@@ -127,9 +127,13 @@ function queryUserList(pageIndex) {
                             var address = customer.address;
                             var remark = customer.remark;
                             var gmtCreate = customer.gmtCreatePos;
+                            var beNew = customer.beNew;
 
                             if (remark==null) {
                                 remark = '';
+                            }
+                            if (beNew == true) {
+                                cusName += '<span style="color: red">(新)</span>';
                             }
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId='+cusId;

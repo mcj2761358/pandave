@@ -1,7 +1,7 @@
 $(function () {
 
     //请求公告数据
-    queryNotice();
+    //queryNotice();
 })
 
 

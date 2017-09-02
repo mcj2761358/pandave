@@ -3,6 +3,7 @@ package com.minutch.fox.biz.decoration.impl;
 import java.util.List;
 
 import com.minutch.fox.biz.base.BaseServiceImpl;
+import com.minutch.fox.param.decoration.EmployeeQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,25 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
     @Override
     public int updatePassword(Long id, String password) {
         return employeeDao.updatePassword(id, password);
+    }
+
+    @Override
+    public List<Employee> queryEmployee(EmployeeQueryParam param) {
+        return employeeDao.queryEmployee(param, param.getStart(), param.getEnd());
+    }
+
+    @Override
+    public int queryEmployeeCount(EmployeeQueryParam param) {
+        return employeeDao.queryEmployeeCount(param);
+    }
+
+    @Override
+    public int queryTotalCount(Long storeId) {
+        return employeeDao.queryTotalCount(storeId);
+    }
+
+    @Override
+    public List<Employee> queryAllStoreEmp(Long storeId) {
+        return employeeDao.queryAllStoreEmp(storeId);
     }
 }

@@ -248,9 +248,16 @@ function queryGoodsList(pageIndex) {
                                 whName = '';
                             }
 
+                            var beNew = goods.beNew;
+
+                            var showGoodsName = goodsName;
+                            if (beNew == true) {
+                                showGoodsName += '<span style="color: red">(新)</span>';
+                            }
+
                             var goodsDataHtml =
                                 '<tr class="goodsInfo_'+goodsId+'">' +
-                                '<td class="goodsName">'+goodsName+'</td>' +
+                                '<td class="goodsName" value="'+goodsName+'">'+showGoodsName+'</td>' +
                                 '<td class="goodsModel">'+goodsModel+'</td>' +
                                 '<td class="inGoodsPrice">'+inGoodsPrice+'</td>' +
                                 '<td class="goodsPrice">'+goodsPrice+'</td>' +
@@ -286,7 +293,7 @@ function editGoods(goodsId) {
 
     var classGoods =  '.goodsInfo_'+goodsId;
     var goodsId = $(classGoods + ' .goodsId').val();
-    var goodsName = $(classGoods + ' .goodsName').html();
+    var goodsName = $(classGoods + ' .goodsName').attr('value');
     var goodsModel = $(classGoods + ' .goodsModel').html();
     var goodsPrice = $(classGoods + ' .goodsPrice').html();
     var inGoodsPrice = $(classGoods + ' .inGoodsPriceHidden').val();

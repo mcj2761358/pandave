@@ -5,21 +5,23 @@ package com.minutch.fox.enu.decoration;
  */
 public enum StoreLevelEnum {
 
-    Free(10,10,10, "体验版"),
-    Base(200,200,2000, "家庭版"),
-    Star(500,500,5000 , "钻石版"),
-    Biu(99999,99999,9999999 ,"至尊版"),
+    Free(10,10,10, 2,"体验版"),
+    Base(200,200,2000, 3, "家庭版"),
+    Star(500,500,5000 , 6,"钻石版"),
+    Biu(99999,99999,9999999 , 999,"至尊版"),
     ;
 
     private int customerNum;
     private int goodsNum;
     private int orderHeaderNum;
+    private int employeeNum;
     private String levelName;
 
-    StoreLevelEnum(int customerNum,int goodsNum, int orderHeaderNum, String levelName) {
+    StoreLevelEnum(int customerNum,int goodsNum, int orderHeaderNum,  int employeeNum, String levelName) {
         this.customerNum = customerNum;
         this.goodsNum = goodsNum;
         this.orderHeaderNum = orderHeaderNum;
+        this.employeeNum = employeeNum;
         this.levelName = levelName;
     }
 
@@ -34,6 +36,10 @@ public enum StoreLevelEnum {
 
     public int getOrderHeaderNum() {
         return orderHeaderNum;
+    }
+
+    public int getEmployeeNum() {
+        return employeeNum;
     }
 
     public String getLevelName() {

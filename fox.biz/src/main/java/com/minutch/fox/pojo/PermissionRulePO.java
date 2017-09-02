@@ -9,4 +9,6 @@ import lombok.Data;
 public class PermissionRulePO {
     private String noInPrice;
     private String noCharts;
+    private String noGoodsList;
+    private String editOrderSale;
 }

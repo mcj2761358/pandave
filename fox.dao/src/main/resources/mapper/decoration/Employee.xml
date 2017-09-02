@@ -196,4 +196,46 @@
         gmt_modified = now()
         where id = #{id}
     </update>
+
+
+
+    <sql id="empQueryCond">
+        and store_id = #{param.storeId}
+    </sql>
+
+    <!-- 根据条件查询客户总数 -->
+    <select id="queryEmployeeCount" resultType="java.lang.Integer">
+        select count(*)
+        from decoration_employee
+        where is_deleted = 'N'
+        <include refid="empQueryCond" />
+    </select>
+
+    <!-- 根据条件查询客户数据 -->
+    <select id="queryEmployee" resultMap="BaseResultMap">
+        select *
+        from decoration_employee
+        where is_deleted = 'N'
+        <include refid="empQueryCond" />
+        order by id desc
+        limit #{start},#{limit}
+    </select>
+
+
+    <!-- 查询商品总数 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer">
+        select count(id)
+        from decoration_employee
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
+
+
+    <!-- 查询所有商品 -->
+    <select id="queryAllStoreEmp" resultMap="BaseResultMap">
+        select * from decoration_employee
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
+
 </mapper>

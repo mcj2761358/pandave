@@ -14,6 +14,7 @@
         <result column = "total_amount" property = "totalAmount" />
         <result column = "pre_amount" property = "preAmount" />
         <result column = "store_id" property = "storeId" />
+        <result column = "emp_name" property = "empName" />
         <result column = "remark" property = "remark" />
     </resultMap>
 
@@ -47,6 +48,9 @@
                 </if>
                 <if test = "storeId != null">
                     and store_id = #{storeId}
+                </if>
+                <if test = "empName != null">
+                    and emp_name = #{empName}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
@@ -84,6 +88,9 @@
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
+            </if>
+            <if test = "empName != null">
+                emp_name = #{empName},
             </if>
             <if test = "remark != null">
                 remark = #{remark}
@@ -155,6 +162,7 @@
         total_amount,
         pre_amount,
         store_id,
+        emp_name,
         remark
         )
         values (
@@ -168,6 +176,7 @@
         #{totalAmount},
         #{preAmount},
         #{storeId},
+        #{empName},
         #{remark}
         )
     </insert>
@@ -255,5 +264,32 @@
         from decoration_order_header
         where is_deleted = 'N'
         and store_id = #{storeId}
+    </select>
+
+    <!-- 更新开单人 -->
+    <update id="updateEmpName">
+        update decoration_order_header
+        set gmt_modified = now(),
+        emp_name = #{param.empName}
+        where store_id = #{param.storeId}
+        and id =#{param.headerId}
+    </update>
+
+
+    <select id="queryTotalAmountByTime" resultType="java.math.BigDecimal">
+        select sum(total_amount)
+        from decoration_order_header
+        where is_deleted = 'N'
+        and store_id = #{param.storeId}
+        and gmt_create between #{param.startTime} and #{param.endTime}
+    </select>
+
+
+    <select id="queryTotalNumByTime" resultType="java.lang.Integer">
+        select count(id)
+        from decoration_order_header
+        where is_deleted = 'N'
+        and store_id = #{param.storeId}
+        and gmt_create between #{param.startTime} and #{param.endTime}
     </select>
 </mapper>

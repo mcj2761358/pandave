@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/goodsList.css?v=1.0"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.56"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.59"></script>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i></i> 新建商品</h2>
+                            <h2><i></i> 快速新建商品</h2>
                         </div>
                         <div class="box-content">
                             <table class="table table-striped table-bordered quick_order_0">
@@ -46,7 +46,7 @@
                                     <th>商品型号<span style="color: red">*</span></th>
                                     <th>商品进货价格</th>
                                     <th>商品售卖价格</th>
-                                    <th>订库存数量</th>
+                                    <th>库存数量</th>
                                     <th>仓库</th>
                                     <th>操作</th>
                                 </tr>
@@ -187,7 +187,7 @@
                             <label class="red control-label">*</label>
                         </div>
 
-                        #if ($!permissionRule.noInPrice != 'Y')
+                        #if ($!permissionRule.noInPrice != "Y")
                             <div class="form-group col-md-12 has-success">
                                 <label class="col-sm-3 control-label">商品进货价格</label>
                                 <div class="col-sm-8">

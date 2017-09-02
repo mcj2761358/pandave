@@ -223,4 +223,13 @@
         where is_deleted = 'N'
         and store_id = #{storeId}
     </select>
+
+
+    <select id="queryTotalNumByTime" resultType="java.lang.Integer">
+        select count(id)
+        from decoration_customer
+        where is_deleted = 'N'
+        and store_id = #{param.storeId}
+        and gmt_create between #{param.startTime} and #{param.endTime}
+    </select>
 </mapper>

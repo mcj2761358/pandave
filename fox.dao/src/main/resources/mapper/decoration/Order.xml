@@ -29,11 +29,13 @@
 
     <resultMap id = "orderViewMap" type = "com.minutch.fox.view.decoration.OrderView">
         <result column = "id" property = "id" />
+        <result column = "gmt_create" property = "gmtCreate" />
         <result column = "header_id" property = "headerId" />
         <result column = "cus_id" property = "cusId" />
         <result column = "cus_name" property = "cusName" />
         <result column = "mobile_phone" property = "mobilePhone" />
         <result column = "house_name" property = "houseName" />
+        <result column = "order_sn" property = "orderSn" />
         <result column = "address" property = "address" />
         <result column = "goods_id" property = "goodsId" />
         <result column = "goods_name" property = "goodsName" />
@@ -49,6 +51,15 @@
         <result column = "emp_id" property = "empId" />
         <result column = "remark" property = "remark" />
     </resultMap>
+
+
+
+    <resultMap id = "orderGoodsViewMap" type = "com.minutch.fox.view.decoration.OrderGoodsView">
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_model" property = "goodsModel" />
+        <result column = "goods_num" property = "goodsNum" />
+    </resultMap>
+
 
     <sql id = "BaseWhereClause">
         <where>
@@ -300,12 +311,14 @@
     <select id="queryOrder" resultMap="orderViewMap">
         select
         o.id,
+        o.gmt_create,
         o.header_id,
         h.cus_id,
         h.cus_name,
         h.mobile_phone,
         h.house_name,
         h.address,
+        h.order_sn,
         o.goods_id,
         o.goods_name,
         o.goods_model,
@@ -396,5 +409,28 @@
             #{id}
         </foreach>
         )
+    </select>
+
+
+    <!-- 订单退货 -->
+    <update id = "handleReturnOrder">
+        update decoration_order
+        set gmt_modified = now(),
+        goods_num = goods_num-#{goodsNum},
+        order_amount = order_amount-#{orderAmount}
+        where id = #{orderId}
+    </update>
+
+
+    <!-- 查询时间范围内的商品销售 -->
+    <select id="queryOrderGoodsNumByTime" resultMap="orderGoodsViewMap">
+        select goods_name,goods_Model,sum(goods_num) as goods_num
+        from decoration_order
+        where is_deleted ='N'
+        and store_id=#{param.storeId}
+        and gmt_create between #{param.startTime} and #{param.endTime}
+        group by goods_name,goods_Model
+        order by goods_num desc
+
     </select>
 </mapper>

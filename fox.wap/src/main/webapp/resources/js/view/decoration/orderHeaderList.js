@@ -84,10 +84,16 @@ function queryHeaderList(pageIndex) {
                             var preAmount = orderHeader.preAmount;
                             var leftAmount = totalAmount-preAmount;
 
+                            var beNew = orderHeader.beNew;
+
+                            var snShow = orderSn;
+                            if (beNew == true) {
+                                snShow += '<span style="color: red">(新)</span>';
+                            }
 
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId+'&orderSn='+orderSn;
                             var orderDataHtml = '<tr>' +
-                                '<td><a href="' + customerDetailUrl + '" target="_self">' + orderSn + '</a></td>' +
+                                '<td><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
                                 '<td class="center">' + gmtCreate + '</td>' +
                                 '<td class="center">' + cusName + '</td>' +
                                 '<td class="center">' + mobilePhone + '</td>' +
