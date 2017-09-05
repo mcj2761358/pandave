@@ -36,5 +36,7 @@ public interface OrderHeaderService {
 
     BigDecimal queryTotalAmountByTime(DashboardOrderHeaderParam param);
 
+    BigDecimal queryInTotalAmountByTime(DashboardOrderHeaderParam param);
+
     int queryTotalNumByTime(DashboardOrderHeaderParam param);
 }

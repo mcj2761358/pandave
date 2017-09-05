@@ -56,6 +56,17 @@
                     </a>
                 </div>
 
+
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <a data-toggle="tooltip" title="" class="well top-block" href="#">
+                        <i class="glyphicon glyphicon-flag blue"></i>
+
+                        <div>今日毛利润</div>
+                        <div>￥&nbsp;&nbsp;$!profitOrderAmount&nbsp;&nbsp;元</div>
+                    ##                        <span class="notification red">12</span>
+                    </a>
+                </div>
+
                 <div class="col-md-3 col-sm-3 col-xs-6">
                     <a data-toggle="tooltip" title="" class="well top-block" href="#">
                         <i class="glyphicon glyphicon-shopping-cart yellow"></i>

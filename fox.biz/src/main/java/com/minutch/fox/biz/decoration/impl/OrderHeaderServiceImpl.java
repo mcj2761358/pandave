@@ -84,6 +84,11 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     }
 
     @Override
+    public BigDecimal queryInTotalAmountByTime(DashboardOrderHeaderParam param) {
+        return orderHeaderDao.queryInTotalAmountByTime(param);
+    }
+
+    @Override
     public int queryTotalNumByTime(DashboardOrderHeaderParam param) {
         return orderHeaderDao.queryTotalNumByTime(param);
     }

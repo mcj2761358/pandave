@@ -30,5 +30,7 @@ public interface OrderHeaderDao extends BaseDao<OrderHeader> {
 
     BigDecimal queryTotalAmountByTime(@Param("param")DashboardOrderHeaderParam param);
 
+    BigDecimal queryInTotalAmountByTime(@Param("param")DashboardOrderHeaderParam param);
+
     int queryTotalNumByTime(@Param("param")DashboardOrderHeaderParam param);
 }

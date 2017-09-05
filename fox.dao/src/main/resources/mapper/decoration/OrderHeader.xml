@@ -285,6 +285,19 @@
     </select>
 
 
+    <!-- 查询进价总金额 -->
+    <select id="queryInTotalAmountByTime" resultType="java.math.BigDecimal">
+        select sum(o.goods_num * if(o.in_goods_price=0,o.goods_price,o.in_goods_price))
+        from decoration_order_header h
+        join decoration_order o
+        on h.id = o.header_id
+        where h.is_deleted = 'N'
+        and o.is_deleted = 'N'
+        and h.store_id = #{param.storeId}
+        and h.gmt_create between #{param.startTime} and #{param.endTime}
+    </select>
+
+
     <select id="queryTotalNumByTime" resultType="java.lang.Integer">
         select count(id)
         from decoration_order_header

@@ -77,6 +77,20 @@ public class DashboardController extends BaseController{
         BigDecimal totalOrderAmount = orderHeaderService.queryTotalAmountByTime(totalOrderAmountParam);
         model.addAttribute("totalOrderAmount",totalOrderAmount==null?BigDecimal.ZERO:totalOrderAmount);
 
+        //查询今日订单毛利润
+        BigDecimal inTotalOrderAmount = orderHeaderService.queryInTotalAmountByTime(totalOrderAmountParam);
+        if (inTotalOrderAmount == null) {
+            inTotalOrderAmount = BigDecimal.ZERO;
+        }
+
+        BigDecimal profitOrderAmount = totalOrderAmount.subtract(inTotalOrderAmount);
+        if (profitOrderAmount.compareTo(BigDecimal.ZERO) == -1) {
+            profitOrderAmount = BigDecimal.ZERO;
+        }
+
+        model.addAttribute("profitOrderAmount",profitOrderAmount);
+
+
         //查询今日订单总数量
         DashboardOrderHeaderParam totalOrderNumParam = new DashboardOrderHeaderParam();
         totalOrderNumParam.setStoreId(getStoreId());
