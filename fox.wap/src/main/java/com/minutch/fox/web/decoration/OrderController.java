@@ -201,7 +201,7 @@ public class OrderController extends BaseController {
                         && goods.getGoodsModel().equals(param.getGoodsModel())) {
 
                     //记录商品进价
-                    order.setInGoodsPrice(goods.getInGoodsPrice());
+                    order.setInGoodsPrice(goods.getInGoodsPrice()==null?BigDecimal.ZERO:goods.getInGoodsPrice());
 
                     //更新商品库存
                     goodsService.updateStockNum(goodsId, param.getGoodsNum());
