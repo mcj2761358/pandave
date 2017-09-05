@@ -18,6 +18,7 @@ public class Store extends BaseEntity {
   private String password;
   private String storeLevel;
   private Date endTime;
+  private String beAdmin;
   private String remark;
 
 }

@@ -127,51 +127,60 @@
             ##                        <span> Tables</span>
             ##                    </a>
             ##                </li>
-##                            <li class="accordion">
-##                                <a href="#">
-##                                    <i class="glyphicon glyphicon-plus"></i>
-##                                    <span> Accordion Menu</span>
-##                                </a>
-##                                <ul class="nav nav-pills nav-stacked">
-##                                    <li><a href="#">Child Menu 1</a></li>
-##                                    <li><a href="#">Child Menu 2</a></li>
-##                                </ul>
-##                            </li>
+            ##                            <li class="accordion">
+            ##                                <a href="#">
+            ##                                    <i class="glyphicon glyphicon-plus"></i>
+            ##                                    <span> Accordion Menu</span>
+            ##                                </a>
+            ##                                <ul class="nav nav-pills nav-stacked">
+            ##                                    <li><a href="#">Child Menu 1</a></li>
+            ##                                    <li><a href="#">Child Menu 2</a></li>
+            ##                                </ul>
+            ##                            </li>
 
 
+                <!-- 超级管理员 -->
 
+                #if ($!permissionRule.admin == "Y")
+                    <li class="nav-header">超级管理员</li>
+                    <li>
+                        <a class="ajax-link" href="${rc.contextPath}/admin/storeList">
+                            <i class="glyphicon glyphicon-plane"></i>
+                            <span> 商户管理</span>
+                        </a>
+                    </li>
+                #end
 
                 <li class="nav-header">系统中心</li>
 
-##                <li class="accordion">
-            ##                    <a href="#">
-            ##                        <i class="glyphicon glyphicon-plus"></i>
-            ##                        <span> 系统功能</span>
-            ##                    </a>
-            ##                    <ul class="nav nav-pills nav-stacked">
-            ##                        <li><a href="#">Child Menu 1</a></li>
-            ##                        <li><a href="#">Child Menu 2</a></li>
-            ##                    </ul>
-            ##                </li>
+                <li class="accordion">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span> 系统功能</span>
+                    </a>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a class="ajax-link" target="_blank" href="${rc.contextPath}/doc/index">
+                                <i class="glyphicon glyphicon glyphicon-flag"></i>
+                                <span> 操作手册</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ajax-link" href="${rc.contextPath}/decoration/modifyPassword">
+                                <i class="glyphicon glyphicon glyphicon-pencil"></i>
+                                <span> 修改密码</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ajax-link" href="${rc.contextPath}/decoration/contactUs">
+                                <i class="glyphicon glyphicon-hand-right"></i>
+                                <span> 联系我们</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-                <li>
-                    <a class="ajax-link" target="_blank" href="${rc.contextPath}/doc/index">
-                        <i class="glyphicon glyphicon glyphicon-flag"></i>
-                        <span> 操作手册</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="ajax-link" href="${rc.contextPath}/decoration/modifyPassword">
-                        <i class="glyphicon glyphicon glyphicon-pencil"></i>
-                        <span> 修改密码</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="ajax-link" href="${rc.contextPath}/decoration/contactUs">
-                        <i class="glyphicon glyphicon-hand-right"></i>
-                        <span> 联系我们</span>
-                    </a>
-                </li>
+
             ##                <li>
             ##                    <a class="ajax-link" href="${rc.contextPath}/decoration/calendar">
             ##                        <i class="glyphicon glyphicon-calendar"></i>

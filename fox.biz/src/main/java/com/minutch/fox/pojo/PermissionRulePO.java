@@ -11,4 +11,5 @@ public class PermissionRulePO {
     private String noCharts;
     private String noGoodsList;
     private String editOrderSale;
+    private String admin;
 }

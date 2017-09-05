@@ -10,6 +10,7 @@
         <result column="goods_price" property="goodsPrice"/>
         <result column="in_goods_price" property="inGoodsPrice"/>
         <result column="stock_num" property="stockNum"/>
+        <result column="stock_warn" property="stockWarn"/>
         <result column="wh_id" property="whId"/>
         <result column="wh_name" property="whName"/>
         <result column="store_id" property="storeId"/>
@@ -35,6 +36,9 @@
                 </if>
                 <if test="stockNum != null">
                     and stock_num = #{stockNum}
+                </if>
+                <if test="stockWarn != null">
+                    and stock_warn = #{stockWarn}
                 </if>
                 <if test="storeId != null">
                     and store_id = #{storeId}
@@ -66,6 +70,9 @@
             </if>
             <if test="stockNum != null">
                 stock_num = #{stockNum},
+            </if>
+            <if test="stockWarn != null">
+                stock_warn = #{stockWarn},
             </if>
             <if test="whId != null">
                 wh_id = #{whId},
@@ -145,6 +152,7 @@
         goods_price,
         in_goods_price,
         stock_num,
+        stock_warn,
         wh_id,
         wh_name,
         store_id,
@@ -158,6 +166,7 @@
         #{goodsPrice},
         #{inGoodsPrice},
         #{stockNum},
+        #{stockWarn},
         #{whId},
         #{whName},
         #{storeId},
@@ -245,7 +254,8 @@
         select * from decoration_goods
         where is_deleted = 'N'
         and store_id = #{storeId}
-        order by stock_num asc
+        and stock_warn > 0
+        order by (stock_num-stock_warn) asc
         limit 10
     </select>
 

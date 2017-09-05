@@ -2,6 +2,7 @@ package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.*;
 import com.minutch.fox.entity.decoration.*;
+import com.minutch.fox.enu.decoration.StockDetailObjTypeEnum;
 import com.minutch.fox.enu.decoration.StoreLevelEnum;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
@@ -56,6 +57,8 @@ public class OrderController extends BaseController {
     private StoreService storeService;
     @Autowired
     private ReturnOrderService returnOrderService;
+    @Autowired
+    private StockDetailService stockDetailService;
 
     @RequestMapping("queryHeaderList")
     @ResponseBody
@@ -152,7 +155,6 @@ public class OrderController extends BaseController {
         Long headerId = param.getHeaderId();
         if (headerId == null) {
 
-
             //判断当前等级的商家是否还能创建订单
             int totalNum = orderHeaderService.queryTotalCount(sessionInfo.getStoreId());
             StoreLevelEnum storeLevel = storeService.queryStoreLevel(sessionInfo.getStoreId());
@@ -185,6 +187,7 @@ public class OrderController extends BaseController {
         Order order = new Order();
         BeanUtils.copyProperties(param, order);
 
+        StockDetail stockDetail = null;
         if (order.getId() == null) {
             order.setBeFinish("N");
             order.setHeaderId(headerId);
@@ -196,7 +199,21 @@ public class OrderController extends BaseController {
                 if (goods != null
                         && goods.getGoodsName().equals(param.getGoodsName())
                         && goods.getGoodsModel().equals(param.getGoodsModel())) {
+
+                    //记录商品进价
+                    order.setInGoodsPrice(goods.getInGoodsPrice());
+
+                    //更新商品库存
                     goodsService.updateStockNum(goodsId, param.getGoodsNum());
+
+                    //记录库存明细
+                    stockDetail = new StockDetail();
+                    stockDetail.setDefaultBizValue(getEmpId());
+                    stockDetail.setEmpId(getEmpId());
+                    stockDetail.setStoreId(getStoreId());
+                    stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
+                    stockDetail.setStockNum(-param.getGoodsNum());
+                    stockDetail.setGoodsId(goods.getId());
                 }
             }
         }
@@ -209,6 +226,12 @@ public class OrderController extends BaseController {
         order.setStoreId(sessionInfo.getStoreId());
         order.setEmpId(sessionInfo.getEmpId());
         orderService.save(order);
+
+        if (stockDetail != null) {
+            stockDetail.setObjId(order.getId());
+            stockDetailService.save(stockDetail);
+        }
+
         return Result.wrapSuccessfulResult(order);
     }
 
@@ -227,8 +250,45 @@ public class OrderController extends BaseController {
             log.error("订单id不能为空！");
             return Result.wrapErrorResult("","订单ID不能为空!");
         }
+
+        Order order = orderService.getById(orderId);
+        if (order == null) {
+            log.error("不存在的订单["+orderId+"]");
+            return Result.wrapErrorResult("", "");
+        }
+
+        //判断订单是否属于当前商家
+        if (!getStoreId().equals(order.getStoreId())) {
+            log.error("当前商家["+getStoreId()+"]无法操作商家["+order.getStoreId()+"]的订单["+orderId+"]");
+            return Result.wrapErrorResult("", "您不能操作别人的订单哦！");
+        }
+
         orderService.deleteById(orderId);
         log.info("delete order["+orderId+"]");
+
+        //库存处理
+        Long goodsId = order.getGoodsId();
+        if (goodsId != null) {
+            Goods goods = goodsService.getById(goodsId);
+            if (goods!=null
+                    && goods.getGoodsName().equals(order.getGoodsName())
+                    && goods.getGoodsModel().equals(order.getGoodsModel())) {
+                //恢复库存
+                goodsService.updateStockNum(goodsId, -order.getGoodsNum());
+
+                //记录库存明细
+                StockDetail stockDetail = new StockDetail();
+                stockDetail.setDefaultBizValue(getEmpId());
+                stockDetail.setEmpId(getEmpId());
+                stockDetail.setStoreId(getStoreId());
+                stockDetail.setObjType(StockDetailObjTypeEnum.orderDelete.name());
+                stockDetail.setObjId(order.getId());
+                stockDetail.setStockNum(order.getGoodsNum());
+                stockDetail.setGoodsId(goods.getId());
+                stockDetailService.save(stockDetail);
+            }
+        }
+
         return Result.wrapSuccessfulResult(orderId);
     }
 
@@ -322,6 +382,17 @@ public class OrderController extends BaseController {
                     && goods.getGoodsModel().equals(order.getGoodsModel())) {
                 //恢复库存
                 goodsService.updateStockNum(goodsId, -param.getGoodsNum());
+
+                //记录库存明细
+                StockDetail stockDetail = new StockDetail();
+                stockDetail.setDefaultBizValue(getEmpId());
+                stockDetail.setEmpId(getEmpId());
+                stockDetail.setStoreId(getStoreId());
+                stockDetail.setObjType(StockDetailObjTypeEnum.orderReturn.name());
+                stockDetail.setObjId(order.getId());
+                stockDetail.setStockNum(param.getGoodsNum());
+                stockDetail.setGoodsId(goods.getId());
+                stockDetailService.save(stockDetail);
             }
         }
 

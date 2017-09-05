@@ -67,4 +67,14 @@ public class EmployeeServiceImpl extends BaseServiceImpl implements EmployeeServ
     public List<Employee> queryAllStoreEmp(Long storeId) {
         return employeeDao.queryAllStoreEmp(storeId);
     }
+
+    @Override
+    public Employee queryMainEmp(Long storeId) {
+        return employeeDao.queryMainEmp(storeId);
+    }
+
+    @Override
+    public List<Employee> queryMainEmps(List<Long> storeIdList) {
+        return employeeDao.queryMainEmps(storeIdList);
+    }
 }

@@ -1,161 +1,186 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "com.minutch.fox.dao.decoration.StoreDao">
+<mapper namespace="com.minutch.fox.dao.decoration.StoreDao">
 
-    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.Store"
-               extends = "COMMON.BASE_RESULT_MAP">
-        <result column = "store_name" property = "storeName" />
-        <result column = "cardno" property = "cardno" />
-        <result column = "mobile_phone" property = "mobilePhone" />
-        <result column = "password" property = "password" />
-        <result column = "store_level" property = "storeLevel" />
-        <result column = "end_time" property = "endTime" />
-        <result column = "remark" property = "remark" />
+    <resultMap id="BaseResultMap" type="com.minutch.fox.entity.decoration.Store"
+               extends="COMMON.BASE_RESULT_MAP">
+        <result column="store_name" property="storeName"/>
+        <result column="cardno" property="cardno"/>
+        <result column="mobile_phone" property="mobilePhone"/>
+        <result column="password" property="password"/>
+        <result column="store_level" property="storeLevel"/>
+        <result column="end_time" property="endTime"/>
+        <result column="be_admin" property="beAdmin"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
-    <sql id = "BaseWhereClause">
+    <sql id="goodsColumn">
+          id,
+        is_deleted,
+        gmt_create,
+        creator,
+        gmt_modified,
+        modifier,
+        store_name,
+         cardno,
+         mobile_phone,
+         store_level,
+         end_time,
+         be_admin,
+         remark
+    </sql>
+
+    <sql id="BaseWhereClause">
         <where>
-            <trim prefixOverrides = "and">
-                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
-                <if test = "storeName != null">
+            <trim prefixOverrides="and">
+                <include refid="COMMON.BASE_WHERE_CLAUSE"/>
+                <if test="storeName != null">
                     and store_name = #{storeName}
                 </if>
-                <if test = "cardno != null">
+                <if test="cardno != null">
                     and cardno = #{cardno}
                 </if>
-                <if test = "mobilePhone != null">
+                <if test="mobilePhone != null">
                     and mobile_phone = #{mobilePhone}
                 </if>
-                <if test = "password != null">
+                <if test="password != null">
                     and password = #{password}
                 </if>
-                <if test = "storeLevel != null">
+                <if test="storeLevel != null">
                     and store_level = #{storeLevel}
                 </if>
-                <if test = "endTime != null">
+                <if test="endTime != null">
                     and end_time = #{endTime}
                 </if>
-                <if test = "remark != null">
+                <if test="beAdmin != null">
+                    and be_admin = #{beAdmin}
+                </if>
+                <if test="remark != null">
                     and remark = #{remark}
                 </if>
             </trim>
         </where>
     </sql>
 
-    <sql id = "BaseUpdateSet">
+    <sql id="BaseUpdateSet">
         <set>
-            <include refid = "COMMON.BASE_UPDATE_SET" />
-            <if test = "storeName != null">
+            <include refid="COMMON.BASE_UPDATE_SET"/>
+            <if test="storeName != null">
                 store_name = #{storeName},
             </if>
-            <if test = "cardno != null">
+            <if test="cardno != null">
                 cardno = #{cardno},
             </if>
-            <if test = "mobilePhone != null">
+            <if test="mobilePhone != null">
                 mobile_phone = #{mobilePhone},
             </if>
-            <if test = "password != null">
+            <if test="password != null">
                 password = #{password},
             </if>
-            <if test = "storeLevel != null">
+            <if test="storeLevel != null">
                 store_level = #{storeLevel},
             </if>
-            <if test = "endTime != null">
+            <if test="endTime != null">
                 end_time = #{endTime},
             </if>
-            <if test = "remark != null">
+            <if test="beAdmin != null">
+                be_admin = #{beAdmin},
+            </if>
+            <if test="remark != null">
                 remark = #{remark}
             </if>
         </set>
     </sql>
 
     <!-- 查询总数 -->
-    <select id = "selectCount" resultType = "java.lang.Integer">
+    <select id="selectCount" resultType="java.lang.Integer">
         select count(id)
         from decoration_store
-        <include refid = "BaseWhereClause" />
+        <include refid="BaseWhereClause"/>
     </select>
 
     <!-- 查询 -->
-    <select id = "select" resultMap = "BaseResultMap">
+    <select id="select" resultMap="BaseResultMap">
         select
-        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        <include refid="COMMON.ALL_COLUMN_LIST"/>
         from decoration_store
-        <include refid = "BaseWhereClause" />
-        <include refid = "COMMON.ORDER_BY" />
-        <include refid = "COMMON.LIMIT" />
+        <include refid="BaseWhereClause"/>
+        <include refid="COMMON.ORDER_BY"/>
+        <include refid="COMMON.LIMIT"/>
     </select>
 
     <!-- 根据ID查询 -->
-    <select id = "selectById" resultMap = "BaseResultMap">
+    <select id="selectById" resultMap="BaseResultMap">
         select
-        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        <include refid="COMMON.ALL_COLUMN_LIST"/>
         from decoration_store
         where id = #{id}
     </select>
 
     <!-- 根据IDS批量删除 -->
-    <update id = "deleteByIds">
+    <update id="deleteByIds">
         update decoration_store
         set is_deleted='Y'
         where id in
         (
-        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+        <foreach collection="array" index="index" item="tag" separator=",">
             #{tag}
         </foreach>
         )
     </update>
 
     <!-- 根据ID删除 -->
-    <update id = "deleteById">
+    <update id="deleteById">
         update decoration_store
         set is_deleted='Y'
         where id=#{id}
     </update>
 
     <!-- 删除 -->
-    <delete id = "delete">
+    <delete id="delete">
         update decoration_store
         set is_deleted='Y'
-        <include refid = "BaseWhereClause" />
+        <include refid="BaseWhereClause"/>
     </delete>
 
     <!-- 添加   -->
-    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into decoration_store (
-        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        <include refid="COMMON.BASE_INSERT_COLUMN"/>
         store_name,
         cardno,
         mobile_phone,
         password,
         store_level,
         end_time,
+        be_admin,
         remark
         )
         values (
-        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        <include refid="COMMON.BASE_INSERT_VALUE"/>
         #{storeName},
         #{cardno},
         #{mobilePhone},
         #{password},
         #{storeLevel},
         #{endTime},
+        #{beAdmin},
         #{remark}
         )
     </insert>
 
     <!-- 通过ID更新 -->
-    <update id = "updateById">
+    <update id="updateById">
         update decoration_store
-        <include refid = "BaseUpdateSet" />
+        <include refid="BaseUpdateSet"/>
         where id = #{id}
     </update>
 
 
     <!-- 根据手机号查询 -->
-    <select id = "queryByMobilePhone" resultMap = "BaseResultMap">
-        select *
+    <select id="queryByMobilePhone" resultMap="BaseResultMap">
+        select <include refid="goodsColumn" />
         from decoration_store
         where is_deleted = 'N'
         and mobile_phone = #{mobilePhone}
@@ -163,11 +188,42 @@
     </select>
 
     <!-- 修改登录密码 -->
-    <update id = "updatePassword">
+    <update id="updatePassword">
         update decoration_store
         set password=#{password},
         gmt_modified = now()
         where id = #{id}
     </update>
+
+
+    <!-- 商户查询条件 -->
+    <sql id="storeQueryCond">
+        <if test="param.keyword!=null and param.keyword!=''">
+            and
+            (
+            store_name like concat('%',#{param.keyword},'%')
+            or mobile_phone like concat('%',#{param.keyword},'%')
+            )
+        </if>
+    </sql>
+
+    <!-- 根据条件查询客户总数 -->
+    <select id="queryStoreCount" resultType="java.lang.Integer">
+        select count(*)
+        from decoration_store
+        where is_deleted = 'N'
+        <include refid="storeQueryCond"/>
+    </select>
+
+    <!-- 根据条件查询客户数据 -->
+    <select id="queryStore" resultMap="BaseResultMap">
+        select
+        <include refid="goodsColumn" />
+        from decoration_store
+        where is_deleted = 'N'
+        <include refid="storeQueryCond"/>
+        order by id desc
+        limit #{start},#{limit}
+    </select>
 
 </mapper>

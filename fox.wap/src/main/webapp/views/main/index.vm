@@ -52,7 +52,7 @@
                             <span class="medium">个体户的大事</span></h1>
 
                         <div class="call-to-action">
-                            <a href="http://www.biubiubiu.ren/fox/decoration/userList" target="_blank"
+                            <a href="${serverUrl}fox/decoration/userList" target="_blank"
                                class="demo animate-box"><i class="icon-power"></i> 开启新的历程</a>
                         </div>
                     </div>

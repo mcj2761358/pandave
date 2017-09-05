@@ -9,9 +9,3 @@
 .red {
     color: red !important;
 }
-
-.showStockList {
-    text-decoration:underline;
-    cursor: pointer;
-}
-

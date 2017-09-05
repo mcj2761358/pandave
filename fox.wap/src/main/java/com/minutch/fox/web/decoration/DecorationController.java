@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.minutch.fox.biz.decoration.*;
 import com.minutch.fox.entity.decoration.*;
 import com.minutch.fox.http.SessionInfo;
+import com.minutch.fox.param.Result;
 import com.minutch.fox.result.decoration.*;
 import com.minutch.fox.utils.FoxBeanUtils;
 import com.minutch.fox.utils.ListUtils;
@@ -109,11 +110,39 @@ public class DecorationController extends BaseController {
     }
 
     @RequestMapping("customerDetail")
-    public String customerDetail(Long cusId,String orderSn,Model model) {
+    public String customerDetail(Long cusId,String orderSn,Long orderId, Model model) {
 
-        if (cusId==null) {
+        if (cusId==null && StringUtils.isBlank(orderSn) && orderId==null) {
             log.error("参数错误");
             model.addAttribute("errorMsg", "参数错误，客户ID为空！");
+            return "decoration/error500";
+        }
+
+
+
+        //如果orderSN为空，oderId不为空
+        if (StringUtils.isBlank(orderSn) && orderId!=null) {
+            Order order = orderService.getById(orderId);
+            if (order!=null) {
+                OrderHeader orderHeader = orderHeaderService.getById(order.getHeaderId());
+
+                if (orderHeader!=null) {
+
+                    if (!getStoreId().equals(orderHeader.getStoreId())) {
+                        log.error("当前商家["+getStoreId()+"]不能查看商家["+orderHeader.getStoreId()+"]的订单["+orderId+"]");
+                        model.addAttribute("errorMsg", "您不能查看其他人的订单哦！");
+                        return "decoration/error500";
+                    }
+
+                    orderSn = orderHeader.getOrderSn();
+                    cusId = orderHeader.getCusId();
+                }
+            }
+        }
+
+        if (orderId!=null && cusId==null) {
+            log.error("参数错误");
+            model.addAttribute("errorMsg", "订单["+orderId+"]已被删除！");
             return "decoration/error500";
         }
 
@@ -130,7 +159,6 @@ public class DecorationController extends BaseController {
         model.addAttribute("customer", customerVO);
         model.addAttribute("cusId", cusId);
         model.addAttribute("orderSn", orderSn);
-
 
         //查询订单信息
         List<OrderHeaderVO> orderHeaderVOList = new ArrayList<>();

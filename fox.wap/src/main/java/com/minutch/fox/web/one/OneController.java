@@ -1,7 +1,10 @@
 package com.minutch.fox.web.one;
 
+import com.minutch.fox.config.SystemConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,9 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class OneController {
 
-    @RequestMapping()
-    public String index(){
+    @Autowired
+    private SystemConfig systemConfig;
 
+
+    @RequestMapping()
+    public String index(Model model){
+
+        model.addAttribute("serverUrl", systemConfig.getServerUrl());
         return "main/index";
     }
 

@@ -13,6 +13,7 @@
         <result column = "birthday" property = "birthday" />
         <result column = "cardno" property = "cardno" />
         <result column = "store_id" property = "storeId" />
+        <result column = "be_main" property = "beMain" />
         <result column = "remark" property = "remark" />
         <result column = "permission_rule" property = "permissionRule" />
     </resultMap>
@@ -44,6 +45,9 @@
                 </if>
                 <if test = "storeId != null">
                     and store_id = #{storeId}
+                </if>
+                <if test = "beMain != null">
+                    and be_main = #{beMain}
                 </if>
                 <if test = "remark != null">
                     and remark = #{remark}
@@ -81,6 +85,9 @@
             </if>
             <if test = "storeId != null">
                 store_id = #{storeId},
+            </if>
+            <if test = "beMain != null">
+                be_main = #{beMain},
             </if>
             <if test = "remark != null">
                 remark = #{remark},
@@ -154,6 +161,7 @@
         birthday,
         cardno,
         store_id,
+        be_main,
         remark,
         permission_rule
         )
@@ -167,6 +175,7 @@
         #{birthday},
         #{cardno},
         #{storeId},
+        #{beMain},
         #{remark},
         #{permissionRule}
         )
@@ -222,7 +231,7 @@
     </select>
 
 
-    <!-- 查询商品总数 -->
+    <!-- 查询员工总数 -->
     <select id="queryTotalCount" resultType="java.lang.Integer">
         select count(id)
         from decoration_employee
@@ -231,11 +240,37 @@
     </select>
 
 
-    <!-- 查询所有商品 -->
+    <!-- 查询所有员工 -->
     <select id="queryAllStoreEmp" resultMap="BaseResultMap">
         select * from decoration_employee
         where is_deleted = 'N'
         and store_id = #{storeId}
     </select>
+
+
+    <!-- 查询主账号权限 -->
+    <select id = "queryMainEmp" resultMap = "BaseResultMap">
+        select *
+        from decoration_employee
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+        and be_main = 'Y'
+        limit 1
+    </select>
+    <!-- 根据ID查询 -->
+    <select id = "queryMainEmps" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_employee
+        where is_deleted ='N'
+        and store_id in
+        (
+        <foreach collection = "storeIdList" index = "index" item = "storeId" separator = ",">
+            #{storeId}
+        </foreach>
+        )
+        and be_main = 'Y'
+    </select>
+
 
 </mapper>

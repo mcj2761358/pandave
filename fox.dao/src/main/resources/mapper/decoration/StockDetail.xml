@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.StockDetailDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.StockDetail"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "goods_id" property = "goodsId" />
+        <result column = "stock_num" property = "stockNum" />
+        <result column = "obj_type" property = "objType" />
+        <result column = "obj_id" property = "objId" />
+        <result column = "store_id" property = "storeId" />
+        <result column = "emp_id" property = "empId" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "goodsId != null">
+                    and goods_id = #{goodsId}
+                </if>
+                <if test = "stockNum != null">
+                    and stock_num = #{stockNum}
+                </if>
+                <if test = "objType != null">
+                    and obj_type = #{objType}
+                </if>
+                <if test = "objId != null">
+                    and obj_id = #{objId}
+                </if>
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
+                </if>
+                <if test = "empId != null">
+                    and emp_id = #{empId}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "goodsId != null">
+                goods_id = #{goodsId},
+            </if>
+            <if test = "stockNum != null">
+                stock_num = #{stockNum},
+            </if>
+            <if test = "objType != null">
+                obj_type = #{objType},
+            </if>
+            <if test = "objId != null">
+                obj_id = #{objId},
+            </if>
+            <if test = "storeId != null">
+                store_id = #{storeId},
+            </if>
+            <if test = "empId != null">
+                emp_id = #{empId},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_stock_detail
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_stock_detail
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_stock_detail
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_stock_detail
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_stock_detail
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_stock_detail
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_stock_detail (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        goods_id,
+        stock_num,
+        obj_type,
+        obj_id,
+        store_id,
+        emp_id,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{goodsId},
+        #{stockNum},
+        #{objType},
+        #{objId},
+        #{storeId},
+        #{empId},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_stock_detail
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+    <!-- 根据goodsId查询 -->
+    <select id = "queryByGoodsId" resultMap = "BaseResultMap">
+        select *
+        from decoration_stock_detail
+        where is_deleted = 'N'
+        and goods_id = #{goodsId}
+        order by id desc
+        limit 20
+    </select>
+
+</mapper>

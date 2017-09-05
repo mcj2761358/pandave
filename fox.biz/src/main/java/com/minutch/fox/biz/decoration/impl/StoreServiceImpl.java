@@ -6,6 +6,7 @@ import com.minutch.fox.biz.decoration.StoreService;
 import com.minutch.fox.dao.decoration.StoreDao;
 import com.minutch.fox.entity.decoration.Store;
 import com.minutch.fox.enu.decoration.StoreLevelEnum;
+import com.minutch.fox.param.decoration.StoreQueryParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,29 @@ public class StoreServiceImpl extends BaseServiceImpl implements StoreService {
         }
 
         return level;
+    }
+
+    @Override
+    public List<Store> queryStore(StoreQueryParam param) {
+        return storeDao.queryStore(param, param.getStart(), param.getEnd());
+    }
+
+    @Override
+    public int queryStoreCount(StoreQueryParam param) {
+        return storeDao.queryStoreCount(param);
+    }
+
+    @Override
+    public boolean isAdmin(Long storeId) {
+
+        Store store = storeDao.selectById(storeId);
+        if (store == null ) {
+            return false;
+        }
+
+        if ("admin".equals(store.getBeAdmin())) {
+            return true;
+        }
+        return false;
     }
 }

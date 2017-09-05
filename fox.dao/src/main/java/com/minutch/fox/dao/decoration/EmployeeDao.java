@@ -19,10 +19,16 @@ public interface EmployeeDao extends BaseDao<Employee> {
 
     Employee queryByMobilePhone(@Param("empMobile")String empMobile);
 
+    Employee queryMainEmp(@Param("storeId")Long storeId);
+
+    List<Employee> queryMainEmps(@Param("storeIdList")List<Long> storeIdList);
+
     int updatePassword(@Param("id")Long id,@Param("password")String password);
 
 
     int queryTotalCount(@Param("storeId")Long storeId);
 
     List<Employee> queryAllStoreEmp(@Param("storeId")Long storeId);
+
+
 }

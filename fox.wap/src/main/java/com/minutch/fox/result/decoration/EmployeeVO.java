@@ -24,6 +24,7 @@ public class EmployeeVO {
     private String cardno;
     private Long storeId;
     private String remark;
+    private String beMain;
     private String permissionRule;
     private PermissionRulePO permissionRulePO;
 

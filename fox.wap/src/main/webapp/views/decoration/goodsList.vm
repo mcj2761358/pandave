@@ -6,9 +6,12 @@
     #parse("decoration/public/commonStyle.vm")
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
-    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/goodsList.css?v=1.0"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/goodsList.css?v=1.1"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/jquery.webui-popover.min.css?v=1.1"/>
+
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.59"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.70"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.webui-popover.min.js?v=1.61"></script>
 </head>
 
 <body>
@@ -47,8 +50,8 @@
                                     <th>商品进货价格</th>
                                     <th>商品售卖价格</th>
                                     <th>库存数量</th>
+                                    <th>库存报警数量</th>
                                     <th>仓库</th>
-                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody class="goodsCreateDiv">
@@ -59,6 +62,7 @@
                                     <td><input style="width:80px;" id="inGoodsPrice"/></td>
                                     <td><input style="width:80px;" id="goodsPrice"/></td>
                                     <td><input style="width:80px;" id="stockNum"/></td>
+                                    <td><input style="width:80px;" id="stockWarn"/></td>
                                     <td>
                                         <select class="form-control" id="whId">
                                             <option value="" selected="selected"></option>
@@ -67,24 +71,22 @@
                                             #end
                                         </select>
                                     </td>
-                                    <td class="center">
-                                        <a class="btn btn-info btn-sm" onclick="simpleSaveGoods()">
-                                            <i class="glyphicon glyphicon-edit icon-white"></i>新建商品
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" onclick="clearGoodsInfo()">
-                                            <i class="glyphicon glyphicon-plane icon-white"></i>清空数据
-                                        </a>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
-
+                            <div align="right">
+                            <a class="btn btn-info btn-sm" onclick="simpleSaveGoods()">
+                                <i class="glyphicon glyphicon-edit icon-white"></i>新建商品
+                            </a>
+                            <a class="btn btn-danger btn-sm" onclick="clearGoodsInfo()">
+                                <i class="glyphicon glyphicon-plane icon-white"></i>清空数据
+                            </a>
+                            </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-
 
             <div class="row">
                 <div class="box col-md-12">
@@ -113,7 +115,6 @@
                                     <button class="btn btn-success" onclick="queryGoodsList(0);" id="searchGoodsBtn">
                                         搜索商品
                                     </button>
-
                                     <button class="btn btn-warning editGoodsOption" onclick="editGoodsList()">编辑商品</button>
                                 </div>
                             </div>
@@ -126,6 +127,7 @@
                                     <th>商品进价</th>
                                     <th>商品售价</th>
                                     <th>商品库存</th>
+                                    <th>库存警戒</th>
                                     <th>所在仓库</th>
                                     <th>录入时间</th>
                                     <th></th>
@@ -211,6 +213,13 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12 has-success">
+                            <label class="col-sm-3 control-label">库存警戒数量</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editStockWarn">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 has-success">
                             <label class="col-sm-3 control-label">所在仓库</label>
 
                             <div class="col-sm-8">
@@ -242,6 +251,15 @@
     </div>
 </div>
 
+
+<div id="listContent" style="display:none;">
+    <ul class="list-group">
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
 
 
 

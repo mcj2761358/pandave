@@ -21,6 +21,7 @@ public class Employee extends BaseEntity {
   private String sex;
   private String cardno;
   private Long storeId;
+  private String beMain;
   private String remark;
   private String permissionRule;
 

@@ -4,7 +4,7 @@
 
 <!-- The styles -->
 <link href='${rc.contextPath}/resources/charisma/css/bootstrap-cerulean.min.css' rel="stylesheet" id="bs-css">
-<link href='${rc.contextPath}/resources/charisma/css/charisma-app.css' rel="stylesheet">
+<link href='${rc.contextPath}/resources/charisma/css/charisma-app.css?v=1.0' rel="stylesheet">
 <link href='${rc.contextPath}/resources/charisma/bower_components/fullcalendar/dist/fullcalendar.css' rel="stylesheet">
 <link href='${rc.contextPath}/resources/charisma/bower_components/fullcalendar/dist/fullcalendar.print.css' rel="stylesheet" media="print">
 <link href='${rc.contextPath}/resources/charisma/bower_components/chosen/chosen.min.css' rel="stylesheet">

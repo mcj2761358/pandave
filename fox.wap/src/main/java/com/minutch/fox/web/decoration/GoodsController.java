@@ -1,13 +1,17 @@
 package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.GoodsService;
+import com.minutch.fox.biz.decoration.StockDetailService;
 import com.minutch.fox.biz.decoration.StoreService;
 import com.minutch.fox.entity.decoration.Goods;
+import com.minutch.fox.entity.decoration.StockDetail;
+import com.minutch.fox.enu.decoration.StockDetailObjTypeEnum;
 import com.minutch.fox.enu.decoration.StoreLevelEnum;
 import com.minutch.fox.http.SessionInfo;
 import com.minutch.fox.param.Result;
 import com.minutch.fox.param.decoration.GoodsParam;
 import com.minutch.fox.param.decoration.GoodsQueryParam;
+import com.minutch.fox.pojo.PermissionRulePO;
 import com.minutch.fox.result.PageResultVO;
 import com.minutch.fox.result.decoration.GoodsVO;
 import com.minutch.fox.utils.FoxBeanUtils;
@@ -17,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +43,8 @@ public class GoodsController extends BaseController {
     private SessionInfo sessionInfo;
     @Autowired
     private StoreService storeService;
+    @Autowired
+    private StockDetailService stockDetailService;
 
     @RequestMapping("queryList")
     @ResponseBody
@@ -51,8 +58,17 @@ public class GoodsController extends BaseController {
         pageResultVO.setCurPage(param.getCurPage());
         pageResultVO.setTotalSize(totalNum);
         if (totalNum > 0) {
-            List<Goods> studentList = goodsService.queryGoods(param);
-            pageResultVO.setDataList(FoxBeanUtils.copyList(studentList, GoodsVO.class));
+            List<Goods> goodsList = goodsService.queryGoods(param);
+
+            //获取当前用户权限
+            PermissionRulePO rulePO = permissionRule();
+            if ("Y".equals(rulePO.getNoInPrice())) {
+                for (Goods goods:goodsList) {
+                    goods.setInGoodsPrice(null);
+                }
+            }
+
+            pageResultVO.setDataList(FoxBeanUtils.copyList(goodsList, GoodsVO.class));
         } else {
             pageResultVO.setDataList(new ArrayList<GoodsVO>());
         }
@@ -62,6 +78,7 @@ public class GoodsController extends BaseController {
 
     @RequestMapping("deleteById")
     @ResponseBody
+    @Transactional
     public Result<?> deleteById(Long goodsId) {
 
         if (goodsId == null) {
@@ -75,6 +92,7 @@ public class GoodsController extends BaseController {
 
     @RequestMapping("save")
     @ResponseBody
+    @Transactional
     public Result<?> save(@RequestBody GoodsParam param) {
 
         //判断信息是否正确
@@ -87,6 +105,7 @@ public class GoodsController extends BaseController {
             return Result.wrapErrorResult("","商品型号不能为空.");
         }
         Goods goods;
+        StockDetail stockDetail = null;
         if (param.getId() == null) {
             //判断当前商品是否已经被注册
             goods = goodsService.queryByNameAndModel(param.getGoodsName(), param.getGoodsModel(), sessionInfo.getStoreId(), param.getWhId());
@@ -102,6 +121,16 @@ public class GoodsController extends BaseController {
                 log.error("您当前的套餐是【"+storeLevel.getLevelName()+"】,最多创建["+storeLevel.getGoodsNum()+"]个商品,请联系客服升级套餐.");
                 return Result.wrapErrorResult("", "您当前的套餐是【"+storeLevel.getLevelName()+"】,最多创建["+storeLevel.getGoodsNum()+"]个商品,请联系客服升级套餐.");
             }
+
+            //记录库存明细
+            if (param.getStockNum()!=null && param.getStockNum()!=0) {
+                stockDetail = new StockDetail();
+                stockDetail.setDefaultBizValue(getEmpId());
+                stockDetail.setEmpId(getEmpId());
+                stockDetail.setStoreId(getStoreId());
+                stockDetail.setObjType(StockDetailObjTypeEnum.goodsIn.name());
+                stockDetail.setStockNum(param.getStockNum());
+            }
         }
 
         goods = new Goods();
@@ -109,8 +138,12 @@ public class GoodsController extends BaseController {
         goods.setDefaultBizValue(sessionInfo.getEmpId());
         goods.setStoreId(sessionInfo.getStoreId());
         goods.setEmpId(getEmpId());
-
         goodsService.save(goods);
+
+        if (stockDetail!=null) {
+            stockDetail.setGoodsId(goods.getId());
+            stockDetailService.save(stockDetail);
+        }
         return Result.wrapSuccessfulResult(goods);
     }
 }

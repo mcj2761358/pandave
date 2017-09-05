@@ -276,7 +276,7 @@ function saveOrder() {
     var goodsModel = $('#goodsModel').val();
     var goodsNum = $('#goodsNum').val();
     var goodsPrice = $('#goodsPrice').val();
-    var inGoodsPrice = $('#inGoodsPrice').val();
+    //var inGoodsPrice = $('#inGoodsPrice').val();
     var orderAmount = $('#orderAmount').val();
     var remindTime = $('#remindTime').val();
     var createTime = $('#createTime').val();
@@ -314,7 +314,7 @@ function saveOrder() {
     param.goodsModel = goodsModel;
     param.goodsNum = goodsNum;
     param.goodsPrice = goodsPrice;
-    param.inGoodsPrice = inGoodsPrice;
+    //param.inGoodsPrice = inGoodsPrice;
     param.orderAmount = orderAmount;
     param.remindTime = remindTime;
     param.createTime = createTime;
@@ -682,7 +682,7 @@ function clearSimpleOrderModal() {
     $('#cGoodsName').val('');
     $('#cGoodsModel').val('');
     $('#cGoodsNum').val('');
-    $('#inGoodsPrice').val('');
+    //$('#inGoodsPrice').val('');
     $('#cGoodsPrice').val('');
     $('#cOrderAmount').val('');
 }
@@ -691,7 +691,7 @@ function clearOrderModal() {
     $('#goodsName').val('');
     $('#goodsNum').val('');
     $('#goodsPrice').val('');
-    $('#inGoodsPrice').val('');
+    //$('#inGoodsPrice').val('');
     $('#goodsModel').val('');
     $('#orderAmount').val('');
     $('#remark').val('');
@@ -740,7 +740,7 @@ function editOrder(orderId, headerId) {
     var goodsModel = $(classOrder + ' .goodsModel').html();
     var goodsNum = $(classOrder + ' .goodsNum').html();
     var goodsPrice = $(classOrder + ' .goodsPrice').html();
-    var inGoodsPrice = $(classOrder + ' .inGoodsPrice').val();
+    //var inGoodsPrice = $(classOrder + ' .inGoodsPrice').val();
     var remindTime = $(classOrder + ' .remindTime').val();
     var createTime = $(classOrder + ' .createTime').val();
     var orderAmount = $(classOrder + ' .orderAmount').html();
@@ -753,7 +753,7 @@ function editOrder(orderId, headerId) {
     $('#goodsModel').val(goodsModel);
     $('#goodsNum').val(goodsNum);
     $('#goodsPrice').val(goodsPrice);
-    $('#inGoodsPrice').val(inGoodsPrice);
+    //$('#inGoodsPrice').val(inGoodsPrice);
     $('#remindTime').val(remindTime);
     $('#createTime').val(createTime);
     $('#orderAmount').val(orderAmount);

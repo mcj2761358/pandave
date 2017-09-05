@@ -27,4 +27,8 @@ public interface EmployeeService {
     int queryTotalCount(Long storeId);
 
     List<Employee> queryAllStoreEmp(Long storeId);
+
+    Employee queryMainEmp(Long storeId);
+
+    List<Employee> queryMainEmps(List<Long> storeIdList);
 }
