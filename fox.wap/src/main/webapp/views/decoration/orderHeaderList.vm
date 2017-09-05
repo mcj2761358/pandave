@@ -6,7 +6,7 @@
     #parse("decoration/public/commonStyle.vm")
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
-    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/orderHeaderList.css?v=1.0"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/orderHeaderList.css?v=1.01"/>
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/bootstrap-datetimepicker.min.css"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/bootstrap-datetimepicker.min.js"></script>
@@ -119,7 +119,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderHeaderList.js?v=1.04"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/orderHeaderList.js?v=1.06"></script>
     #parse("decoration/public/footer.vm")
 </div>
     #parse("decoration/public/alertModal.vm")

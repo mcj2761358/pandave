@@ -5,13 +5,14 @@ $(function () {
 
     //绑定日期控件
     $('.queryTime').datetimepicker({
-        language:  'zh-CN',
+        language: 'zh-CN',
         minView: "month",
         autoclose: 1,
     });
 
     queryHeaderList(0);
 });
+
 
 
 function getFormattedDate(date) {
@@ -82,7 +83,7 @@ function queryHeaderList(pageIndex) {
 
                             var totalAmount = orderHeader.totalAmount;
                             var preAmount = orderHeader.preAmount;
-                            var leftAmount = totalAmount-preAmount;
+                            var leftAmount = totalAmount - preAmount;
 
                             var beNew = orderHeader.beNew;
 
@@ -91,21 +92,25 @@ function queryHeaderList(pageIndex) {
                                 snShow += '<span style="color: red">(新)</span>';
                             }
 
-                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId+'&orderSn='+orderSn;
+                            var style = '';
+                            if (totalAmount == 0) {
+                                style = 'background-color:#EEE685;';
+                            }
+                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId + '&orderSn=' + orderSn;
                             var orderDataHtml = '<tr>' +
-                                '<td><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
-                                '<td class="center">' + gmtCreate + '</td>' +
-                                '<td class="center">' + cusName + '</td>' +
-                                '<td class="center">' + mobilePhone + '</td>' +
-                                '<td class="center">' + houseName + '</td>' +
-                                '<td class="right">' + totalAmount + '</td>' +
-                                '<td class="right">' + leftAmount + '</td>';
-                                //'<td class="center">' +
-                                //'<a href="' + customerDetailUrl + '"  target="_blank" class="btn btn-info btn-sm">' +
-                                //'<i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
-                                //'</a>' +
-                                //'</td>' +
-                                //'</tr>';
+                                '<td style="'+style+'" class=""><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
+                                '<td style="'+style+'" class="center">' + gmtCreate + '</td>' +
+                                '<td style="'+style+'" class="center">' + cusName + '</td>' +
+                                '<td style="'+style+'" class="center">' + mobilePhone + '</td>' +
+                                '<td style="'+style+'" class="center">' + houseName + '</td>' +
+                                '<td style="'+style+'" class="right">' + totalAmount + '</td>' +
+                                '<td style="'+style+'" class="right">' + leftAmount + '</td>';
+                            //'<td class="center">' +
+                            //'<a href="' + customerDetailUrl + '"  target="_blank" class="btn btn-info btn-sm">' +
+                            //'<i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
+                            //'</a>' +
+                            //'</td>' +
+                            //'</tr>';
                             $('.contentDiv').append(orderDataHtml);
                         }
                     }

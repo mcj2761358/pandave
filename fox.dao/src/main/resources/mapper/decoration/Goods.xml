@@ -255,6 +255,7 @@
         where is_deleted = 'N'
         and store_id = #{storeId}
         and stock_warn > 0
+        and (stock_warn - stock_num) > 0
         order by (stock_num-stock_warn) asc
         limit 10
     </select>
