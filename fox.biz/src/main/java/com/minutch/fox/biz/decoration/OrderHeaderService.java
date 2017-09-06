@@ -5,6 +5,8 @@ import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
 import com.minutch.fox.param.decoration.order.OrderSaleParam;
 import com.minutch.fox.param.decoration.order.DashboardOrderHeaderParam;
+import com.minutch.fox.view.decoration.OrderHeaderAmountView;
+import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,4 +41,6 @@ public interface OrderHeaderService {
     BigDecimal queryInTotalAmountByTime(DashboardOrderHeaderParam param);
 
     int queryTotalNumByTime(DashboardOrderHeaderParam param);
+
+    List<OrderHeaderAmountView> reportNearlyDays(Long storeId);
 }

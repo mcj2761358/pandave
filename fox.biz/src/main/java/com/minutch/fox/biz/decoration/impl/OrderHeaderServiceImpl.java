@@ -9,6 +9,7 @@ import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
 import com.minutch.fox.param.decoration.order.OrderSaleParam;
 import com.minutch.fox.param.decoration.order.DashboardOrderHeaderParam;
+import com.minutch.fox.view.decoration.OrderHeaderAmountView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,5 +92,10 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     @Override
     public int queryTotalNumByTime(DashboardOrderHeaderParam param) {
         return orderHeaderDao.queryTotalNumByTime(param);
+    }
+
+    @Override
+    public List<OrderHeaderAmountView> reportNearlyDays(Long storeId) {
+        return orderHeaderDao.reportNearlyDays(storeId);
     }
 }

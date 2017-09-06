@@ -316,7 +316,6 @@ function showStockList(goodsId, goodsName, goodsModel) {
     var contextPath = $('#rcContextPath').val();
     $.ajax({
         url: contextPath + "/stockDetail/stockList?goodsId=" + goodsId,
-        async: false,
         type: "GET",
 
         success: function (result) {

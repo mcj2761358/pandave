@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>数据报表</title>
+    #parse("decoration/public/commonStyle.vm")
+
+
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/chart.css?v=1.0"/>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/chart.js?v=1.01"></script>
+</head>
+
+<body>
+    #parse("decoration/public/topBar.vm")
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("decoration/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">数据中心</a>
+                    </li>
+                    <li>
+                        <a href="#">数据报表</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- 年度报表 -->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 年度销售额报表(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                                <span id="clickdata"></span>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="sincos" class="center" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/row-->
+
+
+            <!-- 热门商品 -->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 热门商品(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="hotGoods" class="center" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/row-->
+
+
+            <!-- 饼图 -->
+            <div class="row">
+                <div class="box col-md-6">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="piechart" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="box col-md-6">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                        class="glyphicon glyphicon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="donutchart" style="height: 300px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+
+            <!-- chart libraries start -->
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/excanvas.min.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.categories.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.pie.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.stack.js"></script>
+            <script src="${rc.contextPath}/resources/charisma/bower_components/flot/jquery.flot.resize.js"></script>
+            <!-- chart libraries end -->
+            <script src="${rc.contextPath}/resources/charisma/js/init-chart.js?v=2"></script>
+
+            <!-- content ends -->
+        </div>
+        <!--/#content.col-md-0-->
+    </div>
+    <!--/fluid-row-->
+
+    <hr>
+
+    #parse("decoration/public/footer.vm")
+
+</div>
+<!--/.fluid-container-->
+
+    #parse("decoration/public/commonJS.vm")
+</body>
+</html>

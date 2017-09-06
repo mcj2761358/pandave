@@ -55,7 +55,7 @@
 
                 #if ($!permissionRule.noCharts != "Y")
                     <li>
-                        <a class="ajax-link" href="${rc.contextPath}/decoration/chart">
+                        <a class="ajax-link" href="${rc.contextPath}/chart">
                             <i class="glyphicon glyphicon-list-alt"></i>
                             <span> 数据报表</span>
                         </a>

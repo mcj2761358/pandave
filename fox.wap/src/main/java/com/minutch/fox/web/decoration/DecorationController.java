@@ -275,12 +275,6 @@ public class DecorationController extends BaseController {
     public String form() {
         return "decoration/other/form";
     }
-
-    @RequestMapping("chart")
-    public String chart() {
-        return "decoration/other/chart";
-    }
-
     @RequestMapping("typography")
     public String typography() {
         return "decoration/other/typography";

@@ -6,6 +6,7 @@ import com.minutch.fox.param.decoration.order.CustomerTotalAmountParam;
 import com.minutch.fox.param.decoration.OrderHeaderQueryParam;
 import com.minutch.fox.param.decoration.order.OrderSaleParam;
 import com.minutch.fox.param.decoration.order.DashboardOrderHeaderParam;
+import com.minutch.fox.view.decoration.OrderHeaderAmountView;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
@@ -33,4 +34,6 @@ public interface OrderHeaderDao extends BaseDao<OrderHeader> {
     BigDecimal queryInTotalAmountByTime(@Param("param")DashboardOrderHeaderParam param);
 
     int queryTotalNumByTime(@Param("param")DashboardOrderHeaderParam param);
+
+    List<OrderHeaderAmountView> reportNearlyDays(@Param("storeId")Long storeId);
 }
