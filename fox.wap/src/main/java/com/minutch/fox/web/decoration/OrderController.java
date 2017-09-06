@@ -191,6 +191,8 @@ public class OrderController extends BaseController {
         if (order.getId() == null) {
             order.setBeFinish("N");
             order.setHeaderId(headerId);
+            order.setStoreId(sessionInfo.getStoreId());
+            order.setEmpId(sessionInfo.getEmpId());
 
             //如果是新订单，判断商品是否来自库存商品，如果是，减去库存量
             Long goodsId = param.getGoodsId();
@@ -223,8 +225,6 @@ public class OrderController extends BaseController {
             order.setGmtCreate(param.getCreateTime());
         }
 
-        order.setStoreId(sessionInfo.getStoreId());
-        order.setEmpId(sessionInfo.getEmpId());
         orderService.save(order);
 
         if (stockDetail != null) {

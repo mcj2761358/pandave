@@ -60,6 +60,14 @@
         <result column = "goods_num" property = "goodsNum" />
     </resultMap>
 
+    <resultMap id = "hotGoodsViewMap" type = "com.minutch.fox.view.decoration.HotGoodsView">
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_model" property = "goodsModel" />
+        <result column = "goods_num" property = "goodsNum" />
+        <result column = "goods_amount" property = "goodsAmount" />
+    </resultMap>
+
+
 
     <sql id = "BaseWhereClause">
         <where>
@@ -282,8 +290,8 @@
         #{returnAmount},
         #{remindTime},
         #{beFinish},
-        #{empId},
         #{storeId},
+        #{empId},
         #{remark}
         )
     </insert>
@@ -431,6 +439,33 @@
         and gmt_create between #{param.startTime} and #{param.endTime}
         group by goods_name,goods_Model
         order by goods_num desc
-
     </select>
+
+
+    <!-- 统计最近3个月的高销售额商品 -->
+    <select id="reportHotGoodsByAmount" resultMap="hotGoodsViewMap">
+         select goods_name,sum(goods_num * goods_price) as goods_amount
+        from decoration_order
+        where store_id=#{storeId}
+        and gmt_create > #{fromTime}
+        and is_deleted = 'N'
+        group by goods_name
+        order by goods_amount desc
+        limit 10
+    </select>
+
+
+    <!-- 统计最近3个月的高销量商品 -->
+    <select id="reportHotGoodsByNum" resultMap="hotGoodsViewMap">
+        select goods_name,sum(goods_num) as goods_num
+        from decoration_order
+        where store_id=#{storeId}
+        and gmt_create > #{fromTime}
+        and is_deleted = 'N'
+        and is_deleted = 'N'
+        group by goods_name
+        order by goods_num desc
+        limit 10
+    </select>
+
 </mapper>

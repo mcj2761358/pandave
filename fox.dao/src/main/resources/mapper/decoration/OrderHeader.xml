@@ -315,11 +315,12 @@
     </select>
 
     <!-- 统计最近10天有成交的销售额 -->
-    <select id="reportNearlyDays" resultMap="orderHeaderAmountView">
+    <select id="reportTotalAmount" resultMap="orderHeaderAmountView">
         select date_format(gmt_create, '%Y-%c-%d') as gmtCreate,
         sum(total_amount) as totalAmount
         from decoration_order_header
         where store_id=#{storeId}
+        and gmt_create > #{fromTime}
         and is_deleted = 'N'
         group by gmtCreate
         order by gmtCreate desc

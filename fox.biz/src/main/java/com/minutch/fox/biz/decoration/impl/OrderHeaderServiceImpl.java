@@ -95,7 +95,7 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     }
 
     @Override
-    public List<OrderHeaderAmountView> reportNearlyDays(Long storeId) {
-        return orderHeaderDao.reportNearlyDays(storeId);
+    public List<OrderHeaderAmountView> reportTotalAmount(Long storeId,String fromTime) {
+        return orderHeaderDao.reportTotalAmount(storeId, fromTime);
     }
 }

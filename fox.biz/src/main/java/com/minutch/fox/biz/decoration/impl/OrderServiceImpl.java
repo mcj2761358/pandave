@@ -7,6 +7,7 @@ import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.param.decoration.OrderQueryParam;
 import com.minutch.fox.param.decoration.order.DashboardOrderGoodsParam;
 import com.minutch.fox.utils.DateUtils;
+import com.minutch.fox.view.decoration.HotGoodsView;
 import com.minutch.fox.view.decoration.OrderGoodsView;
 import com.minutch.fox.view.decoration.OrderView;
 import org.apache.commons.lang3.StringUtils;
@@ -130,5 +131,15 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     @Override
     public List<OrderGoodsView> queryOrderGoodsNumByTime(DashboardOrderGoodsParam param) {
         return orderDao.queryOrderGoodsNumByTime(param);
+    }
+
+    @Override
+    public List<HotGoodsView> reportHotGoodsByAmount(Long storeId, String fromTime) {
+        return orderDao.reportHotGoodsByAmount(storeId, fromTime);
+    }
+
+    @Override
+    public List<HotGoodsView> reportHotGoodsByNum(Long storeId, String fromTime) {
+        return orderDao.reportHotGoodsByNum(storeId, fromTime);
     }
 }

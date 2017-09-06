@@ -3,6 +3,7 @@ package com.minutch.fox.biz.decoration;
 import com.minutch.fox.entity.decoration.Order;
 import com.minutch.fox.param.decoration.OrderQueryParam;
 import com.minutch.fox.param.decoration.order.DashboardOrderGoodsParam;
+import com.minutch.fox.view.decoration.HotGoodsView;
 import com.minutch.fox.view.decoration.OrderGoodsView;
 import com.minutch.fox.view.decoration.OrderView;
 
@@ -37,4 +38,8 @@ public interface OrderService {
     void handOrderQueryParam(OrderQueryParam param);
 
     List<OrderGoodsView> queryOrderGoodsNumByTime(DashboardOrderGoodsParam param);
+
+    List<HotGoodsView> reportHotGoodsByAmount(Long storeId,String fromTime);
+
+    List<HotGoodsView> reportHotGoodsByNum(Long storeId, String fromTime);
 }

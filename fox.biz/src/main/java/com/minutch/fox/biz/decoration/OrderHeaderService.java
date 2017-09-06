@@ -42,5 +42,5 @@ public interface OrderHeaderService {
 
     int queryTotalNumByTime(DashboardOrderHeaderParam param);
 
-    List<OrderHeaderAmountView> reportNearlyDays(Long storeId);
+    List<OrderHeaderAmountView> reportTotalAmount(Long storeId,String fromTime);
 }

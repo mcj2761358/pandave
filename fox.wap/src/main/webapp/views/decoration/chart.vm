@@ -7,7 +7,7 @@
 
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/chart.css?v=1.0"/>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/chart.js?v=1.01"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/chart.js?v=1.02"></script>
 </head>
 
 <body>
@@ -37,20 +37,20 @@
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well">
-                            <h2><i class="glyphicon glyphicon-list-alt"></i> 年度销售额报表(示例数据)</h2>
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 近10天总营业额</h2>
 
-                            <div class="box-icon">
-                                <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                        class="glyphicon glyphicon-cog"></i></a>
-                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                        class="glyphicon glyphicon-chevron-up"></i></a>
-                                <a href="#" class="btn btn-close btn-round btn-default"><i
-                                        class="glyphicon glyphicon-remove"></i></a>
-                                <span id="clickdata"></span>
-                            </div>
+##                            <div class="box-icon">
+##                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-cog"></i></a>
+##                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-chevron-up"></i></a>
+##                                <a href="#" class="btn btn-close btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-remove"></i></a>
+##                                <span id="clickdata"></span>
+##                            </div>
                         </div>
                         <div class="box-content">
-                            <div id="sincos" class="center" style="height:300px"></div>
+                            <div id="reportNearlyDaysOrderAmount" class="center" style="height:300px"></div>
                         </div>
                     </div>
                 </div>
@@ -59,24 +59,49 @@
             <!--/row-->
 
 
-            <!-- 热门商品 -->
+            <!-- 高销量商品Top10 -->
             <div class="row">
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well">
-                            <h2><i class="glyphicon glyphicon-list-alt"></i> 热门商品(示例数据)</h2>
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 高销量商品Top10</h2>
 
-                            <div class="box-icon">
-                                <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                        class="glyphicon glyphicon-cog"></i></a>
-                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                        class="glyphicon glyphicon-chevron-up"></i></a>
-                                <a href="#" class="btn btn-close btn-round btn-default"><i
-                                        class="glyphicon glyphicon-remove"></i></a>
-                            </div>
+##                            <div class="box-icon">
+##                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-cog"></i></a>
+##                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-chevron-up"></i></a>
+##                                <a href="#" class="btn btn-close btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-remove"></i></a>
+##                            </div>
                         </div>
                         <div class="box-content">
-                            <div id="hotGoods" class="center" style="height:300px"></div>
+                            <div id="reportHotGoodsByNum" class="center" style="height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/row-->
+
+            <!-- 高销售额商品Top10 -->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well">
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 高销售额商品Top10</h2>
+
+##                            <div class="box-icon">
+##                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-cog"></i></a>
+##                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-chevron-up"></i></a>
+##                                <a href="#" class="btn btn-close btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-remove"></i></a>
+##                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="reportHotGoodsByAmount" class="center" style="height:300px"></div>
                         </div>
                     </div>
                 </div>
@@ -90,19 +115,19 @@
                 <div class="box col-md-6">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 高销量商品Top10</h2>
 
-                            <div class="box-icon">
-                                <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                        class="glyphicon glyphicon-cog"></i></a>
-                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                        class="glyphicon glyphicon-chevron-up"></i></a>
-                                <a href="#" class="btn btn-close btn-round btn-default"><i
-                                        class="glyphicon glyphicon-remove"></i></a>
-                            </div>
+##                            <div class="box-icon">
+##                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-cog"></i></a>
+##                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-chevron-up"></i></a>
+##                                <a href="#" class="btn btn-close btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-remove"></i></a>
+##                            </div>
                         </div>
                         <div class="box-content">
-                            <div id="piechart" style="height:300px"></div>
+                            <div id="reportHotGoodsByNumPie" style="height:300px"></div>
                         </div>
                     </div>
                 </div>
@@ -111,25 +136,27 @@
                 <div class="box col-md-6">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i class="glyphicon glyphicon-list-alt"></i> 畅销商品统计(示例数据)</h2>
+                            <h2><i class="glyphicon glyphicon-list-alt"></i> 高销售额商品Top10</h2>
 
-                            <div class="box-icon">
-                                <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                        class="glyphicon glyphicon-cog"></i></a>
-                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                        class="glyphicon glyphicon-chevron-up"></i></a>
-                                <a href="#" class="btn btn-close btn-round btn-default"><i
-                                        class="glyphicon glyphicon-remove"></i></a>
-                            </div>
+##                            <div class="box-icon">
+##                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-cog"></i></a>
+##                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-chevron-up"></i></a>
+##                                <a href="#" class="btn btn-close btn-round btn-default"><i
+##                                        class="glyphicon glyphicon-remove"></i></a>
+##                            </div>
                         </div>
                         <div class="box-content">
-                            <div id="donutchart" style="height: 300px;">
+                            <div id="reportHotGoodsByAmountPie" style="height: 300px;">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--/row-->
+
+            <div id="hover"></div>
 
             <!-- chart libraries start -->
             <script src="${rc.contextPath}/resources/charisma/bower_components/flot/excanvas.min.js"></script>
