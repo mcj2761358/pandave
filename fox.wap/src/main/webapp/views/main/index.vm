@@ -25,8 +25,8 @@
                         <li><a href="#" data-nav-section="explore"><span>产品</span></a></li>
                         <li><a href="#" data-nav-section="pricing"><span>套餐</span></a></li>
                         <li><a href="#" data-nav-section="testimony"><span>客户</span></a></li>
-                    ##                        <li><a href="#" data-nav-section="services"><span>使命</span></a></li>
                         <li><a href="#" data-nav-section="team"><span>创始人</span></a></li>
+                        <li><a href="#" onclick="window.open('${serverUrl}fox/store/storeRegister')"> <span>免费体验</span></a></li>
                     </ul>
                 </div>
             </nav>

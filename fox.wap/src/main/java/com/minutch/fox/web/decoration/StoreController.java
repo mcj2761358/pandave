@@ -113,5 +113,15 @@ public class StoreController extends BaseController {
         return Result.wrapSuccessfulResult(null);
     }
 
+    @RequestMapping("storeRegister")
+    public String storeRegister(){
+
+        //判断是否已登录，如果已登录，跳转到用户列表
+        if (getStoreId() != null) {
+            return "/decoration/userList";
+        }
+
+        return "/decoration/storeRegister";
+    }
 
 }
