@@ -39,6 +39,9 @@
 
                     <p class="center col-md-5">
                         <button type="button"  id="loginBtn"  class="btn btn-primary">登 录</button>
+                        <br/>
+                        <br/>
+                        <a href="${rc.contextPath}/store/storeRegister" >没有账号，我要体验</a>
                     </p>
                 </fieldset>
             </form>

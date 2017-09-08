@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>退货单列表</title>
+    #parse("decoration/public/commonStyle.vm")
+
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/returnOrderList.css"/>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/returnOrderList.js?v=1.01"></script>
+</head>
+
+<body>
+    #parse("decoration/public/topBar.vm")
+<div class="ch-container">
+    <div class="row">
+
+    ##引入左边菜单栏
+        #parse("decoration/public/leftMenu.vm")
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">订单中心</a>
+                    </li>
+                    <li>
+                        <a href="#"> 退货列表</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="glyphicon glyphicon-user"></i> 退货列表</h2>
+                        </div>
+
+                        <div class="box-content">
+
+                            <!-- 搜索框 -->
+##                            <div class="form-horizontal">
+##                                <div class="form-group col-md-12 has-success">
+##                                    <div class="col-sm-4">
+##                                        <input type="text" class="form-control" id="keyword" placeholder="商品名称/商品型号">
+##                                    </div>
+##
+##                                    <button class="btn btn-success" onclick="queryReturnOrderList(0);" id="searchOorderBtn">
+##                                        查询待处理订单
+##                                    </button>
+##                                </div>
+##                            </div>
+
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>订单编码</th>
+                                    <th>退货客户</th>
+                                    <th>退货商品</th>
+                                    <th>退货数量</th>
+                                    <th>退货金额</th>
+                                    <th>退货时间</th>
+                                </tr>
+                                </thead>
+                                <tbody class="contentDiv">
+                                </tbody>
+                            </table>
+
+                            <div align="center">
+                                <ul class="pagination self-page"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/span-->
+
+            </div>
+        </div>
+    </div>
+
+    #parse("decoration/public/footer.vm")
+</div>
+    #parse("decoration/public/alertModal.vm")
+    #parse("decoration/public/commonJS.vm")
+</body>
+</html>

@@ -3,6 +3,8 @@ package com.minutch.fox.biz.decoration.impl;
 import java.util.List;
 
 import com.minutch.fox.biz.base.BaseServiceImpl;
+import com.minutch.fox.param.decoration.ReturnOrderQueryParam;
+import com.minutch.fox.view.decoration.ReturnOrderView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,20 @@ public class ReturnOrderServiceImpl extends BaseServiceImpl implements ReturnOrd
 
   public int deleteByIds(Long[] ids) {
     return super.deleteByIds(returnOrderDao, ids);
+  }
+
+  @Override
+  public List<ReturnOrderView> queryReturnOrder(ReturnOrderQueryParam param) {
+    return returnOrderDao.queryReturnOrder(param, param.getStart(), param.getEnd());
+  }
+
+  @Override
+  public int queryReturnOrderCount(ReturnOrderQueryParam param) {
+    return returnOrderDao.queryReturnOrderCount(param);
+  }
+
+  @Override
+  public List<ReturnOrderView> queryByHeaderId(Long headerId) {
+    return returnOrderDao.queryByHeaderId(headerId);
   }
 }

@@ -787,6 +787,96 @@ function exportOrder() {
 
 
 
+function handleReturnOrder(headerId, headerSn){
+
+    $('#listContent_'+headerId).remove();
+    $('<div id="listContent_'+headerId+'" style="display:none;"></div>').appendTo("body");
+
+    //查询库存列表
+    var contextPath = $('#rcContextPath').val();
+    $.ajax({
+        url: contextPath + "/returnOrder/queryByHeaderId?headerId=" + headerId,
+        type: "GET",
+        async : false,
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    var resultData = result.data;
+                    console.log(resultData);
+                    //清空content数据
+                    $('#listContent_'+headerId).html('');
+
+                    var contentData = '<ul class="list-group">';
+
+                    //加载新内容
+                    var detailList = resultData;
+                    if (detailList != null & detailList != undefined & detailList.length > 0) {
+                        for (var index = 0; index < detailList.length; index++) {
+
+                            //组装话题数据表格
+                            var returnOrder = detailList[index];
+
+                            var cusId = returnOrder.cusId;
+                            var mobilePhone = returnOrder.mobilePhone;
+                            var orderSn = returnOrder.orderSn;
+                            var cusName = returnOrder.cusName;
+                            var gmtCreate = returnOrder.gmtCreatePos;
+
+                            var goodsName = returnOrder.goodsName;
+                            var goodsModel = returnOrder.goodsModel;
+                            var goodsNum = returnOrder.goodsNum;
+                            var orderAmount = returnOrder.orderAmount;
+
+
+                            var showIndex = (index+1);
+                            if (showIndex <= 9) {
+                                showIndex = ' ' + showIndex;
+                            }
+
+                            var itemData = showIndex + '. ' + gmtCreate + ' [' + goodsName + ']退货' + goodsNum+'件,退金额['+orderAmount+']元.';
+
+                            contentData += '<li class="list-group-item">'+itemData+'</li>';
+                        }
+
+                    } else {
+                        contentData += '<li class="list-group-item">无退货记录.</li>';
+                    }
+
+                    contentData += '</ul>';
+                    $('#listContent_'+headerId).html(contentData);
+                    var listContent =  $('#listContent_'+headerId).html();
+
+
+                    //弹出消息框
+                    var listSettings = {
+                        content: listContent,
+                        title: '订单【' + headerSn + '】 退货记录',
+                        padding: false
+                    };
+
+                    var settings = {
+                        trigger: 'click',
+                        title: '',
+                        content: '',
+                        width: 320,
+                        multi: false,
+                        closeable: true,
+                        style: '',
+                        delay: 300,
+                        padding: true
+                    };
+                    $('#showReturnOrder_' + headerId).webuiPopover($.extend({}, settings, listSettings));
+
+                } else {
+                    showAlertModel(result.errorMsg);
+                }
+            }
+        }
+    });
+
+}
+
 
 
 

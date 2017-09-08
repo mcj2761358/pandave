@@ -266,6 +266,11 @@ public class DecorationController extends BaseController {
         return "decoration/remindOrderList";
     }
 
+    @RequestMapping("returnOrderList")
+    public String returnOrderList() {
+        return "decoration/returnOrderList";
+    }
+
     @RequestMapping("ui")
     public String ui() {
         return "decoration/other/ui";

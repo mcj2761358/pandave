@@ -311,13 +311,17 @@ function queryGoodsList(pageIndex) {
 
 function showStockList(goodsId, goodsName, goodsModel) {
 
+    $('#listContent_'+goodsId).remove();
+
+    $('<div id="listContent_'+goodsId+'" style="display:none;"></div>').appendTo("body");
+
 
     //查询库存列表
     var contextPath = $('#rcContextPath').val();
     $.ajax({
         url: contextPath + "/stockDetail/stockList?goodsId=" + goodsId,
         type: "GET",
-
+        async : false,
         success: function (result) {
             if (result != null) {
                 //请求数据成功
@@ -325,7 +329,7 @@ function showStockList(goodsId, goodsName, goodsModel) {
                     var resultData = result.data;
                     console.log(resultData);
                     //清空content数据
-                    $('#listContent').html('');
+                    $('#listContent_'+goodsId).html('');
 
 
                     var contentData = '<ul class="list-group">';
@@ -375,35 +379,38 @@ function showStockList(goodsId, goodsName, goodsModel) {
                     }
 
                     contentData += '</ul>';
-                    $('#listContent').html(contentData);
+                    $('#listContent_'+goodsId).html(contentData);
+
+
+
+                    var listContent =  $('#listContent_'+goodsId).html();;
+                    //弹出消息框
+                    var listSettings = {
+                        content: listContent,
+                        title: '商品【' + goodsName + '-' + goodsModel + '】 库存明细',
+                        padding: false
+                    };
+
+                    var settings = {
+                        trigger: 'click',
+                        title: '',
+                        content: '',
+                        width: 320,
+                        multi: false,
+                        closeable: false,
+                        style: '',
+                        delay: 300,
+                        padding: true
+                    };
+                    $('#stockShow_' + goodsId).webuiPopover('init').webuiPopover($.extend({}, settings, listSettings));
+
+
                 } else {
                     showAlertModel(result.errorMsg);
                 }
             }
         }
     });
-
-    var listContent =  $('#listContent').html();;
-    //弹出消息框
-    var listSettings = {
-        content: listContent,
-        title: '商品【' + goodsName + '-' + goodsModel + '】 库存明细',
-        padding: false
-    };
-
-    var settings = {
-        trigger: 'click',
-        title: '',
-        content: '',
-        width: 320,
-        multi: false,
-        closeable: true,
-        style: '',
-        delay: 300,
-        padding: true
-    };
-    $('#stockShow_' + goodsId).webuiPopover('destroy').webuiPopover($.extend({}, settings, listSettings));
-
 
 }
 

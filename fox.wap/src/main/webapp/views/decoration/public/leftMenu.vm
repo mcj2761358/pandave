@@ -53,6 +53,12 @@
                     </a>
                 </li>
 
+                <li>
+                    <a class="ajax-link" href="${rc.contextPath}/decoration/returnOrderList">
+                        <i class="glyphicon glyphicon glyphicon-book"></i>
+                        <span> 退货列表</span>
+                    </a>
+                </li>
                 #if ($!permissionRule.noCharts != "Y")
                     <li>
                         <a class="ajax-link" href="${rc.contextPath}/chart">

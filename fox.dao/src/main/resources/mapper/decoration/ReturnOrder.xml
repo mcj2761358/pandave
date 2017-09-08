@@ -13,6 +13,29 @@
         <result column = "remark" property = "remark" />
     </resultMap>
 
+    <resultMap id = "returnOrderViewMap" type = "com.minutch.fox.view.decoration.OrderView">
+        <result column = "id" property = "id" />
+        <result column = "gmt_create" property = "gmtCreate" />
+        <result column = "goods_num" property = "goodsNum" />
+        <result column = "order_amount" property = "orderAmount" />
+
+        <result column = "header_id" property = "headerId" />
+        <result column = "order_sn" property = "orderSn" />
+        <result column = "cus_id" property = "cusId" />
+        <result column = "cus_name" property = "cusName" />
+        <result column = "mobile_phone" property = "mobilePhone" />
+        <result column = "house_name" property = "houseName" />
+        <result column = "address" property = "address" />
+
+        <result column = "goods_id" property = "goodsId" />
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "goods_model" property = "goodsModel" />
+        <result column = "goods_price" property = "goodsPrice" />
+
+    </resultMap>
+
+
+
     <sql id = "BaseWhereClause">
         <where>
             <trim prefixOverrides = "and">
@@ -142,5 +165,80 @@
         <include refid = "BaseUpdateSet" />
         where id = #{id}
     </update>
+
+
+    <!-- 根据条件查询订单总数 -->
+    <select id="queryReturnOrderCount" resultType="java.lang.Integer">
+        select count(r.id)
+        from decoration_return_order r
+        join decoration_order o
+        on r.order_id = o.id
+        join decoration_order_header h
+        on o.header_id=h.id
+        where o.is_deleted = 'N'
+        and r.is_deleted = 'N'
+        and h.is_deleted = 'N'
+        <include refid="queryReturnOrderCond" />
+    </select>
+
+    <!-- 根据条件查询订单数据 -->
+    <select id="queryReturnOrder" resultMap="returnOrderViewMap">
+        select
+        <include refid="returnOrderViewColumn"/>
+        from decoration_return_order r
+        join decoration_order o
+        on r.order_id = o.id
+        join decoration_order_header h
+        on o.header_id=h.id
+        where o.is_deleted = 'N'
+        and r.is_deleted = 'N'
+        and h.is_deleted = 'N'
+        <include refid="queryReturnOrderCond" />
+        order by r.id desc
+        limit #{start},#{limit}
+    </select>
+
+
+    <sql id="queryReturnOrderCond">
+        and o.store_id = #{param.storeId}
+        and r.store_id = #{param.storeId}
+        and h.store_id = #{param.storeId}
+    </sql>
+
+    <sql id="returnOrderViewColumn">
+
+        r.id,
+        r.gmt_create,
+        r.goods_num,
+        r.order_amount,
+
+        h.id as header_id,
+        h.order_sn,
+        h.cus_id,
+        h.cus_name,
+        h.mobile_phone,
+        h.house_name,
+        h.address,
+
+        o.goods_id,
+        o.goods_name,
+        o.goods_model,
+        o.goods_price
+
+    </sql>
+
+    <select id="queryByHeaderId" resultMap="returnOrderViewMap">
+        select
+        <include refid="returnOrderViewColumn"/>
+        from decoration_return_order r
+        join decoration_order o
+        on r.order_id = o.id
+        join decoration_order_header h
+        on o.header_id=h.id
+        where o.is_deleted = 'N'
+        and r.is_deleted = 'N'
+        and h.is_deleted = 'N'
+        and h.id = #{headerId}
+    </select>
 
 </mapper>
