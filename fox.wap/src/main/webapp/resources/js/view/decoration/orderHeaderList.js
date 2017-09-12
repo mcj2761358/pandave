@@ -107,11 +107,12 @@ function queryHeaderList(pageIndex) {
                             if (totalAmount == 0) {
                                 style = 'background-color:#EEE685;';
                             }
-                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId + '&orderSn=' + orderSn;
+                            var orderDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId + '&orderSn=' + orderSn;
+                            var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId;
                             var orderDataHtml = '<tr>' +
-                                '<td style="' + style + '" class=""><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
+                                '<td style="' + style + '" class=""><a href="' + orderDetailUrl + '" target="_self">' + snShow + '</a></td>' +
                                 '<td style="' + style + '" class="center">' + gmtCreate + '</td>' +
-                                '<td style="' + style + '" class="center">' + cusName + '</td>' +
+                                '<td style="' + style + '" class="center"><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
                                 '<td style="' + style + '" class="center">' + mobilePhone + '</td>' +
                                 '<td style="' + style + '" class="center">' + houseName + '</td>' +
                                 '<td style="' + style + '" class="right">' + totalAmount + '</td>' +

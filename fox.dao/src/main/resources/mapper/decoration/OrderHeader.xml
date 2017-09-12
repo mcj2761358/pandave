@@ -211,6 +211,7 @@
         where is_deleted = 'N'
         and cus_id = #{cusId}
         and store_id = #{storeId}
+        order by id desc
     </select>
 
     <!-- 保存订单总金额 -->
