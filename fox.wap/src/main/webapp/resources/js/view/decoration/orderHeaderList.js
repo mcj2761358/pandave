@@ -112,7 +112,7 @@ function queryHeaderList(pageIndex) {
                             var orderDataHtml = '<tr>' +
                                 '<td style="' + style + '" class=""><a href="' + orderDetailUrl + '" target="_self">' + snShow + '</a></td>' +
                                 '<td style="' + style + '" class="center">' + gmtCreate + '</td>' +
-                                '<td style="' + style + '" class="center"><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
+                                '<td style="' + style + '" class="center"><a href="' + customerDetailUrl + '" target="_self">' + cusName + '</a></td>' +
                                 '<td style="' + style + '" class="center">' + mobilePhone + '</td>' +
                                 '<td style="' + style + '" class="center">' + houseName + '</td>' +
                                 '<td style="' + style + '" class="right">' + totalAmount + '</td>' +
