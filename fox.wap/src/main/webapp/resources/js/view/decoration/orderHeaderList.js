@@ -93,7 +93,7 @@ function queryHeaderList(pageIndex) {
                                     '<i class="glyphicon glyphicon-wrench icon-white"></i>发货' +
                                     '</a>';
                             } else if (status == 'send') {
-                                statusBtn = '<a class="btn btn-sm disable" onClick="sendOrder(' + orderHeaderId + ')" href="#">' +
+                                statusBtn = '<a class="btn btn-sm disable" href="#">' +
                                     '<i class="glyphicon icon-white"></i>已发货' +
                                     '</a>';
                             }
