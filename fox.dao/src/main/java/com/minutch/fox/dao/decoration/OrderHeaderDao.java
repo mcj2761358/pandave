@@ -36,4 +36,6 @@ public interface OrderHeaderDao extends BaseDao<OrderHeader> {
     int queryTotalNumByTime(@Param("param")DashboardOrderHeaderParam param);
 
     List<OrderHeaderAmountView> reportTotalAmount(@Param("storeId")Long storeId, @Param("fromTime")String fromTime);
+
+    int updateHeaderStatus(@Param("headerId")Long headerId,@Param("status")String status);
 }

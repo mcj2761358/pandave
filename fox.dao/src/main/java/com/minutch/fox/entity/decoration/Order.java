@@ -23,6 +23,8 @@ public class Order extends BaseEntity {
   private String goodsName;
   private String goodsModel;
   private Integer goodsNum;
+  private Integer useNum;
+  private Integer handleStock;
   private BigDecimal goodsPrice;
   private BigDecimal inGoodsPrice;
   private BigDecimal orderAmount;

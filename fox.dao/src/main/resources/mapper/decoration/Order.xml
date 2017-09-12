@@ -15,6 +15,8 @@
         <result column = "goods_name" property = "goodsName" />
         <result column = "goods_model" property = "goodsModel" />
         <result column = "goods_num" property = "goodsNum" />
+        <result column = "use_num" property = "useNum" />
+        <result column = "handle_stock" property = "handleStock" />
         <result column = "goods_price" property = "goodsPrice" />
         <result column = "in_goods_price" property = "inGoodsPrice" />
         <result column = "order_amount" property = "orderAmount" />
@@ -41,6 +43,8 @@
         <result column = "goods_name" property = "goodsName" />
         <result column = "goods_model" property = "goodsModel" />
         <result column = "goods_num" property = "goodsNum" />
+        <result column = "use_num" property = "useNum" />
+        <result column = "handle_stock" property = "handleStock" />
         <result column = "goods_price" property = "goodsPrice" />
         <result column = "in_goods_price" property = "inGoodsPrice" />
         <result column = "order_amount" property = "orderAmount" />
@@ -102,6 +106,12 @@
                 </if>
                 <if test = "goodsNum != null">
                     and goods_num = #{goodsNum}
+                </if>
+                <if test = "useNum != null">
+                    and use_num = #{useNum}
+                </if>
+                <if test = "handleStock != null">
+                    and handle_stock = #{handleStock}
                 </if>
                 <if test = "goodsPrice != null">
                     and goods_price = #{goodsPrice}
@@ -166,6 +176,12 @@
             </if>
             <if test = "goodsNum != null">
                 goods_num = #{goodsNum},
+            </if>
+            <if test = "useNum != null">
+                use_num = #{useNum},
+            </if>
+            <if test = "handleStock != null">
+                handle_stock = #{handleStock},
             </if>
             <if test = "goodsPrice != null">
                 goods_price = #{goodsPrice},
@@ -262,6 +278,8 @@
         goods_name,
         goods_model,
         goods_num,
+        use_num,
+        handle_stock,
         goods_price,
         in_goods_price,
         order_amount,
@@ -284,6 +302,8 @@
         #{goodsName},
         #{goodsModel},
         #{goodsNum},
+        #{useNum},
+        #{handleStock},
         #{goodsPrice},
         #{inGoodsPrice},
         #{orderAmount},
@@ -387,7 +407,27 @@
         and header_id = #{headerId}
     </select>
 
+    <!-- 查询需要发货的订单 -->
+    <select id = "queryByNeedSendOrder" resultMap = "BaseResultMap">
+        select *
+        from decoration_order
+        where is_deleted = 'N'
+        and header_id = #{headerId}
+        and handle_stock = 0
+        and use_num > 0
+    </select>
 
+    <!-- 更新已发货信息信息 -->
+    <update id = "sendOrderByIdList">
+        update decoration_order
+        set gmt_modified = now(),
+        handle_stock = 1
+        where id in (
+        <foreach collection = "idList" index = "index" item = "id" separator = ",">
+            #{id}
+        </foreach>
+        )
+    </update>
 
     <!-- 订单结款 -->
     <update id = "finishById">

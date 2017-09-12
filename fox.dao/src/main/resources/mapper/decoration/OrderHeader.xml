@@ -14,6 +14,7 @@
         <result column="total_amount" property="totalAmount"/>
         <result column="pre_amount" property="preAmount"/>
         <result column="store_id" property="storeId"/>
+        <result column="status" property="status"/>
         <result column="emp_name" property="empName"/>
         <result column="remark" property="remark"/>
     </resultMap>
@@ -56,6 +57,9 @@
                 <if test="storeId != null">
                     and store_id = #{storeId}
                 </if>
+                <if test="status != null">
+                    and status = #{status}
+                </if>
                 <if test="empName != null">
                     and emp_name = #{empName}
                 </if>
@@ -95,6 +99,9 @@
             </if>
             <if test="storeId != null">
                 store_id = #{storeId},
+            </if>
+            <if test="status != null">
+                status = #{status},
             </if>
             <if test="empName != null">
                 emp_name = #{empName},
@@ -169,6 +176,7 @@
         total_amount,
         pre_amount,
         store_id,
+        status,
         emp_name,
         remark
         )
@@ -183,6 +191,7 @@
         #{totalAmount},
         #{preAmount},
         #{storeId},
+        #{status},
         #{empName},
         #{remark}
         )
@@ -327,5 +336,12 @@
         limit 10
     </select>
 
+    <!-- 更新订单状态 -->
+    <update id="updateHeaderStatus">
+        update decoration_order_header
+        set gmt_modified = now(),
+        status = #{status}
+        where id =#{headerId}
+    </update>
 
 </mapper>

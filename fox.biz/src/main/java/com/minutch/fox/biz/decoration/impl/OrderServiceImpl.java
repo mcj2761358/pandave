@@ -67,6 +67,11 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     }
 
     @Override
+    public int sendOrderByIdList(List<Long> idList) {
+        return orderDao.sendOrderByIdList(idList);
+    }
+
+    @Override
     public int handleRemindById(Long orderId) {
         return orderDao.handleRemindById(orderId);
     }
@@ -79,6 +84,11 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     @Override
     public List<Order> queryByHeaderId(Long headerId) {
         return orderDao.queryByHeaderId(headerId);
+    }
+
+    @Override
+    public List<Order> queryByNeedSendOrder(Long headerId) {
+        return orderDao.queryByNeedSendOrder(headerId);
     }
 
     @Override

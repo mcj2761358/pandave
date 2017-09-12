@@ -14,7 +14,6 @@ $(function () {
 });
 
 
-
 function getFormattedDate(date) {
     var day = date.getDate();
     var month = date.getMonth() + 1;
@@ -86,6 +85,18 @@ function queryHeaderList(pageIndex) {
                             var leftAmount = totalAmount - preAmount;
 
                             var beNew = orderHeader.beNew;
+                            var status = orderHeader.status;
+
+                            var statusBtn;
+                            if (status == 'init') {
+                                statusBtn = '<a class="btn btn-danger btn-sm" onClick="sendOrder(' + orderHeaderId + ')" href="#">' +
+                                    '<i class="glyphicon glyphicon-wrench icon-white"></i>发货' +
+                                    '</a>';
+                            } else if (status == 'send') {
+                                statusBtn = '<a class="btn btn-sm disable" onClick="sendOrder(' + orderHeaderId + ')" href="#">' +
+                                    '<i class="glyphicon icon-white"></i>已发货' +
+                                    '</a>';
+                            }
 
                             var snShow = orderSn;
                             if (beNew == true) {
@@ -98,19 +109,17 @@ function queryHeaderList(pageIndex) {
                             }
                             var customerDetailUrl = contextPath + '/decoration/customerDetail?cusId=' + cusId + '&orderSn=' + orderSn;
                             var orderDataHtml = '<tr>' +
-                                '<td style="'+style+'" class=""><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
-                                '<td style="'+style+'" class="center">' + gmtCreate + '</td>' +
-                                '<td style="'+style+'" class="center">' + cusName + '</td>' +
-                                '<td style="'+style+'" class="center">' + mobilePhone + '</td>' +
-                                '<td style="'+style+'" class="center">' + houseName + '</td>' +
-                                '<td style="'+style+'" class="right">' + totalAmount + '</td>' +
-                                '<td style="'+style+'" class="right">' + leftAmount + '</td>';
-                            //'<td class="center">' +
-                            //'<a href="' + customerDetailUrl + '"  target="_blank" class="btn btn-info btn-sm">' +
-                            //'<i class="glyphicon glyphicon-edit icon-white"></i>编辑' +
-                            //'</a>' +
-                            //'</td>' +
-                            //'</tr>';
+                                '<td style="' + style + '" class=""><a href="' + customerDetailUrl + '" target="_self">' + snShow + '</a></td>' +
+                                '<td style="' + style + '" class="center">' + gmtCreate + '</td>' +
+                                '<td style="' + style + '" class="center">' + cusName + '</td>' +
+                                '<td style="' + style + '" class="center">' + mobilePhone + '</td>' +
+                                '<td style="' + style + '" class="center">' + houseName + '</td>' +
+                                '<td style="' + style + '" class="right">' + totalAmount + '</td>' +
+                                '<td style="' + style + '" class="right">' + leftAmount + '</td>' +
+                                '<td>' +
+                                statusBtn +
+                                '</td>' +
+                                '</tr>';
                             $('.contentDiv').append(orderDataHtml);
                         }
                     }
@@ -119,6 +128,34 @@ function queryHeaderList(pageIndex) {
                         createPage(pageSize, resultData.totalSize);
                     }
 
+                }
+            }
+        }
+    });
+}
+
+
+
+//删除客户信息按按钮事件
+function sendOrder(headerId) {
+    showChooseModel("确认要发货吗吗?", handleSendOrder, headerId);
+}
+//处理真正删除事件
+function handleSendOrder(headerId) {
+    var contextPath = $('#rcContextPath').val();
+    $.ajax({
+        url: contextPath + "/decoration/order/sendOrderHeader?headerId=" + headerId,
+        type: "GET",
+
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    var resultData = result.data;
+                    console.log(resultData);
+                    queryHeaderList(0);
+                } else {
+                    showAlertModel(result.errorMsg);
                 }
             }
         }

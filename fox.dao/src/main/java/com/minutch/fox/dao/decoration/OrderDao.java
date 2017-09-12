@@ -22,11 +22,15 @@ public interface OrderDao extends BaseDao<Order> {
 
     int finishById(@Param("orderId")Long orderId);
 
+    int sendOrderByIdList(@Param("idList")List<Long> idList);
+
     int handleRemindById(@Param("orderId")Long orderId);
 
     List<Order> queryByIds(@Param("idList")List<Long> idList);
 
     List<Order> queryByHeaderId(@Param("headerId")Long headerId);
+
+    List<Order> queryByNeedSendOrder(@Param("headerId")Long headerId);
 
     int handleReturnOrder(@Param("orderId")Long orderId,@Param("goodsNum")int goodsNum,@Param("orderAmount")BigDecimal orderAmount);
 

@@ -27,11 +27,15 @@ public interface OrderService {
 
     int finishById(Long orderId);
 
+    int sendOrderByIdList(List<Long> idList);
+
     int handleRemindById(Long orderId);
 
     List<Order> queryByIds(List<Long> idList);
 
     List<Order> queryByHeaderId(Long headerId);
+
+    List<Order> queryByNeedSendOrder(Long headerId);
 
     int handleReturnOrder(Long orderId,int goodsNum,BigDecimal orderAmount);
 

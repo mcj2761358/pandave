@@ -26,6 +26,7 @@ public class OrderHeaderVO {
     private BigDecimal totalAmount;
     private BigDecimal preAmount;
     private Long storeId;
+    private String status;
     private String empName;
     private String remark;
     private boolean beNew;

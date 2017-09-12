@@ -98,4 +98,9 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     public List<OrderHeaderAmountView> reportTotalAmount(Long storeId,String fromTime) {
         return orderHeaderDao.reportTotalAmount(storeId, fromTime);
     }
+
+    @Override
+    public int updateHeaderStatus(Long headerId, String status) {
+        return orderHeaderDao.updateHeaderStatus(headerId, status);
+    }
 }

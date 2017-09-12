@@ -2,6 +2,7 @@ package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.*;
 import com.minutch.fox.entity.decoration.*;
+import com.minutch.fox.enu.decoration.OrderHeaderStatusEnum;
 import com.minutch.fox.enu.decoration.StockDetailObjTypeEnum;
 import com.minutch.fox.enu.decoration.StoreLevelEnum;
 import com.minutch.fox.http.SessionInfo;
@@ -16,6 +17,7 @@ import com.minutch.fox.result.decoration.OrderVO;
 import com.minutch.fox.utils.DateUtils;
 import com.minutch.fox.utils.FoxBeanUtils;
 import com.minutch.fox.utils.GenerationUtils;
+import com.minutch.fox.utils.ListUtils;
 import com.minutch.fox.view.decoration.OrderView;
 import com.minutch.fox.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
@@ -174,6 +176,7 @@ public class OrderController extends BaseController {
             orderHeader.setOrderSn(generateOrderSn());
             orderHeader.setTotalAmount(BigDecimal.ZERO);
             orderHeader.setPreAmount(BigDecimal.ZERO);
+            orderHeader.setStatus(OrderHeaderStatusEnum.init.name());
             orderHeaderService.save(orderHeader);
             headerId = orderHeader.getId();
         }
@@ -204,18 +207,27 @@ public class OrderController extends BaseController {
 
                     //记录商品进价
                     order.setInGoodsPrice(goods.getInGoodsPrice()==null?BigDecimal.ZERO:goods.getInGoodsPrice());
+                    //记录需要扣除的库存
+                    order.setUseNum(param.getGoodsNum());
+                    order.setHandleStock(0);
+                    //初始化订单Header发货状态
+                    if (headerId != null) {
+                        OrderHeader orderHeader = orderHeaderService.getById(headerId);
+                        if (orderHeader != null && !OrderHeaderStatusEnum.init.name().equals(orderHeader.getStatus())) {
+                            orderHeaderService.updateHeaderStatus(headerId, OrderHeaderStatusEnum.init.name());
+                        }
+                    }
 
-                    //更新商品库存
-                    goodsService.updateStockNum(goodsId, param.getGoodsNum());
-
-                    //记录库存明细
-                    stockDetail = new StockDetail();
-                    stockDetail.setDefaultBizValue(getEmpId());
-                    stockDetail.setEmpId(getEmpId());
-                    stockDetail.setStoreId(getStoreId());
-                    stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
-                    stockDetail.setStockNum(-param.getGoodsNum());
-                    stockDetail.setGoodsId(goods.getId());
+//                    //更新商品库存
+//                    goodsService.updateStockNum(goodsId, param.getGoodsNum());
+//                    //记录库存明细
+//                    stockDetail = new StockDetail();
+//                    stockDetail.setDefaultBizValue(getEmpId());
+//                    stockDetail.setEmpId(getEmpId());
+//                    stockDetail.setStoreId(getStoreId());
+//                    stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
+//                    stockDetail.setStockNum(-param.getGoodsNum());
+//                    stockDetail.setGoodsId(goods.getId());
                 }
             }
         }
@@ -318,6 +330,65 @@ public class OrderController extends BaseController {
         orderService.handleRemindById(orderId);
         log.info("handle remind order["+orderId+"]");
         return Result.wrapSuccessfulResult(orderId);
+    }
+
+
+    @RequestMapping("sendOrderHeader")
+    @ResponseBody
+    @Transactional
+    public Result<?> sendOrderHeader(Long headerId) {
+
+        if (headerId == null) {
+            log.error("headerId不能为空！");
+            return Result.wrapErrorResult("","订单ID不能为空!");
+        }
+
+        OrderHeader orderHeader = orderHeaderService.getById(headerId);
+        if (orderHeader == null) {
+            log.error("不存在的订单["+headerId+"]");
+            return Result.wrapErrorResult("", "");
+        }
+
+        if (OrderHeaderStatusEnum.send.name().equals(orderHeader.getStatus())) {
+            log.error("订单["+headerId+"]已发货");
+            return Result.wrapErrorResult("", "该订单已发货.");
+        }
+
+        //查询所有未处理且有需要减库存的订单
+        List<Order> needSendOrderList = orderService.queryByNeedSendOrder(headerId);
+        if (ListUtils.isNotBlank(needSendOrderList)) {
+            List<Long> orderIdList = new ArrayList<>();
+            for (Order order: needSendOrderList) {
+                int useNum = order.getUseNum();
+                int handleStock = order.getHandleStock();
+                Long goodsId = order.getGoodsId();
+                if (useNum >0 && handleStock==0 && goodsId!= null) {
+
+                    //更新商品库存
+                    goodsService.updateStockNum(goodsId, useNum);
+                    //记录库存明细
+                    StockDetail stockDetail = new StockDetail();
+                    stockDetail.setDefaultBizValue(getEmpId());
+                    stockDetail.setEmpId(getEmpId());
+                    stockDetail.setStoreId(getStoreId());
+                    stockDetail.setObjId(order.getId());
+                    stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
+                    stockDetail.setStockNum(-useNum);
+                    stockDetail.setGoodsId(goodsId);
+                    stockDetailService.save(stockDetail);
+                    orderIdList.add(order.getId());
+                }
+            }
+
+            //处理所有已发货订单状态
+            orderService.sendOrderByIdList(orderIdList);
+        }
+
+        //标记订单已发货
+        orderHeaderService.updateHeaderStatus(headerId, OrderHeaderStatusEnum.send.name());
+
+        log.info("sendOrderHeader ["+headerId+"]");
+        return Result.wrapSuccessfulResult(null);
     }
 
 

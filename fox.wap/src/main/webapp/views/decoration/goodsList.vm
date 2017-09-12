@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/jquery.webui-popover.min.css?v=1.1"/>
 
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.72"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/goodsList.js?v=1.73"></script>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.webui-popover.min.js?v=1.61"></script>
 </head>
 

@@ -402,7 +402,7 @@ function showStockList(goodsId, goodsName, goodsModel) {
                         delay: 300,
                         padding: true
                     };
-                    $('#stockShow_' + goodsId).webuiPopover('init').webuiPopover($.extend({}, settings, listSettings));
+                    $('#stockShow_' + goodsId).webuiPopover('destroy').webuiPopover($.extend({}, settings, listSettings));
 
 
                 } else {

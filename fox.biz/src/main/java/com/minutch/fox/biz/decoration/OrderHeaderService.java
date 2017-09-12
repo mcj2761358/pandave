@@ -43,4 +43,6 @@ public interface OrderHeaderService {
     int queryTotalNumByTime(DashboardOrderHeaderParam param);
 
     List<OrderHeaderAmountView> reportTotalAmount(Long storeId,String fromTime);
+
+    int updateHeaderStatus(Long headerId,String status);
 }
