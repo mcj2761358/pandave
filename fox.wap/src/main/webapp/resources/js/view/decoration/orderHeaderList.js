@@ -153,7 +153,7 @@ function handleSendOrder(headerId) {
                 if (result.success) {
                     var resultData = result.data;
                     console.log(resultData);
-
+                    queryHeaderList(0);
                 } else {
                     showAlertModel(result.errorMsg);
                 }
