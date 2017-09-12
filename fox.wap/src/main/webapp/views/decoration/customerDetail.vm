@@ -142,6 +142,11 @@
                                         style="color: #0000FF"><a href="${rc.contextPath}/decoration/createCustomer?cusId=$cusId">$!orderHeader.cusName</a></span></span>
 
                                 <span style="font-size: 18px;margin-left: 100px;text-decoration:underline;cursor: pointer;" id="showReturnOrder_$!orderHeader.id" onclick="handleReturnOrder($!orderHeader.id,'$!orderHeader.orderSn')">退货明细</span>
+
+                                #if($orderHeader.status == 'init')
+                                    <span style="margin-left: 100px;" class="btn btn-danger btn-sm" id="sendOrder_$!orderHeader.id" onclick="sendOrder($!orderHeader.id)">发货</span>
+                                #end
+
                             </div>
                             <div class="box-content">
                                 <table class="table table-striped table-bordered">
@@ -576,7 +581,7 @@
 
 
 
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=4.08"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=4.11"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 <script type="text/javascript">

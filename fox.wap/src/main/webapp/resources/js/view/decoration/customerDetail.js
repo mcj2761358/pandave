@@ -882,3 +882,30 @@ function handleReturnOrder(headerId, headerSn){
 
 
 
+//删除客户信息按按钮事件
+function sendOrder(headerId) {
+    showChooseModel("确认要发货吗吗?", handleSendOrder, headerId);
+}
+//处理真正删除事件
+function handleSendOrder(headerId) {
+    var contextPath = $('#rcContextPath').val();
+    $.ajax({
+        url: contextPath + "/decoration/order/sendOrderHeader?headerId=" + headerId,
+        type: "GET",
+
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    var resultData = result.data;
+                    console.log(resultData);
+                    $('#sendOrder_'+headerId).remove();
+                } else {
+                    showAlertModel(result.errorMsg);
+                }
+            }
+        }
+    });
+}
+
+
