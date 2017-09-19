@@ -479,6 +479,7 @@
         and gmt_create between #{param.startTime} and #{param.endTime}
         group by goods_name,goods_Model
         order by goods_num desc
+        limit 10
     </select>
 
 

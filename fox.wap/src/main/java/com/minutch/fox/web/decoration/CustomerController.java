@@ -86,7 +86,7 @@ public class CustomerController extends BaseController {
             log.error("手机号码不能为空.");
             return Result.wrapErrorResult("","手机号码不能为空.");
         }
-        if (!DataCheckUtils.checkMobile(param.getMobilePhone())) {
+        if (param.getMobilePhone().startsWith("1") && !DataCheckUtils.checkMobile(param.getMobilePhone())) {
             log.error("手机号码格式不正确.");
             return Result.wrapErrorResult("","手机号码格式不正确.");
         }
