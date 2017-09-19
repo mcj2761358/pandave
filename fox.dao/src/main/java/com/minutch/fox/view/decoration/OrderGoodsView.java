@@ -12,5 +12,5 @@ import java.util.Date;
 public class OrderGoodsView {
     private String goodsName;
     private String goodsModel;
-    private int goodsNum;
+    private BigDecimal goodsNum;
 }

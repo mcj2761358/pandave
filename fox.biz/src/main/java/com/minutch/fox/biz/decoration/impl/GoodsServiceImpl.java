@@ -1,5 +1,6 @@
 package com.minutch.fox.biz.decoration.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.minutch.fox.biz.base.BaseServiceImpl;
@@ -59,7 +60,7 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
     }
 
     @Override
-    public int updateStockNum(Long goodsId, int goodsNum) {
+    public int updateStockNum(Long goodsId, BigDecimal goodsNum) {
         return goodsDao.updateStockNum(goodsId, goodsNum);
     }
 

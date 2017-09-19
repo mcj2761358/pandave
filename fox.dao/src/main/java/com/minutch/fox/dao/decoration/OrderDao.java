@@ -32,7 +32,7 @@ public interface OrderDao extends BaseDao<Order> {
 
     List<Order> queryByNeedSendOrder(@Param("headerId")Long headerId);
 
-    int handleReturnOrder(@Param("orderId")Long orderId,@Param("goodsNum")int goodsNum,@Param("orderAmount")BigDecimal orderAmount);
+    int handleReturnOrder(@Param("orderId")Long orderId,@Param("goodsNum")BigDecimal goodsNum,@Param("orderAmount")BigDecimal orderAmount);
 
     List<OrderGoodsView> queryOrderGoodsNumByTime(@Param("param")DashboardOrderGoodsParam param);
 

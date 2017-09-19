@@ -4,6 +4,7 @@ import com.minutch.fox.enu.decoration.StockDetailObjTypeEnum;
 import com.minutch.fox.utils.DateUtils;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ public class StockDetailVO {
     private Date gmtCreate;
     private String gmtCreatePos;
     private Long goodsId;
-    private Integer stockNum;
+    private BigDecimal stockNum;
     private String objType;
     private String objName;
     private Long objId;

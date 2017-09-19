@@ -291,10 +291,10 @@ function saveOrder() {
         showAlertModel('商品数量必须为数字.');
         return false;
     }
-    if (goodsNum.indexOf(".") > -1) {
-        showAlertModel('商品数量必须为整数.');
-        return false;
-    }
+    //if (goodsNum.indexOf(".") > -1) {
+    //    showAlertModel('商品数量必须为整数.');
+    //    return false;
+    //}
 
 
     if (isNaN(goodsPrice) || goodsPrice == '') {
@@ -377,10 +377,10 @@ function simpleCreateOrder(headerId) {
         showAlertModel('商品数量必须为数字.');
         return false;
     }
-    if (goodsNum.indexOf(".") > -1) {
-        showAlertModel('商品数量必须为整数.');
-        return false;
-    }
+    //if (goodsNum.indexOf(".") > -1) {
+    //    showAlertModel('商品数量必须为整数.');
+    //    return false;
+    //}
 
     if (isNaN(goodsPrice) || goodsPrice == '') {
         showAlertModel('商品单价必须为数字.');
@@ -450,9 +450,9 @@ function exeOrderAmount(headerId) {
     if (isNaN(goodsNum) || goodsNum == '') {
         goodsNum = 0;
     }
-    else if (goodsNum.indexOf(".") > -1) {
-        goodsNum = 0;
-    }
+    //else if (goodsNum.indexOf(".") > -1) {
+    //    goodsNum = 0;
+    //}
 
     if (isNaN(goodsPrice) || goodsPrice == '') {
         goodsPrice = 0;
@@ -472,10 +472,10 @@ function exeFoxOrderAmount() {
         //showAlertModel('商品数量必须为数字.');
         return false;
     }
-    if (goodsNum.indexOf(".") > -1) {
-        //showAlertModel('商品数量必须为整数.');
-        return false;
-    }
+    //if (goodsNum.indexOf(".") > -1) {
+    //    //showAlertModel('商品数量必须为整数.');
+    //    return false;
+    //}
 
     if (isNaN(goodsPrice) || goodsPrice == '') {
         //showAlertModel('商品单价必须为数字.');
@@ -633,10 +633,10 @@ function saveReturnOrder() {
         showAlertModel('商品数量必须为数字.');
         return false;
     }
-    if (goodsNum.indexOf(".") > -1) {
-        showAlertModel('商品数量必须为整数.');
-        return false;
-    }
+    //if (goodsNum.indexOf(".") > -1) {
+    //    showAlertModel('商品数量必须为整数.');
+    //    return false;
+    //}
     if (isNaN(orderAmount) || orderAmount == '') {
         showAlertModel('订单金额必须为数字.');
         return false;

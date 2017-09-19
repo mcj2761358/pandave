@@ -15,7 +15,7 @@ public class ReturnOrderView {
     private Long id;
     private Date gmtCreate;
     private String gmtCreatePos;
-    private Integer goodsNum;
+    private BigDecimal goodsNum;
     private BigDecimal orderAmount;
 
 

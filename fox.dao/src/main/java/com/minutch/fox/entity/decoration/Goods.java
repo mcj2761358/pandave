@@ -16,7 +16,7 @@ public class Goods extends BaseEntity {
   private String goodsModel;
   private BigDecimal goodsPrice;
   private BigDecimal inGoodsPrice;
-  private Integer stockNum;
+  private BigDecimal stockNum;
   private Integer stockWarn;
   private Long whId;
   private String whName;

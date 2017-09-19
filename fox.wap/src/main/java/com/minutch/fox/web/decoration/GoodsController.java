@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,7 +124,7 @@ public class GoodsController extends BaseController {
             }
 
             //记录库存明细
-            if (param.getStockNum()!=null && param.getStockNum()!=0) {
+            if (param.getStockNum()!=null && param.getStockNum().compareTo(BigDecimal.ZERO) > 0) {
                 stockDetail = new StockDetail();
                 stockDetail.setDefaultBizValue(getEmpId());
                 stockDetail.setEmpId(getEmpId());

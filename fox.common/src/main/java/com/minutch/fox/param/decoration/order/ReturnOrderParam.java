@@ -11,6 +11,6 @@ import java.math.BigDecimal;
 public class ReturnOrderParam {
 
     private Long orderId;
-    private int goodsNum;
+    private BigDecimal goodsNum;
     private BigDecimal orderAmount;
 }

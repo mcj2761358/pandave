@@ -129,7 +129,7 @@ public class OrderController extends BaseController {
             log.error("goods name is blank.");
             return Result.wrapErrorResult("", "商品名称不能为空");
         }
-        if (param.getGoodsNum()==null || param.getGoodsNum()<1) {
+        if (param.getGoodsNum()==null || param.getGoodsNum().compareTo(BigDecimal.ZERO) < 1) {
             log.error("goods num is null or less than 0");
             return Result.wrapErrorResult("","商品数量["+param.getGoodsNum()+"]必须为整数.");
         }
@@ -286,7 +286,7 @@ public class OrderController extends BaseController {
                     && goods.getGoodsName().equals(order.getGoodsName())
                     && goods.getGoodsModel().equals(order.getGoodsModel())) {
                 //恢复库存
-                goodsService.updateStockNum(goodsId, -order.getGoodsNum());
+                goodsService.updateStockNum(goodsId, BigDecimal.ZERO.subtract(order.getGoodsNum()));
 
                 //记录库存明细
                 StockDetail stockDetail = new StockDetail();
@@ -359,10 +359,10 @@ public class OrderController extends BaseController {
         if (ListUtils.isNotBlank(needSendOrderList)) {
             List<Long> orderIdList = new ArrayList<>();
             for (Order order: needSendOrderList) {
-                int useNum = order.getUseNum();
+                BigDecimal useNum = order.getUseNum();
                 int handleStock = order.getHandleStock();
                 Long goodsId = order.getGoodsId();
-                if (useNum >0 && handleStock==0 && goodsId!= null) {
+                if (useNum.compareTo(BigDecimal.ZERO)==1 && handleStock==0 && goodsId!= null) {
 
                     //更新商品库存
                     goodsService.updateStockNum(goodsId, useNum);
@@ -373,7 +373,7 @@ public class OrderController extends BaseController {
                     stockDetail.setStoreId(getStoreId());
                     stockDetail.setObjId(order.getId());
                     stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
-                    stockDetail.setStockNum(-useNum);
+                    stockDetail.setStockNum(BigDecimal.ZERO.subtract(useNum));
                     stockDetail.setGoodsId(goodsId);
                     stockDetailService.save(stockDetail);
                     orderIdList.add(order.getId());
@@ -431,9 +431,9 @@ public class OrderController extends BaseController {
         }
 
         //判断退货数量
-        if (param.getGoodsNum() < 1) {
-            log.error("订单["+param.getOrderId()+"]退货数量["+param.getGoodsNum()+"]不能小于1");
-            return Result.wrapErrorResult("", "退货数量[" + param.getGoodsNum() + "]不能小于1");
+        if (param.getGoodsNum().compareTo(BigDecimal.ZERO) < 1) {
+            log.error("订单["+param.getOrderId()+"]退货数量["+param.getGoodsNum()+"]不能小于0");
+            return Result.wrapErrorResult("", "退货数量[" + param.getGoodsNum() + "]不能小于0");
         }
         if (param.getOrderAmount()==null) {
             log.error("订单["+param.getOrderId()+"]退货金额["+param.getOrderAmount()+"]不能为空");
@@ -452,7 +452,7 @@ public class OrderController extends BaseController {
                     && goods.getGoodsName().equals(order.getGoodsName())
                     && goods.getGoodsModel().equals(order.getGoodsModel())) {
                 //恢复库存
-                goodsService.updateStockNum(goodsId, -param.getGoodsNum());
+                goodsService.updateStockNum(goodsId, BigDecimal.ZERO.subtract(param.getGoodsNum()));
 
                 //记录库存明细
                 StockDetail stockDetail = new StockDetail();

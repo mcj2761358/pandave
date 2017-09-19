@@ -37,7 +37,7 @@ public interface OrderService {
 
     List<Order> queryByNeedSendOrder(Long headerId);
 
-    int handleReturnOrder(Long orderId,int goodsNum,BigDecimal orderAmount);
+    int handleReturnOrder(Long orderId,BigDecimal goodsNum,BigDecimal orderAmount);
 
     void handOrderQueryParam(OrderQueryParam param);
 

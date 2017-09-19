@@ -1,5 +1,6 @@
 package com.minutch.fox.biz.decoration;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.minutch.fox.entity.decoration.Goods;
@@ -24,7 +25,7 @@ public interface GoodsService {
 
     List<Goods> queryAllStoreGoods(Long storeId);
 
-    int updateStockNum(Long goodsId,int goodsNum);
+    int updateStockNum(Long goodsId,BigDecimal goodsNum);
 
     int queryTotalCount(Long storeId);
 

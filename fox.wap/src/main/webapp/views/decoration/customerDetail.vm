@@ -581,7 +581,7 @@
 
 
 
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=4.11"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/customerDetail.js?v=4.12"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 <script type="text/javascript">

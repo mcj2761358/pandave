@@ -22,8 +22,8 @@ public class Order extends BaseEntity {
   private Long goodsId;
   private String goodsName;
   private String goodsModel;
-  private Integer goodsNum;
-  private Integer useNum;
+  private BigDecimal goodsNum;
+  private BigDecimal useNum;
   private Integer handleStock;
   private BigDecimal goodsPrice;
   private BigDecimal inGoodsPrice;

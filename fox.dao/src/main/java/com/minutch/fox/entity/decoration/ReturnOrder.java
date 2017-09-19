@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 public class ReturnOrder extends BaseEntity {
 
   private Long orderId;
-  private Integer goodsNum;
+  private BigDecimal goodsNum;
   private BigDecimal orderAmount;
   private Long storeId;
   private Long empId;

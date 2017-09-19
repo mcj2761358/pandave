@@ -6,6 +6,7 @@ import com.minutch.fox.entity.decoration.Goods;
 import com.minutch.fox.param.decoration.GoodsQueryParam;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @MyBatisRepository
@@ -19,7 +20,7 @@ public interface GoodsDao extends BaseDao<Goods> {
 
     List<Goods> queryAllStoreGoods(@Param("storeId")Long storeId);
 
-    int updateStockNum(@Param("goodsId")Long goodsId,@Param("goodsNum")int goodsNum);
+    int updateStockNum(@Param("goodsId")Long goodsId,@Param("goodsNum")BigDecimal goodsNum);
 
     int queryTotalCount(@Param("storeId")Long storeId);
 

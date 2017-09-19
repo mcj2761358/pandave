@@ -92,7 +92,7 @@ public class OrderServiceImpl extends BaseServiceImpl implements OrderService {
     }
 
     @Override
-    public int handleReturnOrder(Long orderId, int goodsNum, BigDecimal orderAmount) {
+    public int handleReturnOrder(Long orderId, BigDecimal goodsNum, BigDecimal orderAmount) {
         return orderDao.handleReturnOrder(orderId, goodsNum, orderAmount);
     }
 

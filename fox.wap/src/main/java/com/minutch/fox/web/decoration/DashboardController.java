@@ -152,7 +152,7 @@ public class DashboardController extends BaseController{
                 view.setGoodsName(goods.getGoodsName());
                 view.setGoodsModel(goods.getGoodsModel());
 
-                Integer goodsNum = goods.getStockNum();
+                BigDecimal goodsNum = goods.getStockNum();
                 if (goodsNum!=null) {
                     view.setGoodsNum(String.valueOf(goodsNum));
                 }

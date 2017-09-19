@@ -24,7 +24,7 @@ public class OrderView {
     private Long goodsId;
     private String goodsName;
     private String goodsModel;
-    private Integer goodsNum;
+    private BigDecimal goodsNum;
     private BigDecimal goodsPrice;
     private BigDecimal inGoodsPrice;
     private BigDecimal orderAmount;
