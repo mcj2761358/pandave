@@ -254,11 +254,32 @@ public class DecorationController extends BaseController {
 
     @RequestMapping("goodsList")
     public String goodsList(Model model) {
-
         Long storeId = getStoreId();
         List<Warehouse> whList = warehouseService.queryAllWarehouse(storeId);
         model.addAttribute("whList", whList);
         return "decoration/goodsList";
+    }
+
+    @RequestMapping("packageGoodsList")
+    public String packageGoodsList(Model model) {
+
+        //查询商品信息
+        List<Goods> goodsList = goodsService.queryAllStoreGoods(sessionInfo.getStoreId());
+        if (ListUtils.isNotBlank(goodsList)) {
+            List<StoreGoodsSearchMapVO> searchMap = new ArrayList<>();
+            List<StoreGoodsSearchVO> searchList = FoxBeanUtils.copyList(goodsList, StoreGoodsSearchVO.class);
+            for (StoreGoodsSearchVO searchVO:searchList) {
+                searchVO.makeSearchKey();
+                StoreGoodsSearchMapVO mapVO = new StoreGoodsSearchMapVO();
+                mapVO.setKey(searchVO.getSearchKey());
+                mapVO.setValue(gson.toJson(searchVO));
+                searchMap.add(mapVO);
+            }
+            model.addAttribute("searchMapJson", gson.toJson(searchMap));
+        }
+
+
+        return "decoration/packageGoodsList";
     }
 
     @RequestMapping("remindOrderList")

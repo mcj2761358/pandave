@@ -17,6 +17,27 @@
                     </a>
                 </li>
 
+
+                <!-- 商品管理 -->
+
+                #if ($!permissionRule.noGoodsList != "Y")
+                    <li class="nav-header">商品中心</li>
+                    <li>
+                        <a class="ajax-link" href="${rc.contextPath}/decoration/goodsList">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            <span> 商品管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="ajax-link" href="${rc.contextPath}/decoration/packageGoodsList">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            <span> 套餐管理</span>
+                        </a>
+                    </li>
+                #end
+
+
                 <!-- 用户管理 -->
                 <li class="nav-header">用户中心</li>
                 <li>
@@ -64,18 +85,6 @@
                         <a class="ajax-link" href="${rc.contextPath}/chart">
                             <i class="glyphicon glyphicon-list-alt"></i>
                             <span> 数据报表</span>
-                        </a>
-                    </li>
-                #end
-
-                <!-- 商品管理 -->
-
-                #if ($!permissionRule.noGoodsList != "Y")
-                    <li class="nav-header">商品中心</li>
-                    <li>
-                        <a class="ajax-link" href="${rc.contextPath}/decoration/goodsList">
-                            <i class="glyphicon glyphicon-briefcase"></i>
-                            <span> 商品管理</span>
                         </a>
                     </li>
                 #end

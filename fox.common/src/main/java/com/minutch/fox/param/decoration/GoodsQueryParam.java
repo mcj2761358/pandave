@@ -10,4 +10,5 @@ import lombok.Data;
 public class GoodsQueryParam extends PageParam {
     private String keyword;
     private Long storeId;
+    private String goodsType;
 }

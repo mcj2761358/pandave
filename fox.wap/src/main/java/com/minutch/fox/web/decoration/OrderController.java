@@ -1,6 +1,7 @@
 package com.minutch.fox.web.decoration;
 
 import com.minutch.fox.biz.decoration.*;
+import com.minutch.fox.constants.GoodsConstants;
 import com.minutch.fox.entity.decoration.*;
 import com.minutch.fox.enu.decoration.OrderHeaderStatusEnum;
 import com.minutch.fox.enu.decoration.StockDetailObjTypeEnum;
@@ -61,6 +62,8 @@ public class OrderController extends BaseController {
     private ReturnOrderService returnOrderService;
     @Autowired
     private StockDetailService stockDetailService;
+    @Autowired
+    private SubGoodsService subGoodsService;
 
     @RequestMapping("queryHeaderList")
     @ResponseBody
@@ -279,27 +282,27 @@ public class OrderController extends BaseController {
         log.info("delete order["+orderId+"]");
 
         //库存处理
-        Long goodsId = order.getGoodsId();
-        if (goodsId != null) {
-            Goods goods = goodsService.getById(goodsId);
-            if (goods!=null
-                    && goods.getGoodsName().equals(order.getGoodsName())
-                    && goods.getGoodsModel().equals(order.getGoodsModel())) {
-                //恢复库存
-                goodsService.updateStockNum(goodsId, BigDecimal.ZERO.subtract(order.getGoodsNum()));
-
-                //记录库存明细
-                StockDetail stockDetail = new StockDetail();
-                stockDetail.setDefaultBizValue(getEmpId());
-                stockDetail.setEmpId(getEmpId());
-                stockDetail.setStoreId(getStoreId());
-                stockDetail.setObjType(StockDetailObjTypeEnum.orderDelete.name());
-                stockDetail.setObjId(order.getId());
-                stockDetail.setStockNum(order.getGoodsNum());
-                stockDetail.setGoodsId(goods.getId());
-                stockDetailService.save(stockDetail);
-            }
-        }
+//        Long goodsId = order.getGoodsId();
+//        if (goodsId != null) {
+//            Goods goods = goodsService.getById(goodsId);
+//            if (goods!=null
+//                    && goods.getGoodsName().equals(order.getGoodsName())
+//                    && goods.getGoodsModel().equals(order.getGoodsModel())) {
+//                //恢复库存
+//                goodsService.updateStockNum(goodsId, BigDecimal.ZERO.subtract(order.getGoodsNum()));
+//
+//                //记录库存明细
+//                StockDetail stockDetail = new StockDetail();
+//                stockDetail.setDefaultBizValue(getEmpId());
+//                stockDetail.setEmpId(getEmpId());
+//                stockDetail.setStoreId(getStoreId());
+//                stockDetail.setObjType(StockDetailObjTypeEnum.orderDelete.name());
+//                stockDetail.setObjId(order.getId());
+//                stockDetail.setStockNum(order.getGoodsNum());
+//                stockDetail.setGoodsId(goods.getId());
+//                stockDetailService.save(stockDetail);
+//            }
+//        }
 
         return Result.wrapSuccessfulResult(orderId);
     }
@@ -362,21 +365,54 @@ public class OrderController extends BaseController {
                 BigDecimal useNum = order.getUseNum();
                 int handleStock = order.getHandleStock();
                 Long goodsId = order.getGoodsId();
+//                List<Long> goodsIdList = new ArrayList<>();
+
                 if (useNum.compareTo(BigDecimal.ZERO)==1 && handleStock==0 && goodsId!= null) {
 
-                    //更新商品库存
-                    goodsService.updateStockNum(goodsId, useNum);
-                    //记录库存明细
-                    StockDetail stockDetail = new StockDetail();
-                    stockDetail.setDefaultBizValue(getEmpId());
-                    stockDetail.setEmpId(getEmpId());
-                    stockDetail.setStoreId(getStoreId());
-                    stockDetail.setObjId(order.getId());
-                    stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
-                    stockDetail.setStockNum(BigDecimal.ZERO.subtract(useNum));
-                    stockDetail.setGoodsId(goodsId);
-                    stockDetailService.save(stockDetail);
-                    orderIdList.add(order.getId());
+                    //如果商品为套餐商品，减子商品库存
+                    Goods goods = goodsService.getById(goodsId);
+                    if (goods == null) {
+                        continue;
+                    }
+
+                    //套餐
+                    if (GoodsConstants.GOODS_TYPE_PACKAGE.equals(goods.getGoodsType())) {
+                        List<SubGoods> subGoodsList = subGoodsService.queryByGoodsId(goodsId);
+                        if (ListUtils.isNotBlank(subGoodsList)) {
+                            for (SubGoods subGoods : subGoodsList) {
+
+                                Long subGoodsId = subGoods.getSubGoodsId();
+                                BigDecimal realNum = useNum.multiply(new BigDecimal(subGoods.getSubNum()));
+
+                                //更新商品库存
+                                goodsService.updateStockNum(subGoodsId, realNum);
+                                //记录库存明细
+                                StockDetail stockDetail = new StockDetail();
+                                stockDetail.setDefaultBizValue(getEmpId());
+                                stockDetail.setEmpId(getEmpId());
+                                stockDetail.setStoreId(getStoreId());
+                                stockDetail.setObjId(order.getId());
+                                stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
+                                stockDetail.setStockNum(BigDecimal.ZERO.subtract(realNum));
+                                stockDetail.setGoodsId(subGoodsId);
+                                stockDetailService.save(stockDetail);
+                                orderIdList.add(order.getId());
+                            }
+                        }
+                    } else {
+                        //更新商品库存
+                        goodsService.updateStockNum(goodsId, useNum);
+                        //记录库存明细
+                        StockDetail stockDetail = new StockDetail();
+                        stockDetail.setDefaultBizValue(getEmpId());
+                        stockDetail.setEmpId(getEmpId());
+                        stockDetail.setStoreId(getStoreId());
+                        stockDetail.setObjId(order.getId());
+                        stockDetail.setObjType(StockDetailObjTypeEnum.order.name());
+                        stockDetail.setStockNum(BigDecimal.ZERO.subtract(useNum));
+                        stockDetail.setGoodsId(goodsId);
+                        stockDetailService.save(stockDetail);
+                    }
                 }
             }
 
@@ -451,19 +487,45 @@ public class OrderController extends BaseController {
             if (goods!=null
                     && goods.getGoodsName().equals(order.getGoodsName())
                     && goods.getGoodsModel().equals(order.getGoodsModel())) {
-                //恢复库存
-                goodsService.updateStockNum(goodsId, BigDecimal.ZERO.subtract(param.getGoodsNum()));
 
-                //记录库存明细
-                StockDetail stockDetail = new StockDetail();
-                stockDetail.setDefaultBizValue(getEmpId());
-                stockDetail.setEmpId(getEmpId());
-                stockDetail.setStoreId(getStoreId());
-                stockDetail.setObjType(StockDetailObjTypeEnum.orderReturn.name());
-                stockDetail.setObjId(order.getId());
-                stockDetail.setStockNum(param.getGoodsNum());
-                stockDetail.setGoodsId(goods.getId());
-                stockDetailService.save(stockDetail);
+                List<Long> goodsIdList = new ArrayList<>();
+
+                //判断是否套餐
+                if (GoodsConstants.GOODS_TYPE_PACKAGE.equals(goods.getGoodsType())) {
+                    List<SubGoods> subGoodsList = subGoodsService.queryByGoodsId(goodsId);
+                    if (ListUtils.isNotBlank(subGoodsList)) {
+                        for (SubGoods subGoods : subGoodsList) {
+
+                            Long subGoodsId = subGoods.getSubGoodsId();
+                            BigDecimal realNum = param.getGoodsNum().multiply(new BigDecimal(subGoods.getSubNum()));
+                            //恢复库存
+                            goodsService.updateStockNum(subGoodsId, BigDecimal.ZERO.subtract(realNum));
+                            //记录库存明细
+                            StockDetail stockDetail = new StockDetail();
+                            stockDetail.setDefaultBizValue(getEmpId());
+                            stockDetail.setEmpId(getEmpId());
+                            stockDetail.setStoreId(getStoreId());
+                            stockDetail.setObjType(StockDetailObjTypeEnum.orderReturn.name());
+                            stockDetail.setObjId(order.getId());
+                            stockDetail.setStockNum(param.getGoodsNum());
+                            stockDetail.setGoodsId(subGoodsId);
+                            stockDetailService.save(stockDetail);
+                        }
+                    }
+                } else {
+                    //恢复库存
+                    goodsService.updateStockNum(goodsId, BigDecimal.ZERO.subtract(param.getGoodsNum()));
+                    //记录库存明细
+                    StockDetail stockDetail = new StockDetail();
+                    stockDetail.setDefaultBizValue(getEmpId());
+                    stockDetail.setEmpId(getEmpId());
+                    stockDetail.setStoreId(getStoreId());
+                    stockDetail.setObjType(StockDetailObjTypeEnum.orderReturn.name());
+                    stockDetail.setObjId(order.getId());
+                    stockDetail.setStockNum(param.getGoodsNum());
+                    stockDetail.setGoodsId(goodsId);
+                    stockDetailService.save(stockDetail);
+                }
             }
         }
 

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.SubGoodsDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.SubGoods"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "goods_id" property = "goodsId" />
+        <result column = "sub_goods_id" property = "subGoodsId" />
+        <result column = "sub_num" property = "subNum" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <resultMap id="subGoodsView" type="com.minutch.fox.view.decoration.SubGoodsView">
+        <result column="id" property="id"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="sub_goods_id" property="subGoodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="goods_Model" property="goodsModel"/>
+        <result column="sub_num" property="subNum"/>
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "goodsId != null">
+                    and goods_id = #{goodsId}
+                </if>
+                <if test = "subGoodsId != null">
+                    and sub_goods_id = #{subGoodsId}
+                </if>
+                <if test = "subNum != null">
+                    and sub_num = #{subNum}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "goodsId != null">
+                goods_id = #{goodsId},
+            </if>
+            <if test = "subGoodsId != null">
+                sub_goods_id = #{subGoodsId},
+            </if>
+            <if test = "subNum != null">
+                sub_num = #{subNum},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_sub_goods
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_sub_goods
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_sub_goods
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_sub_goods
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_sub_goods
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_sub_goods
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_sub_goods (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        goods_id,
+        sub_goods_id,
+        sub_num,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{goodsId},
+        #{subGoodsId},
+        #{subNum},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_sub_goods
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+    <!-- 查询具体子商品 -->
+    <select id = "queryByGoodsIdAndSubGoodsId" resultMap = "BaseResultMap">
+        select *
+        from decoration_sub_goods
+        where is_deleted = 'N'
+        and goods_id = #{goodsId}
+        and sub_goods_id = #{subGoodsId}
+        limit 1
+    </select>
+
+
+    <!-- 查询套餐子商品 -->
+    <select id = "queryViewByGoodsId" resultMap = "subGoodsView">
+        select sg.id,g.id as subGoodsId,sg.goods_id,g.goods_Name,g.goods_Model,sg.sub_Num
+        from decoration_sub_goods sg
+        join decoration_goods g
+        on sg.sub_goods_id = g.id
+        where sg.is_deleted = 'N'
+        and g.is_deleted = 'N'
+        and sg.goods_id = #{goodsId}
+    </select>
+
+
+    <!-- 查询子商品 -->
+    <select id = "queryByGoodsId" resultMap = "BaseResultMap">
+        select *
+        from decoration_sub_goods
+        where is_deleted = 'N'
+        and goods_id = #{goodsId}
+    </select>
+
+</mapper>

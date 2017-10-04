@@ -7,6 +7,7 @@
                extends="COMMON.BASE_RESULT_MAP">
         <result column="goods_name" property="goodsName"/>
         <result column="goods_model" property="goodsModel"/>
+        <result column="goods_type" property="goodsType"/>
         <result column="goods_price" property="goodsPrice"/>
         <result column="in_goods_price" property="inGoodsPrice"/>
         <result column="stock_num" property="stockNum"/>
@@ -27,6 +28,9 @@
                 </if>
                 <if test="goodsModel != null">
                     and goods_model = #{goodsModel}
+                </if>
+                <if test="goodsType != null">
+                    and goods_type = #{goodsType}
                 </if>
                 <if test="goodsPrice != null">
                     and goods_price = #{goodsPrice}
@@ -61,6 +65,9 @@
             </if>
             <if test="goodsModel != null">
                 goods_model = #{goodsModel},
+            </if>
+            <if test="goodsType != null">
+                goods_type = #{goodsType},
             </if>
             <if test="goodsPrice != null">
                 goods_price = #{goodsPrice},
@@ -149,6 +156,7 @@
         <include refid="COMMON.BASE_INSERT_COLUMN"/>
         goods_name,
         goods_model,
+        goods_type,
         goods_price,
         in_goods_price,
         stock_num,
@@ -163,6 +171,7 @@
         <include refid="COMMON.BASE_INSERT_VALUE"/>
         #{goodsName},
         #{goodsModel},
+        #{goodsType},
         #{goodsPrice},
         #{inGoodsPrice},
         #{stockNum},
@@ -191,6 +200,9 @@
             goods_name like concat('%',#{param.keyword},'%')
             or goods_model like concat('%',#{param.keyword},'%')
             )
+        </if>
+        <if test="param.goodsType!=null and param.goodsType!=''">
+            and goods_type = #{param.goodsType}
         </if>
     </sql>
 

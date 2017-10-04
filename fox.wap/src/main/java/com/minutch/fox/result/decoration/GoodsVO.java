@@ -17,6 +17,7 @@ public class GoodsVO {
     private String gmtCreatePos;
     private String goodsName;
     private String goodsModel;
+    private String goodsType;
     private BigDecimal goodsPrice;
     private BigDecimal inGoodsPrice;
     private BigDecimal stockNum;

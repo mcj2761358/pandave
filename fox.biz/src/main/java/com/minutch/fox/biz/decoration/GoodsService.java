@@ -30,4 +30,5 @@ public interface GoodsService {
     int queryTotalCount(Long storeId);
 
     List<Goods> queryStockNumAsc(Long storeId);
+
 }

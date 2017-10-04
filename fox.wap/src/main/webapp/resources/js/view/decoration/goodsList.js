@@ -196,26 +196,26 @@ function saveGoods() {
 }
 
 
-function editGoodsList() {
-    var currentName = $('.editGoodsOption').text();
-    if (currentName == '编辑商品') {
-        $('.optionBtn').show();
-        $('.editGoodsOption').text('编辑完成');
-    } else if (currentName == '编辑完成') {
-        $('.optionBtn').hide();
-        $('.editGoodsOption').text('编辑商品');
-    }
-}
+//function editGoodsList() {
+//    var currentName = $('.editGoodsOption').text();
+//    if (currentName == '编辑商品') {
+//        $('.optionBtn').show();
+//        $('.editGoodsOption').text('编辑完成');
+//    } else if (currentName == '编辑完成') {
+//        $('.optionBtn').hide();
+//        $('.editGoodsOption').text('编辑商品');
+//    }
+//}
 
 
-function showOptionBtn() {
-    var currentName = $('.editGoodsOption').text();
-    if (currentName == '编辑商品') {
-        $('.optionBtn').hide();
-    } else if (currentName == '编辑完成') {
-        $('.optionBtn').show();
-    }
-}
+//function showOptionBtn() {
+//    var currentName = $('.editGoodsOption').text();
+//    if (currentName == '编辑商品') {
+//        $('.optionBtn').hide();
+//    } else if (currentName == '编辑完成') {
+//        $('.optionBtn').show();
+//    }
+//}
 
 
 var pageSize = 10;
@@ -253,6 +253,7 @@ function queryGoodsList(pageIndex) {
                             var goodsId = goods.id;
                             var goodsName = goods.goodsName;
                             var goodsModel = goods.goodsModel;
+                            var goodsType = goods.goodsType;
                             var goodsPrice = goods.goodsPrice;
                             var inGoodsPrice = goods.inGoodsPrice;
                             var stockNum = goods.stockNum;
@@ -270,6 +271,12 @@ function queryGoodsList(pageIndex) {
                             if (beNew == true) {
                                 showGoodsName += '<span style="color: red">(新)</span>';
                             }
+                            if ('package' == goodsType) {
+                                showGoodsName += '<span style="color: red">(套餐)</span>';
+                                //showGoodsName += '<span style="color: #000079">(套餐)</span>';
+                            }
+
+
                             if (inGoodsPrice == null) {
                                 inGoodsPrice = '';
                             }
@@ -302,7 +309,7 @@ function queryGoodsList(pageIndex) {
                     if (pageIndex == 0) {
                         createPage(pageSize, resultData.totalSize);
                     }
-                    showOptionBtn();
+                    //showOptionBtn();
                 }
             }
         }

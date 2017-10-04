@@ -25,4 +25,5 @@ public interface GoodsDao extends BaseDao<Goods> {
     int queryTotalCount(@Param("storeId")Long storeId);
 
     List<Goods> queryStockNumAsc(@Param("storeId")Long storeId);
+
 }
