@@ -181,7 +181,7 @@
                                             <td class="center goodsPrice">$!order.goodsPrice</td>
                                         ##                                            <td class="center gmtCreate">$!order.gmtCreatePos</td>
                                             <td class="center remark">$!order.remindTimePos</td>
-                                            <td class="center remark">$!order.reamrk</td>
+                                            <td class="center remark">$!order.remark</td>
                                         ##                                            <td class="center beFinish">
 
 

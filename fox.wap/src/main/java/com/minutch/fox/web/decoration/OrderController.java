@@ -412,6 +412,7 @@ public class OrderController extends BaseController {
                         stockDetail.setStockNum(BigDecimal.ZERO.subtract(useNum));
                         stockDetail.setGoodsId(goodsId);
                         stockDetailService.save(stockDetail);
+                        orderIdList.add(order.getId());
                     }
                 }
             }
