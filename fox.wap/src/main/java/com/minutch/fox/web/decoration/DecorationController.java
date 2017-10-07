@@ -49,7 +49,11 @@ public class DecorationController extends BaseController {
     }
 
     @RequestMapping("userList")
-    public String userList() {
+    public String userList(Model model) {
+
+        List<String> houseNameList = customerService.queryBaseHouseName(getStoreId());
+        model.addAttribute("houseNameList", gson.toJson(houseNameList));
+
         return "decoration/userList";
     }
 
@@ -257,6 +261,10 @@ public class DecorationController extends BaseController {
         Long storeId = getStoreId();
         List<Warehouse> whList = warehouseService.queryAllWarehouse(storeId);
         model.addAttribute("whList", whList);
+
+        List<String> goodsNameList = goodsService.queryBaseGoodsName(storeId);
+        model.addAttribute("goodsNameList", gson.toJson(goodsNameList));
+
         return "decoration/goodsList";
     }
 

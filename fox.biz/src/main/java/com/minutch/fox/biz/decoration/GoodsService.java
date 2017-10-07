@@ -31,4 +31,5 @@ public interface GoodsService {
 
     List<Goods> queryStockNumAsc(Long storeId);
 
+    List<String> queryBaseGoodsName(Long storeId);
 }

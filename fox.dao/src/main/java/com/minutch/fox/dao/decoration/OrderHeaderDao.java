@@ -38,4 +38,6 @@ public interface OrderHeaderDao extends BaseDao<OrderHeader> {
     List<OrderHeaderAmountView> reportTotalAmount(@Param("storeId")Long storeId, @Param("fromTime")String fromTime);
 
     int updateHeaderStatus(@Param("headerId")Long headerId,@Param("status")String status);
+
+    int deleteOrderHeader(@Param("headerId")Long headerId,@Param("storeId")Long storeId);
 }

@@ -62,4 +62,9 @@ public class CustomerServiceImpl extends BaseServiceImpl implements CustomerServ
     public int queryTotalNumByTime(DashboardCustomerParam param) {
         return customerDao.queryTotalNumByTime(param);
     }
+
+    @Override
+    public List<String> queryBaseHouseName(Long storeId) {
+        return customerDao.queryBaseHouseName(storeId);
+    }
 }

@@ -345,4 +345,20 @@
         where id =#{headerId}
     </update>
 
+    <!-- 删除订单 -->
+    <update id="deleteOrderHeader">
+        update decoration_order_header
+        set gmt_modified = now(),
+        is_deleted = 'Y'
+        where id =#{headerId}
+        and store_id = #{storeId};
+
+        update decoration_order
+        set gmt_modified = now(),
+        is_deleted = 'Y'
+        where header_id =#{headerId}
+        and store_id = #{storeId};
+    </update>
+
+
 </mapper>

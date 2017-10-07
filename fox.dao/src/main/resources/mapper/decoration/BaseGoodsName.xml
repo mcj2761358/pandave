@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.minutch.fox.dao.decoration.BaseGoodsNameDao">
+
+    <resultMap id = "BaseResultMap" type = "com.minutch.fox.entity.decoration.BaseGoodsName"
+               extends = "COMMON.BASE_RESULT_MAP">
+        <result column = "goods_name" property = "goodsName" />
+        <result column = "store_id" property = "storeId" />
+        <result column = "remark" property = "remark" />
+    </resultMap>
+
+    <sql id = "BaseWhereClause">
+        <where>
+            <trim prefixOverrides = "and">
+                <include refid = "COMMON.BASE_WHERE_CLAUSE" />
+                <if test = "goodsName != null">
+                    and goods_name = #{goodsName}
+                </if>
+                <if test = "storeId != null">
+                    and store_id = #{storeId}
+                </if>
+                <if test = "remark != null">
+                    and remark = #{remark}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id = "BaseUpdateSet">
+        <set>
+            <include refid = "COMMON.BASE_UPDATE_SET" />
+            <if test = "goodsName != null">
+                goods_name = #{goodsName},
+            </if>
+            <if test = "storeId != null">
+                store_id = #{storeId},
+            </if>
+            <if test = "remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+    </sql>
+
+    <!-- 查询总数 -->
+    <select id = "selectCount" resultType = "java.lang.Integer">
+        select count(id)
+        from decoration_base_goods_name
+        <include refid = "BaseWhereClause" />
+    </select>
+
+    <!-- 查询 -->
+    <select id = "select" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_base_goods_name
+        <include refid = "BaseWhereClause" />
+        <include refid = "COMMON.ORDER_BY" />
+        <include refid = "COMMON.LIMIT" />
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id = "selectById" resultMap = "BaseResultMap">
+        select
+        <include refid = "COMMON.ALL_COLUMN_LIST" />
+        from decoration_base_goods_name
+        where id = #{id}
+    </select>
+
+    <!-- 根据IDS批量删除 -->
+    <update id = "deleteByIds">
+        update decoration_base_goods_name
+        set is_deleted='Y'
+        where id in
+        (
+        <foreach collection = "array" index = "index" item = "tag" separator = ",">
+            #{tag}
+        </foreach>
+        )
+    </update>
+
+    <!-- 根据ID删除 -->
+    <update id = "deleteById">
+        update decoration_base_goods_name
+        set is_deleted='Y'
+        where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id = "delete">
+        update decoration_base_goods_name
+        set is_deleted='Y'
+        <include refid = "BaseWhereClause" />
+    </delete>
+
+    <!-- 添加   -->
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty = "id">
+        insert into decoration_base_goods_name (
+        <include refid = "COMMON.BASE_INSERT_COLUMN" />
+        goods_name,
+        store_id,
+        remark
+        )
+        values (
+        <include refid = "COMMON.BASE_INSERT_VALUE" />
+        #{goodsName},
+        #{storeId},
+        #{remark}
+        )
+    </insert>
+
+    <!-- 通过ID更新 -->
+    <update id = "updateById">
+        update decoration_base_goods_name
+        <include refid = "BaseUpdateSet" />
+        where id = #{id}
+    </update>
+
+</mapper>

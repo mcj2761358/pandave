@@ -119,6 +119,7 @@ function queryHeaderList(pageIndex) {
                                 '<td style="' + style + '" class="right">' + leftAmount + '</td>' +
                                 '<td>' +
                                 statusBtn +
+                                '<a class="btn btn-sm btn-primary" onClick="deleteOrder('+orderHeaderId+')" href="#"><i class="glyphicon icon-white"></i>删除</a>' +
                                 '</td>' +
                                 '</tr>';
                             $('.contentDiv').append(orderDataHtml);
@@ -137,17 +138,44 @@ function queryHeaderList(pageIndex) {
 
 
 
-//删除客户信息按按钮事件
+//发货
 function sendOrder(headerId) {
-    showChooseModel("确认要发货吗吗?", handleSendOrder, headerId);
+    showChooseModel("确认要发货吗?", handleSendOrder, headerId);
 }
-//处理真正删除事件
+//处理真正发货事件
 function handleSendOrder(headerId) {
     var contextPath = $('#rcContextPath').val();
     $.ajax({
         url: contextPath + "/decoration/order/sendOrderHeader?headerId=" + headerId,
         type: "GET",
 
+        success: function (result) {
+            if (result != null) {
+                //请求数据成功
+                if (result.success) {
+                    var resultData = result.data;
+                    console.log(resultData);
+                    queryHeaderList(0);
+                } else {
+                    showAlertModel(result.errorMsg);
+                }
+            }
+        }
+    });
+}
+
+
+
+//发货
+function deleteOrder(headerId) {
+    showChooseModel("确认要删除订单吗?", handleDeleteOrder, headerId);
+}
+//处理真正发货事件
+function handleDeleteOrder(headerId) {
+    var contextPath = $('#rcContextPath').val();
+    $.ajax({
+        url: contextPath + "/orderHeader/deleteById?headerId=" + headerId,
+        type: "GET",
         success: function (result) {
             if (result != null) {
                 //请求数据成功

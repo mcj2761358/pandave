@@ -26,4 +26,6 @@ public interface CustomerService {
     int queryTotalCount(Long storeId);
 
     int queryTotalNumByTime(DashboardCustomerParam param);
+
+    List<String> queryBaseHouseName(Long storeId);
 }

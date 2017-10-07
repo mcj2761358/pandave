@@ -40,12 +40,12 @@
 
                 <!-- 用户管理 -->
                 <li class="nav-header">用户中心</li>
-                <li>
-                    <a class="ajax-link" href="${rc.contextPath}/decoration/createCustomer">
-                        <i class="glyphicon glyphicon-star"></i>
-                        <span> 创建客户</span>
-                    </a>
-                </li>
+##                <li>
+##                    <a class="ajax-link" href="${rc.contextPath}/decoration/createCustomer">
+##                        <i class="glyphicon glyphicon-star"></i>
+##                        <span> 创建客户</span>
+##                    </a>
+##                </li>
                 <li>
                     <a class="ajax-link" href="${rc.contextPath}/decoration/userList">
                         <i class="glyphicon glyphicon-edit"></i>

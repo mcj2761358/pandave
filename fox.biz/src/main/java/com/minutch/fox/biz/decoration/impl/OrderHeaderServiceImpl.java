@@ -103,4 +103,9 @@ public class OrderHeaderServiceImpl extends BaseServiceImpl implements OrderHead
     public int updateHeaderStatus(Long headerId, String status) {
         return orderHeaderDao.updateHeaderStatus(headerId, status);
     }
+
+    @Override
+    public int deleteOrderHeader(Long headerId, Long storeId) {
+        return orderHeaderDao.deleteOrderHeader(headerId, storeId);
+    }
 }

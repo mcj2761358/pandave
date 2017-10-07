@@ -258,11 +258,13 @@ function editGoods(goodsId) {
                             var id = goods.id;
                             var goodsName = goods.goodsName;
                             var goodsModel = goods.goodsModel;
+                            var goodsPrice = goods.goodsPrice;
                             var subNum = goods.subNum;
 
                             var goodsDataHtml = '<tr>' +
                                 '<td>'+goodsName+'</td>' +
                                 '<td>'+goodsModel+'</td>' +
+                                '<td>'+goodsPrice+'</td>' +
                                 '<td>'+subNum+'</td>' +
                                 '<td>' +
                                 '<a class="btn btn-danger btn-sm" onclick="deleteSubGoods('+id+')">' +

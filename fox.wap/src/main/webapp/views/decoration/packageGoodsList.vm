@@ -210,41 +210,13 @@
                             <tr>
                                 <th>商品名称</th>
                                 <th>商品型号</th>
+                                <th>价格</th>
                                 <th>数量</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody class="subGoodsDiv">
-                                <tr>
-                                    <td>扫地机器人</td>
-                                    <td>ROBOT001</td>
-                                    <td>2</td>
-                                    <td>
-                                        <a class="btn btn-danger btn-sm" onclick="deleteSubGoods()">
-                                            <i class="glyphicon glyphicon-trash icon-white"></i>删除
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>扫地机器人</td>
-                                    <td>ROBOT001</td>
-                                    <td>2</td>
-                                    <td>
-                                        <a class="btn btn-danger btn-sm" onclick="deleteSubGoods()">
-                                            <i class="glyphicon glyphicon-trash icon-white"></i>删除
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>扫地机器人</td>
-                                    <td>ROBOT001</td>
-                                    <td>2</td>
-                                    <td>
-                                        <a class="btn btn-danger btn-sm" onclick="deleteSubGoods()">
-                                            <i class="glyphicon glyphicon-trash icon-white"></i>删除
-                                        </a>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
 
@@ -267,7 +239,7 @@
 
 
 
-<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/packageGoodsList.js?v=1.08"></script>
+<script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/packageGoodsList.js?v=1.09"></script>
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 

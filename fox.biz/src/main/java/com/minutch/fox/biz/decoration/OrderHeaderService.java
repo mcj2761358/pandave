@@ -45,4 +45,6 @@ public interface OrderHeaderService {
     List<OrderHeaderAmountView> reportTotalAmount(Long storeId,String fromTime);
 
     int updateHeaderStatus(Long headerId,String status);
+
+    int deleteOrderHeader(Long headerId,Long storeId);
 }

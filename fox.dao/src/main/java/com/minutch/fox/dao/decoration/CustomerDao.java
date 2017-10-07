@@ -22,4 +22,5 @@ public interface CustomerDao extends BaseDao<Customer> {
 
     int queryTotalNumByTime(@Param("param")DashboardCustomerParam param);
 
+    List<String> queryBaseHouseName(@Param("storeId")Long storeId);
 }

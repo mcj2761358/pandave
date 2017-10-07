@@ -485,9 +485,10 @@
 
     <!-- 统计最近3个月的高销售额商品 -->
     <select id="reportHotGoodsByAmount" resultMap="hotGoodsViewMap">
-         select goods_name,sum(goods_num * goods_price) as goods_amount
+        select goods_name,sum(goods_num * goods_price) as goods_amount
         from decoration_order
-        where store_id=#{storeId}
+        where is_deleted ='N'
+        and store_id=#{storeId}
         and gmt_create > #{fromTime}
         and is_deleted = 'N'
         group by goods_name
@@ -500,7 +501,8 @@
     <select id="reportHotGoodsByNum" resultMap="hotGoodsViewMap">
         select goods_name,sum(goods_num) as goods_num
         from decoration_order
-        where store_id=#{storeId}
+        where is_deleted ='N'
+        and store_id=#{storeId}
         and gmt_create > #{fromTime}
         and is_deleted = 'N'
         and is_deleted = 'N'

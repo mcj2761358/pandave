@@ -273,4 +273,22 @@
     </select>
 
 
+    <!-- 查询商品名称基础数据 -->
+    <select id="queryBaseGoodsName" resultType="java.lang.String">
+        select distinct goods_name
+        from decoration_goods
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
+
+
+    <!-- 查询商品名称基础数据 -->
+    <!--<select id="queryBaseGoodsModel" resultType="java.lang.String">-->
+        <!--select distinct goods_model-->
+        <!--from decoration_goods-->
+        <!--where is_deleted = 'N'-->
+        <!--and store_id = #{storeId}-->
+    <!--</select>-->
+
+
 </mapper>

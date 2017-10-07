@@ -17,6 +17,7 @@
         <result column="sub_goods_id" property="subGoodsId"/>
         <result column="goods_name" property="goodsName"/>
         <result column="goods_Model" property="goodsModel"/>
+        <result column="goods_price" property="goodsPrice"/>
         <result column="sub_num" property="subNum"/>
     </resultMap>
 
@@ -147,7 +148,7 @@
 
     <!-- 查询套餐子商品 -->
     <select id = "queryViewByGoodsId" resultMap = "subGoodsView">
-        select sg.id,g.id as subGoodsId,sg.goods_id,g.goods_Name,g.goods_Model,sg.sub_Num
+        select sg.id,g.id as subGoodsId,sg.goods_id,g.goods_Name,g.goods_Model,g.goods_price,sg.sub_Num
         from decoration_sub_goods sg
         join decoration_goods g
         on sg.sub_goods_id = g.id

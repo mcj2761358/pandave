@@ -232,4 +232,12 @@
         and store_id = #{param.storeId}
         and gmt_create between #{param.startTime} and #{param.endTime}
     </select>
+
+    <!-- 查询小区基础数据 -->
+    <select id="queryBaseHouseName" resultType="java.lang.String">
+        select distinct house_name
+        from decoration_customer
+        where is_deleted = 'N'
+        and store_id = #{storeId}
+    </select>
 </mapper>

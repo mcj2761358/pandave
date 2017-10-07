@@ -6,9 +6,9 @@
     #parse("decoration/public/commonStyle.vm")
 
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/lib/simplePagination.css"/>
-    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/userList.css"/>
+    <link rel="stylesheet" href="${rc.contextPath}/resources/css/view/decoration/userList.css?v=1.01"/>
     <script type="text/javascript" src="${rc.contextPath}/resources/js/lib/jquery.simplePagination.js"></script>
-    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/userList.js?v=1.41"></script>
+    <script type="text/javascript" src="${rc.contextPath}/resources/js/view/decoration/userList.js?v=1.42"></script>
 </head>
 
 <body>
@@ -54,7 +54,10 @@
                                 <tr>
                                     <td><input id="cusName"/></td>
                                     <td><input id="mobilePhone"/></td>
-                                    <td><input id="houseName"/></td>
+                                    <td><input id="houseName"  onkeyup="autoComplete.start(event)"/>
+
+                                        <div class="auto_hidden" id="auto"><!--自动完成 DIV--></div>
+                                    </td>
                                     <td><input id="address"/></td>
 
                                     <td class="center">
@@ -127,6 +130,13 @@
 
     #parse("decoration/public/footer.vm")
 </div>
+
+
+<script>
+    var autoComplete = new AutoComplete('houseName', 'auto', $houseNameList);
+</script>
+
+
     #parse("decoration/public/alertModal.vm")
     #parse("decoration/public/commonJS.vm")
 </body>

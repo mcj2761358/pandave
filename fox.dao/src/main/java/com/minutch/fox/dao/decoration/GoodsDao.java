@@ -26,4 +26,5 @@ public interface GoodsDao extends BaseDao<Goods> {
 
     List<Goods> queryStockNumAsc(@Param("storeId")Long storeId);
 
+    List<String> queryBaseGoodsName(@Param("storeId")Long storeId);
 }
