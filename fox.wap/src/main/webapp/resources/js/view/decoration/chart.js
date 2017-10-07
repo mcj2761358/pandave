@@ -60,7 +60,7 @@ function reportNearlyDaysOrderAmount() {
                     $.plot("#reportNearlyDaysOrderAmount", [
                         {
                             data: data,
-                            label: "2016年度销售额报表"
+                            label: "近10天销售额"
 
                         }, //lines: {show: true}
                     ], {
