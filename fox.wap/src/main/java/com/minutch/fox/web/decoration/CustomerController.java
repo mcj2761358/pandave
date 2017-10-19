@@ -110,6 +110,9 @@ public class CustomerController extends BaseController {
                 if (StringUtils.isNotBlank(param.getAddress()) && param.getAddress().equals(customer.getAddress())) {
                     log.error("客户[" + param.getMobilePhone() + "]已存在.");
                     return Result.wrapErrorResult("", "客户[" + param.getMobilePhone() + "]已存在，请到[客户管理]查询此客户信息.");
+                } else {
+                    log.error("客户[" + param.getMobilePhone() + "]已存在.");
+                    return Result.wrapErrorResult("", "客户[" + param.getMobilePhone() + "]已存在，请到[客户管理]查询此客户信息.");
                 }
             }
 
